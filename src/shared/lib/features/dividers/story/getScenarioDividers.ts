@@ -4,6 +4,7 @@ import { IScenario, IStory } from '@/shared/types/api';
 import { DividerType } from '@/shared/types/dividers';
 import { FirstParam } from '@/shared/types/util';
 import { getScenarioSize } from './getScenarioSize';
+import { getScenarioNumber, getStoryNumber } from './numbering';
 
 type IGetSizeOptions = FirstParam<typeof getScenarioSize>;
 type IGetScenarioDividersOptions = Omit<IGetSizeOptions, 'scenario'> & {
@@ -18,7 +19,7 @@ export const getStoryScenarios = ({ scenario, scenarios = [] }: IStory) => [
 ];
 
 export const getScenarioDividers = (options: IGetScenarioDividersOptions) => {
-  const { story, includeScenarios, includeCampaignIcon } = options;
+  const { story, encounterSets, includeScenarios, includeCampaignIcon } = options;
 
   if (!includeScenarios) {
     return [];
@@ -42,7 +43,8 @@ export const getScenarioDividers = (options: IGetScenarioDividersOptions) => {
         ...sizeData,
         id: uniqId() + id,
         story,
-        scenario,
+        storyNumber: getStoryNumber(story),
+        scenarioNumber: getScenarioNumber(id, scenario, story, encounterSets),
         name: scenario_name,
         icon,
         campaignIcon,

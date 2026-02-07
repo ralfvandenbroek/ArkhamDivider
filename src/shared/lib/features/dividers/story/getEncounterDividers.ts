@@ -1,9 +1,10 @@
-import { isNotNil, propEq, uniq } from 'ramda';
+import { isNotNil, propEq } from 'ramda';
 import { removePunctuation, uniqId } from '@/shared/lib/features/util/common';
 import { DividerType } from '@/shared/types/dividers';
 import { getEncounterSize } from './getEncounterSize';
 import { getStoryScenarios } from './getScenarioDividers';
 import { IGetStoryDividersOptions } from './getStoryDividers';
+import { getScenarioNumber, getStoryNumber } from "./numbering";
 
 type IGetEncounterDividersParams = IGetStoryDividersOptions;
 
@@ -31,7 +32,7 @@ export const getEncounterDividers = (options: IGetEncounterDividersParams) => {
 
   const formatText = (text: string) => removePunctuation(text).toLowerCase();
 
-  const scenarioNames = uniq(scenarios.map(({ scenario_name }) => formatText(scenario_name)));
+  const scenarioNames = Object.fromEntries(scenarios.map((scenario) => [formatText(scenario.scenario_name), scenario]));
 
   const campaignIcon = icon;
 
@@ -39,7 +40,7 @@ export const getEncounterDividers = (options: IGetEncounterDividersParams) => {
 
   const encounters = [...encounter_sets, ...extraEncounters];
 
-  const encounterDividers = encounters
+  return encounters
     .map((code) => {
       const isExtra = extra_encounter_sets.includes(code);
       const encounter = encounterSets.find(propEq(code, 'code'));
@@ -50,7 +51,7 @@ export const getEncounterDividers = (options: IGetEncounterDividersParams) => {
 
       const { name, icon } = encounter;
       const encounterName = name.toLowerCase();
-      const isScenario = Boolean(icon) && scenarioNames.includes(formatText(encounterName));
+      const isScenario = Boolean(icon) && scenarioNames[formatText(encounterName)] !== undefined;
 
       if (!includeScenarioEncounterSet && isScenario) {
         return;
@@ -73,7 +74,9 @@ export const getEncounterDividers = (options: IGetEncounterDividersParams) => {
       return {
         id: uniqId() + code,
         ...sizeData,
+        scenarioNumber: getScenarioNumber(code, scenarioNames[formatText(encounterName)], story, encounterSets),
         story,
+        storyNumber: getStoryNumber(story),
         name,
         icon,
         campaignIcon,
@@ -82,23 +85,22 @@ export const getEncounterDividers = (options: IGetEncounterDividersParams) => {
         displayCampaignIcon: includeCampaignIcon,
       };
     })
-    .filter(isNotNil);
-
-  if (!includeScenarioEncounterSet) {
-    return encounterDividers;
-  }
-
-  const scenarioEncounterDividers = scenarios
-    .filter(({ icon }) => !encounterDividers.find(propEq(icon, 'icon')))
-    .map(({ scenario_name, id, icon }) => ({
-      id: uniqId() + id,
-      story,
-      name: scenario_name,
-      icon,
-      campaignIcon,
-      type: DividerType.ENCOUNTER,
-      displayCampaignIcon: includeCampaignIcon,
-    }));
-
-  return [...encounterDividers, ...scenarioEncounterDividers];
+    .filter(isNotNil)
+    .sort((a, b) => {
+        if (a.scenarioNumber == b.scenarioNumber) {
+            return a.name.localeCompare(b.name);
+        } else if (a.scenarioNumber == '') {
+            return 1;
+        } else if (b.scenarioNumber == '') {
+            return -1;
+        } else {
+            const aNumber = Number(a.scenarioNumber.replace(/\D.*$/, ''));
+            const bNumber = Number(b.scenarioNumber.replace(/\D.*$/, ''));
+            if (aNumber == bNumber) {
+                return a.scenarioNumber.localeCompare(b.scenarioNumber);
+            } else {
+                return aNumber - bNumber;
+            }
+        }
+    });
 };

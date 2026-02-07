@@ -5,8 +5,8 @@ import S from './WithBrowserSupport.module.scss';
 export type WithBrowserSupportProps = PropsWithChildren;
 
 export const WithBrowserSupport = ({ children }: WithBrowserSupportProps) => {
-  const browser = detect();
-  const notSupported = ['safari'].includes(browser?.name || '');
+  // const browser = detect();
+  const notSupported = false;// ['safari'].includes(browser?.name || '');
   return (
     <>
       {notSupported && (

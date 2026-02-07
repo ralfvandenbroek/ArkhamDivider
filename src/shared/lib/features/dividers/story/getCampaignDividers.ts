@@ -1,6 +1,7 @@
 import { uniqId } from '@/shared/lib/features/util/common';
 import { AddStoryDividersOptions } from '@/shared/store/features/addDividers/addDividers';
 import { DividerType, IDivider } from '@/shared/types/dividers';
+import { getStoryNumber } from "./numbering";
 
 export const getCampaignDividers = ({
   story,
@@ -16,6 +17,8 @@ export const getCampaignDividers = ({
     {
       id: uniqId(),
       story,
+      storyNumber: getStoryNumber(story),
+      scenarioNumber: '',
       name,
       icon,
       campaignIcon: icon,
@@ -31,6 +34,8 @@ export const getCampaignDividers = ({
         campaignIcon: icon,
         type: DividerType.CAMPAIGN,
         story,
+        storyNumber: getStoryNumber(story),
+        scenarioNumber: '',
       })),
   ];
 };

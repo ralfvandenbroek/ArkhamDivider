@@ -12,18 +12,19 @@ import { Icon } from '@/components/ui/icons/Icon/Icon';
 import { CircleIcon } from '@/components/ui/icons/CircleIcon/CircleIcon';
 import { useIconSelect } from '@/shared/lib/hooks/useIconSelect';
 import { selectLayout } from '@/shared/store/features/layout/layout';
-import { getHeaderFilter } from './getHeaderFilter';
+import { getHeaderFilter, getSvgFilter } from './getHeaderFilter';
 import { DividerType } from '@/shared/types/dividers';
 import { NotExportable } from '@/components/ui/behavior/NotExportable/NotExportable';
 import { DividerCornerRadius } from '../../common/DividerCornerRadius/DividerCornerRadius';
 import { DividerMenu } from '../../common/DividerMenu/DividerMenu';
+import { isChallenge, isSideContent } from "@/shared/store/features/stories/criteria.ts";
 
 type RynoDividerType = 'horizontal' | 'vertical' | 'verticalXL';
 
 export const RynoDivider = (props: DividerProps) => {
   const bleed = useAppSelector(selectBleed);
   const cornerRadius = useAppSelector(selectCornerRadius);
-  const { name = '', story, id } = props;
+  const { name = '', story, id, storyNumber, scenarioNumber } = props;
   const { t } = useStoryTranslation(story);
   const layout = useAppSelector(selectLayout);
 
@@ -38,29 +39,35 @@ export const RynoDivider = (props: DividerProps) => {
     : undefined;
 
   const [largeIcon, selectLargeIcon] = useIconSelect({
-    defaultIcon: props.campaignIcon ?? factionIcon,
+    defaultIcon: story && isChallenge(story) ? 'cardicons-parallel' : (props.campaignIcon ?? factionIcon),
   });
 
   const [campaignIcon, selectCampaignIcon] = useIconSelect({
-    defaultIcon: props.campaignIcon,
+    defaultIcon: story && isChallenge(story) ? 'cardicons-parallel' : props.campaignIcon,
   });
 
   const hasFaction = Boolean(props.faction);
   const hasXP = Boolean(props.xpCost);
+
+  const svgFilter = getSvgFilter(props);
 
   const headerStyle = {
     filter: getHeaderFilter(props),
   };
 
   const [title, setTitle] = useState(name);
-  const translatedName = t(name);
+  const translatedName = ((scenarioNumber !== undefined ? scenarioNumber.toUpperCase() : '') + ' ' + t(name)).trim();
   const titleInputClassName = classNames(S.titleInput);
 
   const dividerType = (layout.customParams?.type ?? 'horizontal') as RynoDividerType;
 
   const assets = images[dividerType];
 
-  const storyTitle = story ? t(story.name) : '';
+  const storyTitle = story ? (
+      isChallenge(story) ? t("Challenge Scenario") + ' ' + storyNumber :
+      isSideContent(story) && story.code !== 'zbh' ? t("Standalone Adventure") + ' ' + storyNumber :
+          storyNumber?.toLowerCase() + ' ' + t(story.name)
+    ).trim() :'';
 
   const containerClassName = classNames(S.container, bleed && S.bleed, S[dividerType]);
 
@@ -68,6 +75,23 @@ export const RynoDivider = (props: DividerProps) => {
   const factionImage = `/images/faction/${props.faction}.png`;
 
   const showCorner = !hasFaction || (hasFaction && !isGenericFaction);
+
+  const isReturnTo = Boolean(
+      icon?.startsWith('return') ||
+      icon?.match(/^rt[a-z]+$/) ||
+      (icon && ['blob_that_ate_everything_else', 'migo_incursion_2'].includes(icon))
+  );
+  const returnToClass = isReturnTo ? S.return : undefined;
+  const iconScale = icon ? {
+    // tcu
+    'disappearance_at_the_twilight_estate': 0.9,
+    'the_witching_hour': 0.9,
+    // eoe
+    'the_heart_of_madness': 0.85,
+    'tekeli_li': 0.85,
+    // tdc
+    'pilgrims': 0.80,
+  }[icon] : undefined;
 
   const isInvestigator = props.type === DividerType.INVESTIGATOR;
 
@@ -80,6 +104,7 @@ export const RynoDivider = (props: DividerProps) => {
             {hasFaction && isGenericFaction && (
               <img className={S.factionIcon} src={factionImage} alt={props.faction} />
             )}
+            {svgFilter}
             <img className={S.header} src={assets.header} alt={title} style={headerStyle} />
             <img className={S.body} src={assets.body} alt={title} />
           </div>
@@ -110,15 +135,15 @@ export const RynoDivider = (props: DividerProps) => {
           </div>
         }
         {showCorner && (
-          <div className={S.icon} onClick={selectIcon}>
+          <div className={classNames(S.icon, returnToClass)} onClick={selectIcon}>
             {icon && (
               <CircleIcon
                 icon={icon}
                 className={S.iconItem}
                 containerClassName={S.iconContainer}
                 scaleFactor={{
-                  circled: 0.97,
-                  all: 0.99,
+                  circled: iconScale || 0.97,
+                  all: iconScale || 0.99,
                 }}
               />
             )}

@@ -88,6 +88,32 @@
   &:hover {
     opacity: 0.4;
   }
+  .vertical & {
+    top: 4.12mm;
+    left: 4.12mm;
+  }
+}
+
+.icon.return {
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0.24mm;
+    right: 0.24mm;
+    top: 0.24mm;
+    bottom: 0.24mm;
+    border-radius: 50%;
+    border: 0.75mm solid currentColor;
+    background-color: white;
+
+    .vertical & {
+      left: 0.26mm;
+      right: 0.26mm;
+      top: 0.26mm;
+      bottom: 0.26mm;
+    }
+  }
 }
 
 .largeIcon {
@@ -142,7 +168,7 @@
 .title {
   font-family: 'Arkhamic', "Teutonic", sans-serif;
   font-size: 4mm;
-  filter: drop-shadow(0 8px 13px rgba(0, 0, 0, 0.47));
+  filter: drop-shadow(0 2.5px 1px rgba(0, 0, 0, 0.5));
   font-size: 5mm;
   position: absolute;
   z-index: 3;

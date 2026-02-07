@@ -25,8 +25,10 @@ export enum DividerSubtype {
 export type IDivider = {
   id: string;
   story?: IStory;
+  storyNumber?: string;
   campaign?: ICampaign;
   scenario?: IScenario;
+  scenarioNumber?: string;
   encounterSet?: IEncounterSet;
   type: DividerType;
   subtype?: DividerSubtype;
