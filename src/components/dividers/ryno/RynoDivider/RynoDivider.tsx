@@ -21,6 +21,11 @@ import { isChallenge, isSideContent } from "@/shared/store/features/stories/crit
 
 type RynoDividerType = 'horizontal' | 'vertical' | 'verticalXL';
 
+const isReturnToIcon = (icon: string) => {
+  return icon.startsWith('return') || icon.match(/^rt[a-z]+$/) !== null ||
+      ['blob_that_ate_everything_else', 'migo_incursion_2'].includes(icon);
+};
+
 export const RynoDivider = (props: DividerProps) => {
   const bleed = useAppSelector(selectBleed);
   const cornerRadius = useAppSelector(selectCornerRadius);
@@ -56,7 +61,8 @@ export const RynoDivider = (props: DividerProps) => {
   };
 
   const [title, setTitle] = useState(name);
-  const translatedName = ((scenarioNumber !== undefined ? scenarioNumber.toUpperCase() : '') + ' ' + t(name)).trim();
+  const translatedName = ((scenarioNumber !== undefined ? scenarioNumber.toUpperCase() : '') + ' ' +
+      t(name == 'Return Cult of Umôrdhoth' ? 'Cult of Umôrdhoth' : name)).trim();
   const titleInputClassName = classNames(S.titleInput);
 
   const dividerType = (layout.customParams?.type ?? 'horizontal') as RynoDividerType;
@@ -76,16 +82,16 @@ export const RynoDivider = (props: DividerProps) => {
 
   const showCorner = !hasFaction || (hasFaction && !isGenericFaction);
 
-  const isReturnTo = Boolean(
-      icon?.startsWith('return') ||
-      icon?.match(/^rt[a-z]+$/) ||
-      (icon && ['blob_that_ate_everything_else', 'migo_incursion_2'].includes(icon))
-  );
-  const returnToClass = isReturnTo ? S.return : undefined;
+  const returnToClass = icon && isReturnToIcon(icon) ? [S.return, S[icon]] : undefined;
+  const returnToCampaignClass = campaignIcon && isReturnToIcon(campaignIcon) ? S.return : undefined;
+
+
   const iconScale = icon ? {
     // tcu
     'disappearance_at_the_twilight_estate': 0.9,
     'the_witching_hour': 0.9,
+    // tfa
+    'knyan': 0.9,
     // eoe
     'the_heart_of_madness': 0.85,
     'tekeli_li': 0.85,
@@ -155,7 +161,7 @@ export const RynoDivider = (props: DividerProps) => {
           </div>
         )}
         {campaignIcon && !hasXP && !isInvestigator && (
-          <div className={S.campaignIcon} onClick={selectCampaignIcon}>
+          <div className={classNames(S.campaignIcon, returnToCampaignClass)} onClick={selectCampaignIcon}>
             <Icon icon={campaignIcon} />
           </div>
         )}

@@ -76,11 +76,11 @@
   cursor: pointer;
   position: absolute;
   z-index: 3;
-  left: 4.2mm;
+  left: 4.21mm;
   top: 3.8mm;
   font-size: 8.1mm;
-  width: 8.9mm;
-  height: 8.9mm;
+  width: 8.85mm;
+  height: 8.85mm;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,31 +89,60 @@
     opacity: 0.4;
   }
   .vertical & {
-    top: 4.12mm;
-    left: 4.12mm;
+    top: 4.14mm;
+    left: 4.22mm;
+    width: 8.7mm;
+    height: 8.7mm;
+    font-size: 8.0mm;
   }
-}
 
-.icon.return {
-  &:before {
+  &.return:before {
     content: '';
     display: block;
     position: absolute;
-    left: 0.24mm;
-    right: 0.24mm;
-    top: 0.24mm;
-    bottom: 0.24mm;
+    left: 0.17mm;
+    right: 0.17mm;
+    top: 0.17mm;
+    bottom: 0.17mm;
     border-radius: 50%;
     border: 0.75mm solid currentColor;
     background-color: white;
 
     .vertical & {
-      left: 0.26mm;
-      right: 0.26mm;
-      top: 0.26mm;
-      bottom: 0.26mm;
+      top: 0.16mm;
+      left: 0.16mm;
+      right: 0.16mm;
+      bottom: 0.16mm;
+      border-width: 0.7mm;
     }
   }
+
+  &.return.rttcu:before {
+    border-width: 0.64mm;
+    .vertical & { border-width: 0.6mm; }
+  }
+
+  &.return_to_the_dunwich_legacy:before {
+    border-width: 0.64mm;
+    .vertical & { border-width: 0.6mm; }
+  }
+
+  &.return_to_city_of_archives:before {
+    border-width: 0.64mm;
+    .vertical & { border-width: 0.6mm; }
+  }
+
+  &.rtnotz:before {
+    border-width: 0.54mm;
+    .vertical & { border-width: 0.54mm; }
+  }
+
+  &.return_to_the_midnight_masks:before {
+    border-width: 0.665mm;
+    .vertical & { border-width: 0.625mm; }
+  }
+
+
 }
 
 .largeIcon {
@@ -147,6 +176,27 @@
   cursor: pointer;
   &:hover {
     opacity: 0.5;
+  }
+
+  &.return {
+    width: 5.8mm;
+    height: 5.8mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0mm;
+      right: 0mm;
+      top: 0mm;
+      bottom: 0mm;
+      border-radius: 50%;
+      border: 0.3mm solid currentColor;
+      background-color: black;
+    }
   }
 }
 
