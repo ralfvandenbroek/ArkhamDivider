@@ -7,9 +7,6 @@ import { useAppSelector } from '@/shared/lib/hooks/useAppSelector';
 import { selectCropMarks } from '@/shared/store/features/print/print';
 import { selectExport } from '@/shared/store/features/app/app';
 
-
-const DEFAULT_GUIDE_TYPE = 'cross';
-
 type GuideConfig = GuideType | false;
 
 export type GuidesProps = PropsWithClassName & {
@@ -24,10 +21,10 @@ export type GuidesProps = PropsWithClassName & {
 export const Guides = ({
   className,
   guideClassName,
-  topLeft = DEFAULT_GUIDE_TYPE,
-  topRight = DEFAULT_GUIDE_TYPE,
-  bottomLeft = DEFAULT_GUIDE_TYPE,
-  bottomRight = DEFAULT_GUIDE_TYPE,
+  topLeft = "outset-corner-tl",
+  topRight = "outset-corner-tr",
+  bottomLeft = "outset-corner-bl",
+  bottomRight = "outset-corner-br",
 }: GuidesProps) => {
   const show = useAppSelector(selectCropMarks);
   const isExport = useAppSelector(selectExport);

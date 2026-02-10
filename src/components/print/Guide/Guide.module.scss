@@ -4,7 +4,7 @@
 
   --guide-color: red;
   --guide-size: 2mm;
-  --negative-guide-size: -2mm;
+  --negative-guide-size: -3mm;
   --line-width: 1px;
 }
 
@@ -44,19 +44,19 @@
   }
   &-br {
     .vertical {
-      top: 0;
+      bottom: var(--negative-guide-size);
     }
     .horizontal {
-      top: var(--guide-size);
-      left: 0;
+      top: 0;
+      right: var(--negative-guide-size);
     }
   }
   &-bl {
     .vertical {
-      top: 0;
+      bottom: var(--negative-guide-size);
     }
     .horizontal {
-      top: var(--guide-size);
+      top: 0;
       left: var(--negative-guide-size);
     }
   }
@@ -66,6 +66,7 @@
     }
     .horizontal {
       top: 0;
+      left: var(--negative-guide-size);
     }
   }
   &-tr {
@@ -74,7 +75,7 @@
     }
     .horizontal {
       top: 0;
-      left: var(--negative-guide-size);
+      right: var(--negative-guide-size);
     }
   }
 }
