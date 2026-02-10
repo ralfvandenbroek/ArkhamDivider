@@ -25,6 +25,8 @@ import { selectDividers } from '@/shared/store/features/dividers/dividers';
 
 import './index.scss';
 import { Announce } from '@/components/layout/Announce/Announce';
+import {selectPageOrientation, selectPageSizeType} from "@/shared/store/features/print/print.ts";
+import useBodyClass from "@/shared/lib/hooks/useBodyClass.ts";
 
 const App = () => {
   return (
@@ -66,6 +68,9 @@ const AppLayout = () => {
   useAppNavigation();
 
   const dividers = useAppSelector(selectDividers);
+  const pageSizeType = useAppSelector(selectPageSizeType).replace(' ', '');
+  const pageOrientation = useAppSelector(selectPageOrientation);
+  useBodyClass(`${pageSizeType}-${pageOrientation}`);
 
   const showLayout = dividers.length > 0;
 

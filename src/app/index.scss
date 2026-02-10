@@ -12,5 +12,25 @@ body {
 
   @media print {
     background-color: #fff;
+
+    &.A4-portrait { width: 210mm; }
+    &.A4-landscape { width: 297mm; }
+    &.A3-portrait { width: 297mm; }
+    &.A3-landscape { width: 420mm; }
+    &.B4-portrait { width: 250mm; }
+    &.B4-landscape { width: 353mm; }
+    &.B3-portrait { width: 353mm; }
+    &.B3-landscape { width: 500mm; }
+    &.SRA4-portrait { width: 225mm; }
+    &.SRA4-landscape { width: 320mm; }
+    &.SRA3-portrait { width: 320mm; }
+    &.SRA3-landscape { width: 450mm; }
+    &.USLetter-portrait { width: 215.9mm; }
+    &.USLetter-landscape { width: 279.4mm; }
+    &.USLegal-portrait { width: 215.9mm; }
+    &.USLegal-landscape { width: 355.6mm; }
+    &.USTabloid-portrait { width: 279.4mm; }
+    &.USTabloid-landscape { width: 431.8mm; }
+    height: 100%;
   }
 }
