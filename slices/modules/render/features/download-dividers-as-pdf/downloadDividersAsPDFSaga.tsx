@@ -209,6 +209,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 								colourspace: "lab",
 								stripIccProfile: true,
 								quality: 100,
+								...layout.renderOptions,
 							});
 
 						if (!contents) {

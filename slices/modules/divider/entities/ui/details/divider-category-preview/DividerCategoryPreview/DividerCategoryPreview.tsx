@@ -41,11 +41,14 @@ export function DividerCategoryPreview({ category }: DividerCategoryProps) {
 						{category.hasHorizontal && (
 							<LayoutList
 								layouts={horizontal}
-								title={t`orientation.horizontal`}
+								title={t`orientation.horizontal.plural`}
 							/>
 						)}
 						{category.hasVertical && (
-							<LayoutList layouts={vertical} title={t`orientation.vertical`} />
+							<LayoutList
+								layouts={vertical}
+								title={t`orientation.vertical.plural`}
+							/>
 						)}
 					</Stack>
 				</Stack>

@@ -21,9 +21,11 @@ export type RenderDividerOptions = {
 	renderOptions?: ModernScreenshotOptions;
 	iccProfile?: ICCProfile;
 	colourspace?: Colourspace;
+	normaliseToSRGB?: boolean;
 	size?: BoxSize;
 	quality?: number;
 	stripIccProfile?: boolean;
+	intent?: number;
 };
 
 export const renderDivider = async ({
@@ -33,9 +35,11 @@ export const renderDivider = async ({
 	renderOptions,
 	iccProfile,
 	colourspace,
+	normaliseToSRGB = true,
 	size,
 	quality,
 	stripIccProfile = false,
+	intent = 1, // 1 = relative
 }: RenderDividerOptions) => {
 	const node = getDividerNodeById(dividerId);
 	// const scale = dpi / 96;
@@ -45,12 +49,21 @@ export const renderDivider = async ({
 		maximumCanvasSize: 60_000,
 	};
 
+	const iccTransformOptions = { intent };
+
 	const blob = await domToBlob(node, options);
 
 	const arrayBuffer = await blob.arrayBuffer();
 
 	const vips = await getVips();
 	let image: Vips.Image | null = vips.Image.newFromBuffer(arrayBuffer);
+
+	// Normalise to sRGB first so lab+ICC pipeline is consistent (e.g. invocation AVIF with other profile).
+	if (normaliseToSRGB) {
+		const srgb = setColourspace(image, "srgb");
+		image.delete();
+		image = srgb;
+	}
 
 	if (size) {
 		const scale = size.width / image.width;
@@ -60,7 +73,11 @@ export const renderDivider = async ({
 	}
 
 	if (!stripIccProfile && iccProfile) {
-		const next = await setICCProfile(image, iccProfile);
+		const next = await setICCProfile({
+			image,
+			iccProfile,
+			transformOptions: iccTransformOptions,
+		});
 		image.delete();
 		image = next;
 	}
@@ -111,7 +128,11 @@ export const renderDivider = async ({
 	image = vips.Image.newFromBuffer(contents);
 
 	if (iccProfile) {
-		const next = await setICCProfile(image, iccProfile);
+		const next = await setICCProfile({
+			image,
+			iccProfile,
+			transformOptions: iccTransformOptions,
+		});
 		image.delete();
 		image = next;
 	}

@@ -1,2 +1,2 @@
 export * from "./ClassicDivider";
-export * from "./pdf";
+export * from "./ClassicDividerPDF";

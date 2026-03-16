@@ -1,5 +1,6 @@
 import { saveAs } from "file-saver";
 import { call, put, select, takeLatest } from "redux-saga/effects";
+import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	selectDividerById,
 	selectPrintableLayoutSize,
@@ -13,7 +14,6 @@ import {
 	startRender,
 } from "@/modules/render/shared/lib";
 import type { ReturnAwaited } from "@/shared/model";
-
 import { downloadDividerAsImage } from "./downloadDividerAsImage";
 
 function* worker({ payload }: ReturnType<typeof downloadDividerAsImage>) {
@@ -27,7 +27,9 @@ function* worker({ payload }: ReturnType<typeof downloadDividerAsImage>) {
 	const printableLayoutSize: ReturnType<typeof selectPrintableLayoutSize> =
 		yield select(selectPrintableLayoutSize);
 
-	if (!divider || !printableLayoutSize) {
+	const layout: ReturnType<typeof selectLayout> = yield select(selectLayout);
+
+	if (!divider || !printableLayoutSize || !layout) {
 		return;
 	}
 
@@ -57,7 +59,9 @@ function* worker({ payload }: ReturnType<typeof downloadDividerAsImage>) {
 				...baseOptions,
 				iccProfile: "USWebCoatedSWOP.icc",
 				stripIccProfile: !isTIFF,
-				...(!isTIFF ? { colourspace: "lab" } : {}),
+				...(isTIFF ? {} : { colourspace: "lab" }),
+				...layout.renderOptions,
+				...(isTIFF ? { intent: 1 } : {}),
 			};
 
 	const contents: ReturnAwaited<typeof renderDivider> = yield call(

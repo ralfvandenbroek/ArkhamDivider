@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
@@ -36,7 +37,10 @@ export function LayoutPageContent({
 			>
 				<Container>
 					<Box sx={{ displayPrint: "none" }}>
-						<SectionTitle>{t(layout.name)}</SectionTitle>
+						<SectionTitle>
+							<Typography color="text.secondary">{t(category.name)}</Typography>
+							{t(layout.name)}
+						</SectionTitle>
 						<Stack
 							sx={{
 								"@media screen": {

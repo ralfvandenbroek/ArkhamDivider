@@ -5,8 +5,9 @@ import { ClassicDivider, ClassicDividerPDF } from "./classic/ui";
 import { dividerCategories, dividerLayouts } from "./data";
 import { invocation2018CategoryId } from "./invocation2018/config/common";
 import { Invocation2018Divider } from "./invocation2018/ui";
+import { Invocation2018DividerPDF } from "./invocation2018/ui/Invocation2018DividerPDF";
 
-export { dividerCategories, dividerLayouts };
+export { dividerCategories, dividerLayouts, invocation2018CategoryId };
 
 export const dividerComponents: Record<
 	string,
@@ -20,4 +21,5 @@ export const dividerComponents: Record<
 // biome-ignore lint/suspicious/noExplicitAny: any is used to allow any type of params
 export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
 	[classicCategoryId]: ClassicDividerPDF,
+	[invocation2018CategoryId]: Invocation2018DividerPDF,
 };

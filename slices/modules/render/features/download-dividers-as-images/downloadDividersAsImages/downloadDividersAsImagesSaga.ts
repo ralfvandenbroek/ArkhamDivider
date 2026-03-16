@@ -104,6 +104,8 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 						iccProfile: "USWebCoatedSWOP.icc",
 						stripIccProfile: !isTIFF,
 						...(isTIFF ? {} : { colourspace: "lab" }),
+						...layout.renderOptions,
+						...(isTIFF ? { intent: 1 } : {}),
 					};
 
 			const contents: ReturnAwaited<typeof renderDivider> = yield call(

@@ -9,9 +9,14 @@ import { invocation2018CategoryId } from "./common";
 
 const types: DividerLayoutType[] = ["player", "investigator"];
 
+const renderOptions: DividerLayout["renderOptions"] = {
+	colourspace: "srgb",
+	iccProfile: "ISOcoated_v2_300_eci.icc",
+	intent: 0,
+};
 const horizontal: DividerLayout = {
 	id: "invocation2018-horizontal",
-	name: "Invocation 2018",
+	name: "Horizontal",
 	orientation: "horizontal",
 	color: true,
 	size: createSize(89, 76.2),
@@ -40,6 +45,7 @@ const horizontal: DividerLayout = {
 		numericXP: true,
 	},
 	iconParams: ["icon"],
+	renderOptions,
 };
 
 const vertical63: DividerLayout = {
@@ -63,11 +69,13 @@ const vertical63: DividerLayout = {
 	},
 	bleed: 3,
 	iconParams: ["icon"],
+	renderOptions,
 };
 
 const vertical65: DividerLayout = {
 	...vertical63,
 	id: "invocation2018-vertical-65",
+	groupId: "invocation2018-vertical-65",
 	name: "65x100",
 	size: createSize(65, 100),
 	printSize: {

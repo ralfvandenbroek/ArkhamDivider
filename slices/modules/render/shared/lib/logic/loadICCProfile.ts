@@ -2,7 +2,10 @@ import type { ICCProfile } from "../../model";
 import { getVips } from "../getVips";
 
 const loadedProfiles: ICCProfile[] = [];
-const externalProfiles: ICCProfile[] = ["USWebCoatedSWOP.icc"];
+const externalProfiles: ICCProfile[] = [
+	"USWebCoatedSWOP.icc",
+	"ISOcoated_v2_300_eci.icc",
+];
 
 export const loadICCProfile = async (filename: ICCProfile) => {
 	if (

@@ -5,13 +5,8 @@ import type { Faction } from "@/modules/faction/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { getInvocation2018LayoutObjects } from "../lib";
 
-export type ClassicLayoutParams = {
-	background: string;
-};
-
-export type ClassicDividerParams = Partial<{
+export type Invocation2018DividerParams = Partial<{
 	icon: Icon | null;
-	background: Icon | null;
 }>;
 
 export type Invocation2018DividerObjects = ReturnType<

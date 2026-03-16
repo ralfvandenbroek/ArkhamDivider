@@ -3,20 +3,21 @@ import { getDividerIcon } from "@/modules/divider/features/lib";
 import { cmyk } from "@/modules/pdf/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
+import { getClassicLayoutFontFamily } from "../../../classic/lib";
 import {
-	getClassicLayoutFontFamily,
-	getClassicLayoutObjects,
-	getDefaultSmallIcon,
-	getIconObject,
-} from "../../../lib";
+	getInvocation2018DefaultIcon,
+	getInvocation2018LayoutObjects,
+	// getDefaultSmallIcon,
+	// getIconObject,
+} from "../../lib";
 
 const color = cmyk(0, 0, 0, 100);
 
-export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
+export const Invocation2018DividerPDF: PDFDivider = async (props, ctx) => {
 	const { story, fontSizeScale = 100 } = props;
 	const { text, lasercut, unit, language, playerParams, layout } = ctx;
 
-	const O = getClassicLayoutObjects(layout);
+	const O = getInvocation2018LayoutObjects(layout);
 	const t = withStoryTranslation(story);
 
 	const textConfig = getLocaleConfig(language, O.text);
@@ -25,10 +26,7 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	const fontSize = unit.mm((fontSizeScale / 100) * 4.58);
 	const bleed = unit.fromBleed();
 
-	const iconObject = getIconObject({
-		...props,
-		layout,
-	});
+	const iconObject = O.icon;
 
 	lasercut.drawRect({
 		x: bleed.x(),
@@ -66,21 +64,14 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 		});
 	}
 
-	const backgroundIcon = getDividerIcon({
-		divider: props,
-		param: "background",
-		defaultIcon: props.icon,
-	});
-
-	const defaultSmallIcon = getDefaultSmallIcon(props);
-
 	const smallIcon = getDividerIcon({
 		divider: props,
 		param: "icon",
-		defaultIcon: defaultSmallIcon,
 	});
+	const defaultSmallIcon = getInvocation2018DefaultIcon(props);
+	const showSmallIcon = Boolean(defaultSmallIcon);
 
-	if (smallIcon) {
+	if (smallIcon && showSmallIcon) {
 		const view = bleed.box({
 			top: iconObject.top,
 			right: iconObject.right,
@@ -97,26 +88,6 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 			height: view.height(),
 			overprint: true,
 			color,
-		});
-	}
-
-	if (backgroundIcon) {
-		const bgIconBox = bleed.box({
-			top: O.backgroundIcon.top,
-			left: O.backgroundIcon.left,
-			width: O.backgroundIcon.size,
-			height: O.backgroundIcon.size,
-		});
-		await ctx.icon.draw(backgroundIcon, {
-			x: bgIconBox.x(),
-			y: bgIconBox.y(),
-			width: bgIconBox.width(),
-			height: bgIconBox.height(),
-			fontSize: unit.mm(O.backgroundIcon.fontSize),
-			manifest: false,
-			color,
-			opacity: O.backgroundIcon.opacity,
-			overprint: true,
 		});
 	}
 };

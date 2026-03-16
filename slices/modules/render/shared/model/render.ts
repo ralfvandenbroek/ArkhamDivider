@@ -9,7 +9,7 @@ export type ColorScheme = "rgb" | "cmyk";
 
 export type ImageFormat = "png" | "tiff" | "jpeg";
 
-export type ExternalICCProfileName = "USWebCoatedSWOP";
+export type ExternalICCProfileName = "USWebCoatedSWOP" | "ISOcoated_v2_300_eci";
 
 export type ExternalICCProfile = `${ExternalICCProfileName}.icc`;
 

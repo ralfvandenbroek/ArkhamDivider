@@ -60,7 +60,7 @@ const horizontalBW: DividerLayout = {
 const horizontalHQ: DividerLayout = {
 	...horizontalLayout,
 	id: "classic-horizontal-hq",
-	name: "Return To",
+	name: "Horizontal",
 	size: createSize(88, 76),
 	printSize: {
 		300: {

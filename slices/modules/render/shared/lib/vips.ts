@@ -4,12 +4,25 @@ import type { DPI } from "@/modules/print/shared/model";
 import type { Colourspace, ICCProfile } from "../model";
 import { loadICCProfile } from "./logic";
 
-export const setICCProfile = async (image: Image, iccProfile: ICCProfile) => {
-	await loadICCProfile(iccProfile);
-	return image.iccTransform(iccProfile, {
-		intent: 1,
+type SetICCProfileOptions = {
+	image: Image;
+	iccProfile: ICCProfile;
+	transformOptions?: {
+		embedded?: boolean;
+		intent?: number;
+	};
+};
+
+export const setICCProfile = async ({
+	image,
+	iccProfile,
+	transformOptions = {
 		embedded: true,
-	});
+		intent: 1,
+	},
+}: SetICCProfileOptions) => {
+	await loadICCProfile(iccProfile);
+	return image.iccTransform(iccProfile, transformOptions);
 };
 
 export const setColourspace = (image: Image, colourspace: Colourspace) => {
