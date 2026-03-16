@@ -16,11 +16,11 @@ const horizontalLayout: DividerLayout = {
 	name: "Reworked by @fabula_rasa",
 	orientation: "horizontal",
 	color: true,
-	size: createSize(89, 76.2),
+	size: createSize(89, 76),
 	printSize: {
 		300: {
-			size: createSize(1051, 900),
-			bleedSize: createSize(1122, 971),
+			size: createSize(1051, 898),
+			bleedSize: createSize(1122, 969),
 		},
 	},
 	bleed: 3,
