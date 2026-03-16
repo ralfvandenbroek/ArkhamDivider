@@ -24,7 +24,7 @@ export function DividerCategoryPreview({ category }: DividerCategoryProps) {
 	const layoutId = firstLayout.id;
 
 	return (
-		<Card>
+		<Card sx={{ height: "100%" }}>
 			<Box padding={2}>
 				<Link to={layoutRoute({ layoutId })}>
 					<CardMedia
