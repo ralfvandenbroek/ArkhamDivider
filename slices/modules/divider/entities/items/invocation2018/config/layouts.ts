@@ -19,15 +19,15 @@ const horizontal: DividerLayout = {
 	name: "Horizontal",
 	orientation: "horizontal",
 	color: true,
-	size: createSize(89, 76.2),
+	size: createSize(88, 76),
 	types,
 	categoryId: invocation2018CategoryId,
 	groupId: "invocation2018-horizontal",
 	bleed: 3,
 	printSize: {
 		300: {
-			size: createSize(1051, 900),
-			bleedSize: createSize(1122, 971),
+			size: createSize(1039, 898),
+			bleedSize: createSize(1110, 969),
 		},
 	},
 	sleeves: [
