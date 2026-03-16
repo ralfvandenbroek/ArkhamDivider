@@ -55,6 +55,7 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 	const sxOptions = {
 		orientation: layout.orientation,
 		color: layout.color,
+		layout: layout.id,
 		objects: O,
 		faction,
 	};

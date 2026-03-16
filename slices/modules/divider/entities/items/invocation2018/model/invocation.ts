@@ -18,6 +18,7 @@ export type Invocation2018DividerCallbackProps = {
 	color: boolean;
 	objects: Invocation2018DividerObjects;
 	faction?: Faction;
+	layout: string;
 };
 
 export type Invocation2018DividerLocaleCallback =

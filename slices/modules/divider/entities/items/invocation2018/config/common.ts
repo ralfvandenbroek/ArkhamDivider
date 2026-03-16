@@ -25,7 +25,7 @@ const xpObject = {
 	container: {
 		fontSize: 2,
 		top: 9.3,
-		right: 2,
+		right: 1.5,
 	},
 	side: {
 		top: 3.9,
@@ -83,7 +83,10 @@ export const invocation2018DividerVertical65Objects = {
 			...defaultTextObject,
 		},
 	},
-	icon: iconObject,
+	icon: {
+		...iconObject,
+		right: 2.9,
+	},
 	xp: {
 		...verticalXPObject,
 		container: {
