@@ -13,6 +13,7 @@ import {
 	PDFCropmarkService,
 	PDFFontService,
 	PDFIconService,
+	PDFImageService,
 	PDFLasercutService,
 	PDFTextService,
 	PDFUnitService,
@@ -164,6 +165,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 		enabled: lasercutEnabled,
 	});
 	const cropmarks = new PDFCropmarkService(doc);
+	const image = new PDFImageService(doc);
 	const counter = new PDFCounterService(text, pageSizePt);
 
 	const hideCounter =
@@ -240,6 +242,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						unit,
 						lasercut,
 						doc,
+						image,
 						language,
 						scenarioParams,
 						playerParams,

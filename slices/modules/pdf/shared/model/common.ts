@@ -9,6 +9,7 @@ import type { DPI } from "@/modules/print/shared/model";
 import type { BoxSize } from "@/shared/model";
 import type {
 	PDFIconService,
+	PDFImageService,
 	PDFLasercutService,
 	PDFTextService,
 	PDFUnitService,
@@ -22,6 +23,7 @@ export type PDFDividerContext = {
 	icon: PDFIconService;
 	unit: PDFUnitService;
 	lasercut: PDFLasercutService;
+	image: PDFImageService;
 	layout: DividerLayout;
 	bleedEnabled: boolean;
 	language: string;

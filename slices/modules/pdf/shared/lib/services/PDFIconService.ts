@@ -1,7 +1,5 @@
-import { Buffer } from "buffer";
 import { omit } from "ramda";
 import { isString } from "ramda-adjunct";
-import SVGtoPDF from "svg-to-pdfkit";
 import { defaultIconPositionManifest } from "@/modules/core/icon/shared/config";
 import {
 	getIconCorrection,
@@ -16,7 +14,7 @@ import type {
 	RenderedMediaIcon,
 } from "@/modules/core/icon/shared/model";
 import { getMediaBlob } from "@/modules/core/media/shared/lib";
-import { PDFOverprintService } from "./PDFOverprintService";
+import { PDFImageService } from "./PDFImageService";
 import type { DrawTextOptions, PDFTextService } from "./PDFTextService";
 
 export type DrawIconOptions = Omit<DrawTextOptions, "fontFamily"> & {
@@ -35,13 +33,14 @@ export type GetIconOptions = BaseIconProps & {
 
 export class PDFIconService {
 	public readonly doc: PDFKit.PDFDocument;
-	public readonly overprint: PDFOverprintService;
+	public readonly image: PDFImageService;
+
 	constructor(
 		public readonly text: PDFTextService,
 		public readonly icons: IconMapping,
 	) {
 		this.doc = text.doc;
-		this.overprint = new PDFOverprintService(this.doc);
+		this.image = new PDFImageService(this.doc);
 	}
 
 	getCorrection({
@@ -152,31 +151,16 @@ export class PDFIconService {
 		if (height) {
 			y += (height - iconHeight) / 2;
 		}
-		if (overprint) {
-			this.overprint.enable();
-		}
 
-		SVGtoPDF(this.doc, svgString, x, y, {
+		this.image.drawSVG(svgString, {
+			x,
+			y,
 			width: iconWidth,
 			height: iconHeight,
-			preserveAspectRatio: "xMidYMid meet",
-			colorCallback(srcColors) {
-				const count = srcColors.length;
-				const baseColor = [color, opacity];
-
-				if (count === 2) {
-					return baseColor;
-				}
-
-				const colors = srcColors.slice(0, count - 1).fill(baseColor);
-
-				return [...colors, opacity];
-			},
+			opacity,
+			overprint,
+			color,
 		});
-
-		if (overprint) {
-			this.overprint.disable();
-		}
 	}
 
 	async drawImageIcon(icon: RenderedMediaIcon, options: DrawIconOptions) {
@@ -195,13 +179,14 @@ export class PDFIconService {
 			y += (height - iconHeight) / 2;
 		}
 
-		this.doc.opacity(opacity);
 		const arrayBuffer = await blob.arrayBuffer();
-		this.doc.image(Buffer.from(arrayBuffer), x, y, {
+		this.image.drawImage(arrayBuffer, {
+			x,
+			y,
 			width: iconWidth,
 			height: iconHeight,
+			opacity,
 		});
-		this.doc.opacity(1);
 	}
 
 	async drawFontIcon(id: string, options: DrawIconOptions) {
