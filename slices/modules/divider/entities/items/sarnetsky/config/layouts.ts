@@ -41,7 +41,7 @@ const horizontal: DividerLayout = {
 const horizontalBlank: DividerLayout = {
 	...horizontal,
 	id: "sarnetsky-horizontal-blank",
-	name: "Single side",
+	name: "Single Side",
 	params: {
 		blankBackSide: true,
 	},

@@ -1,4 +1,5 @@
 import type { BoxProps } from "@mui/material";
+import { DividerBleedView } from "@/modules/divider/entities/ui";
 import type { SarnetskyDividerProps } from "../../model";
 import { SarnetskyDividerBlankImage as BlankImage } from "./SarnetskyDividerBlankImage";
 import { SarnetskyDividerPlayerBackground as PlayerBackground } from "./SarnetskyDividerPlayerBackground";
@@ -9,6 +10,14 @@ type SarnetskyDividerBackgroundProps = BoxProps & SarnetskyDividerProps;
 export function SarnetskyDividerBackground(
 	props: SarnetskyDividerBackgroundProps,
 ) {
+	return (
+		<DividerBleedView>
+			<Content {...props} />
+		</DividerBleedView>
+	);
+}
+
+function Content(props: SarnetskyDividerBackgroundProps) {
 	const { side, params } = props;
 	const showBlankImage = params?.blankBackSide && side === "back";
 

@@ -1,4 +1,4 @@
-import type { XPCost } from "../../model";
+import type { XPCost } from "../../../model";
 
 export const getXPLevel = (xpCost?: XPCost | null) => {
 	if (!xpCost) {

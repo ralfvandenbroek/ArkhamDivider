@@ -10,7 +10,7 @@ import {
 	DividerText,
 	DividerMenu as Menu,
 } from "@/modules/divider/entities/ui";
-import { useDividerIcon } from "@/modules/divider/features/lib/hooks/useDividerIcon";
+import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import {
 	selectPlayerParams,

@@ -1,14 +1,12 @@
 import { getLocaleConfig } from "@/modules/core/i18n/shared/lib";
 import { getDividerIcon } from "@/modules/divider/features/lib";
+import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import { cmyk } from "@/modules/pdf/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
-import { getClassicLayoutFontFamily } from "../../../classic/lib";
 import {
 	getInvocation2018DefaultIcon,
 	getInvocation2018LayoutObjects,
-	// getDefaultSmallIcon,
-	// getIconObject,
 } from "../../lib";
 
 const color = cmyk(0, 0, 0, 100);
@@ -35,7 +33,7 @@ export const Invocation2018DividerPDF: PDFDivider = async (props, ctx) => {
 		height: bleed.height(),
 	});
 
-	const fontFamily = getClassicLayoutFontFamily(language);
+	const fontFamily = getDefaultDividerFontFamily(language);
 
 	await text.draw(title, {
 		x: bleed.x(textConfig.left),

@@ -1,4 +1,4 @@
-import type { XPCost } from "../../model";
+import type { XPCost } from "../../../model";
 
 export const sortXPRanges = (ranges: XPCost[]) => {
 	return ranges.sort((a, b) => getXPRangeValue(a) - getXPRangeValue(b));

@@ -9,7 +9,7 @@ import {
 	DividerText,
 	DividerMenu as Menu,
 } from "@/modules/divider/entities/ui";
-import { useDividerIcon } from "@/modules/divider/features/lib/hooks/useDividerIcon";
+import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import {
 	selectPlayerParams,
@@ -33,7 +33,6 @@ import {
 	getInvocation2018DefaultIcon,
 	getInvocation2018LayoutObjects,
 } from "../../lib";
-import type { Invocation2018DividerParams } from "../../model";
 import { Invocation2018DividerXP as XP } from "../Invocation2018DividerXP";
 import * as S from "./Invocation2018Divider.styles";
 
@@ -43,7 +42,6 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 	const dispatch = useAppDispatch();
 	const layout = useAppSelector(selectLayout) as DividerLayout;
 	const playerParams = useAppSelector(selectPlayerParams);
-	const _params = layout.params as Invocation2018DividerParams;
 	const { translateStory } = useStoryTranslation(story);
 	const mm = usePrintUnitCallback();
 	const customTitle = useRef(props.customTitle);

@@ -1,6 +1,6 @@
 import type { FontFamily } from "@/shared/model";
 
-export const getClassicLayoutFontFamily = (language: string): FontFamily => {
+export const getDefaultDividerFontFamily = (language: string): FontFamily => {
 	switch (language) {
 		case "ru":
 			return "Conkordia";

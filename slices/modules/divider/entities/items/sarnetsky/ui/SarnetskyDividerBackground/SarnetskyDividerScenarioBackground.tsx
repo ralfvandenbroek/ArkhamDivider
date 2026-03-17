@@ -37,7 +37,8 @@ export function SarnetskyDividerScenarioBackground({
 
 	const { orientation } = layout;
 
-	const storyCode = story?.code ?? "default";
+	const storyCode = story?.return_to_code ?? story?.code ?? "default";
+
 	const color = sarnetskyColors[storyCode] ?? sarnetskyColors.default;
 
 	const prefix = `/images/divider/background/sarnetsky/${orientation}/${id}`;

@@ -1,4 +1,5 @@
 export * from "./DividerBackground";
+export * from "./DividerBleedView";
 export * from "./DividerCardsInfo";
 export * from "./DividerContainer";
 export * from "./DividerContent";
