@@ -1,10 +1,12 @@
+export type DonationUrlRecord = Record<string, string> & { default: string };
+
 export type Author = {
 	id: string;
 	name: string;
 	primary?: boolean;
 	role?: string;
 	image?: string;
-	donationUrl?: string;
+	donationUrl?: DonationUrlRecord;
 	contactUrl?: string;
 	contacts?: Contact[];
 };

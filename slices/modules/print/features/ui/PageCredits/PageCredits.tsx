@@ -20,14 +20,7 @@ export function PageCredits({ mmSize, ...props }: PageCreditsProps) {
 
 	return (
 		<Row {...props} justifyContent={justifyContent}>
-			{author?.donationUrl && (
-				<AuthorCredits
-					mmSize={mmSize}
-					authorName={author.name}
-					donationUrl={author.donationUrl}
-					contactUrl={author.contactUrl}
-				/>
-			)}
+			{author?.donationUrl && <AuthorCredits mmSize={mmSize} author={author} />}
 			<ProjectCredits mmSize={mmSize} />
 		</Row>
 	);

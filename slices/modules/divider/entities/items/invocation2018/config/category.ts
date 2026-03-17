@@ -2,7 +2,6 @@ import { createDividerCategory } from "@/modules/divider/shared/lib/logic/create
 import type { DividerCategory } from "@/modules/divider/shared/model";
 import { FFGCredits } from "@/shared/config";
 import { invocation2018CategoryId } from "./common";
-// import { classicCategoryId } from "./common";
 import { invocation2018Layouts } from "./layouts";
 
 export const invocation2018Category: DividerCategory = createDividerCategory({

@@ -4,24 +4,24 @@ import Link from "@mui/material/Link";
 import type { SxProps } from "@mui/material/styles";
 import { QRCodeSVG } from "qrcode.react";
 import { Trans } from "react-i18next";
+import { useDonationUrl } from "@/entities/common/lib";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { fromPx } from "@/modules/print/shared/lib";
+import type { Author } from "@/shared/model";
 import { Row } from "@/shared/ui";
 
 type AuthorCreditsProps = BoxProps & {
-	contactUrl?: string;
-	authorName: string;
-	donationUrl: string;
+	author: Author;
 	mmSize: number;
 };
 
 export function AuthorCredits({
-	donationUrl,
-	contactUrl,
-	authorName,
+	author,
 	mmSize,
 	...props
 }: AuthorCreditsProps) {
+	const { donationUrl, contactUrl } = author;
+
 	const mm = fromPx(mmSize);
 	const linkSx: SxProps = {
 		color: "inherit",
@@ -31,24 +31,27 @@ export function AuthorCredits({
 			textDecoration: "none",
 		},
 	};
+
+	const url = useDonationUrl(donationUrl) as string;
+
 	return (
 		<Box {...props}>
 			<Row gap={mm(4)} alignItems="center" fontFamily="Arno Pro, serif">
 				<Link
-					href={donationUrl}
+					href={url}
 					target="_blank"
 					sx={{
 						":hover": { opacity: 0.6 },
 					}}
 				>
-					<QRCodeSVG value={donationUrl} width={mm(20)} height={mm(20)} />
+					<QRCodeSVG value={url} width={mm(20)} height={mm(20)} />
 				</Link>
 				<Box fontSize={mm(3)}>
 					<Trans
 						i18nKey="credits.author.description"
 						values={{
-							donationUrl,
-							name: authorName,
+							donationUrl: url,
+							name: author.name,
 						}}
 						components={{
 							icon: <Icon icon="free" sx={{ fontSize: mm(2) }} />,
@@ -57,9 +60,7 @@ export function AuthorCredits({
 							) : (
 								<span />
 							),
-							donationLink: (
-								<Link href={donationUrl} sx={linkSx} target="_blank" />
-							),
+							donationLink: <Link href={url} sx={linkSx} target="_blank" />,
 						}}
 					/>
 				</Box>

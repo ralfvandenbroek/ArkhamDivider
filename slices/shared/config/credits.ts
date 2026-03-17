@@ -34,3 +34,24 @@ export const FFGCredits: Author = {
 		},
 	],
 };
+
+export const SarnetskyCredits: Author = {
+	id: "sarnetsky",
+	name: "Eugene Sarnetsky",
+	image: getAssetUrl("/images/authors/sarnetsky.jpg"),
+	donationUrl: {
+		default: "https://www.tinkoff.ru/cf/8OT6GkH6KwE",
+	},
+	contacts: [
+		{
+			id: "telegram",
+			icon: "telegram",
+			url: "https://t.me/sarnetsky",
+		},
+		{
+			id: "email",
+			icon: "mail",
+			url: "mailto:sarnetsky@gmail.com",
+		},
+	],
+};

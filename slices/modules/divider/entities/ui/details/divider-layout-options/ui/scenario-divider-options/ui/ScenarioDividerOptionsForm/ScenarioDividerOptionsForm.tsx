@@ -2,6 +2,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid, { type GridProps } from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import { isUndefined } from "ramda-adjunct";
 import { type Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { OfficialIcon } from "@/modules/core/icon/entities/ui";
@@ -75,7 +76,7 @@ export function ScenarioDividerOptionsForm({
 						/>
 					)}
 				/>
-				{scenarioParams?.campaignIcon && (
+				{isUndefined(scenarioParams?.campaignIcon) && (
 					<Controller
 						name="campaignIcon"
 						control={control}

@@ -72,7 +72,7 @@ export function DividerLayoutInfo({
 					sx={{
 						flex: 1,
 						padding: { xs: 1, sm: 0 },
-						gap: 6,
+						gap: 2,
 					}}
 				>
 					{authors && (

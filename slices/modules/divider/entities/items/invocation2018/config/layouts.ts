@@ -74,8 +74,8 @@ const vertical63: DividerLayout = {
 
 const vertical65: DividerLayout = {
 	...vertical63,
-	id: "invocation2018-vertical-65",
-	groupId: "invocation2018-vertical-65",
+	id: "invocation2018-vertical-sleeves",
+	groupId: "invocation2018-vertical-sleeves",
 	name: "65x100",
 	size: createSize(65, 100),
 	printSize: {
