@@ -86,15 +86,14 @@ export const getIconTriggerSx: Invocation2018DividerSxCallback = ({
 export const getIconBackgroundSx: Invocation2018DividerSxCallback = ({
 	mm,
 	objects: O,
-	layout,
 	orientation,
 }) => ({
 	position: "absolute",
 	zIndex: 3,
-	width: mm(O.icon.size),
-	height: mm(O.icon.size),
+	width: mm(7.6),
+	height: mm(7.6),
 	top: orientation === "vertical" ? mm(2) : mm(2.1),
-	right: layout === "invocation2018-vertical-sleeves" ? mm(2.9) : mm(1.6),
+	right: mm(O.icon.right - 0.1),
 });
 
 const strokeClipSize = 11.3;

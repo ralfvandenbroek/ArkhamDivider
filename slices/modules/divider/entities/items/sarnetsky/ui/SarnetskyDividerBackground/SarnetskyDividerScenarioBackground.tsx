@@ -56,7 +56,7 @@ export function SarnetskyDividerScenarioBackground({
 	} as SxProps;
 
 	return (
-		<Box {...props} sx={sx}>
+		<Box sx={sx}>
 			<Box
 				component="img"
 				src={backgroundSrc}

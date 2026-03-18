@@ -12,3 +12,9 @@ export const sarnetskyColors: Record<string, string> = {
 	tdc: "#5C672B",
 	default: "#B2AAA2",
 };
+
+export const sarnetskyXPColors = {
+	active: "#fff",
+	range: "rgba(255, 255, 255, 0.8)",
+	inactive: "rgba(0, 0, 0, 0.25)",
+};

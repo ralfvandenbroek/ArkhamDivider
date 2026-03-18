@@ -137,7 +137,7 @@ const vertical65x100: DividerLayout = {
 
 const vertical65x100BW: DividerLayout = {
 	...vertical65x100,
-	id: "classic-vertical-65x100-bw",
+	id: "classic-vertical-sleeves-bw",
 	color: false,
 	params: {
 		background: "/images/divider/background/classic/vertical_65-bw.avif",

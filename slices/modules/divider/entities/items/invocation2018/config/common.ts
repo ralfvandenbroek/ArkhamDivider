@@ -16,9 +16,9 @@ const defaultTextObject = {
 const iconObject = {
 	...classicDividerHorizontalObjects.icon,
 	size: 7.5,
-	fontSize: 7.5,
+	fontSize: 7.4,
 	top: 2.5,
-	right: 1.7,
+	right: 1.3,
 };
 
 const xpObject = {
@@ -70,7 +70,10 @@ export const invocation2018DividerVertical63Objects = {
 			...defaultTextObject,
 		},
 	},
-	icon: iconObject,
+	icon: {
+		...iconObject,
+		right: 2,
+	},
 	xp: verticalXPObject,
 };
 

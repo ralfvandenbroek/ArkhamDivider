@@ -21,6 +21,8 @@ export type CardSlot =
 
 export type XPCost = FixedXPCost | RangeXPCost;
 
+export type XPRangeStatus = "active" | "range" | "inactive";
+
 export type FixedXPCost = {
 	type: "fixed";
 	name: string;

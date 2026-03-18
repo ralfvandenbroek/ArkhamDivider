@@ -2,6 +2,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import Box, { type BoxProps } from "@mui/material/Box";
 import IconButton, { type IconButtonProps } from "@mui/material/IconButton";
 import type { SxProps } from "@mui/material/styles";
+import { isString } from "ramda-adjunct";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { setInputCursorAtTheEnd } from "@/shared/lib";
 import { delay, sanitizeHTML } from "@/shared/util";
@@ -55,8 +56,13 @@ export function BoxInput({
 	}, [defaultContent, setValue]);
 
 	useEffect(() => {
-		internalValueRef.current = defaultValue ?? "";
-	}, [defaultValue]);
+		if (!isString(defaultValue)) {
+			return;
+		}
+		setValue(defaultValue);
+		setStrokeValue(defaultValue);
+		internalValueRef.current = defaultValue;
+	}, [defaultValue, setValue]);
 
 	const clear = useCallback(() => {
 		const value = internalValueRef.current;

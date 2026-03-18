@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import { useCallback, useRef } from "react";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
-import { selectLayout } from "@/modules/divider/entities/lib";
+import { selectLayout, useDividerText } from "@/modules/divider/entities/lib";
 import {
 	DividerBackground as Background,
 	DividerContainer as Container,
@@ -11,19 +10,15 @@ import {
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
-import {
-	selectPlayerParams,
-	updateDivider,
-} from "@/modules/divider/shared/lib";
+import { selectPlayerParams } from "@/modules/divider/shared/lib";
+import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import type {
 	DividerLayout,
 	DividerWithRelations,
 } from "@/modules/divider/shared/model";
 import { usePrintUnit, usePrintUnitCallback } from "@/modules/print/shared/lib";
-import { useStoryTranslation } from "@/modules/story/shared/lib";
 import {
 	copyToClipboard,
-	useAppDispatch,
 	useAppSelector,
 	usePreventDefault,
 } from "@/shared/lib";
@@ -37,14 +32,10 @@ import { Invocation2018DividerXP as XP } from "../Invocation2018DividerXP";
 import * as S from "./Invocation2018Divider.styles";
 
 export function Invocation2018Divider(props: DividerWithRelations) {
-	const { story, id, icon } = props;
-
-	const dispatch = useAppDispatch();
+	const { id, icon } = props;
 	const layout = useAppSelector(selectLayout) as DividerLayout;
 	const playerParams = useAppSelector(selectPlayerParams);
-	const { translateStory } = useStoryTranslation(story);
 	const mm = usePrintUnitCallback();
-	const customTitle = useRef(props.customTitle);
 
 	const O = getInvocation2018LayoutObjects(layout);
 
@@ -73,25 +64,16 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 	const iconTriggerSx = getPrintSx(S.getIconTriggerSx);
 	const iconBackgroundSx = getPrintSx(S.getIconBackgroundSx);
 
-	const translatedTitle = translateStory(props?.title);
-	const title = customTitle.current ?? translatedTitle;
-
-	const onFontSizeChange = useCallback(
-		(fontSizeScale: number) => {
-			dispatch(updateDivider({ id, changes: { fontSizeScale } }));
-		},
-		[id, dispatch],
-	);
-
-	const setCustomTitle = useCallback((value: string) => {
-		customTitle.current = value;
-	}, []);
-
-	const onTitleBlur = useCallback(() => {
-		dispatch(
-			updateDivider({ id, changes: { customTitle: customTitle.current } }),
-		);
-	}, [id, dispatch]);
+	const {
+		value: title,
+		translatedValue: translatedTitle,
+		onChange: onTitleChange,
+		onBlur: onTitleBlur,
+		onFontSizeChange,
+	} = useDividerText({
+		divider: props,
+		param: "customTitle",
+	});
 
 	const getDividerIcon = useDividerIcon({
 		dividerId: id,
@@ -118,6 +100,8 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 
 	const iconBackgroundSrc = "/images/divider/background/invocation/icon-bg.png";
 
+	const xpCost = getDividerXPCost(props);
+
 	return (
 		<Container>
 			<Background src={background} alt={layout.name} />
@@ -135,7 +119,7 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 						minFontSize: 8,
 						onFontSizeChange,
 					}}
-					onValueChange={setCustomTitle}
+					onValueChange={onTitleChange}
 					onBlur={onTitleBlur}
 					strokeSx={strokeSx}
 					clearProps={{ sx: titleClearSx }}
@@ -161,14 +145,14 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 					<Box sx={iconTriggerSx} onClick={selectSmallIcon} />
 				)}
 				<Menu dividerId={id} sx={menuSx} />
-				{props.type === "player" && props.xpCost && (
+				{xpCost && (
 					<>
-						<XP sx={xpSx} xpCost={props.xpCost} />
+						<XP sx={xpSx} xpCost={xpCost} />
 						{playerParams?.numericXP && (
 							<DividerText
 								dividerId={id}
 								sx={numericXPSx}
-								value={props.xpCost?.name}
+								value={xpCost.name}
 								outlineSx={outlineSx}
 								readonly
 							/>

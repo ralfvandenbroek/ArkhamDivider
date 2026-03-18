@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
-import { selectLayout } from "@/modules/divider/entities/lib";
+import { selectLayout, useDividerText } from "@/modules/divider/entities/lib";
 import {
 	DividerBackground as Background,
 	DividerCardsInfo as CardsInfo,
@@ -12,19 +12,14 @@ import {
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
-import {
-	selectPlayerParams,
-	updateDivider,
-} from "@/modules/divider/shared/lib";
+import { selectPlayerParams } from "@/modules/divider/shared/lib";
 import type {
 	DividerLayout,
 	DividerWithRelations,
 } from "@/modules/divider/shared/model";
 import { usePrintUnit, usePrintUnitCallback } from "@/modules/print/shared/lib";
-import { useStoryTranslation } from "@/modules/story/shared/lib";
 import {
 	copyToClipboard,
-	useAppDispatch,
 	useAppSelector,
 	usePreventDefault,
 } from "@/shared/lib";
@@ -40,16 +35,12 @@ import { ClassicDividerXP as XP } from "../ClassicDividerXP";
 import * as S from "./ClassicDivider.styles";
 
 export function ClassicDivider(props: DividerWithRelations) {
-	const { story, id, icon } = props;
-
-	const dispatch = useAppDispatch();
+	const { id, icon } = props;
 	const layout = useAppSelector(selectLayout) as DividerLayout;
 	const { background } = layout.params as ClassicLayoutParams;
 	const playerParams = useAppSelector(selectPlayerParams);
-	const { translateStory } = useStoryTranslation(story);
 	const mm = usePrintUnitCallback();
 	const [showCardsInfo, setShowCardsInfo] = useState(false);
-	const customTitle = useRef(props.customTitle);
 
 	const O = getClassicLayoutObjects(layout);
 
@@ -79,25 +70,16 @@ export function ClassicDivider(props: DividerWithRelations) {
 	const xpSx = getPrintSx(S.getXPSx);
 	const numericXPSx = getPrintSx(S.getNumericXPSx);
 
-	const translatedTitle = translateStory(props?.title);
-	const title = customTitle.current ?? translatedTitle;
-
-	const onFontSizeChange = useCallback(
-		(fontSizeScale: number) => {
-			dispatch(updateDivider({ id, changes: { fontSizeScale } }));
-		},
-		[id, dispatch],
-	);
-
-	const setCustomTitle = useCallback((value: string) => {
-		customTitle.current = value;
-	}, []);
-
-	const onTitleBlur = useCallback(() => {
-		dispatch(
-			updateDivider({ id, changes: { customTitle: customTitle.current } }),
-		);
-	}, [id, dispatch]);
+	const {
+		value: title,
+		translatedValue: translatedTitle,
+		onChange: onTitleChange,
+		onBlur: onTitleBlur,
+		onFontSizeChange,
+	} = useDividerText({
+		divider: props,
+		param: "customTitle",
+	});
 
 	const getDividerIcon = useDividerIcon({
 		dividerId: id,
@@ -139,7 +121,7 @@ export function ClassicDivider(props: DividerWithRelations) {
 						minFontSize: 8,
 						onFontSizeChange,
 					}}
-					onValueChange={setCustomTitle}
+					onValueChange={onTitleChange}
 					onBlur={onTitleBlur}
 					strokeSx={strokeSx}
 					clearProps={{ sx: titleClearSx }}

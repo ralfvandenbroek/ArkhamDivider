@@ -1,8 +1,13 @@
+import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
 import type { BaseIconProps } from "@/modules/core/icon/shared/model";
 import type {
+	DividerOrientation,
+	DividerSubtype,
 	DividerType,
 	DividerWithRelations,
 } from "@/modules/divider/shared/model";
+import type { Faction } from "@/modules/faction/shared/model";
+import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { getSarnetskyLayoutObjects } from "../lib";
 
 export type SarnetskyDividerParams = {
@@ -25,6 +30,26 @@ export type SarnetskyIcon = {
 
 export type SarnetskyIconRecord = Partial<Record<DividerType, SarnetskyIcon[]>>;
 
+export type SarnetskyTextPosition = {
+	top: number;
+	left: number;
+	right: number;
+};
+
 export type SarnetskyDividerObjects = ReturnType<
 	typeof getSarnetskyLayoutObjects
 >;
+
+export type SarnetskyDividerCallbackProps = {
+	orientation: DividerOrientation;
+	objects: SarnetskyDividerObjects;
+	type: DividerType;
+	faction?: Faction | null;
+	subType?: DividerSubtype;
+};
+
+export type SarnetskyDividerLocaleCallback =
+	LocaleSxCallback<SarnetskyDividerCallbackProps>;
+
+export type SarnetskyDividerSxCallback =
+	PrintSxCallback<SarnetskyDividerCallbackProps>;

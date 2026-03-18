@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import {
 	type UseIconSelectionOptions,
 	useIconSelection,
@@ -17,7 +17,6 @@ type Options = Omit<UseIconSelectionOptions, "onSelected"> & {
 
 export function useDividerIcon({ dividerId, ...options }: Options) {
 	const dispatch = useAppDispatch();
-	const customFieldRef = useRef<string | null>(null);
 	const divider = useAppSelector((state) =>
 		selectDividerById(state, dividerId),
 	);
@@ -31,7 +30,6 @@ export function useDividerIcon({ dividerId, ...options }: Options) {
 					value: icon,
 				}),
 			);
-			customFieldRef.current = null;
 		},
 		[dividerId, dispatch],
 	);
@@ -56,7 +54,7 @@ export function useDividerIcon({ dividerId, ...options }: Options) {
 					defaultIcon,
 				});
 
-			const start = () => {
+			const start = () =>
 				startSelection({
 					icon,
 					defaultIcon,
@@ -64,7 +62,6 @@ export function useDividerIcon({ dividerId, ...options }: Options) {
 						handleIconSelected({ icon, param });
 					},
 				});
-			};
 
 			return [icon, start] as const;
 		},

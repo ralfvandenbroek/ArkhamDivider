@@ -11,7 +11,7 @@ type SarnetskyDividerPlayerBackgroundProps = BoxProps & {
 export function SarnetskyDividerPlayerBackground({
 	faction,
 	subtype,
-	...props
+	sx,
 }: SarnetskyDividerPlayerBackgroundProps) {
 	const id = useMemo(() => {
 		switch (subtype) {
@@ -26,5 +26,5 @@ export function SarnetskyDividerPlayerBackground({
 	}, [faction, subtype]);
 
 	const src = `/images/divider/background/sarnetsky/horizontal/player/${id}.jpg`;
-	return <Box {...props} component="img" src={src} />;
+	return <Box component="img" src={src} sx={sx} />;
 }

@@ -1,6 +1,8 @@
 import { Box, type BoxProps } from "@mui/material";
+import { range } from "ramda";
 import { useId } from "react";
-import { getXPLevel } from "@/modules/divider/shared/lib";
+import { xpRangeStatuses } from "@/modules/divider/shared/config";
+import { getXPRangeStatus } from "@/modules/divider/shared/lib";
 import type { XPCost } from "@/modules/divider/shared/model";
 
 type Invocation2018DividerXPProps = BoxProps & {
@@ -21,7 +23,7 @@ const gapY = 1.4; // vertical step between arc levels (outer higher, center lowe
 const totalWidth = 2 * circleRadius + gapX + 4 * (circleRadius * 2 + gapX);
 const totalHeight = circleRadius * 2 + gapY * 4;
 const centerY = totalHeight / 2;
-const circleCentersX = [0, 1, 2, 3, 4].map(
+const circleCentersX = range(0, 5).map(
 	(i) => circleRadius + gapX + i * (circleRadius * 2 + gapX),
 );
 
@@ -35,25 +37,6 @@ const circleCentersY = [
 ];
 
 const aspectRatio = totalWidth / totalHeight;
-
-type ColorType = "active" | "range" | "inactive";
-
-const colorTypes: ColorType[] = ["active", "range", "inactive"];
-
-function getCircleFill(i: number, xpCost: XPCost): ColorType {
-	const defaultLevel = getXPLevel(xpCost) ?? 0;
-	const level = defaultLevel - 1;
-	if (i < level) {
-		return "inactive";
-	}
-	if (i === level) {
-		return "active";
-	}
-	if (xpCost.type === "range" && i < xpCost.max) {
-		return "range";
-	}
-	return "inactive";
-}
 
 export function Invocation2018DividerXP({
 	xpCost,
@@ -82,19 +65,19 @@ export function Invocation2018DividerXP({
 			>
 				<title>XP level</title>
 				<defs>
-					{colorTypes.map((kind) => (
+					{xpRangeStatuses.map((status) => (
 						<radialGradient
-							key={kind}
-							id={`${baseId}-${kind}`}
+							key={status}
+							id={`${baseId}-${status}`}
 							cx="50%"
 							cy="50%"
 							r="50%"
 						>
-							<stop offset="0%" stopColor={gradientColors[kind]} />
-							<stop offset="85%" stopColor={gradientColors[kind]} />
+							<stop offset="0%" stopColor={gradientColors[status]} />
+							<stop offset="85%" stopColor={gradientColors[status]} />
 							<stop
 								offset="100%"
-								stopColor={gradientColors[kind]}
+								stopColor={gradientColors[status]}
 								stopOpacity={0}
 							/>
 						</radialGradient>
@@ -106,7 +89,7 @@ export function Invocation2018DividerXP({
 						cx={x}
 						cy={circleCentersY[i]}
 						r={circleRadius}
-						fill={`url(#${baseId}-${getCircleFill(i, xpCost)})`}
+						fill={`url(#${baseId}-${getXPRangeStatus(i, xpCost)})`}
 					/>
 				))}
 			</svg>

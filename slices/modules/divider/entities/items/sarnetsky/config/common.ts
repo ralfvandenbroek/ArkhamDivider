@@ -52,6 +52,24 @@ const horizontalIcons: SarnetskyIconRecord = {
 
 export const sarnetskyHorizontalDividerObjects = {
 	icons: horizontalIcons,
+	title: {
+		default: {
+			top: 6.5,
+			fontSize: 5,
+			height: 9.5,
+			left: 13.3,
+			right: 13.3,
+		},
+		campaign: {},
+		scenario: {},
+		encounter: {
+			top: 8.5,
+			left: 4,
+			right: 4,
+		},
+		player: {},
+		investigator: {},
+	},
 };
 
 const verticalIcons: SarnetskyIconRecord = {
@@ -61,5 +79,6 @@ const verticalIcons: SarnetskyIconRecord = {
 };
 
 export const sarnetskyVerticalDividerObjects = {
+	...sarnetskyHorizontalDividerObjects,
 	icons: verticalIcons,
 };

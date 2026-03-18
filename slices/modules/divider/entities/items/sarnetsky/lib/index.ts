@@ -1,2 +1,2 @@
-export * from "./getSarnetskyLayoutObjects";
 export * from "./hooks";
+export * from "./logic";
