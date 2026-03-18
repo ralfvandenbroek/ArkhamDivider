@@ -87,9 +87,6 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 						dividerId={id}
 						icon={icon}
 						onClick={setIcon}
-						top={mm(config.top)}
-						right={mm(config.right)}
-						fontSize={mm(config.fontSize)}
 						{...config.params}
 						sx={{
 							position: "absolute",
@@ -97,6 +94,9 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 							alignItems: "center",
 							justifyContent: "center",
 							zIndex: 3,
+							top: mm(config.top),
+							right: mm(config.right),
+							fontSize: mm(config.fontSize),
 							width: mm(config.width),
 							height: mm(config.height),
 							cursor: "pointer",

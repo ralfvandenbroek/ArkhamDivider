@@ -53,6 +53,9 @@ export const getIconSx: ClassicDividerSxCallback = ({ mm, objects: O }) => ({
 	cursor: "pointer",
 	width: mm(O.icon.size),
 	height: mm(O.icon.size),
+	top: mm(O.icon.top),
+	right: mm(O.icon.right),
+	fontSize: mm(O.icon.fontSize),
 	"@media screen": {
 		":hover": {
 			opacity: percent(70),
@@ -68,6 +71,9 @@ export const getBackgroundIconSx: ClassicDividerSxCallback = ({
 	cursor: "pointer",
 	width: mm(50),
 	height: mm(50),
+	top: mm(O.backgroundIcon.top),
+	left: mm(O.backgroundIcon.left),
+	fontSize: mm(O.backgroundIcon.fontSize),
 	opacity: O.backgroundIcon.opacity,
 	display: "flex",
 	alignItems: "center",

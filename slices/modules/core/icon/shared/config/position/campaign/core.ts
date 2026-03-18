@@ -15,6 +15,7 @@ export default {
 		left: percent(5),
 	},
 	nightgaunts: {
+		top: percent(-4),
 		left: percent(5),
 	},
 	striking_fear: {

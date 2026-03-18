@@ -21,10 +21,14 @@ export function DividerTypeNav(props: DividerTypeNavProps) {
 
 	const onChange = useCallback(
 		(_: React.SyntheticEvent, value: number) => {
+			const isDisabled = !supportedTypes.includes(dividerTypes[value]);
+			if (isDisabled) {
+				return;
+			}
 			const type = dividerTypes[value];
 			dispatch(changeDividerType(type));
 		},
-		[dispatch],
+		[dispatch, supportedTypes],
 	);
 
 	return (

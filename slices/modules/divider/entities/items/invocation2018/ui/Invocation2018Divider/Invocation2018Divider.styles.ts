@@ -56,6 +56,9 @@ export const getIconSx: Invocation2018DividerSxCallback = ({
 	cursor: "pointer",
 	width: mm(O.icon.size),
 	height: mm(O.icon.size),
+	top: mm(O.icon.top),
+	right: mm(O.icon.right),
+	fontSize: mm(O.icon.fontSize),
 	"@media screen": {
 		":hover": {
 			opacity: percent(70),
@@ -92,7 +95,7 @@ export const getIconBackgroundSx: Invocation2018DividerSxCallback = ({
 	zIndex: 3,
 	width: mm(7.6),
 	height: mm(7.6),
-	top: orientation === "vertical" ? mm(2) : mm(2.1),
+	top: orientation === "vertical" ? mm(2) : mm(1.9),
 	right: mm(O.icon.right - 0.1),
 });
 

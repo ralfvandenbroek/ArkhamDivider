@@ -1,40 +1,33 @@
 import Box from "@mui/material/Box";
 import type { SxProps } from "@mui/material/styles";
 import { isString } from "ramda-adjunct";
+import { getNumericStyleProps } from "@/shared/lib/ui";
 import { defaultIconPositionManifest } from "../../../shared/config";
 import { getIconCorrection } from "../../../shared/lib";
 import type { IconPositionManifest } from "../../../shared/model";
 import { Icon, type IconProps } from "../../../shared/ui";
 
-export type IconCorrectionProps = Omit<
-	IconProps,
-	"fontSize" | "left" | "right" | "top" | "bottom"
-> & {
+export type IconCorrectionProps = IconProps & {
 	manifest?: IconPositionManifest;
-	fontSize?: number;
-	/** left offset in px */
-	left?: number;
-	/** right offset in px */
-	right?: number;
-	/** top offset in px */
-	top?: number;
-	/** bottom offset in px */
-	bottom?: number;
 	disableCorrection?: boolean;
 };
 
-export function IconCorrection({
-	icon,
-	manifest = defaultIconPositionManifest,
-	fontSize,
-	left,
-	right,
-	top,
-	bottom,
-	disableCorrection = false,
-	sx: sxProp,
-	...props
-}: IconCorrectionProps) {
+export function IconCorrection(props: IconCorrectionProps) {
+	const {
+		icon,
+		manifest = defaultIconPositionManifest,
+		disableCorrection = false,
+		sx: sxProp,
+		...restProps
+	} = props;
+
+	const position = getNumericStyleProps({
+		props,
+		properties: ["fontSize", "left", "right", "top", "bottom"],
+	});
+
+	const { fontSize, left, right, top, bottom } = position;
+
 	const correction =
 		fontSize && isString(icon)
 			? getIconCorrection({
@@ -73,13 +66,13 @@ export function IconCorrection({
 	const sx = {
 		...baseSx,
 		...(correction.fontSize && { fontSize: `${correction.fontSize}px` }),
-		...correctionSx,
 		...sxProp,
+		...correctionSx,
 	} as SxProps;
 
 	return (
-		<Box sx={sx}>
-			<Icon icon={icon} {...props} />
+		<Box sx={sx} data-position={JSON.stringify(position)}>
+			<Icon icon={icon} {...restProps} />
 		</Box>
 	);
 }

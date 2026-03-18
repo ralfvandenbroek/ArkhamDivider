@@ -97,7 +97,7 @@ export function ClassicDivider(props: DividerWithRelations) {
 		defaultIcon: defaultSmallIcon,
 	});
 
-	const iconObject = getIconObject({
+	const _iconObject = getIconObject({
 		...props,
 		layout,
 	});
@@ -133,9 +133,6 @@ export function ClassicDivider(props: DividerWithRelations) {
 						dividerId={id}
 						icon={smallIcon}
 						sx={iconSx}
-						top={mm(iconObject.top)}
-						right={mm(iconObject.right)}
-						fontSize={mm(iconObject.fontSize)}
 						{...O.icon.params}
 						onClick={selectSmallIcon}
 						onContextMenu={copy(smallIcon)}
@@ -181,9 +178,6 @@ export function ClassicDivider(props: DividerWithRelations) {
 						dividerId={id}
 						sx={backgroundIconSx}
 						icon={backgroundIcon}
-						fontSize={mm(O.backgroundIcon.fontSize)}
-						top={mm(O.backgroundIcon.top)}
-						left={mm(O.backgroundIcon.left)}
 						onClick={selectBackgroundIcon}
 						disableCorrection
 					/>

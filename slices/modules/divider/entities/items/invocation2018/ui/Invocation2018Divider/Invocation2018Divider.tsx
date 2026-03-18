@@ -16,7 +16,7 @@ import type {
 	DividerLayout,
 	DividerWithRelations,
 } from "@/modules/divider/shared/model";
-import { usePrintUnit, usePrintUnitCallback } from "@/modules/print/shared/lib";
+import { usePrintUnit } from "@/modules/print/shared/lib";
 import {
 	copyToClipboard,
 	useAppSelector,
@@ -35,11 +35,12 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 	const { id, icon } = props;
 	const layout = useAppSelector(selectLayout) as DividerLayout;
 	const playerParams = useAppSelector(selectPlayerParams);
-	const mm = usePrintUnitCallback();
 
 	const O = getInvocation2018LayoutObjects(layout);
 
 	const faction = "faction" in props ? props.faction : void null;
+
+	const xpCost = getDividerXPCost(props);
 
 	const sxOptions = {
 		orientation: layout.orientation,
@@ -87,8 +88,6 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 		defaultIcon: defaultSmallIcon,
 	});
 
-	const iconObject = O.icon;
-
 	const copy = usePreventDefault(copyToClipboard);
 
 	const background = getInvocation2018Background({
@@ -99,8 +98,6 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 	const showSmallIcon = Boolean(defaultSmallIcon);
 
 	const iconBackgroundSrc = "/images/divider/background/invocation/icon-bg.png";
-
-	const xpCost = getDividerXPCost(props);
 
 	return (
 		<Container>
@@ -131,9 +128,6 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 						dividerId={id}
 						icon={smallIcon}
 						sx={iconSx}
-						top={mm(iconObject.top)}
-						right={mm(iconObject.right)}
-						fontSize={mm(iconObject.fontSize)}
 						{...O.icon.params}
 						onClick={selectSmallIcon}
 						onContextMenu={copy(smallIcon)}
