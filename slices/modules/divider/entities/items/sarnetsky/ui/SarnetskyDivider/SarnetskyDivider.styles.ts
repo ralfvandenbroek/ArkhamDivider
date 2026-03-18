@@ -45,7 +45,7 @@ export const getOutlineSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	bottom: mm(3),
 });
 
-export const getStrokeSx: SarnetskyDividerSxCallback = ({ mm }) => ({
+export const getStrokeSx: SarnetskyDividerSxCallback = () => ({
 	position: "absolute",
 	color: "transparent",
 	zIndex: -1,
