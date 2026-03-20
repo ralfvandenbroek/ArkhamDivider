@@ -36,7 +36,7 @@ export const classicDividerHorizontalObjects = {
 		withXP: {
 			top: 1.7,
 			right: 0.9,
-			fontSize: 6,
+			fontSize: 7,
 		},
 		skill: {
 			top: 1.2,
