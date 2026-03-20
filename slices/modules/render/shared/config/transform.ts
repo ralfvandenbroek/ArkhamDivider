@@ -28,6 +28,13 @@ const defaultJPEGRenderTransforms: VipsTransform[] = [
 		value: "lab",
 	},
 	{
+		type: "strip-icc",
+		options: {
+			imageFormat: "jpeg",
+			writeOptions: defaultJPEGWriteOptions,
+		},
+	},
+	{
 		type: "cast",
 		value: "uchar",
 	},
