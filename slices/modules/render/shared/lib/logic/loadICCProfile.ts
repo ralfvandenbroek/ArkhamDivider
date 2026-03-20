@@ -1,5 +1,5 @@
 import type { ICCProfile } from "../../model";
-import { getVips } from "../getVips";
+import { getVips } from "../vips/getVips";
 
 const loadedProfiles: ICCProfile[] = [];
 const externalProfiles: ICCProfile[] = [

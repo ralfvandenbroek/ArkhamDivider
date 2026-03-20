@@ -207,10 +207,6 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 								dpi,
 								size: item.size,
 								imageFormat: "jpeg",
-								iccProfile: "USWebCoatedSWOP.icc",
-								colourspace: "lab",
-								stripIccProfile: true,
-								quality: 100,
 								...layout.renderOptions,
 							});
 

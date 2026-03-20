@@ -15,7 +15,7 @@ export type ExternalICCProfile = `${ExternalICCProfileName}.icc`;
 
 export type ICCProfile = "srgb" | "cmyk" | "p3" | ExternalICCProfile;
 
-export type Colourspace = keyof typeof Interpretation;
+export type Colorspace = keyof typeof Interpretation;
 
 export type DividerRender = DividerWithRelations & {
 	background?: Uint8Array;

@@ -1,3 +1,3 @@
 export * from "./loadICCProfile";
-export * from "./setJpegExifResolution";
+export * from "./setJPEGResolution";
 export * from "./setStreamMitm";

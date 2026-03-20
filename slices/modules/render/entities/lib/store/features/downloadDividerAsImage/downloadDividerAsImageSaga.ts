@@ -8,7 +8,6 @@ import {
 import { selectDPI } from "@/modules/print/shared/lib";
 import {
 	finishRender,
-	type RenderDividerOptions,
 	renderDivider,
 	setDividerRenderId,
 	startRender,
@@ -41,32 +40,15 @@ function* worker({ payload }: ReturnType<typeof downloadDividerAsImage>) {
 
 	yield put(setDividerRenderId(dividerId));
 
-	const isRGB = imageFormat === "png";
-	const isTIFF = imageFormat === "tiff";
-
-	const baseOptions = {
-		dividerId,
-		dpi,
-		imageFormat,
-		size,
-	} as const;
-
-	const options: RenderDividerOptions = isRGB
-		? {
-				...baseOptions,
-			}
-		: {
-				...baseOptions,
-				iccProfile: "USWebCoatedSWOP.icc",
-				stripIccProfile: !isTIFF,
-				...(isTIFF ? {} : { colourspace: "lab" }),
-				...layout.renderOptions,
-				...(isTIFF ? { intent: 1 } : {}),
-			};
-
 	const contents: ReturnAwaited<typeof renderDivider> = yield call(
 		renderDivider,
-		options,
+		{
+			dividerId,
+			dpi,
+			imageFormat,
+			size,
+			...layout.renderOptions,
+		},
 	);
 
 	const blob = new Blob([contents as BlobPart], {

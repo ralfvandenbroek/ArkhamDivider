@@ -1,6 +1,9 @@
 import type { SleeveSize } from "@/entities/sleeve/model";
 import type { DPI } from "@/modules/print/shared/model";
-import type { RenderDividerOptions } from "@/modules/render/shared/lib";
+import type {
+	VipsTransformRecord,
+	VipsWriteOptionsRecord,
+} from "@/modules/render/shared/model";
 import type { Author, BoxSize } from "@/shared/model";
 
 export type DividerLayoutSleeve = {
@@ -50,7 +53,12 @@ export type DividerLayout = {
 	investigatorParams?: {
 		duplicateCodes?: Record<string, number>;
 	};
-	renderOptions?: Partial<RenderDividerOptions>;
+	renderOptions?: DividerLayoutRenderOptions;
+};
+
+export type DividerLayoutRenderOptions = {
+	writeOptionsRecord?: VipsWriteOptionsRecord;
+	transformRecord?: VipsTransformRecord;
 };
 
 export type DividerLayoutGroup = {

@@ -62,11 +62,12 @@ export const Invocation2018DividerPDF: PDFDivider = async (props, ctx) => {
 		});
 	}
 
+	const defaultSmallIcon = getInvocation2018DefaultIcon(props);
 	const smallIcon = getDividerIcon({
 		divider: props,
 		param: "icon",
+		defaultIcon: defaultSmallIcon,
 	});
-	const defaultSmallIcon = getInvocation2018DefaultIcon(props);
 	const showSmallIcon = Boolean(defaultSmallIcon);
 
 	if (smallIcon && showSmallIcon) {

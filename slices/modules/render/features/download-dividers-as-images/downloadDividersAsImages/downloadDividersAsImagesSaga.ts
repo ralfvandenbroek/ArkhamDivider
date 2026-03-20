@@ -77,14 +77,6 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 	yield put(setRenderStatusMessage("render.status.rendering"));
 	yield put(setRenderProgressTotal(total));
 
-	const isRGB = imageFormat === "png";
-	const isTIFF = imageFormat === "tiff";
-	const baseOptions = {
-		dpi: effectiveDpi,
-		imageFormat,
-		size,
-	} as const;
-
 	let progress = 0;
 
 	try {
@@ -96,17 +88,13 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 			yield put(setDividerRenderId(divider.id));
 			yield delay(10);
 
-			const options: RenderDividerOptions = isRGB
-				? { ...baseOptions, dividerId: divider.id }
-				: {
-						...baseOptions,
-						dividerId: divider.id,
-						iccProfile: "USWebCoatedSWOP.icc",
-						stripIccProfile: !isTIFF,
-						...(isTIFF ? {} : { colourspace: "lab" }),
-						...layout.renderOptions,
-						...(isTIFF ? { intent: 1 } : {}),
-					};
+			const options: RenderDividerOptions = {
+				dividerId: divider.id,
+				dpi: effectiveDpi,
+				imageFormat,
+				size,
+				...layout.renderOptions,
+			};
 
 			const contents: ReturnAwaited<typeof renderDivider> = yield call(
 				renderDivider,

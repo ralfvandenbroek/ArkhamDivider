@@ -12,12 +12,20 @@ type Options = Divider & {
 export const getIconObject = (props: Options) => {
 	const O = getClassicLayoutObjects(props.layout);
 	if (isSkillDivider(props)) {
-		return O.icon.skill;
+		return {
+			...O.icon,
+			...O.icon.skill,
+		};
 	}
-	const withXP = hasSubtypeWithXP(props) || hasCardTypeWithXP(props);
+	const hasSubtype = hasSubtypeWithXP(props);
+	const hasCardType = hasCardTypeWithXP(props);
+	const withXP = hasSubtype || hasCardType;
 
 	if (withXP) {
-		return O.icon.withXP;
+		return {
+			...O.icon,
+			...O.icon.withXP,
+		};
 	}
 	return O.icon;
 };

@@ -2,18 +2,69 @@ import { sleeve76x88 } from "@/entities/sleeve/config";
 import { largeCCG, sleeve65x100 } from "@/entities/sleeve/config/sizes";
 import type {
 	DividerLayout,
+	DividerLayoutRenderOptions,
 	DividerLayoutType,
 } from "@/modules/divider/shared/model";
+import {
+	defaultJPEGWriteOptions,
+	defaultVipsTransformRecord,
+} from "@/modules/render/shared/config";
+import type { VipsTransformRecord } from "@/modules/render/shared/model";
 import { createSize } from "@/shared/util";
 import { invocation2018CategoryId } from "./common";
 
 const types: DividerLayoutType[] = ["player", "investigator"];
 
-const renderOptions: DividerLayout["renderOptions"] = {
-	colourspace: "srgb",
-	iccProfile: "ISOcoated_v2_300_eci.icc",
-	intent: 0,
+const transformRecord: VipsTransformRecord = {
+	...defaultVipsTransformRecord,
+	jpeg: [
+		{
+			type: "colorspace",
+			value: "srgb",
+		},
+		{
+			type: "colorspace",
+			value: "lab",
+		},
+		{
+			type: "strip-icc",
+			options: {
+				imageFormat: "jpeg",
+				writeOptions: defaultJPEGWriteOptions,
+			},
+		},
+		{
+			type: "cast",
+			value: "uchar",
+		},
+		{
+			type: "strip-icc",
+			options: {
+				imageFormat: "jpeg",
+				writeOptions: defaultJPEGWriteOptions,
+			},
+		},
+		{
+			type: "set-icc",
+			icc: "USWebCoatedSWOP.icc",
+			transformOptions: {
+				intent: 0,
+			},
+		},
+		{
+			type: "set-dpi",
+			options: {
+				imageFormat: "jpeg",
+				writeOptions: defaultJPEGWriteOptions,
+			},
+		},
+	],
 };
+
+const renderOptions: DividerLayoutRenderOptions = {
+	transformRecord,
+};
+
 const horizontal: DividerLayout = {
 	id: "invocation2018-horizontal",
 	name: "Horizontal",

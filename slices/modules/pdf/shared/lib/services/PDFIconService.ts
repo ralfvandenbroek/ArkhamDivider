@@ -14,6 +14,11 @@ import type {
 	RenderedMediaIcon,
 } from "@/modules/core/icon/shared/model";
 import { getMediaBlob } from "@/modules/core/media/shared/lib";
+import {
+	iconFontSizeScale,
+	iconXOffsetScale,
+	iconYOffsetScale,
+} from "../../config";
 import { PDFImageService } from "./PDFImageService";
 import type { DrawTextOptions, PDFTextService } from "./PDFTextService";
 
@@ -199,7 +204,9 @@ export class PDFIconService {
 			return;
 		}
 		const { width, height } = options;
-		const { content, iconParams, fontSize } = icon;
+		const { content, iconParams } = icon;
+
+		const fontSize = icon.fontSize * iconFontSizeScale;
 
 		let x = icon.x;
 		let y = icon.y;
@@ -215,6 +222,8 @@ export class PDFIconService {
 			const iconHeight = fontSize;
 			y += (height - iconHeight) / 2;
 		}
+		x *= iconXOffsetScale;
+		y *= iconYOffsetScale;
 
 		const restOptions = omit(
 			["width", "height", "iconOptions", "fontSize", "manifest"],

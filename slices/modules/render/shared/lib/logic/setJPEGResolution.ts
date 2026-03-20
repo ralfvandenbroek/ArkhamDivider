@@ -8,7 +8,7 @@ const JPEG_SOI = new Uint8Array([0xff, 0xd8]);
  * libvips leaves 72 DPI in EXIF when writing with strip: true; this overwrites with the given DPI.
  * JPEG only — PNG uses pHYs chunk for resolution (set by libvips xres/yres when writing).
  */
-export const setJpegExifResolution = (
+export const setJPEGResolution = (
 	jpegBuffer: Uint8Array,
 	dpi: number,
 ): Uint8Array => {

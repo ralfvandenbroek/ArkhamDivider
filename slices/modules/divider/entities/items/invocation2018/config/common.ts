@@ -1,3 +1,4 @@
+import { mergeDeepRight } from "ramda";
 import {
 	classicDividerHorizontalObjects,
 	classicDividerVertical63Objects,
@@ -15,8 +16,8 @@ const defaultTextObject = {
 
 const iconObject = {
 	...classicDividerHorizontalObjects.icon,
-	size: 7.5,
-	fontSize: 7.4,
+	size: 7.9,
+	fontSize: 7.5,
 	top: 2.5,
 	right: 1.3,
 };
@@ -37,16 +38,13 @@ const xpObject = {
 };
 
 export const invocation2018DividerHorizontalObjects = {
-	...classicDividerHorizontalObjects,
-	text: {
-		...classicDividerHorizontalObjects.text,
-		default: {
-			...classicDividerHorizontalObjects.text.default,
-			...defaultTextObject,
+	...mergeDeepRight(classicDividerHorizontalObjects, {
+		text: {
+			default: defaultTextObject,
 		},
-	},
-	icon: iconObject,
-	xp: xpObject,
+		icon: iconObject,
+		xp: xpObject,
+	}),
 };
 
 const verticalXPObject = {
@@ -62,43 +60,24 @@ const verticalXPObject = {
 };
 
 export const invocation2018DividerVertical63Objects = {
-	...classicDividerVertical63Objects,
-	text: {
-		...classicDividerVertical63Objects.text,
-		default: {
-			...classicDividerVertical63Objects.text.default,
-			...defaultTextObject,
+	...mergeDeepRight(classicDividerVertical63Objects, {
+		text: {
+			default: defaultTextObject,
 		},
-	},
-	icon: {
-		...iconObject,
-		right: 2,
-	},
-	xp: verticalXPObject,
+		icon: { ...iconObject, right: 2 },
+		xp: verticalXPObject,
+	}),
 };
 
 export const invocation2018DividerVertical65Objects = {
-	...classicDividerVertical65Objects,
-	text: {
-		...classicDividerVertical65Objects.text,
-		default: {
-			...classicDividerVertical65Objects.text.default,
-			...defaultTextObject,
+	...mergeDeepRight(classicDividerVertical65Objects, {
+		text: {
+			default: defaultTextObject,
 		},
-	},
-	icon: {
-		...iconObject,
-		right: 2.9,
-	},
-	xp: {
-		...verticalXPObject,
-		container: {
-			...verticalXPObject.container,
-			right: 3.3,
-		},
-		side: {
-			...verticalXPObject.side,
-			right: 12,
-		},
-	},
+		icon: { ...iconObject, right: 2.9 },
+		xp: mergeDeepRight(verticalXPObject, {
+			container: { right: 3.3 },
+			side: { right: 12 },
+		}),
+	}),
 };

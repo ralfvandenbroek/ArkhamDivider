@@ -36,12 +36,10 @@ export const classicDividerHorizontalObjects = {
 		withXP: {
 			top: 1.7,
 			right: 0.9,
-			fontSize: 7,
+			fontSize: 6,
 		},
 		skill: {
 			top: 1.2,
-			right: 0.9,
-			fontSize: 6,
 		},
 	},
 	xp: {
@@ -92,7 +90,7 @@ export const classicDividerHorizontalHQObjects = {
 		fontSize: 7.9,
 		withXP: {
 			...classicDividerHorizontalObjects.icon.withXP,
-			top: 1.2,
+			top: 0.9,
 		},
 		skill: {
 			...classicDividerHorizontalObjects.icon.skill,

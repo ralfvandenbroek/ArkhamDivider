@@ -48,11 +48,17 @@ export function ClassicDivider(props: DividerWithRelations) {
 		setShowCardsInfo(!showCardsInfo);
 	}, [showCardsInfo]);
 
+	const iconObject = getIconObject({
+		...props,
+		layout,
+	});
+
 	const sxOptions = {
 		color: layout.color,
 		objects: O,
+		iconObject,
 		layoutId: layout.id,
-	};
+	} as const;
 
 	const getLocaleSx = useLocaleSx(sxOptions);
 	const titleSx = getLocaleSx(S.getTextSx);
@@ -95,11 +101,6 @@ export function ClassicDivider(props: DividerWithRelations) {
 	const [smallIcon, selectSmallIcon] = getDividerIcon({
 		param: "icon",
 		defaultIcon: defaultSmallIcon,
-	});
-
-	const _iconObject = getIconObject({
-		...props,
-		layout,
 	});
 
 	const copy = usePreventDefault(copyToClipboard);

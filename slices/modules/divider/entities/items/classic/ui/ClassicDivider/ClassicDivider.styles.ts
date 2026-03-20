@@ -44,18 +44,21 @@ export const getOutlineSx: ClassicDividerSxCallback = ({ mm }) => ({
 	bottom: mm(2),
 });
 
-export const getIconSx: ClassicDividerSxCallback = ({ mm, objects: O }) => ({
+export const getIconSx: ClassicDividerSxCallback = ({
+	mm,
+	iconObject: icon,
+}) => ({
 	position: "absolute",
 	zIndex: 3,
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
 	cursor: "pointer",
-	width: mm(O.icon.size),
-	height: mm(O.icon.size),
-	top: mm(O.icon.top),
-	right: mm(O.icon.right),
-	fontSize: mm(O.icon.fontSize),
+	width: mm(icon.size),
+	height: mm(icon.size),
+	top: mm(icon.top),
+	right: mm(icon.right),
+	fontSize: mm(icon.fontSize),
 	"@media screen": {
 		":hover": {
 			opacity: percent(70),

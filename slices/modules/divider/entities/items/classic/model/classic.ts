@@ -1,7 +1,7 @@
 import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
 import type { Icon } from "@/modules/core/icon/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
-import type { getClassicLayoutObjects } from "../lib";
+import type { getClassicLayoutObjects, getIconObject } from "../lib";
 
 export type ClassicLayoutParams = {
 	background: string;
@@ -18,6 +18,7 @@ export type ClassicDividerCallbackProps = {
 	layoutId: string;
 	color: boolean;
 	objects: ClassicDividerObjects;
+	iconObject: ReturnType<typeof getIconObject>;
 };
 
 export type ClassicDividerLocaleCallback =
