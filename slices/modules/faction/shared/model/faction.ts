@@ -6,3 +6,7 @@ export type Faction =
 	| "seeker"
 	| "survivor"
 	| "multiclass";
+
+export type PropsWithFaction = {
+	faction: Faction;
+};

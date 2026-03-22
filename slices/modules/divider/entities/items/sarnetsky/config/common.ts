@@ -2,14 +2,25 @@ import type { SarnetskyIcon, SarnetskyIconRecord } from "../model";
 
 export const sarnetskyCategoryId = "sarnetsky";
 
+const encounterRightIcon: SarnetskyIcon = {
+	id: "encounter-right",
+	type: "encounter",
+	fontSize: 2.8,
+	width: 3.2,
+	height: 6.1,
+	right: 4.2,
+	top: 1.9,
+	light: true,
+};
+
 const leftHorizontalIcon: SarnetskyIcon = {
 	id: "left",
 	type: "campaign",
-	fontSize: 6.2,
+	fontSize: 6.4,
 	width: 7.1,
 	height: 7.1,
-	right: 76.6,
-	top: 5.6,
+	right: 76.5,
+	top: 5.7,
 	params: {
 		scaleType: "circle",
 		scaleFactor: {
@@ -35,11 +46,11 @@ const centerHorizontalIcon: SarnetskyIcon = {
 	width: 9.8,
 	height: 6.1,
 	right: 39.6,
-	top: 1.5,
+	top: 0.8,
 };
 
 const horizontalIcons: SarnetskyIconRecord = {
-	encounter: [centerHorizontalIcon],
+	encounter: [centerHorizontalIcon, encounterRightIcon],
 	scenario: [
 		{
 			...leftHorizontalIcon,
@@ -57,8 +68,8 @@ export const sarnetskyHorizontalDividerObjects = {
 			top: 6.5,
 			fontSize: 5,
 			height: 9.5,
-			left: 13.3,
-			right: 13.3,
+			left: 15,
+			right: 15,
 		},
 		campaign: {},
 		scenario: {},
@@ -69,6 +80,16 @@ export const sarnetskyHorizontalDividerObjects = {
 		},
 		player: {},
 		investigator: {},
+		xp: {
+			right: 27,
+		},
+	},
+	background: {
+		size: 40,
+		fontSize: 30,
+		top: 19,
+		left: 24.5,
+		opacity: 0.07,
 	},
 };
 

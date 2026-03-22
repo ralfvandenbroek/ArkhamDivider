@@ -68,6 +68,7 @@ export const getScenarioDividers = ({
 			cardsCount,
 			cards,
 			storyCode,
+			scenario,
 		};
 	});
 };

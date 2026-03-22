@@ -1,10 +1,12 @@
-import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
-import { selectLayout, useDividerText } from "@/modules/divider/entities/lib";
+import {
+	isScenarioDividerType,
+	selectLayout,
+} from "@/modules/divider/entities/lib";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
-	DividerText,
 } from "@/modules/divider/entities/ui";
+import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import { getDividerFaction } from "@/modules/divider/shared/lib";
 import {
@@ -17,12 +19,17 @@ import { useAppSelector } from "@/shared/lib";
 import { getSarnetskyLayoutObjects, useSarnetskyDividerIcons } from "../../lib";
 import type { SarnetskyDividerProps } from "../../model";
 import { SarnetskyDividerBackground as Background } from "../SarnetskyDividerBackground";
+import { SarnetskyDividerTitle } from "../SarnetskyDividerTitle";
+import {
+	SarnetskyDividerPlayerSubtitle as PlayerSubtitle,
+	SarnetskyDividerScenarioSubtitle as ScenarioSubtitle,
+} from "../subtitle";
 import { SarnetskyDividerSideRadialXP as RadialXP } from "../xp";
 import { SarnetskyDividerInlineXP as InlineXP } from "../xp/SarnetskyDividerInlineXP";
 import * as S from "./SarnetskyDivider.styles";
 
 export function SarnetskyDivider(props: SarnetskyDividerProps) {
-	const { id } = props;
+	const { id, icon } = props;
 	const layout = useAppSelector(selectLayout) as DividerLayout;
 	const O = getSarnetskyLayoutObjects(layout);
 
@@ -33,54 +40,57 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const faction = getDividerFaction(props);
 	const subtype = getDividerSubtype(props);
 
+	const xpCost = getDividerXPCost(props);
+
 	const sxOptions = {
 		objects: O,
 		orientation: layout.orientation,
 		type: props.type,
 		faction,
 		subtype,
+		xpCost,
 	};
 
-	const getLocaleSx = useLocaleSx(sxOptions);
-	const titleSx = getLocaleSx(S.getTitleSx);
-
 	const getPrintSx = usePrintUnit(sxOptions);
-	const titleClearSx = getPrintSx(S.getTitleClearSx);
-	const outlineSx = getPrintSx(S.getOutlineSx);
+	const sx = getPrintSx(S.getSx);
+	const titleSx = getPrintSx(S.getTitleSx);
 	const radialXPSx = getPrintSx(S.getRadialXPSx);
 	const inlineXPSx = getPrintSx(S.getInlineXPSx);
+	const playerSubtitleSx = getPrintSx(S.getPlayerSubtitleSx);
+	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
+	const scenarioSubtitleSx = getPrintSx(S.getScenarioSubtitleSx);
 
-	const {
-		value: title,
-		translatedValue: translatedTitle,
-		onChange: onTitleChange,
-		onBlur: onTitleBlur,
-		onFontSizeChange,
-	} = useDividerText({
-		divider: props,
-		param: "customTitle",
+	const getDividerIcon = useDividerIcon({
+		dividerId: id,
 	});
 
-	const xpCost = getDividerXPCost(props);
+	const [backgroundIcon, selectBackgroundIcon] = getDividerIcon({
+		param: "background",
+		defaultIcon: icon,
+	});
+
+	const isScenario = isScenarioDividerType(props);
 
 	return (
 		<Container>
 			<Background {...props} />
-			<Content>
-				<DividerText
-					dividerId={id}
+			<Content sx={sx}>
+				<SarnetskyDividerTitle
+					divider={props}
 					sx={titleSx}
-					value={title}
-					defaultValue={translatedTitle}
-					fitTextOptions={{
-						minFontSize: 8,
-						onFontSizeChange,
-					}}
-					onValueChange={onTitleChange}
-					onBlur={onTitleBlur}
-					clearProps={{ sx: titleClearSx }}
-					outlineSx={outlineSx}
+					sxOptions={sxOptions}
 				/>
+				{isScenario && (
+					<>
+						<Icon
+							dividerId={id}
+							icon={backgroundIcon}
+							onClick={selectBackgroundIcon}
+							sx={backgroundIconSx}
+						/>
+						<ScenarioSubtitle divider={props} sx={scenarioSubtitleSx} />
+					</>
+				)}
 				{icons.map(({ icon, setIcon, config }) => (
 					<Icon
 						key={config.id}
@@ -99,6 +109,7 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 							fontSize: mm(config.fontSize),
 							width: mm(config.width),
 							height: mm(config.height),
+							color: config.light ? "#fff" : "#000",
 							cursor: "pointer",
 							"&:hover": {
 								opacity: 0.5,
@@ -112,6 +123,7 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 						<InlineXP sx={inlineXPSx} xpCost={xpCost} />
 					</>
 				)}
+				<PlayerSubtitle sx={playerSubtitleSx} divider={props} />
 			</Content>
 		</Container>
 	);

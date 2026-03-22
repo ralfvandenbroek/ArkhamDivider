@@ -1,8 +1,8 @@
 import type { Divider } from "@/modules/divider/shared/model";
-import { isScenarioDivider } from "../type";
+import { isScenarioDividerType } from "../type";
 
 export const getDividerCardsCount = <T = void>(divider: Divider<T>) => {
-	if (isScenarioDivider(divider)) {
+	if (isScenarioDividerType(divider)) {
 		return divider.cardsCount;
 	}
 	return;

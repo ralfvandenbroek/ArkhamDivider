@@ -91,5 +91,14 @@
 	"customStory.fanMadeBy": "Fan-made scenario by {{creator}}",
 	"customStory.translationHelp": "Please, help me with the content translation to your language. Contact me using one of the links at the bottom of the page.",
 	"customStory.download": "Download print and play cards",
-	"customStory.translatedBy": "Translated by"
+	"customStory.translatedBy": "Translated by",
+	"cards.faction.mystic": "Mystic Cards",
+	"cards.faction.guardian": "Guardian Cards",
+	"cards.faction.rogue": "Rogue Cards",
+	"cards.faction.neutral": "Neutral Cards",
+	"cards.faction.seeker": "Seeker Cards",
+	"cards.faction.survivor": "Survivor Cards",
+	"cards.faction.multiclass": "Multiclass Cards",
+	"cards.investigator": "Investigator Cards",
+	"divider.sarnetsky.xpCost": "Level {{level}}"
 }

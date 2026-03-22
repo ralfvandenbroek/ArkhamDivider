@@ -54,7 +54,10 @@ export function ExperienceSelect({
 	const handleRangeAdd = useCallback(() => {
 		const [min, max] = rangeValue;
 		const fixed = min === max;
-		const name = getXPRangeName(min, max);
+		const name = getXPRangeName({
+			min,
+			max,
+		});
 		const cost: XPCost = fixed
 			? {
 					type: "fixed",

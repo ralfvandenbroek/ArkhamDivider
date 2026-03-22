@@ -5,6 +5,7 @@ import type {
 	DividerSubtype,
 	DividerType,
 	DividerWithRelations,
+	XPCost,
 } from "@/modules/divider/shared/model";
 import type { Faction } from "@/modules/faction/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
@@ -25,6 +26,7 @@ export type SarnetskyIcon = {
 	width: number;
 	right: number;
 	top: number;
+	light?: boolean;
 	params?: BaseIconProps;
 };
 
@@ -46,6 +48,7 @@ export type SarnetskyDividerCallbackProps = {
 	type: DividerType;
 	faction?: Faction | null;
 	subType?: DividerSubtype;
+	xpCost?: XPCost | null;
 };
 
 export type SarnetskyDividerLocaleCallback =

@@ -1,12 +1,23 @@
-import { put, retry, takeEvery } from "redux-saga/effects";
+import { put, retry, select, takeEvery } from "redux-saga/effects";
 import { ArkhamDividerAPI } from "@/shared/api";
 import type { ReturnAwaited } from "@/shared/model";
 import { seconds } from "@/shared/util";
-import { appDataLoaded, appStarted, setAppLoaded } from "../../shared/lib";
+import {
+	appDataLoaded,
+	appStarted,
+	selectAppDataLoaded,
+	setAppLoaded,
+} from "../../shared/lib";
 
 const { getCoreData } = ArkhamDividerAPI;
 
 function* worker() {
+	const dataLoaded: ReturnType<typeof selectAppDataLoaded> =
+		yield select(selectAppDataLoaded);
+	if (dataLoaded) {
+		yield put(setAppLoaded(true));
+	}
+
 	const data: ReturnAwaited<typeof getCoreData> = yield retry(
 		3,
 		seconds(1),
@@ -14,7 +25,9 @@ function* worker() {
 	);
 	yield put(appDataLoaded(data));
 
-	yield put(setAppLoaded(true));
+	if (!dataLoaded) {
+		yield put(setAppLoaded(true));
+	}
 }
 
 export function* loadCoreDataSaga() {

@@ -1,1 +1,1 @@
-export * from "./isScenarioDivider";
+export * from "./isScenarioDividerType";

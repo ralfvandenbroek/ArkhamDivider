@@ -1,7 +1,11 @@
 import type { Icon } from "@/modules/core/icon/shared/model";
 import type { EncounterSetTypeEntry } from "@/modules/encounterSet/shared/model";
 import type { Faction } from "@/modules/faction/shared/model";
-import type { Story, StoryWithRelations } from "@/modules/story/shared/model";
+import type {
+	Story,
+	StoryScenarioWithRelations,
+	StoryWithRelations,
+} from "@/modules/story/shared/model";
 import type { Side, Single } from "@/shared/model";
 
 export type Investigator = Single<Story["investigators"]>;
@@ -56,8 +60,15 @@ export type DividerType =
 	| "player"
 	| "investigator";
 
-export type ScenarioDividerData = {
-	type: "scenario" | "campaign" | "encounter";
+export type ScenarioDividerData = (
+	| {
+			type: "campaign" | "encounter";
+	  }
+	| {
+			type: "scenario";
+			scenario: StoryScenarioWithRelations;
+	  }
+) & {
 	storyCode: string;
 	cardsCount?: number;
 	cards?: EncounterSetTypeEntry[];

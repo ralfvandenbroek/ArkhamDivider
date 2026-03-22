@@ -4,6 +4,7 @@ import type {
 	SarnetskyDividerObjects,
 	SarnetskyDividerProps,
 } from "../../model";
+import { getSarnetskyDefaultDividerIcon } from "../logic";
 
 type Options = {
 	divider: SarnetskyDividerProps;
@@ -23,8 +24,12 @@ export const useSarnetskyDividerIcons = ({ divider, objects: O }: Options) => {
 
 	return useMemo(() => {
 		return iconObjects.map((config) => {
-			const defaultIcon =
-				config.type === "campaign" ? defaultCampaignIcon : icon;
+			const defaultIcon = getSarnetskyDefaultDividerIcon({
+				type: config.type,
+				iconId: config.id,
+				icon,
+				campaignIcon: defaultCampaignIcon,
+			});
 
 			const [currentIcon, setIcon] = getDividerIcon({
 				param: config.id,
