@@ -1,5 +1,5 @@
 import { compact } from "ramda-adjunct";
-import type { StoryScenario } from "../../model";
+import type { StoryScenario } from "../../../model";
 
 export const getStoryScenarios = <T extends StoryScenario>({
 	scenario,
