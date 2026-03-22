@@ -65,11 +65,11 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 			<Background {...props} />
 			<Content sx={sx}>
 				<Title divider={props} sx={titleSx} sxOptions={sxOptions} />
-				<Encounters divider={props} />
 				{isScenario && (
 					<>
 						<BackgroundIcon sx={backgroundIconSx} divider={props} />
 						<ScenarioSubtitle divider={props} sx={scenarioSubtitleSx} />
+						<Encounters divider={props} />
 					</>
 				)}
 				<SecondaryIcons objects={O} divider={props} />
