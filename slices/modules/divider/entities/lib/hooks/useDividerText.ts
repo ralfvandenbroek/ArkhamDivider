@@ -23,6 +23,7 @@ export const useDividerText = <T>({
 	const defaultCustomValue = params?.[param];
 	const defaultValue = defaultCustomValue ?? defaultValueProp;
 	const customValueRef = useRef(defaultValue);
+	const fontSizeScaleRef = useRef<number | null>(divider.fontSizeScale ?? null);
 
 	const onChange = useCallback((value: string) => {
 		customValueRef.current = value;
@@ -35,14 +36,21 @@ export const useDividerText = <T>({
 		dispatch(
 			setDividerParam({ id, key: param, value: customValueRef.current }),
 		);
-	}, [id, dispatch, param]);
 
-	const onFontSizeChange = useCallback(
-		(fontSizeScale: number) => {
-			dispatch(updateDivider({ id, changes: { fontSizeScale } }));
-		},
-		[id, dispatch],
-	);
+		const nextFontSizeScale = fontSizeScaleRef.current;
+		if (
+			typeof nextFontSizeScale === "number" &&
+			nextFontSizeScale !== divider.fontSizeScale
+		) {
+			dispatch(
+				updateDivider({ id, changes: { fontSizeScale: nextFontSizeScale } }),
+			);
+		}
+	}, [id, dispatch, param, divider.fontSizeScale]);
+
+	const onFontSizeChange = useCallback((fontSizeScale: number) => {
+		fontSizeScaleRef.current = fontSizeScale;
+	}, []);
 
 	const value = customValueRef.current ?? translatedValue;
 

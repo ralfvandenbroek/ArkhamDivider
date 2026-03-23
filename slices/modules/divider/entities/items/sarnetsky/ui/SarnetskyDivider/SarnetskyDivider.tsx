@@ -1,17 +1,9 @@
-import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
 } from "@/modules/divider/entities/ui";
-import { getDividerFaction } from "@/modules/divider/shared/lib";
-import {
-	getDividerSubtype,
-	getDividerXPCost,
-} from "@/modules/divider/shared/lib/logic/params";
-import type { DividerLayout } from "@/modules/divider/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { useAppSelector } from "@/shared/lib";
-import { getSarnetskyLayoutObjects } from "../../lib";
+import { useSarnetskySxOptions } from "../../lib";
 import type { SarnetskyDividerProps } from "../../model";
 import {
 	SarnetskyDividerBackground as Background,
@@ -26,23 +18,7 @@ import { SarnetskyDividerInlineXP as InlineXP } from "../xp/SarnetskyDividerInli
 import * as S from "./SarnetskyDivider.styles";
 
 export function SarnetskyDivider(props: SarnetskyDividerProps) {
-	const layout = useAppSelector(selectLayout) as DividerLayout;
-	const O = getSarnetskyLayoutObjects(layout);
-
-	const faction = getDividerFaction(props);
-	const subtype = getDividerSubtype(props);
-
-	const xpCost = getDividerXPCost(props);
-
-	const sxOptions = {
-		objects: O,
-		orientation: layout.orientation,
-		type: props.type,
-		faction,
-		subtype,
-		xpCost,
-	};
-
+	const sxOptions = useSarnetskySxOptions(props);
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getSx);
 	const titleSx = getPrintSx(S.getTitleSx);
@@ -52,13 +28,15 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const scenarioSubtitleSx = getPrintSx(S.getScenarioSubtitleSx);
 	const scenarioContentSx = getPrintSx(S.getScenarioContentSx);
 
+	const { xpCost } = sxOptions;
+
 	return (
 		<SarnetskyDividerContext.Provider value={{ divider: props, sxOptions }}>
 			<Container>
 				<Background {...props} />
 				<Content sx={sx}>
 					<Title divider={props} sx={titleSx} />
-					<SecondaryIcons objects={O} divider={props} />
+					<SecondaryIcons divider={props} />
 					<ScenarioContent
 						divider={props}
 						sx={scenarioContentSx}

@@ -2,7 +2,6 @@ import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
 import type { BaseIconProps } from "@/modules/core/icon/shared/model";
 import type {
 	DividerOrientation,
-	DividerSubtype,
 	DividerType,
 	DividerWithRelations,
 	XPCost,
@@ -47,7 +46,6 @@ export type SarnetskyDividerCallbackProps = {
 	objects: SarnetskyDividerObjects;
 	type: DividerType;
 	faction?: Faction | null;
-	subType?: DividerSubtype;
 	xpCost?: XPCost | null;
 };
 
