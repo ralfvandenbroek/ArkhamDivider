@@ -23,6 +23,7 @@ export function SarnetskyDividerScenarioContent({
 	const getPrintSx = usePrintUnit(sxOptions);
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
+	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
 	const isScenario = isScenarioDividerType(divider);
 
 	if (!isScenario) {
@@ -34,8 +35,10 @@ export function SarnetskyDividerScenarioContent({
 			<ScenarioSubtitle divider={divider} sx={subtitleSx} />
 			<Box {...props}>
 				<Stack sx={{ height: "100%", justifyContent: "space-between" }}>
-					<Stack sx={backgroundSx}>
-						<BackgroundIcon sx={backgroundIconSx} divider={divider} />
+					<Stack sx={backgroundContainerSx}>
+						<Stack sx={backgroundSx}>
+							<BackgroundIcon sx={backgroundIconSx} divider={divider} />
+						</Stack>
 					</Stack>
 
 					{divider.type === "scenario" && (

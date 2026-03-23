@@ -25,3 +25,10 @@ export const getBackgroundSx: SarnetskyDividerSxCallback = ({
 	justifyContent: "center",
 	alignItems: "center",
 });
+
+export const getBackgroundContainerSx: SarnetskyDividerSxCallback = ({
+	orientation,
+}) => ({
+	flex: 1,
+	justifyContent: orientation === "horizontal" ? "flex-start" : "center",
+});

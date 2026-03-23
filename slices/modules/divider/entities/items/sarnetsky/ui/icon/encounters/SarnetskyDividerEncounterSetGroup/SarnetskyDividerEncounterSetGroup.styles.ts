@@ -1,6 +1,7 @@
 import type { SarnetskyDividerSxCallback } from "../../../../model";
 
-const gap = 2;
+const separatorSize = 0.1;
+const listGap = 4 + separatorSize;
 
 export const getContainerSx: SarnetskyDividerSxCallback = ({
 	mm,
@@ -8,11 +9,16 @@ export const getContainerSx: SarnetskyDividerSxCallback = ({
 }) => ({
 	alignItems: "center",
 	fontSize: mm(O.encounterIcon.fontSize),
-	gap: mm(gap),
+	gap: mm(2),
 });
 
-export const getListSx: SarnetskyDividerSxCallback = ({ mm }) => ({
-	gap: mm(gap),
+export const getListSx: SarnetskyDividerSxCallback = ({ mm, orientation }) => ({
+	position: "relative",
+	gap: orientation === "horizontal" ? mm(2) : mm(1.5),
+	display: "inline-flex",
+	justifyContent: "center",
+	alignItems: "center",
+	flexGrow: 1,
 });
 
 export const getIconSx: SarnetskyDividerSxCallback = () => ({
@@ -20,20 +26,35 @@ export const getIconSx: SarnetskyDividerSxCallback = () => ({
 });
 
 export const getListContainerSx: SarnetskyDividerSxCallback = ({ mm }) => ({
-	gap: mm(gap),
-	flex: 1,
+	gap: mm(listGap),
+	display: "inline-flex",
 	justifyContent: "center",
 	alignItems: "center",
+	flexWrap: "wrap",
+	position: "relative",
+	overflow: "hidden",
+	margin: "0 auto",
 });
 
-export const getSeparatorSx: SarnetskyDividerSxCallback = ({
+export const getHorizontalSeparatorSx: SarnetskyDividerSxCallback = ({
 	mm,
-	objects: O,
 }) => ({
-	height: mm(O.encounterIcon.fontSize),
-	width: mm(0.25),
+	position: "absolute",
+	top: `calc(1em + ${mm(listGap / 2)})`,
+	left: mm(5),
+	right: mm(5),
+	height: mm(separatorSize),
 	backgroundColor: "black",
-	flexShrink: 0,
+});
+
+export const getVerticalSeparatorSx: SarnetskyDividerSxCallback = ({ mm }) => ({
+	position: "absolute",
+	right: mm(-listGap / 2),
+	top: "50%",
+	transform: "translateY(-50%)",
+	width: mm(separatorSize),
+	height: mm(2.5),
+	backgroundColor: "black",
 });
 
 export const getGroupNameSx: SarnetskyDividerSxCallback = ({ mm }) => ({
@@ -41,5 +62,4 @@ export const getGroupNameSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	fontStyle: "italic",
 	fontWeight: "bold",
 	fontSize: mm(2.5),
-	alignSelf: "flex-start",
 });

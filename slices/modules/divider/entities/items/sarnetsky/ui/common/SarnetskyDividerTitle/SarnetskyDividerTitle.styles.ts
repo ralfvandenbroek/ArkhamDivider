@@ -11,6 +11,7 @@ export const getTitleSx: SarnetskyDividerLocaleCallback = ({ mm }) => ({
 		fontSize: mm(5),
 		fontFamily: "Arkhamic, Teutonic, serif",
 		textAlign: "center",
+		whiteSpace: "nowrap",
 	},
 	ru: {
 		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",

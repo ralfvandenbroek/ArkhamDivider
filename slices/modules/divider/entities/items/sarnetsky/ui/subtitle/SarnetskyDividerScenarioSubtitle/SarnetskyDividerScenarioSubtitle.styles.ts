@@ -1,11 +1,13 @@
 import { alpha } from "@mui/material";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import type { SarnetskyDividerSxCallback } from "../../../model";
 
-export const getSx: PrintSxCallback = ({ mm }) => ({
+export const getSx: SarnetskyDividerSxCallback = ({ mm, objects: O }) => ({
 	fontFamily: "ArnoPro, serif",
 	fontWeight: "bold",
 	fontStyle: "italic",
 	fontSize: mm(2.5),
+	lineHeight: O.subtitle.lineHeight,
 	textAlign: "center",
 });
 

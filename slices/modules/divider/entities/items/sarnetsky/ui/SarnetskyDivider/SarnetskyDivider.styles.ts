@@ -1,5 +1,6 @@
 import {
 	getIsSarnetskyLightTitleColor,
+	getSarnetskyScenarioContentObject,
 	getSarnetskyTitleObject as getTitleObject,
 } from "../../lib";
 import type { SarnetskyDividerSxCallback } from "../../model";
@@ -43,30 +44,40 @@ export const getInlineXPSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	zIndex: 3,
 });
 
-export const getScenarioSubtitleSx: SarnetskyDividerSxCallback = ({ mm }) => ({
+export const getScenarioSubtitleSx: SarnetskyDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	top: mm(17.5),
-	right: mm(16.5),
-	left: mm(16.5),
+	top: mm(O.subtitle.top),
+	right: mm(O.subtitle.right),
+	left: mm(O.subtitle.left),
 	zIndex: 3,
 });
 
-export const getPlayerSubtitleSx: SarnetskyDividerSxCallback = ({ mm }) => ({
+export const getPlayerSubtitleSx: SarnetskyDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	top: mm(16.8),
-	right: mm(16.5),
-	left: mm(16.5),
+	top: mm(O.playerSubtitle.top),
+	right: mm(O.playerSubtitle.right),
+	left: mm(O.playerSubtitle.left),
 	zIndex: 3,
 });
 
 export const getScenarioContentSx: SarnetskyDividerSxCallback = ({
 	mm,
 	objects: O,
-}) => ({
-	position: "absolute",
-	top: mm(O.scenarioContent.top),
-	left: mm(O.scenarioContent.left),
-	right: mm(O.scenarioContent.right),
-	bottom: mm(O.scenarioContent.bottom),
-	zIndex: 3,
-});
+	type,
+}) => {
+	const S = getSarnetskyScenarioContentObject({ type, objects: O });
+	return {
+		position: "absolute",
+		top: mm(S.top),
+		left: mm(S.left),
+		right: mm(S.right),
+		bottom: mm(S.bottom),
+		zIndex: 3,
+	};
+};

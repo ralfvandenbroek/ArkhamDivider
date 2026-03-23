@@ -1,3 +1,4 @@
+import { mergeDeepRight } from "ramda";
 import type { SarnetskyIcon, SarnetskyIconRecord } from "../model";
 
 export const sarnetskyCategoryId = "sarnetsky";
@@ -35,7 +36,7 @@ const rightHorizontalIcon: SarnetskyIcon = {
 	fontSize: 2.4,
 	width: 3.2,
 	height: 6.1,
-	right: 2.8,
+	right: 2.7,
 	top: 5.9,
 };
 
@@ -45,7 +46,7 @@ const centerHorizontalIcon: SarnetskyIcon = {
 	fontSize: 6.4,
 	width: 9.8,
 	height: 6.1,
-	right: 39.6,
+	right: 39.3,
 	top: 0.8,
 };
 
@@ -61,6 +62,31 @@ const horizontalIcons: SarnetskyIconRecord = {
 	campaign: [leftHorizontalIcon, rightHorizontalIcon],
 };
 
+const verticalShiftX = 25.9;
+
+const leftVerticalIcon: SarnetskyIcon = {
+	...leftHorizontalIcon,
+	right: leftHorizontalIcon.right - verticalShiftX,
+};
+
+const verticalIcons: SarnetskyIconRecord = {
+	encounter: [
+		{
+			...centerHorizontalIcon,
+			right: centerHorizontalIcon.right - verticalShiftX / 2,
+		},
+		encounterRightIcon,
+	],
+	scenario: [
+		{
+			...leftVerticalIcon,
+			type: "scenario",
+		},
+		rightHorizontalIcon,
+	],
+	campaign: [leftVerticalIcon, rightHorizontalIcon],
+};
+
 export const sarnetskyHorizontalDividerObjects = {
 	icons: horizontalIcons,
 	title: {
@@ -69,7 +95,7 @@ export const sarnetskyHorizontalDividerObjects = {
 			fontSize: 5,
 			height: 9.5,
 			left: 15,
-			right: 15,
+			right: 9,
 		},
 		campaign: {},
 		scenario: {},
@@ -85,27 +111,76 @@ export const sarnetskyHorizontalDividerObjects = {
 		},
 	},
 	background: {
-		fontSize: 30,
+		fontSize: 32,
 		opacity: 0.07,
 	},
 	scenarioContent: {
 		top: 23,
 		left: 5.5,
 		right: 5.5,
-		bottom: 8,
+		bottom: 8.5,
+
+		encounter: {
+			top: 21,
+		},
+		campaign: {
+			top: 24,
+		},
+	},
+	subtitle: {
+		fontSize: 2.5,
+		top: 16.8,
+		right: 16.5,
+		left: 16.5,
+		lineHeight: 1.2,
+	},
+	playerSubtitle: {
+		fontSize: 2.5,
+		top: 16.8,
+		right: 16.5,
+		left: 16.5,
+		lineHeight: 1.2,
 	},
 	encounterIcon: {
 		fontSize: 3.7,
 	},
 };
 
-const verticalIcons: SarnetskyIconRecord = {
-	encounter: [],
-	scenario: [],
-	campaign: [],
-};
-
-export const sarnetskyVerticalDividerObjects = {
-	...sarnetskyHorizontalDividerObjects,
-	icons: verticalIcons,
-};
+export const sarnetskyVerticalDividerObjects = mergeDeepRight(
+	sarnetskyHorizontalDividerObjects,
+	{
+		icons: verticalIcons,
+		subtitle: {
+			fontSize: 2.5,
+			top: 20,
+			right: 13,
+			left: 13,
+		},
+		playerSubtitle: {
+			top: 20,
+		},
+		scenarioContent: {
+			top: 25,
+			encounter: {
+				top: 9,
+			},
+			campaign: {
+				top: 19,
+			},
+		},
+		title: {
+			default: {
+				top: 6.5,
+				fontSize: 5,
+				height: 9.5,
+				left: 14,
+				right: 8,
+			},
+			encounter: {
+				top: 8.5,
+				left: 4,
+				right: 4,
+			},
+		},
+	},
+);

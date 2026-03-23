@@ -1,11 +1,11 @@
 import type { Theme } from "@mui/material/styles";
 import type { BoxOwnProps } from "@mui/system/Box";
-import { isArray, isNumber, isObject } from "ramda-adjunct";
+import { isNumber } from "ramda-adjunct";
+import { getSxObject } from "./getSxObject";
 
 type Props = BoxOwnProps<Theme>;
 type StyleProps = Props;
 type StylePropKey = keyof StyleProps;
-type SxPlainObject = Partial<Record<StylePropKey, unknown>>;
 type StyleKeys = readonly StylePropKey[];
 
 type ExtractedStyleResult<Keys extends StyleKeys> = {
@@ -22,8 +22,7 @@ export const getNumericStyleProps = <Keys extends StyleKeys>({
 	properties,
 }: Options<Keys>): ExtractedStyleResult<Keys> => {
 	const { sx } = props;
-	const sxObj: SxPlainObject | null =
-		isObject(sx) && !isArray(sx) ? (sx as SxPlainObject) : null;
+	const sxObj = getSxObject(sx);
 
 	const propsData = props as Partial<Record<StylePropKey, unknown>>;
 

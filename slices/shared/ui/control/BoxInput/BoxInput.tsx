@@ -4,7 +4,7 @@ import IconButton, { type IconButtonProps } from "@mui/material/IconButton";
 import type { SxProps } from "@mui/material/styles";
 import { isString } from "ramda-adjunct";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { setInputCursorAtTheEnd } from "@/shared/lib";
+import { getStyleProp, setInputCursorAtTheEnd } from "@/shared/lib";
 import { delay, sanitizeHTML } from "@/shared/util";
 
 export type BoxInputProps = BoxProps & {
@@ -116,11 +116,15 @@ export function BoxInput({
 		},
 	} as SxProps;
 
+	// const { lineHeight  = 1} = sx;
+	const lineHeight =
+		getStyleProp({ props, prop: "lineHeight", sx: containerSxProp }) ?? 1;
+
 	const containerSx = {
+		lineHeight,
 		width: "100%",
 		height: "100%",
 		position: "relative",
-		lineHeight: 1,
 		...containerSxProp,
 	} as SxProps;
 
@@ -140,12 +144,12 @@ export function BoxInput({
 
 	const strokeSx = {
 		...strokeSxProp,
+		lineHeight,
 		position: "absolute",
 		top: 0,
 		left: 0,
 		width: "100%",
 		height: "100%",
-		lineHeight: 1,
 		zIndex: -1,
 	} as SxProps;
 

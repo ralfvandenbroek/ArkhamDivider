@@ -24,8 +24,6 @@ export function SarnetskyDividerEncounterSetGroup({
 	const mainSize = group.main.length;
 	const sideSize = group.side.length;
 
-	const showSeparator = mainSize > 0 && sideSize > 0;
-
 	const getPrintSx = usePrintUnit({
 		...sxOptions,
 		mainSize,
@@ -35,9 +33,10 @@ export function SarnetskyDividerEncounterSetGroup({
 	const sxProp = getPrintSx(S.getContainerSx);
 	const iconSx = getPrintSx(S.getIconSx);
 	const listSx = getPrintSx(S.getListSx);
-	const separatorSx = getPrintSx(S.getSeparatorSx);
 	const groupNameSx = getPrintSx(S.getGroupNameSx);
 	const listContainerSx = getPrintSx(S.getListContainerSx);
+	const horizontalSeparatorSx = getPrintSx(S.getHorizontalSeparatorSx);
+	const verticalSeparatorSx = getPrintSx(S.getVerticalSeparatorSx);
 
 	const sx = {
 		...sxProp,
@@ -53,9 +52,13 @@ export function SarnetskyDividerEncounterSetGroup({
 						{group.main.map((encounter) => (
 							<Icon key={encounter} icon={encounter} sx={iconSx} />
 						))}
+
+						<Box sx={verticalSeparatorSx} />
+
+						<Box sx={verticalSeparatorSx} />
 					</Row>
 				)}
-				{showSeparator && <Box sx={separatorSx} />}
+				<Box sx={horizontalSeparatorSx} />
 				{group.side.length > 0 && (
 					<Row sx={listSx}>
 						{group.side.map((encounter) => (

@@ -1,8 +1,10 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import type { SarnetskyDividerSxCallback } from "../../../model";
 
-export const getSx: PrintSxCallback = ({ mm }) => {
+export const getSx: SarnetskyDividerSxCallback = ({ mm, objects: O }) => {
 	return {
-		fontSize: mm(2.5),
+		fontSize: mm(O.subtitle.fontSize),
+		lineHeight: O.subtitle.lineHeight,
 		fontFamily: "ArnoPro, serif",
 		textAlign: "center",
 	};
