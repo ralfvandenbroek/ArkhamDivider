@@ -85,11 +85,17 @@ export const sarnetskyHorizontalDividerObjects = {
 		},
 	},
 	background: {
-		size: 40,
 		fontSize: 30,
-		top: 19,
-		left: 24.5,
 		opacity: 0.07,
+	},
+	scenarioContent: {
+		top: 23,
+		left: 5.5,
+		right: 5.5,
+		bottom: 8,
+	},
+	encounterIcon: {
+		fontSize: 3.7,
 	},
 };
 

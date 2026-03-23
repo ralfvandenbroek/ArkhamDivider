@@ -1,7 +1,4 @@
-import {
-	isScenarioDividerType,
-	selectLayout,
-} from "@/modules/divider/entities/lib";
+import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
@@ -17,16 +14,13 @@ import { useAppSelector } from "@/shared/lib";
 import { getSarnetskyLayoutObjects } from "../../lib";
 import type { SarnetskyDividerProps } from "../../model";
 import {
-	SarnetskyDividerBackgroundIcon as BackgroundIcon,
-	SarnetskyDividerSecondaryIcons as SecondaryIcons,
-} from "../icon";
-import { SarnetskyDividerEncounters as Encounters } from "../icon/encounters";
-import { SarnetskyDividerBackground as Background } from "../SarnetskyDividerBackground";
-import { SarnetskyDividerTitle as Title } from "../SarnetskyDividerTitle";
-import {
-	SarnetskyDividerPlayerSubtitle as PlayerSubtitle,
-	SarnetskyDividerScenarioSubtitle as ScenarioSubtitle,
-} from "../subtitle";
+	SarnetskyDividerBackground as Background,
+	SarnetskyDividerScenarioContent as ScenarioContent,
+	SarnetskyDividerTitle as Title,
+} from "../common";
+import { SarnetskyDividerSecondaryIcons as SecondaryIcons } from "../icon";
+import { SarnetskyDividerContext } from "../SarnetskyDividerContext";
+import { SarnetskyDividerPlayerSubtitle as PlayerSubtitle } from "../subtitle";
 import { SarnetskyDividerSideRadialXP as RadialXP } from "../xp";
 import { SarnetskyDividerInlineXP as InlineXP } from "../xp/SarnetskyDividerInlineXP";
 import * as S from "./SarnetskyDivider.styles";
@@ -55,32 +49,30 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const radialXPSx = getPrintSx(S.getRadialXPSx);
 	const inlineXPSx = getPrintSx(S.getInlineXPSx);
 	const playerSubtitleSx = getPrintSx(S.getPlayerSubtitleSx);
-	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const scenarioSubtitleSx = getPrintSx(S.getScenarioSubtitleSx);
-
-	const isScenario = isScenarioDividerType(props);
+	const scenarioContentSx = getPrintSx(S.getScenarioContentSx);
 
 	return (
-		<Container>
-			<Background {...props} />
-			<Content sx={sx}>
-				<Title divider={props} sx={titleSx} sxOptions={sxOptions} />
-				{isScenario && (
-					<>
-						<BackgroundIcon sx={backgroundIconSx} divider={props} />
-						<ScenarioSubtitle divider={props} sx={scenarioSubtitleSx} />
-						<Encounters divider={props} />
-					</>
-				)}
-				<SecondaryIcons objects={O} divider={props} />
-				{xpCost && (
-					<>
-						<RadialXP sx={radialXPSx} xpCost={xpCost} />
-						<InlineXP sx={inlineXPSx} xpCost={xpCost} />
-					</>
-				)}
-				<PlayerSubtitle sx={playerSubtitleSx} divider={props} />
-			</Content>
-		</Container>
+		<SarnetskyDividerContext.Provider value={{ divider: props, sxOptions }}>
+			<Container>
+				<Background {...props} />
+				<Content sx={sx}>
+					<Title divider={props} sx={titleSx} />
+					<SecondaryIcons objects={O} divider={props} />
+					<ScenarioContent
+						divider={props}
+						sx={scenarioContentSx}
+						subtitleSx={scenarioSubtitleSx}
+					/>
+					{xpCost && (
+						<>
+							<RadialXP sx={radialXPSx} xpCost={xpCost} />
+							<InlineXP sx={inlineXPSx} xpCost={xpCost} />
+						</>
+					)}
+					<PlayerSubtitle sx={playerSubtitleSx} divider={props} />
+				</Content>
+			</Container>
+		</SarnetskyDividerContext.Provider>
 	);
 }

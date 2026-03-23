@@ -2,7 +2,7 @@ import { alpha } from "@mui/material/styles";
 import type {
 	SarnetskyDividerLocaleCallback,
 	SarnetskyDividerSxCallback,
-} from "../../model";
+} from "../../../model";
 
 export const getTitleSx: SarnetskyDividerLocaleCallback = ({ mm }) => ({
 	default: {

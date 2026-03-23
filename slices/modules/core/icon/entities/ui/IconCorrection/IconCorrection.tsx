@@ -71,7 +71,7 @@ export function IconCorrection(props: IconCorrectionProps) {
 	} as SxProps;
 
 	return (
-		<Box sx={sx} data-position={JSON.stringify(position)}>
+		<Box sx={sx}>
 			<Icon icon={icon} {...restProps} />
 		</Box>
 	);

@@ -59,24 +59,14 @@ export const getPlayerSubtitleSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	zIndex: 3,
 });
 
-export const getBackgroundIconSx: SarnetskyDividerSxCallback = ({
+export const getScenarioContentSx: SarnetskyDividerSxCallback = ({
 	mm,
 	objects: O,
 }) => ({
 	position: "absolute",
-	mixBlendMode: "multiply",
-	fontSize: mm(O.background.fontSize),
-	top: mm(O.background.top),
-	left: mm(O.background.left),
-	width: mm(O.background.size),
-	height: mm(O.background.size),
-	opacity: O.background.opacity,
-	color: "#000",
-	cursor: "pointer",
+	top: mm(O.scenarioContent.top),
+	left: mm(O.scenarioContent.left),
+	right: mm(O.scenarioContent.right),
+	bottom: mm(O.scenarioContent.bottom),
 	zIndex: 3,
-	"@media screen": {
-		":hover": {
-			opacity: O.background.opacity * 0.5,
-		},
-	},
 });

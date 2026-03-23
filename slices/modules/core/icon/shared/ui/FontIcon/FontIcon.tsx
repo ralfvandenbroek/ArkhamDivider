@@ -11,19 +11,21 @@ export type FontIconProps = BoxProps &
 		icon: string;
 	};
 export function FontIcon(props: FontIconProps) {
-	const { scaleType, scaleFactor } = props;
+	const { scaleType, scaleFactor, resizeDisabled = false } = props;
 	const icon = useAppSelector((state) => selectIconById(state, props.icon));
 
 	if (!icon) {
 		return null;
 	}
 
-	const size = getIconScale({
-		scaleType,
-		scaleFactor,
-		ratio: icon?.ratio,
-		circled: icon?.circled,
-	});
+	const size = resizeDisabled
+		? 100
+		: getIconScale({
+				scaleType,
+				scaleFactor,
+				ratio: icon?.ratio,
+				circled: icon?.circled,
+			});
 	const fontSize = `${size}%`;
 
 	const char = String.fromCharCode(icon.code);

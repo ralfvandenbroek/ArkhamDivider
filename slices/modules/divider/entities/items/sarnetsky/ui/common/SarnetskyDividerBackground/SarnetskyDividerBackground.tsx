@@ -1,6 +1,6 @@
 import type { BoxProps } from "@mui/material";
 import { DividerBleedView } from "@/modules/divider/entities/ui";
-import type { SarnetskyDividerProps } from "../../model";
+import type { SarnetskyDividerProps } from "../../../model";
 import { SarnetskyDividerBlankImage as BlankImage } from "./SarnetskyDividerBlankImage";
 import { SarnetskyDividerPlayerBackground as PlayerBackground } from "./SarnetskyDividerPlayerBackground";
 import { SarnetskyDividerScenarioBackground as ScenarioBackground } from "./SarnetskyDividerScenarioBackground";

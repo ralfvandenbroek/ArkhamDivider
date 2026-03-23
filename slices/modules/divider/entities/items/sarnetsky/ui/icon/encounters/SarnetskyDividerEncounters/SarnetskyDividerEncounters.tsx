@@ -1,31 +1,45 @@
-import { Box, type BoxProps } from "@mui/material";
-import type { SarnetskyDividerProps } from "../../../../model";
-import { SarnetskyDividerScenarioEncounters as ScenarioEncounters } from "../SarnetskyDividerScenarioEncounters";
-import { SarnetskyDividerScenarioGroupEncounters as ScenarioGroupEncounters } from "../SarnetskyDividerScenarioGroupEncounters";
+import { Stack, type StackProps } from "@mui/material";
+import { usePrintUnit } from "@/modules/print/shared/lib";
+import { useScenarioEncounterSetGroups } from "@/modules/story/entities/lib";
+import type { StoryScenario } from "@/modules/story/shared/model";
+import { SarnetskyDividerEncounterSetGroup as EncounterSetGroup } from "../SarnetskyDividerEncounterSetGroup";
+import * as S from "./SarnetskyDividerEncounters.styles";
 
-type SarnetskyDividerScenarioEncountersProps = BoxProps & {
-	divider: SarnetskyDividerProps;
+type SarnetskyDividerEncountersProps = StackProps & {
+	scenario: StoryScenario;
 };
 
 export function SarnetskyDividerEncounters({
-	divider,
+	scenario,
 	...props
-}: SarnetskyDividerScenarioEncountersProps) {
-	if (divider.type !== "scenario") {
+}: SarnetskyDividerEncountersProps) {
+	const groups = useScenarioEncounterSetGroups(scenario);
+	const rows = groups.length;
+
+	const getPrintSx = usePrintUnit({
+		rows,
+	});
+
+	if (groups.length === 0) {
 		return null;
 	}
-	const { scenario } = divider;
-	const { scenarios } = scenario;
+
+	const containerSx = getPrintSx(S.getContainerSx);
+	const sx = {
+		...containerSx,
+		...props.sx,
+	};
 
 	return (
-		<Box {...props}>
-			{!scenarios && <ScenarioEncounters scenario={scenario} />}
-			{scenarios && (
-				<ScenarioGroupEncounters
-					mainScenario={scenario}
-					scenarios={scenarios}
+		<Stack {...props} sx={sx}>
+			{groups.map(({ id, group, groupName, showName }) => (
+				<EncounterSetGroup
+					key={id}
+					group={group}
+					groupName={groupName}
+					showName={showName}
 				/>
-			)}
-		</Box>
+			))}
+		</Stack>
 	);
 }

@@ -6,7 +6,7 @@ import type { DividerType } from "@/modules/divider/shared/model";
 import type { StoryWithRelations } from "@/modules/story/shared/model";
 import { absoluteFill } from "@/shared/config";
 import { useAppSelector } from "@/shared/lib";
-import { sarnetskyColors } from "../../config";
+import { sarnetskyColors } from "../../../config";
 
 type SarnetskyDividerScenarioBackgroundProps = BoxProps & {
 	type: DividerType;
