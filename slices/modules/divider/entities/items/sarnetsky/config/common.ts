@@ -62,18 +62,16 @@ const horizontalIcons: SarnetskyIconRecord = {
 	campaign: [leftHorizontalIcon, rightHorizontalIcon],
 };
 
-const verticalShiftX = 25.9;
-
 const leftVerticalIcon: SarnetskyIcon = {
 	...leftHorizontalIcon,
-	right: leftHorizontalIcon.right - verticalShiftX,
+	right: leftHorizontalIcon.right - 25.9,
 };
 
 const verticalIcons: SarnetskyIconRecord = {
 	encounter: [
 		{
 			...centerHorizontalIcon,
-			right: centerHorizontalIcon.right - verticalShiftX / 2,
+			right: centerHorizontalIcon.right - 12.7,
 		},
 		encounterRightIcon,
 	],
@@ -153,8 +151,8 @@ export const sarnetskyVerticalDividerObjects = mergeDeepRight(
 		subtitle: {
 			fontSize: 2.5,
 			top: 20,
-			right: 13,
-			left: 13,
+			right: 5,
+			left: 5,
 		},
 		playerSubtitle: {
 			top: 20,

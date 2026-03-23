@@ -27,8 +27,8 @@ export const getTitleSx: SarnetskyDividerLocaleCallback = ({ mm }) => ({
 export const getOutlineSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	borderWidth: mm(0.3),
 	borderRadius: mm(1),
-	top: mm(-1.7),
-	bottom: mm(3),
+	top: mm(-1.6),
+	bottom: mm(3.2),
 });
 
 const titleColor = "#2e2622";
