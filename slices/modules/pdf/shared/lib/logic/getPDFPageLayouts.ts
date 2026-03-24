@@ -1,4 +1,4 @@
-import { isNotNil, range } from "ramda";
+import { range } from "ramda";
 import {
 	getPageLayoutOffsetPx,
 	getUnitSizePx,
@@ -42,12 +42,12 @@ export const getPDFPageLayouts = <T>({
 			cropmarksEnabled,
 		});
 		const items = rows.map((rowIndex) => {
-			const colData = cols.map((colIndex): Item<T> | null => {
+			const colData = cols.map((colIndex): Item<T> | undefined => {
 				const item: T | undefined =
 					pageLayout?.items[rowIndex]?.items[colIndex];
 
 				if (!item) {
-					return null;
+					return undefined;
 				}
 
 				const x = layoutOffset.x + colIndex * size.width;
@@ -63,13 +63,12 @@ export const getPDFPageLayouts = <T>({
 					position,
 				};
 			});
-			const items = colData.filter(isNotNil);
 
 			const row = pageLayout?.items[rowIndex];
 
 			return {
 				...row,
-				items,
+				items: colData,
 				layoutOffset,
 			};
 		});

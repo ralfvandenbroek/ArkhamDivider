@@ -30,7 +30,9 @@ const getBackLayouts = <T>(frontLayouts: PageLayout<T>[]) => {
 		const items = frontLayout.items.map((row) => ({
 			...row,
 			id: v4(),
-			items: row.items.toReversed(),
+			items: row.items
+				.toReversed()
+				.map((item) => (item != null ? { ...item, side: "back" } : item)),
 		}));
 		const backLayout: PageLayout<T> = {
 			...frontLayout,
@@ -65,10 +67,14 @@ const getFrontLayouts = <T>({
 		const items: PageLayoutRow<T>[] = [];
 		for (let j = 0; j < chunk.length; j += cols) {
 			const row = chunk.slice(j, j + cols);
+			const paddedRow: Array<T | undefined> = [...row];
+			while (paddedRow.length < cols) {
+				paddedRow.push(undefined);
+			}
 
 			items.push({
 				id: v4(),
-				items: row,
+				items: paddedRow,
 			});
 		}
 

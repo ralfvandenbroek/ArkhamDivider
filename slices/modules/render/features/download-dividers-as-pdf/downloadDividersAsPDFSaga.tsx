@@ -186,6 +186,10 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						break renderLoop;
 					}
 
+					if (!item) {
+						continue;
+					}
+
 					yield put(setDividerRenderId(item.id));
 					yield delay(50);
 

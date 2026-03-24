@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
@@ -6,8 +7,9 @@ import {
 } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { NotExportable } from "@/modules/render/shared/ui";
+import { useAppSelector } from "@/shared/lib";
 import { useSarnetskySxOptions } from "../../lib";
-import type { SarnetskyDividerProps } from "../../model";
+import type { SarnetskyDividerProps, SarnetskyLayout } from "../../model";
 import {
 	SarnetskyDividerBackground as Background,
 	SarnetskyDividerScenarioContent as ScenarioContent,
@@ -23,6 +25,8 @@ import * as S from "./SarnetskyDivider.styles";
 export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const containerRef = useRef<HTMLElement>(null);
 
+	const layout = useAppSelector(selectLayout) as SarnetskyLayout;
+
 	const sxOptions = useSarnetskySxOptions(props);
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getSx);
@@ -36,6 +40,8 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 
 	const { xpCost } = sxOptions;
 
+	const showBlank = layout.params?.blankBackSide && props.side === "back";
+
 	return (
 		<SarnetskyDividerContext.Provider
 			value={{
@@ -47,22 +53,27 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 			<Container>
 				<Background {...props} />
 				<Content sx={sx} ref={containerRef}>
-					<Title sx={titleSx} />
-					<SecondaryIcons />
-					<ScenarioContent
-						sx={scenarioContentSx}
-						subtitleSx={scenarioSubtitleSx}
-					/>
-					{xpCost && (
+					{!showBlank && (
 						<>
-							<RadialXP sx={radialXPSx} xpCost={xpCost} />
-							<InlineXP sx={inlineXPSx} xpCost={xpCost} />
+							<Title sx={titleSx} />
+							<SecondaryIcons />
+							<ScenarioContent
+								sx={scenarioContentSx}
+								subtitleSx={scenarioSubtitleSx}
+							/>
+							{xpCost && (
+								<>
+									<RadialXP sx={radialXPSx} xpCost={xpCost} />
+									<InlineXP sx={inlineXPSx} xpCost={xpCost} />
+								</>
+							)}
+							<PlayerSubtitle sx={playerSubtitleSx} />
+
+							<NotExportable>
+								<Menu dividerId={props.id} sx={menuSx} />
+							</NotExportable>
 						</>
 					)}
-					<PlayerSubtitle sx={playerSubtitleSx} />
-					<NotExportable>
-						<Menu dividerId={props.id} sx={menuSx} />
-					</NotExportable>
 				</Content>
 			</Container>
 		</SarnetskyDividerContext.Provider>

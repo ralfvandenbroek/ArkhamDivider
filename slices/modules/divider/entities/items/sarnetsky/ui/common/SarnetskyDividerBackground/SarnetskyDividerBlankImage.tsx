@@ -8,6 +8,6 @@ export function SarnetskyDividerBlankImage({ sx }: BoxProps) {
 		return null;
 	}
 	const { orientation } = layout;
-	const src = `/images/divider/background/sarnetsky/${orientation}/blank.jpg`;
+	const src = `/images/divider/background/sarnetsky/${orientation}/blank.png`;
 	return <Box component="img" src={src} sx={sx} />;
 }

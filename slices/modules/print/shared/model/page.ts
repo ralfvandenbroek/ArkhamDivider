@@ -18,7 +18,8 @@ export type PageFormat = {
 
 export type PageLayoutRow<T> = {
 	id: string;
-	items: T[];
+	/** Length always equals `grid.cols`; `undefined` marks an empty cell. */
+	items: Array<T | undefined>;
 };
 
 export type PageLayout<T> = {
