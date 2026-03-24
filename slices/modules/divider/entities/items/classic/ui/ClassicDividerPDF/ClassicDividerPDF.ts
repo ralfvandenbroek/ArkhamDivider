@@ -46,6 +46,7 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 		height: unit.mm(textConfig.height),
 		fontSize,
 		align: "center",
+		baseline: "middle",
 		overprint: true,
 		fontFamily,
 		color,

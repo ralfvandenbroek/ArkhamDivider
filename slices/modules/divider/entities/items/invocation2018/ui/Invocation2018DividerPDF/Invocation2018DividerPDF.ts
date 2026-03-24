@@ -11,6 +11,11 @@ import {
 
 const color = cmyk(0, 0, 0, 100);
 
+export const iconFontSizeScale = 43 / 40;
+
+export const iconXOffsetScale = 1 + 2e-3;
+export const iconYOffsetScale = 1 / (1 + 1e-2);
+
 export const Invocation2018DividerPDF: PDFDivider = async (props, ctx) => {
 	const { story, fontSizeScale = 100 } = props;
 	const { text, lasercut, unit, language, playerParams, layout } = ctx;

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import {
 	selectDividerParam,
 	setDividerParam,
@@ -7,20 +7,24 @@ import { getPrintNodeRect, selectDPI } from "@/modules/print/shared/lib";
 import { useAppDispatch, useAppSelector, useBoundingRect } from "@/shared/lib";
 import type { BoxRect } from "@/shared/model";
 import { isBoxRectEquals } from "@/shared/util";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 
 type Options = {
 	dividerId: string;
+	containerRef: React.RefObject<HTMLElement | null>;
+	param: string;
 };
 
-export const useBackgroundIconRect = ({ dividerId }: Options) => {
+export const useDividerObject = ({
+	dividerId,
+	containerRef,
+	param,
+}: Options) => {
 	const dispatch = useAppDispatch();
 	const dpi = useAppSelector(selectDPI);
-	const backgroundIconRect = useAppSelector(
-		selectDividerParam<BoxRect>({ id: dividerId, key: "backgroundIconRect" }),
+	const currentRect = useAppSelector(
+		selectDividerParam<BoxRect>({ id: dividerId, key: param }),
 	);
-	const { containerRef } = useContext(SarnetskyDividerContext);
-	const [ref, rect] = useBoundingRect<HTMLDivElement>();
+	const [ref, rect] = useBoundingRect<HTMLElement>();
 
 	useEffect(() => {
 		if (!ref.current || !rect || !containerRef.current) {
@@ -33,14 +37,14 @@ export const useBackgroundIconRect = ({ dividerId }: Options) => {
 			dpi,
 		});
 
-		if (backgroundIconRect && isBoxRectEquals(backgroundIconRect, printRect)) {
+		if (currentRect && isBoxRectEquals(currentRect, printRect)) {
 			return;
 		}
 
 		dispatch(
 			setDividerParam({
 				id: dividerId,
-				key: "backgroundIconRect",
+				key: param,
 				value: printRect,
 			}),
 		);
@@ -56,7 +60,8 @@ export const useBackgroundIconRect = ({ dividerId }: Options) => {
 		ref.current,
 		containerRef.current,
 		dpi,
-		backgroundIconRect,
+		currentRect,
+		param,
 	]);
 
 	return ref;

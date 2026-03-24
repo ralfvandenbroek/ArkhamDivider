@@ -1,6 +1,9 @@
 import { Box, type BoxProps, Stack, type SxProps } from "@mui/material";
 import { useContext } from "react";
-import { isScenarioDividerType } from "@/modules/divider/entities/lib";
+import {
+	isScenarioDividerType,
+	useDividerObject,
+} from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import type { SarnetskyDividerProps } from "../../../model";
 import { SarnetskyDividerBackgroundIcon as BackgroundIcon } from "../../icon";
@@ -8,7 +11,6 @@ import { SarnetskyDividerEncounters as Encounters } from "../../icon/encounters"
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerScenarioSubtitle as ScenarioSubtitle } from "../../subtitle";
 import * as S from "./SarnetskyDividerScenarioContent.styles";
-import { useBackgroundIconRect } from "./useBackgroundIconRect";
 
 type SarnetskyDividerScenarioContentProps = BoxProps & {
 	divider: SarnetskyDividerProps;
@@ -20,8 +22,14 @@ export function SarnetskyDividerScenarioContent({
 	subtitleSx,
 	...props
 }: SarnetskyDividerScenarioContentProps) {
-	const { sxOptions } = useContext(SarnetskyDividerContext);
-	const ref = useBackgroundIconRect({ dividerId: divider.id });
+	const { sxOptions, containerRef } = useContext(SarnetskyDividerContext);
+
+	const ref = useDividerObject({
+		dividerId: divider.id,
+		containerRef,
+		param: "backgroundIconRect",
+	});
+
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
