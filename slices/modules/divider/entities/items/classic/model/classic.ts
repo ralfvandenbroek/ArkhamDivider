@@ -8,6 +8,7 @@ export type ClassicLayoutParams = {
 };
 
 export type ClassicDividerParams = Partial<{
+	customTitle: string;
 	icon: Icon | null;
 	background: Icon | null;
 }>;

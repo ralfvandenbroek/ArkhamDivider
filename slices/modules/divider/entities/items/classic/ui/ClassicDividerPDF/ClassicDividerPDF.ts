@@ -9,6 +9,7 @@ import {
 	getDefaultSmallIcon,
 	getIconObject,
 } from "../../lib";
+import type { ClassicDividerParams } from "../../model";
 
 const color = cmyk(0, 0, 0, 100);
 
@@ -19,8 +20,17 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	const O = getClassicLayoutObjects(layout);
 	const t = withStoryTranslation(story);
 
+	const params = props.params as ClassicDividerParams | undefined;
+
 	const textConfig = getLocaleConfig(language, O.text);
-	const title = props.customTitle ?? t(props.title);
+	const translatedTitle = t(props.title);
+	const title = params?.customTitle ?? translatedTitle;
+
+	console.log("title", {
+		title,
+		translatedTitle,
+		customTitle: props.customTitle,
+	});
 
 	const fontSize = unit.mm((fontSizeScale / 100) * 4.58);
 	const bleed = unit.fromBleed();

@@ -53,16 +53,22 @@ export function BoxInput({
 
 	useEffect(() => {
 		setValue(defaultContent);
+		setStrokeValue(defaultContent);
 	}, [defaultContent, setValue]);
 
 	useEffect(() => {
+		// In controlled mode, value is source of truth.
+		// Late defaultValue updates (e.g. translation loading) must not override it.
+		if (isString(value)) {
+			return;
+		}
 		if (!isString(defaultValue)) {
 			return;
 		}
 		setValue(defaultValue);
 		setStrokeValue(defaultValue);
 		internalValueRef.current = defaultValue;
-	}, [defaultValue, setValue]);
+	}, [defaultValue, value, setValue]);
 
 	const clear = useCallback(() => {
 		const value = internalValueRef.current;
@@ -119,6 +125,8 @@ export function BoxInput({
 		...positionProps,
 		outline: "none",
 		opacity: props.hidden ? 0 : 1,
+		visibility: props.hidden ? "hidden" : "visible",
+		pointerEvents: props.hidden ? "none" : "auto",
 		"*": {
 			fontSize: "inherit!important",
 			letterSpacing: "inherit!important",
@@ -176,7 +184,7 @@ export function BoxInput({
 				ref={ref}
 			/>
 
-			{stroke && <Box sx={strokeSx}>{strokeValue}</Box>}
+			{stroke && !props.hidden && <Box sx={strokeSx}>{strokeValue}</Box>}
 
 			{showClear && (
 				<IconButton {...clearProps} sx={clearSx} onClick={clear}>

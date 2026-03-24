@@ -30,6 +30,7 @@ export type PDFDividerContext = {
 	scenarioParams: Partial<ScenarioDividerParams>;
 	playerParams: Partial<PlayerDividerParams>;
 	investigatorParams: Partial<InvestigatorDividerParams>;
+	params?: Record<string, unknown>;
 };
 
 export type PDFDivider<T = void> = (
