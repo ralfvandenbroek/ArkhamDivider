@@ -118,6 +118,7 @@ export function BoxInput({
 		...props.sx,
 		...positionProps,
 		outline: "none",
+		opacity: props.hidden ? 0 : 1,
 		"*": {
 			fontSize: "inherit!important",
 			letterSpacing: "inherit!important",
@@ -174,6 +175,7 @@ export function BoxInput({
 				onBlur={onBlur}
 				ref={ref}
 			/>
+
 			{stroke && <Box sx={strokeSx}>{strokeValue}</Box>}
 
 			{showClear && (

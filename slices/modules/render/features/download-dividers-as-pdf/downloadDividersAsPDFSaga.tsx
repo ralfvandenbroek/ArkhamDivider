@@ -187,7 +187,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 					}
 
 					yield put(setDividerRenderId(item.id));
-					yield delay(10);
+					yield delay(50);
 
 					const itemSizePt = {
 						width: px(item.size.width),

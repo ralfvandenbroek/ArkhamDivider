@@ -24,6 +24,8 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 
 	const fontSize = unit.mm((fontSizeScale / 100) * 4.58);
 	const bleed = unit.fromBleed();
+	const textHeight = unit.mm(textConfig.height);
+	const textTop = bleed.y(textConfig.top);
 
 	const iconObject = getIconObject({
 		...props,
@@ -41,9 +43,9 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 
 	await text.draw(title, {
 		x: bleed.x(textConfig.left),
-		y: bleed.y(textConfig.top),
+		y: textTop + textHeight / 2,
 		width: bleed.width(textConfig.left, textConfig.right),
-		height: unit.mm(textConfig.height),
+		height: textHeight,
 		fontSize,
 		align: "center",
 		baseline: "middle",
