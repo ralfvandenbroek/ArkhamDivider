@@ -13,6 +13,12 @@ import type { ClassicDividerParams } from "../../model";
 
 const color = cmyk(0, 0, 0, 100);
 
+const correction = {
+	smallIcon: {
+		scale: 40 / 43,
+	},
+};
+
 export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	const { story, fontSizeScale = 100 } = props;
 	const { text, lasercut, unit, language, playerParams, layout } = ctx;
@@ -25,12 +31,6 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	const textConfig = getLocaleConfig(language, O.text);
 	const translatedTitle = t(props.title);
 	const title = params?.customTitle ?? translatedTitle;
-
-	console.log("title", {
-		title,
-		translatedTitle,
-		customTitle: props.customTitle,
-	});
 
 	const fontSize = unit.mm((fontSizeScale / 100) * 4.58);
 	const bleed = unit.fromBleed();
@@ -94,8 +94,9 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	});
 
 	if (smallIcon) {
+		const top = iconObject.top * correction.smallIcon.scale;
 		const view = bleed.box({
-			top: iconObject.top,
+			top,
 			right: iconObject.right,
 			width: iconObject.size,
 			height: iconObject.size,
