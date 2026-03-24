@@ -158,7 +158,7 @@ export const sarnetskyVerticalDividerObjects = mergeDeepRight(
 			top: 20,
 		},
 		scenarioContent: {
-			top: 25,
+			top: 19,
 			encounter: {
 				top: 9,
 			},
@@ -172,7 +172,7 @@ export const sarnetskyVerticalDividerObjects = mergeDeepRight(
 				fontSize: 5,
 				height: 9.5,
 				left: 14,
-				right: 8,
+				right: 8.5,
 			},
 			encounter: {
 				top: 8.5,

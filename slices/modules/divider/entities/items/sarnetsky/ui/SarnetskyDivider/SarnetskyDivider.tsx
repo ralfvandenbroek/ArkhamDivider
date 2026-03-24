@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
@@ -18,6 +19,8 @@ import { SarnetskyDividerInlineXP as InlineXP } from "../xp/SarnetskyDividerInli
 import * as S from "./SarnetskyDivider.styles";
 
 export function SarnetskyDivider(props: SarnetskyDividerProps) {
+	const containerRef = useRef<HTMLElement>(null);
+
 	const sxOptions = useSarnetskySxOptions(props);
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getSx);
@@ -31,10 +34,16 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const { xpCost } = sxOptions;
 
 	return (
-		<SarnetskyDividerContext.Provider value={{ divider: props, sxOptions }}>
+		<SarnetskyDividerContext.Provider
+			value={{
+				divider: props,
+				sxOptions,
+				containerRef,
+			}}
+		>
 			<Container>
 				<Background {...props} />
-				<Content sx={sx}>
+				<Content sx={sx} ref={containerRef}>
 					<Title divider={props} sx={titleSx} />
 					<SecondaryIcons divider={props} />
 					<ScenarioContent

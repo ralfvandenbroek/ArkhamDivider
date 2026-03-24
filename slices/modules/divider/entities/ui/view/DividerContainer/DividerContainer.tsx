@@ -1,13 +1,8 @@
-import Box from "@mui/material/Box";
-import type { PropsWithChildren } from "react";
+import Box, { type BoxProps } from "@mui/material/Box";
 import { fullSize } from "@/shared/config";
 
-type DividerContainerProps = PropsWithChildren;
+type DividerContainerProps = BoxProps;
 
-export function DividerContainer({ children }: DividerContainerProps) {
-	return (
-		<Box {...fullSize} position="relative">
-			{children}
-		</Box>
-	);
+export function DividerContainer(props: DividerContainerProps) {
+	return <Box {...props} {...fullSize} position="relative" />;
 }

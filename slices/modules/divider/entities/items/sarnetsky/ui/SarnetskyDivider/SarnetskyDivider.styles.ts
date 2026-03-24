@@ -52,7 +52,7 @@ export const getScenarioSubtitleSx: SarnetskyDividerSxCallback = ({
 	top: mm(O.subtitle.top),
 	right: mm(O.subtitle.right),
 	left: mm(O.subtitle.left),
-	zIndex: 3,
+	zIndex: 4,
 });
 
 export const getPlayerSubtitleSx: SarnetskyDividerSxCallback = ({
@@ -63,7 +63,7 @@ export const getPlayerSubtitleSx: SarnetskyDividerSxCallback = ({
 	top: mm(O.playerSubtitle.top),
 	right: mm(O.playerSubtitle.right),
 	left: mm(O.playerSubtitle.left),
-	zIndex: 3,
+	zIndex: 4,
 });
 
 export const getScenarioContentSx: SarnetskyDividerSxCallback = ({

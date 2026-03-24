@@ -8,6 +8,7 @@ import { SarnetskyDividerEncounters as Encounters } from "../../icon/encounters"
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerScenarioSubtitle as ScenarioSubtitle } from "../../subtitle";
 import * as S from "./SarnetskyDividerScenarioContent.styles";
+import { useBackgroundIconRect } from "./useBackgroundIconRect";
 
 type SarnetskyDividerScenarioContentProps = BoxProps & {
 	divider: SarnetskyDividerProps;
@@ -20,7 +21,9 @@ export function SarnetskyDividerScenarioContent({
 	...props
 }: SarnetskyDividerScenarioContentProps) {
 	const { sxOptions } = useContext(SarnetskyDividerContext);
+	const ref = useBackgroundIconRect({ dividerId: divider.id });
 	const getPrintSx = usePrintUnit(sxOptions);
+
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
 	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
@@ -37,7 +40,9 @@ export function SarnetskyDividerScenarioContent({
 				<Stack sx={{ height: "100%", justifyContent: "space-between" }}>
 					<Stack sx={backgroundContainerSx}>
 						<Stack sx={backgroundSx}>
-							<BackgroundIcon sx={backgroundIconSx} divider={divider} />
+							<Box sx={{ display: "inline-flex", flex: 1 }} ref={ref}>
+								<BackgroundIcon sx={backgroundIconSx} divider={divider} />
+							</Box>
 						</Stack>
 					</Stack>
 

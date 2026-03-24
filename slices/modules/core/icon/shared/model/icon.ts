@@ -1,6 +1,6 @@
 import type { ArkhamDivider } from "arkham-divider-data";
 import type { MediaItem } from "@/modules/core/media/shared/model";
-import type { Single } from "@/shared/model";
+import type { BoxRect, Single } from "@/shared/model";
 
 export type ArkhamDividerIcon = Single<ArkhamDivider.Core["icons"]>;
 export type IconMapping = Record<string, ArkhamDividerIcon>;
@@ -35,3 +35,8 @@ export type IconPosition = {
 };
 
 export type OnIconSelectedCallback = (icon: Icon | null) => void;
+
+export type IconRect = BoxRect & {
+	id: string;
+	icon: string;
+};

@@ -1,9 +1,14 @@
 import { Stack, type StackProps } from "@mui/material";
+import { useContext, useMemo } from "react";
+import { useDividerIconRects } from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useScenarioEncounterSetGroups } from "@/modules/story/entities/lib";
 import type { StoryScenario } from "@/modules/story/shared/model";
+import { useAppDispatch } from "@/shared/lib";
+import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import { SarnetskyDividerEncounterSetGroup as EncounterSetGroup } from "../SarnetskyDividerEncounterSetGroup";
 import * as S from "./SarnetskyDividerEncounters.styles";
+import { useEncounterIcons } from "./useEncounterIcons";
 
 type SarnetskyDividerEncountersProps = StackProps & {
 	scenario: StoryScenario;
@@ -13,11 +18,30 @@ export function SarnetskyDividerEncounters({
 	scenario,
 	...props
 }: SarnetskyDividerEncountersProps) {
+	const dispatch = useAppDispatch();
+	const { containerRef, divider } = useContext(SarnetskyDividerContext);
+
 	const groups = useScenarioEncounterSetGroups(scenario);
 	const rows = groups.length;
 
 	const getPrintSx = usePrintUnit({
 		rows,
+	});
+
+	const totalIcons = useMemo(() => {
+		return groups.reduce((acc, { group }) => {
+			return acc + group.main.length + group.side.length;
+		}, 0);
+	}, [groups]);
+
+	const onIconsRender = useEncounterIcons({
+		dividerId: divider.id,
+	});
+
+	const setIconRef = useDividerIconRects({
+		ref: containerRef,
+		total: totalIcons,
+		onRender: onIconsRender,
 	});
 
 	if (groups.length === 0) {
@@ -38,6 +62,7 @@ export function SarnetskyDividerEncounters({
 					group={group}
 					groupName={groupName}
 					showName={showName}
+					setIconRef={setIconRef}
 				/>
 			))}
 		</Stack>

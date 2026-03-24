@@ -19,6 +19,7 @@ export const getBackgroundSx: SarnetskyDividerSxCallback = ({
 	mm,
 	objects: O,
 }) => ({
+	display: "flex",
 	containerType: "size",
 	maxHeight: mm(O.background.fontSize),
 	flex: 1,

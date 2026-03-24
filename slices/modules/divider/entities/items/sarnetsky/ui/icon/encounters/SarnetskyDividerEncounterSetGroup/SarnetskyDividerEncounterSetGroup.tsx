@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
+import type { DividerIconPositionsCallback } from "@/modules/divider/entities/lib";
 import type { EncounterSetGroup } from "@/modules/encounterSet/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Row, type RowProps } from "@/shared/ui";
@@ -11,12 +12,14 @@ type SarnetskyDividerEncounterSetGroupProps = RowProps & {
 	showName?: boolean;
 	groupName: string;
 	group: EncounterSetGroup;
+	setIconRef?: DividerIconPositionsCallback;
 };
 
 export function SarnetskyDividerEncounterSetGroup({
 	group,
 	groupName,
 	showName,
+	setIconRef,
 	...props
 }: SarnetskyDividerEncounterSetGroupProps) {
 	const { sxOptions } = useContext(SarnetskyDividerContext);
@@ -50,7 +53,15 @@ export function SarnetskyDividerEncounterSetGroup({
 				{group.main.length > 0 && (
 					<Row sx={listSx}>
 						{group.main.map((encounter) => (
-							<Icon key={encounter} icon={encounter} sx={iconSx} />
+							<Icon
+								key={encounter}
+								icon={encounter}
+								sx={iconSx}
+								ref={setIconRef?.({
+									icon: encounter,
+									id: `${group.id}-main-${encounter}`,
+								})}
+							/>
 						))}
 
 						<Box sx={verticalSeparatorSx} />
@@ -62,7 +73,15 @@ export function SarnetskyDividerEncounterSetGroup({
 				{group.side.length > 0 && (
 					<Row sx={listSx}>
 						{group.side.map((encounter) => (
-							<Icon key={encounter} icon={encounter} sx={iconSx} />
+							<Icon
+								key={encounter}
+								icon={encounter}
+								sx={iconSx}
+								ref={setIconRef?.({
+									icon: encounter,
+									id: `${group.id}-side-${encounter}`,
+								})}
+							/>
 						))}
 					</Row>
 				)}
