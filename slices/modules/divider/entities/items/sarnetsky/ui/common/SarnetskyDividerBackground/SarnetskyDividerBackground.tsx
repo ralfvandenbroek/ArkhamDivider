@@ -1,6 +1,8 @@
 import type { BoxProps } from "@mui/material";
+import { selectLayout } from "@/modules/divider/entities/lib";
 import { DividerBleedView } from "@/modules/divider/entities/ui";
-import type { SarnetskyDividerProps } from "../../../model";
+import { useAppSelector } from "@/shared/lib";
+import type { SarnetskyDividerProps, SarnetskyLayout } from "../../../model";
 import { SarnetskyDividerBlankImage as BlankImage } from "./SarnetskyDividerBlankImage";
 import { SarnetskyDividerPlayerBackground as PlayerBackground } from "./SarnetskyDividerPlayerBackground";
 import { SarnetskyDividerScenarioBackground as ScenarioBackground } from "./SarnetskyDividerScenarioBackground";
@@ -18,7 +20,9 @@ export function SarnetskyDividerBackground(
 }
 
 function Content(props: SarnetskyDividerBackgroundProps) {
-	const { side, params } = props;
+	const { side } = props;
+	const { params } = useAppSelector(selectLayout) as SarnetskyLayout;
+
 	const showBlankImage = params?.blankBackSide && side === "back";
 
 	if (showBlankImage) {

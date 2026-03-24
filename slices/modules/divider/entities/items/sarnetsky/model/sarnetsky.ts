@@ -1,6 +1,7 @@
 import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
-import type { BaseIconProps } from "@/modules/core/icon/shared/model";
+import type { BaseIconProps, IconRect } from "@/modules/core/icon/shared/model";
 import type {
+	DividerLayout,
 	DividerOrientation,
 	DividerType,
 	DividerWithRelations,
@@ -8,11 +9,19 @@ import type {
 } from "@/modules/divider/shared/model";
 import type { Faction } from "@/modules/faction/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import type { BoxRect } from "@/shared/model";
 import type { getSarnetskyLayoutObjects } from "../lib";
 
 export type SarnetskyDividerParams = {
+	scenarioEncounters?: IconRect[];
+	backgroundIconRect?: BoxRect;
+};
+
+export type SarnetskyLayoutParams = {
 	blankBackSide?: boolean;
 };
+
+export type SarnetskyLayout = DividerLayout<SarnetskyLayoutParams>;
 
 export type SarnetskyDividerProps =
 	DividerWithRelations<SarnetskyDividerParams>;

@@ -4,7 +4,6 @@ import { useDividerIconRects } from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useScenarioEncounterSetGroups } from "@/modules/story/entities/lib";
 import type { StoryScenario } from "@/modules/story/shared/model";
-import { useAppDispatch } from "@/shared/lib";
 import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import { SarnetskyDividerEncounterSetGroup as EncounterSetGroup } from "../SarnetskyDividerEncounterSetGroup";
 import * as S from "./SarnetskyDividerEncounters.styles";
@@ -18,7 +17,6 @@ export function SarnetskyDividerEncounters({
 	scenario,
 	...props
 }: SarnetskyDividerEncountersProps) {
-	const _dispatch = useAppDispatch();
 	const { containerRef, divider } = useContext(SarnetskyDividerContext);
 
 	const groups = useScenarioEncounterSetGroups(scenario);

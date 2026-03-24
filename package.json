@@ -25,6 +25,8 @@
     "@react-router/serve": "^7.7.1",
     "@reduxjs/toolkit": "^2.9.0",
     "@tanstack/react-virtual": "^3.13.19",
+    "@uiw/react-color": "^2.9.6",
+    "@uiw/react-color-chrome": "^2.9.6",
     "@vitejs/plugin-react": "^5.0.2",
     "arkham-divider-data": "^1.2.0",
     "arkhamesque-classic-divider-data": "^1.0.13",

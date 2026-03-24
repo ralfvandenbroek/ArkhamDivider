@@ -25,7 +25,7 @@ export type DividerPrintSize = Partial<Record<DPI, DividerPrintSizeItem>>;
 
 export type DividerOrientation = "horizontal" | "vertical";
 
-export type DividerLayout = {
+export type DividerLayout<Params = Record<string, unknown>> = {
 	id: string;
 	types: DividerLayoutType[];
 	categoryId: string;
@@ -39,7 +39,7 @@ export type DividerLayout = {
 	printSize: DividerPrintSize;
 	bleed: number;
 	sleeves?: DividerLayoutSleeve[];
-	params?: Record<string, unknown>;
+	params?: Params;
 	background?: boolean;
 	iconParams?: string[];
 	scenarioParams?: {
