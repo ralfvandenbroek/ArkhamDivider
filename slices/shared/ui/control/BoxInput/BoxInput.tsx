@@ -107,8 +107,16 @@ export function BoxInput({
 		[props.onBlur],
 	);
 
+	const positionProps: SxProps = {
+		display: "grid",
+		gridTemplateColumns: "100%",
+		alignItems: "center",
+		justifyItems: "center",
+	};
+
 	const sx = {
 		...props.sx,
+		...positionProps,
 		outline: "none",
 		"*": {
 			fontSize: "inherit!important",
@@ -144,6 +152,7 @@ export function BoxInput({
 
 	const strokeSx = {
 		...strokeSxProp,
+		...positionProps,
 		lineHeight,
 		position: "absolute",
 		top: 0,

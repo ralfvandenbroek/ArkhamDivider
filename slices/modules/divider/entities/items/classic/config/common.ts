@@ -1,3 +1,4 @@
+import { mergeDeepRight } from "ramda";
 import { percent } from "@/shared/util";
 
 export const classicCategoryId = "classic";
@@ -14,12 +15,12 @@ export const classicDividerHorizontalObjects = {
 			right: 10.16,
 		},
 		ru: {
-			top: 4,
+			top: 2.6,
 			fontSize: 4.58,
 			height: 7,
 		},
 		ko: {
-			top: 3.6,
+			top: 2.2,
 		},
 	},
 	icon: {
@@ -66,84 +67,74 @@ export const classicDividerHorizontalObjects = {
 	},
 } as const;
 
-export const classicDividerHorizontalHQObjects = {
-	...classicDividerHorizontalObjects,
-	text: {
-		...classicDividerHorizontalObjects.text,
-		default: {
-			...classicDividerHorizontalObjects.text.default,
-			top: 3.3,
+export const classicDividerHorizontalHQObjects = mergeDeepRight(
+	classicDividerHorizontalObjects,
+	{
+		text: {
+			default: {
+				top: 1.9,
+			},
+			ru: {
+				top: 2.1,
+			},
+			ko: {
+				top: 2.7,
+			},
 		},
-		ru: {
-			...classicDividerHorizontalObjects.text.ru,
-			top: 3.5,
+		icon: {
+			top: 1.5,
+			right: 1,
+			fontSize: 7.9,
+			withXP: {
+				top: 0.9,
+			},
+			skill: {
+				top: 0.7,
+			},
 		},
-		ko: {
-			...classicDividerHorizontalObjects.text.ko,
-			top: 3.1,
+		backgroundIcon: {
+			top: 15.6,
 		},
-	},
-	icon: {
-		...classicDividerHorizontalObjects.icon,
-		top: 1.5,
-		right: 1,
-		fontSize: 7.9,
-		withXP: {
-			...classicDividerHorizontalObjects.icon.withXP,
-			top: 0.9,
-		},
-		skill: {
-			...classicDividerHorizontalObjects.icon.skill,
-			top: 0.7,
-		},
-	},
-	backgroundIcon: {
-		...classicDividerHorizontalObjects.backgroundIcon,
-		top: 15.6,
-	},
-	xp: {
-		...classicDividerHorizontalObjects.xp,
-		container: {
-			...classicDividerHorizontalObjects.xp.container,
-			top: 1.7,
-			fontSize: 7.8,
+		xp: {
+			container: {
+				top: 1.7,
+				fontSize: 7.8,
+			},
 		},
 	},
-};
+);
 
-export const classicDividerVertical63Objects = {
-	...classicDividerHorizontalObjects,
-	backgroundIcon: {
-		...classicDividerHorizontalObjects.backgroundIcon,
-		top: 25,
-		left: 6.5,
+export const classicDividerVertical63Objects = mergeDeepRight(
+	classicDividerHorizontalObjects,
+	{
+		backgroundIcon: {
+			top: 25,
+			left: 6.5,
+		},
 	},
-};
+);
 
-export const classicDividerVertical65Objects = {
-	...classicDividerVertical63Objects,
-	backgroundIcon: {
-		...classicDividerVertical63Objects.backgroundIcon,
-		left: 7.5,
-	},
-	icon: {
-		...classicDividerVertical63Objects.icon,
-		withXP: {
-			...classicDividerVertical63Objects.icon.withXP,
-			right: 2,
+export const classicDividerVertical65Objects = mergeDeepRight(
+	classicDividerVertical63Objects,
+	{
+		backgroundIcon: {
+			left: 7.5,
+		},
+		icon: {
+			withXP: {
+				right: 2,
+			},
+		},
+		xp: {
+			container: {
+				right: 1.8,
+			},
+			side: {
+				right: 11,
+			},
 		},
 	},
-	xp: {
-		container: {
-			...classicDividerHorizontalObjects.xp.container,
-			right: 1.8,
-		},
-		side: {
-			...classicDividerHorizontalObjects.xp.side,
-			right: 11,
-		},
-	},
-};
+);
 
 export const classicDividerObjects = {
 	horizontal: classicDividerHorizontalObjects,

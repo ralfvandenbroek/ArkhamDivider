@@ -18,7 +18,7 @@ export function SarnetskyDividerEncounters({
 	scenario,
 	...props
 }: SarnetskyDividerEncountersProps) {
-	const dispatch = useAppDispatch();
+	const _dispatch = useAppDispatch();
 	const { containerRef, divider } = useContext(SarnetskyDividerContext);
 
 	const groups = useScenarioEncounterSetGroups(scenario);

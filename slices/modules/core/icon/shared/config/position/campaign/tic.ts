@@ -68,7 +68,8 @@ export default {
 	},
 	return_to_the_pit_of_despair: returnPosition,
 	disappearance_of_elina_harper: {
-		left: percent(5),
+		top: percent(-2),
+		left: percent(4),
 	},
 	return_to_the_vanishing_of_elina_harper: returnPosition,
 	in_too_deep: {

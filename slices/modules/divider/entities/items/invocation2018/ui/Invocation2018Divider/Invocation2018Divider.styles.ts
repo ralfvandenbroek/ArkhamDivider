@@ -40,8 +40,8 @@ export const getTextSx: Invocation2018DividerLocaleCallback = ({
 export const getOutlineSx: Invocation2018DividerSxCallback = ({ mm }) => ({
 	borderWidth: mm(0.3),
 	borderRadius: mm(1),
-	top: mm(-1),
-	bottom: mm(2),
+	top: mm(0.2),
+	bottom: mm(0.5),
 });
 
 export const getIconSx: Invocation2018DividerSxCallback = ({

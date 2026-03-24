@@ -40,8 +40,8 @@ export const getTextSx: ClassicDividerLocaleCallback = ({
 export const getOutlineSx: ClassicDividerSxCallback = ({ mm }) => ({
 	borderWidth: mm(0.3),
 	borderRadius: mm(1),
-	top: mm(-1),
-	bottom: mm(2),
+	top: mm(0.2),
+	bottom: mm(0.5),
 });
 
 export const getIconSx: ClassicDividerSxCallback = ({

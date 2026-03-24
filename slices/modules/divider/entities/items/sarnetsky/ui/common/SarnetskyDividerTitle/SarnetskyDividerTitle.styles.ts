@@ -4,11 +4,13 @@ import type {
 	SarnetskyDividerSxCallback,
 } from "../../../model";
 
-export const getTitleSx: SarnetskyDividerLocaleCallback = ({ mm }) => ({
+export const getTitleSx: SarnetskyDividerLocaleCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	default: {
-		width: "100%",
 		height: "100%",
-		fontSize: mm(5),
+		fontSize: mm(O.title.default.fontSize),
 		fontFamily: "Arkhamic, Teutonic, serif",
 		textAlign: "center",
 		whiteSpace: "nowrap",
@@ -27,8 +29,8 @@ export const getTitleSx: SarnetskyDividerLocaleCallback = ({ mm }) => ({
 export const getOutlineSx: SarnetskyDividerSxCallback = ({ mm }) => ({
 	borderWidth: mm(0.3),
 	borderRadius: mm(1),
-	top: mm(-1.6),
-	bottom: mm(3.2),
+	top: mm(-0.1),
+	bottom: mm(0.2),
 });
 
 const titleColor = "#2e2622";

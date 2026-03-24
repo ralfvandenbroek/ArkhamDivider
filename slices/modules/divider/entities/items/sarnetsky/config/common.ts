@@ -89,9 +89,11 @@ export const sarnetskyHorizontalDividerObjects = {
 	icons: horizontalIcons,
 	title: {
 		default: {
-			top: 6.5,
+			// top: 6.5,
+			top: 5,
 			fontSize: 5,
-			height: 9.5,
+			height: 8,
+			// height: 6.5,
 			left: 15,
 			right: 9,
 		},
@@ -168,9 +170,6 @@ export const sarnetskyVerticalDividerObjects = mergeDeepRight(
 		},
 		title: {
 			default: {
-				top: 6.5,
-				fontSize: 5,
-				height: 9.5,
 				left: 14,
 				right: 8.5,
 			},
