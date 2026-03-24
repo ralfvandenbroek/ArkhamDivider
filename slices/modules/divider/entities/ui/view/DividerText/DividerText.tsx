@@ -71,6 +71,9 @@ export function DividerText({
 	);
 
 	const hidden = hide && dividerId === renderId;
+	if (hidden) {
+		return null;
+	}
 
 	const baseProps = {
 		onFocus,
