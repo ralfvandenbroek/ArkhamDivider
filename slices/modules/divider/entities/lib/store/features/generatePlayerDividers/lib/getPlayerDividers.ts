@@ -34,6 +34,7 @@ export const getPlayerDividers = ({
 			dividers.push({
 				id: v4(),
 				type: "player",
+				layoutType: "player",
 				side: "front",
 				faction,
 				storyCode,
@@ -48,6 +49,7 @@ export const getPlayerDividers = ({
 				dividers.push({
 					id: v4(),
 					type: "player",
+					layoutType: "player",
 					side: "front",
 					faction,
 					title,
@@ -61,6 +63,7 @@ export const getPlayerDividers = ({
 				dividers.push({
 					id: v4(),
 					type: "player",
+					layoutType: "player",
 					side: "front",
 					faction,
 					cardType,

@@ -1,9 +1,6 @@
 import { Box, type BoxProps, Stack, type SxProps } from "@mui/material";
 import { useContext } from "react";
-import {
-	isScenarioDividerType,
-	useDividerObject,
-} from "@/modules/divider/entities/lib";
+import { useDividerObject } from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { NotExportable } from "@/modules/render/shared/ui";
 import { SarnetskyDividerBackgroundIcon as BackgroundIcon } from "../../icon";
@@ -37,9 +34,8 @@ export function SarnetskyDividerScenarioContent({
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
 	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
 	const colorPickerSx = getPrintSx(S.getColorPickerSx);
-	const isScenario = isScenarioDividerType(divider);
 
-	if (!isScenario) {
+	if (divider.layoutType !== "scenario") {
 		return null;
 	}
 

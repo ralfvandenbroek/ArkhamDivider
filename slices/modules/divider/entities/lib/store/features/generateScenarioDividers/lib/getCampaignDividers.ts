@@ -17,6 +17,7 @@ const storyToDivider = (story: StoryWithRelations): Divider => {
 	return {
 		id: v4(),
 		type: "campaign",
+		layoutType: "scenario",
 		side: "front",
 		storyCode: story.code,
 		title: story.name,

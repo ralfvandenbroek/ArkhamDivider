@@ -62,6 +62,7 @@ export const getScenarioDividers = ({
 		return {
 			id: v4(),
 			type: "scenario",
+			layoutType: "scenario",
 			side: "front",
 			title,
 			icon,

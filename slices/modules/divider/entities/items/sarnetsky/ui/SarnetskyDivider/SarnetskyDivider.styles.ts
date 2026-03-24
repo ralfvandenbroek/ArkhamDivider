@@ -81,3 +81,12 @@ export const getScenarioContentSx: SarnetskyDividerSxCallback = ({
 		zIndex: 3,
 	};
 };
+
+export const getMenuSx: SarnetskyDividerSxCallback = ({ mm, orientation }) => ({
+	position: "absolute",
+	top: orientation === "horizontal" ? mm(23) : mm(38),
+	left: mm(5.3),
+	fontSize: mm(6.4),
+	zIndex: 3,
+	opacity: 0.4,
+});

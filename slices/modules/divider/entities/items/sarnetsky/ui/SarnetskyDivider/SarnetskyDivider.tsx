@@ -2,8 +2,10 @@ import { useRef } from "react";
 import {
 	DividerContainer as Container,
 	DividerContent as Content,
+	DividerMenu as Menu,
 } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
+import { NotExportable } from "@/modules/render/shared/ui";
 import { useSarnetskySxOptions } from "../../lib";
 import type { SarnetskyDividerProps } from "../../model";
 import {
@@ -30,6 +32,7 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 	const playerSubtitleSx = getPrintSx(S.getPlayerSubtitleSx);
 	const scenarioSubtitleSx = getPrintSx(S.getScenarioSubtitleSx);
 	const scenarioContentSx = getPrintSx(S.getScenarioContentSx);
+	const menuSx = getPrintSx(S.getMenuSx);
 
 	const { xpCost } = sxOptions;
 
@@ -57,6 +60,9 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 						</>
 					)}
 					<PlayerSubtitle sx={playerSubtitleSx} />
+					<NotExportable>
+						<Menu dividerId={props.id} sx={menuSx} />
+					</NotExportable>
 				</Content>
 			</Container>
 		</SarnetskyDividerContext.Provider>

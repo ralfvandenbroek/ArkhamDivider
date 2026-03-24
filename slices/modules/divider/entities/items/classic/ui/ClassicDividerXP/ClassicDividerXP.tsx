@@ -17,6 +17,8 @@ import * as C from "./ClassicDividerXP.styles";
 
 // import { classicDividerObjects as O } from "../../config";
 
+const frameColor = "#f8e6c4";
+
 type ClassicDividerXPProps = {
 	sx: SxProps;
 	dividerId: string;
@@ -82,14 +84,14 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 						}}
 						icon={item.background}
 					/>
-					<Icon icon={item.icon} color={"#45413d"} />
+					<Icon icon={item.icon} color={frameColor} />
 				</Box>
 			) : (
 				<Box position="relative" width="100%" height="1em" sx={containerSx}>
 					{isSkill && xpCost?.type === "fixed" && xpCost.value === 0 ? (
 						<>
 							<C.Level>
-								<Icon icon={item.nullBackground} color={"#45413d"} />
+								<Icon icon={item.nullBackground} color={frameColor} />
 							</C.Level>
 							<C.Level>
 								<Icon icon={"s_frame_background_null"} color={"#fff"} />
@@ -98,7 +100,7 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 					) : (
 						<>
 							<Box position="relative" sx={backgroundIconSx}>
-								<Icon icon={item.background} color={"#45413d"} />
+								<Icon icon={item.background} color={"#000"} />
 							</Box>
 							<C.Level>
 								<Icon icon={`${item.levelPrefix}5`} color={"#767676"} />

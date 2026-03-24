@@ -84,6 +84,7 @@ export const getEncounterSetDividers = ({
 		return {
 			id: v4(),
 			side: "front",
+			layoutType: "scenario",
 			type: "encounter",
 			title: name,
 			icon,
@@ -122,6 +123,7 @@ export const getEncounterSetDividers = ({
 			return {
 				id: v4(),
 				side: "front",
+				layoutType: "scenario",
 				type: "encounter",
 				title,
 				icon,

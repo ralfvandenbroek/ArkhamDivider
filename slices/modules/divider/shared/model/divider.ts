@@ -69,6 +69,7 @@ export type ScenarioDividerData = (
 			scenario: StoryScenarioWithRelations;
 	  }
 ) & {
+	layoutType: "scenario";
 	storyCode: string;
 	cardsCount?: number;
 	cards?: EncounterSetTypeEntry[];
@@ -76,6 +77,7 @@ export type ScenarioDividerData = (
 
 export type PlayerDividerData = {
 	type: "player";
+	layoutType: "player";
 	faction: Faction;
 	cardSlot?: CardSlot | null;
 	subtype?: DividerSubtype | null;
@@ -86,6 +88,7 @@ export type PlayerDividerData = {
 
 export type InvestigatorDividerData = {
 	type: "investigator";
+	layoutType: "investigator";
 	faction: Faction;
 	storyCode: string;
 	investigator: Investigator;

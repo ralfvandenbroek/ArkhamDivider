@@ -24,6 +24,7 @@ export const getInvestigatorDividers = ({ stories, layout }: Options) => {
 				(): Divider => ({
 					id: v4(),
 					type: "investigator",
+					layoutType: "investigator",
 					side: "front",
 					faction,
 					investigator,
