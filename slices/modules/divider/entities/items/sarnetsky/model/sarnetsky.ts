@@ -13,6 +13,7 @@ import type { BoxRect } from "@/shared/model";
 import type { getSarnetskyLayoutObjects } from "../lib";
 
 export type SarnetskyDividerParams = {
+	frameColor?: string;
 	scenarioEncounters?: IconRect[];
 	backgroundIconRect?: BoxRect;
 };

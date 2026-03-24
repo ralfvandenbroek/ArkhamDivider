@@ -24,6 +24,7 @@
 	"cards.faction.multiclass": "Мультиклассовые карты",
 	"cards.investigator": "Карты сыщика",
 	"divider.sarnetsky.xpCost": "Уровнь {{level}}",
+	"divider.sarnetsky.frameColor.pickerTitle": "Цвет рамки",
 	"Select All": "Выбрать все",
 	"Select None": "Сбросить",
 	"Lasercut": "Лазерная резка",

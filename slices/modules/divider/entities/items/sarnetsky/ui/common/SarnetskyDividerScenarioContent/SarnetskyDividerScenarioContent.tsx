@@ -5,24 +5,25 @@ import {
 	useDividerObject,
 } from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import type { SarnetskyDividerProps } from "../../../model";
+import { NotExportable } from "@/modules/render/shared/ui";
 import { SarnetskyDividerBackgroundIcon as BackgroundIcon } from "../../icon";
 import { SarnetskyDividerEncounters as Encounters } from "../../icon/encounters";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerScenarioSubtitle as ScenarioSubtitle } from "../../subtitle";
+import { SarnetskyDividerColorPicker } from "../SarnetskyDividerColorPicker";
 import * as S from "./SarnetskyDividerScenarioContent.styles";
 
 type SarnetskyDividerScenarioContentProps = BoxProps & {
-	divider: SarnetskyDividerProps;
 	subtitleSx?: SxProps;
 };
 
 export function SarnetskyDividerScenarioContent({
-	divider,
 	subtitleSx,
 	...props
 }: SarnetskyDividerScenarioContentProps) {
-	const { sxOptions, containerRef } = useContext(SarnetskyDividerContext);
+	const { sxOptions, containerRef, divider } = useContext(
+		SarnetskyDividerContext,
+	);
 
 	const ref = useDividerObject({
 		dividerId: divider.id,
@@ -35,6 +36,7 @@ export function SarnetskyDividerScenarioContent({
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
 	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
+	const colorPickerSx = getPrintSx(S.getColorPickerSx);
 	const isScenario = isScenarioDividerType(divider);
 
 	if (!isScenario) {
@@ -58,6 +60,9 @@ export function SarnetskyDividerScenarioContent({
 						<Encounters scenario={divider.scenario} />
 					)}
 				</Stack>
+				<NotExportable>
+					<SarnetskyDividerColorPicker sx={colorPickerSx} />
+				</NotExportable>
 			</Box>
 		</>
 	);

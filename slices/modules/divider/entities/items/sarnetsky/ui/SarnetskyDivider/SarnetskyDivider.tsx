@@ -44,10 +44,9 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 			<Container>
 				<Background {...props} />
 				<Content sx={sx} ref={containerRef}>
-					<Title divider={props} sx={titleSx} />
-					<SecondaryIcons divider={props} />
+					<Title sx={titleSx} />
+					<SecondaryIcons />
 					<ScenarioContent
-						divider={props}
 						sx={scenarioContentSx}
 						subtitleSx={scenarioSubtitleSx}
 					/>
@@ -57,7 +56,7 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 							<InlineXP sx={inlineXPSx} xpCost={xpCost} />
 						</>
 					)}
-					<PlayerSubtitle sx={playerSubtitleSx} divider={props} />
+					<PlayerSubtitle sx={playerSubtitleSx} />
 				</Content>
 			</Container>
 		</SarnetskyDividerContext.Provider>

@@ -33,3 +33,10 @@ export const getBackgroundContainerSx: SarnetskyDividerSxCallback = ({
 	flex: 1,
 	justifyContent: orientation === "horizontal" ? "flex-start" : "center",
 });
+
+export const getColorPickerSx: SarnetskyDividerSxCallback = ({ mm }) => ({
+	position: "absolute",
+	bottom: mm(1.5),
+	right: 0,
+	zIndex: 3,
+});

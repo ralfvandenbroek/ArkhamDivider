@@ -171,7 +171,7 @@ export function IconSelectionModal() {
 					color="secondary"
 					onClick={onClose}
 					sx={{
-						marginLeft: { xs: 1 },
+						marginLeft: { xs: 1, md: 0 },
 					}}
 				>
 					{t`Cancel`}

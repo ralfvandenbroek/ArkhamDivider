@@ -9,19 +9,15 @@ import {
 import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { getFactionIcon } from "@/modules/faction/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import type { SarnetskyDividerProps } from "../../../model";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerPlayerSubtitle.styles";
 
-type SarnetskyDividerPlayerSubtitleProps = BoxProps & {
-	divider: SarnetskyDividerProps;
-};
+type SarnetskyDividerPlayerSubtitleProps = BoxProps;
 
 export function SarnetskyDividerPlayerSubtitle(
 	props: SarnetskyDividerPlayerSubtitleProps,
 ) {
-	const { sxOptions } = useContext(SarnetskyDividerContext);
-	const { divider } = props;
+	const { sxOptions, divider } = useContext(SarnetskyDividerContext);
 	const { t } = useTranslation();
 	const faction = getDividerFaction(divider);
 	const xpCost = getDividerXPCost(divider);

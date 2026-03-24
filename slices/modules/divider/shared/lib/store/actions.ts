@@ -5,3 +5,7 @@ export const changeDividerType =
 	createAction<DividerLayoutType>("divider/changeType");
 
 export const changeLayoutId = createAction<string>(`divider/changeLayoutId`);
+
+export const changeCategoryId = createAction<string | null>(
+	`divider/changeCategoryId`,
+);

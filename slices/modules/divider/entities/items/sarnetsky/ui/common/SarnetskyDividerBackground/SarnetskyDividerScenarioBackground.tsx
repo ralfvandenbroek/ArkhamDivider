@@ -1,12 +1,13 @@
 import { SarnetskyFrame } from "@assets/images/background/sarnetsky";
 import { Box, type BoxProps, type SxProps } from "@mui/material";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { selectLayout } from "@/modules/divider/entities/lib";
 import type { DividerType } from "@/modules/divider/shared/model";
 import type { StoryWithRelations } from "@/modules/story/shared/model";
 import { absoluteFill } from "@/shared/config";
 import { useAppSelector } from "@/shared/lib";
-import { sarnetskyColors } from "../../../config";
+import { getSarnetskyStoryColor } from "../../../lib";
+import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 
 type SarnetskyDividerScenarioBackgroundProps = BoxProps & {
 	type: DividerType;
@@ -17,6 +18,8 @@ export function SarnetskyDividerScenarioBackground({
 	story,
 	...props
 }: SarnetskyDividerScenarioBackgroundProps) {
+	const { divider } = useContext(SarnetskyDividerContext);
+
 	const layout = useAppSelector(selectLayout);
 
 	const id = useMemo(() => {
@@ -37,9 +40,8 @@ export function SarnetskyDividerScenarioBackground({
 
 	const { orientation } = layout;
 
-	const storyCode = story?.return_to_code ?? story?.code ?? "default";
-
-	const color = sarnetskyColors[storyCode] ?? sarnetskyColors.default;
+	const defaultColor = getSarnetskyStoryColor(story);
+	const color = divider.params?.frameColor ?? defaultColor;
 
 	const prefix = `/images/divider/background/sarnetsky/${orientation}/${id}`;
 

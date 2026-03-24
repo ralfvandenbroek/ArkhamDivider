@@ -1,2 +1,1 @@
 export * from "./ColorPickerModal";
-export * from "./SectionList";
