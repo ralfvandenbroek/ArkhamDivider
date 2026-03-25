@@ -53,7 +53,7 @@ export default {
 		top: percent(-4),
 	},
 	the_devourer_below: {
-		left: percent(3),
+		left: percent(5),
 		top: percent(-1),
 	},
 	dark_cult: {

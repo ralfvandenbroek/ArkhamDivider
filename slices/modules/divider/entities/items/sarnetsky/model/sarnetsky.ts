@@ -18,6 +18,7 @@ import type { getSarnetskyLayoutObjects } from "../lib";
 
 export type SarnetskyDividerParams = {
 	customTitle?: string;
+	scenarioSubtitle?: string;
 	frameColor?: string;
 	background?: Icon;
 	scenarioEncounters?: IconRect[];

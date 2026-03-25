@@ -128,8 +128,8 @@ export const sarnetskyHorizontalDividerObjects = {
 		},
 	},
 	subtitle: {
-		fontSize: 2.5,
-		top: 16.8,
+		fontSize: 3,
+		top: 17,
 		right: 16.5,
 		left: 16.5,
 		lineHeight: 1.2,
@@ -151,8 +151,7 @@ export const sarnetskyVerticalDividerObjects = mergeDeepRight(
 	{
 		icons: verticalIcons,
 		subtitle: {
-			fontSize: 2.5,
-			top: 20,
+			top: 20.2,
 			right: 5,
 			left: 5,
 		},

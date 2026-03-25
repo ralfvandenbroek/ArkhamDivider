@@ -1,11 +1,10 @@
-import { Box, type BoxProps, Tooltip } from "@mui/material";
+import { Box, type BoxProps } from "@mui/material";
 import { useCallback, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { ColorPickerModal } from "@/entities/common/ui";
+import { ColorPicker } from "@/entities/common/ui";
 import { setDividerParam } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppDispatch } from "@/shared/lib";
-import { useBoolean } from "@/shared/lib/hooks/common";
 import { getSarnetskyStoryColor } from "../../../lib";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerColorPicker.styles";
@@ -23,29 +22,23 @@ export function SarnetskyDividerColorPicker(
 
 	const getPrintSx = usePrintUnit();
 	const sx = getPrintSx(S.getSx);
-	const [open, setOpen] = useBoolean(false);
-
 	const onColorSelect = useCallback(
 		(color?: string) => {
 			dispatch(
 				setDividerParam({ id: divider.id, key: "frameColor", value: color }),
 			);
-			setOpen.off();
 		},
-		[divider.id, dispatch, setOpen.off],
+		[divider.id, dispatch],
 	);
 
 	return (
 		<Box {...props} displayPrint="none">
-			<Tooltip title={t`divider.sarnetsky.frameColor.pickerTitle`} arrow>
-				<Box sx={sx} bgcolor={color} onClick={setOpen.toggle} />
-			</Tooltip>
-			<ColorPickerModal
-				open={open}
+			<ColorPicker
+				sx={sx}
 				value={color}
-				onClose={setOpen.off}
-				onCancel={setOpen.off}
+				defaultValue={defaultColor}
 				onColorSelect={onColorSelect}
+				title={t`divider.sarnetsky.frameColor.pickerTitle`}
 			/>
 		</Box>
 	);

@@ -30,7 +30,7 @@ export const useDividerText = <T>({
 	}, []);
 
 	const { translateStory } = useStoryTranslation(story);
-	const translatedValue = translateStory(divider.title);
+	const translatedValue = defaultValueProp ?? translateStory(divider.title);
 
 	const onBlur = useCallback(() => {
 		dispatch(

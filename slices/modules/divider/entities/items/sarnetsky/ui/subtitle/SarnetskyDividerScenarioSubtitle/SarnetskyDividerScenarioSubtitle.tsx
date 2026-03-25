@@ -1,38 +1,45 @@
 import { Box, type BoxProps } from "@mui/material";
 import { useContext } from "react";
-import { useTranslation } from "react-i18next";
+import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
+import { useStoryTranslation } from "@/modules/story/shared/lib";
+import { getSarnetskyDefaultScenarioSubtitle as getDefaultScenarioSubtitle } from "../../../lib";
 import type { SarnetskyDividerProps } from "../../../model";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerScenarioSubtitle.styles";
 
 type SarnetskyDividerScenarioSubtitleProps = BoxProps & {
-	divider: SarnetskyDividerProps;
+	divider: SarnetskyDividerProps & { type: "scenario"; layoutType: "scenario" };
 };
 
 export function SarnetskyDividerScenarioSubtitle({
 	divider,
 	...props
 }: SarnetskyDividerScenarioSubtitleProps) {
-	const { t } = useTranslation();
+	const { t } = useStoryTranslation(divider.story);
 	const { sxOptions } = useContext(SarnetskyDividerContext);
 	const getPrintSx = usePrintUnit(sxOptions);
-
-	if (divider.type !== "scenario") {
-		return;
-	}
-	const { story, scenario } = divider;
-	if (!scenario || !story) {
-		return;
-	}
-
 	const sx = getPrintSx(S.getSx);
 	const outlineSx = getPrintSx(S.getOutlineSx);
 	const clearSx = getPrintSx(S.getClearSx);
 
-	const space = "\u{200B}";
-	const defaultValue = `${t(story.name)}. ${space}${t(scenario.header)}`;
+	const defaultValue = getDefaultScenarioSubtitle({
+		story: divider.story,
+		scenario: divider.scenario,
+		t,
+	});
+
+	const { value, translatedValue, onChange, onBlur } = useDividerText({
+		divider,
+		param: "scenarioSubtitle",
+		defaultValue,
+	});
+
+	const { story, scenario } = divider;
+	if (!scenario || !story) {
+		return;
+	}
 
 	return (
 		<Box {...props}>
@@ -43,7 +50,10 @@ export function SarnetskyDividerScenarioSubtitle({
 				clearProps={{
 					sx: clearSx,
 				}}
-				defaultValue={defaultValue}
+				value={value}
+				defaultValue={translatedValue}
+				onValueChange={onChange}
+				onBlur={onBlur}
 			/>
 		</Box>
 	);

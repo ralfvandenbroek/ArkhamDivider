@@ -3,10 +3,10 @@ import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { SarnetskyDividerSxCallback } from "../../../model";
 
 export const getSx: SarnetskyDividerSxCallback = ({ mm, objects: O }) => ({
-	fontFamily: "ArnoPro, serif",
+	fontFamily: "Arno Pro, serif",
 	fontWeight: "bold",
 	fontStyle: "italic",
-	fontSize: mm(2.5),
+	fontSize: mm(O.subtitle.fontSize),
 	lineHeight: O.subtitle.lineHeight,
 	textAlign: "center",
 });

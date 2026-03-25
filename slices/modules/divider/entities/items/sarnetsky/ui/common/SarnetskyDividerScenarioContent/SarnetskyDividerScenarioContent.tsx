@@ -42,7 +42,9 @@ export function SarnetskyDividerScenarioContent({
 
 	return (
 		<>
-			<ScenarioSubtitle divider={divider} sx={subtitleSx} />
+			{divider.type === "scenario" && (
+				<ScenarioSubtitle divider={divider} sx={subtitleSx} />
+			)}
 			<Box {...props}>
 				<Stack sx={{ height: "100%", justifyContent: "space-between" }}>
 					<Stack sx={backgroundContainerSx}>

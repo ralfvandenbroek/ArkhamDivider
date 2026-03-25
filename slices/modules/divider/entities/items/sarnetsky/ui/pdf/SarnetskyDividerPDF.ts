@@ -5,13 +5,18 @@ import {
 	getDividerFaction,
 	getDividerSubtype,
 } from "@/modules/divider/shared/lib/logic/params";
-import { cmyk, type DrawIconOptions } from "@/modules/pdf/shared/lib";
+import {
+	cmyk,
+	type DrawIconOptions,
+	type DrawTextOptions,
+} from "@/modules/pdf/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
 import {
-	getIsSarnetskyLightTitleColor,
-	getSarnetskyDefaultDividerIcon,
-	getSarnetskyLayoutObjects,
+	getSarnetskyDefaultDividerIcon as getDefaultDividerIcon,
+	getSarnetskyDefaultScenarioSubtitle as getDefaultScenarioSubtitle,
+	getIsSarnetskyLightTitleColor as getIsLightTitleColor,
+	getSarnetskyLayoutObjects as getLayoutObjects,
 } from "../../lib";
 import type { SarnetskyDividerParams } from "../../model";
 
@@ -27,7 +32,7 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 
 	const params = props.params as SarnetskyDividerParams | undefined;
 
-	const O = getSarnetskyLayoutObjects(layout);
+	const O = getLayoutObjects(layout);
 	const t = withStoryTranslation(story);
 
 	const textConfig = getLocaleConfig(language, O.title);
@@ -54,7 +59,7 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 	const subtype = getDividerSubtype(props);
 	const faction = getDividerFaction(props);
 
-	const isLight = getIsSarnetskyLightTitleColor({
+	const isLight = getIsLightTitleColor({
 		faction,
 		subtype,
 	});
@@ -79,7 +84,7 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 	const defaultCampaignIcon = props.story?.icon;
 
 	for (const config of iconObjects) {
-		const defaultIcon = getSarnetskyDefaultDividerIcon({
+		const defaultIcon = getDefaultDividerIcon({
 			type: config.type,
 			iconId: config.id,
 			icon: props.icon,
@@ -167,7 +172,37 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 		}
 	}
 
-	if (props.layoutType === "scenario") {
-		// const scenarioSubtitle =
+	if (props.type === "scenario") {
+		const defaultValue = getDefaultScenarioSubtitle({
+			story: props.story,
+			scenario: props.scenario,
+			space: " ",
+			t,
+		});
+		const value = params?.scenarioSubtitle ?? defaultValue;
+		const scenarioSubtitle = value.replace(/\u{200B}/gu, " ");
+
+		const fontSize = O.subtitle.fontSize;
+
+		const top = O.subtitle.top + (fontSize * O.subtitle.lineHeight) / 2;
+
+		const drawOptions = {
+			x: bleed.x(O.subtitle.left),
+			y: bleed.y(top),
+			width: bleed.width(O.subtitle.left, O.subtitle.right),
+			fontSize: mm(fontSize),
+			fontFamily: "ArnoProBoldItalic",
+			align: "center",
+			baseline: "middle",
+			color: black,
+			overprint: true,
+		} as DrawTextOptions;
+
+		console.log("subtitle draw options", drawOptions, scenarioSubtitle);
+
+		await text.draw(scenarioSubtitle, drawOptions);
+	}
+
+	if (props.type === "player") {
 	}
 };
