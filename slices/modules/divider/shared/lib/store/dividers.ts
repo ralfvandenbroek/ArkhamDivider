@@ -62,7 +62,9 @@ export const dividers = createSlice({
 	},
 });
 
-const selectors = adapter.getSelectors<RootState>((state) => state.dividers);
+export const dividerSelectors = adapter.getSelectors<RootState>(
+	(state) => state.dividers,
+);
 
 export const {
 	setDividers,
@@ -77,8 +79,8 @@ export const {
 
 export const {
 	selectAll: selectDividers,
-	selectById: selectDividerById,
 	selectIds: selectDividerIds,
-} = selectors;
+	selectById: selectDividerById,
+} = dividerSelectors;
 
 export default dividers.reducer;

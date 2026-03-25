@@ -1,5 +1,5 @@
 import type { DividerType } from "@/modules/divider/shared/model";
-import type { SarnetskyDividerObjects } from "../../model";
+import type { SarnetskyDividerObjects } from "../../../model";
 
 type Options = {
 	type: DividerType;

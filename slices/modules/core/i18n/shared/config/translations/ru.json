@@ -25,6 +25,7 @@
 	"cards.investigator": "Карты сыщика",
 	"divider.sarnetsky.xpCost": "Уровнь {{level}}",
 	"divider.sarnetsky.frameColor.pickerTitle": "Цвет рамки",
+	"divider.sarnetsky.overlayColor.pickerTitle": "Цвет фона",
 	"Select All": "Выбрать все",
 	"Select None": "Сбросить",
 	"Lasercut": "Лазерная резка",

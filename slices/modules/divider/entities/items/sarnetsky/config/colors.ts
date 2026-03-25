@@ -18,3 +18,9 @@ export const sarnetskyXPColors = {
 	range: "rgba(255, 255, 255, 0.8)",
 	inactive: "rgba(0, 0, 0, 0.25)",
 };
+
+export const sarnetskyOverlayColors: Record<string, string> = {
+	children_of_paradise: "#8ec52e",
+	assimilating_swarm: "#ff7d63",
+	death_of_the_stars: "#2fb2e1",
+};

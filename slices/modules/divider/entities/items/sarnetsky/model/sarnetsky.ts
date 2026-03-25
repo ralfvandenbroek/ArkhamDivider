@@ -20,6 +20,7 @@ export type SarnetskyDividerParams = {
 	customTitle?: string;
 	scenarioSubtitle?: string;
 	frameColor?: string;
+	overlayColor?: string;
 	background?: Icon;
 	scenarioEncounters?: IconRect[];
 	backgroundIconRect?: BoxRect;

@@ -6,6 +6,7 @@ import { removeUnsupportedLayoutDividersSaga } from "./remove-unsupported-layout
 import { setDividerLayoutOnRouteChangeSaga } from "./set-divider-layout-on-route-change/setDividerLayoutOnRouteChangeSaga";
 import { setDividerTypeOnRouteChangeSaga } from "./set-divider-type-on-route-change/setDividerTypeOnRouteChangeSaga";
 import { setLayoutGridOnLayoutChangeSaga } from "./set-layout-grid-on-layout-change/setLayoutGridOnLayoutChangeSaga";
+import { setSupportedDividerTypeOnLayoutChangeSaga } from "./set-suppoted-divider-type-on-layout-change/setSupportedDividerTypeOnLayoutChangeSaga";
 
 export function* dividerFeaturesSaga() {
 	yield spawn(setDividerLayoutOnRouteChangeSaga);
@@ -15,4 +16,5 @@ export function* dividerFeaturesSaga() {
 	yield spawn(clearUnusedDividerIcons);
 	yield spawn(navigateOnCategoryChangeSaga);
 	yield spawn(removeUnsupportedLayoutDividersSaga);
+	yield spawn(setSupportedDividerTypeOnLayoutChangeSaga);
 }

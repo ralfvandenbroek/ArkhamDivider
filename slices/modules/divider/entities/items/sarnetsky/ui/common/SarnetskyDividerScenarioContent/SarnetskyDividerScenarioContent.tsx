@@ -1,13 +1,18 @@
 import { Box, type BoxProps, Stack, type SxProps } from "@mui/material";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useDividerObject } from "@/modules/divider/entities/lib";
+import { DividerColorPicker as ColorPicker } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { NotExportable } from "@/modules/render/shared/ui";
+import {
+	getSarnetskyDefaultOverlayColor as getDefaultOverlayColor,
+	getSarnetskyStoryColor as getStoryColor,
+} from "../../../lib";
 import { SarnetskyDividerBackgroundIcon as BackgroundIcon } from "../../icon";
 import { SarnetskyDividerEncounters as Encounters } from "../../icon/encounters";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerScenarioSubtitle as ScenarioSubtitle } from "../../subtitle";
-import { SarnetskyDividerColorPicker } from "../SarnetskyDividerColorPicker";
 import * as S from "./SarnetskyDividerScenarioContent.styles";
 
 type SarnetskyDividerScenarioContentProps = BoxProps & {
@@ -18,6 +23,7 @@ export function SarnetskyDividerScenarioContent({
 	subtitleSx,
 	...props
 }: SarnetskyDividerScenarioContentProps) {
+	const { t } = useTranslation();
 	const { sxOptions, containerRef, divider, layout } = useContext(
 		SarnetskyDividerContext,
 	);
@@ -31,14 +37,18 @@ export function SarnetskyDividerScenarioContent({
 
 	const getPrintSx = usePrintUnit(sxOptions);
 
-	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
-	const backgroundSx = getPrintSx(S.getBackgroundSx);
-	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
-	const colorPickerSx = getPrintSx(S.getColorPickerSx);
-
 	if (divider.layoutType !== "scenario") {
 		return null;
 	}
+
+	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
+	const backgroundSx = getPrintSx(S.getBackgroundSx);
+	const backgroundContainerSx = getPrintSx(S.getBackgroundContainerSx);
+	const frameColorPickerSx = getPrintSx(S.getFrameColorPickerSx);
+	const overlayColorPickerSx = getPrintSx(S.getOverlayColorPickerSx);
+
+	const defaultFrameColor = getStoryColor(divider.story);
+	const defaultOverlayColor = getDefaultOverlayColor(divider.icon);
 
 	return (
 		<>
@@ -60,7 +70,20 @@ export function SarnetskyDividerScenarioContent({
 					)}
 				</Stack>
 				<NotExportable>
-					<SarnetskyDividerColorPicker sx={colorPickerSx} />
+					<ColorPicker
+						sx={frameColorPickerSx}
+						defaultColor={defaultFrameColor}
+						dividerId={divider.id}
+						param="frameColor"
+						title={t`divider.sarnetsky.frameColor.pickerTitle`}
+					/>
+					<ColorPicker
+						sx={overlayColorPickerSx}
+						defaultColor={defaultOverlayColor}
+						dividerId={divider.id}
+						param="overlayColor"
+						title={t`divider.sarnetsky.overlayColor.pickerTitle`}
+					/>
 				</NotExportable>
 			</Box>
 		</>

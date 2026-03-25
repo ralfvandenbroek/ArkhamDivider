@@ -1,5 +1,5 @@
 import type { DividerType, XPCost } from "@/modules/divider/shared/model";
-import type { SarnetskyDividerObjects } from "../../model";
+import type { SarnetskyDividerObjects } from "../../../model";
 
 type Options = {
 	objects: SarnetskyDividerObjects;

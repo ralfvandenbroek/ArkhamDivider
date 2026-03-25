@@ -1,4 +1,4 @@
-import { Box, type BoxProps, Tooltip } from "@mui/material";
+import { Box, type BoxProps, type SxProps, Tooltip } from "@mui/material";
 import { useCallback } from "react";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useBoolean } from "@/shared/lib/hooks/common";
@@ -11,6 +11,8 @@ type ColorPickerProps = BoxProps & {
 	defaultValue?: string;
 };
 
+const transparentIcon = "/images/assets/transparent.png";
+
 export function ColorPicker({
 	title,
 	onColorSelect: onColorSelectProp,
@@ -21,7 +23,7 @@ export function ColorPicker({
 	const color = value ?? defaultValue;
 
 	const getPrintSx = usePrintUnit();
-	const sx = getPrintSx(S.getSx);
+	const sxProp = getPrintSx(S.getSx);
 	const [open, setOpen] = useBoolean(false);
 
 	const onColorSelect = useCallback(
@@ -32,9 +34,24 @@ export function ColorPicker({
 		[onColorSelectProp, setOpen.off],
 	);
 
+	const isTransparent = !color || color === "transparent";
+	const colorProps: SxProps = isTransparent
+		? {
+				backgroundImage: `url(${transparentIcon})`,
+				backgroundSize: "250%",
+			}
+		: {
+				backgroundColor: color,
+			};
+
+	const sx = {
+		...sxProp,
+		...colorProps,
+	};
+
 	return (
 		<Box {...props} displayPrint="none">
-			<Tooltip title={title} arrow>
+			<Tooltip title={title} arrow placement="right">
 				<Box sx={sx} bgcolor={color} onClick={setOpen.toggle} />
 			</Tooltip>
 			<ColorPickerModal

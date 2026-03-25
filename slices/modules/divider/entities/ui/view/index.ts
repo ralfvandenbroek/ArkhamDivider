@@ -1,6 +1,7 @@
 export * from "./DividerBackground";
 export * from "./DividerBleedView";
 export * from "./DividerCardsInfo";
+export * from "./DividerColorPicker";
 export * from "./DividerContainer";
 export * from "./DividerContent";
 export * from "./DividerMenu";

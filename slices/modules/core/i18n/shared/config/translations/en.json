@@ -101,5 +101,6 @@
 	"cards.faction.multiclass": "Multiclass Cards",
 	"cards.investigator": "Investigator Cards",
 	"divider.sarnetsky.xpCost": "Level {{level}}",
-	"divider.sarnetsky.frameColor.pickerTitle": "Frame color"
+	"divider.sarnetsky.frameColor.pickerTitle": "Frame color",
+	"divider.sarnetsky.overlayColor.pickerTitle": "Overlay color"
 }

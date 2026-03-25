@@ -6,7 +6,10 @@ import type { DividerType } from "@/modules/divider/shared/model";
 import type { StoryWithRelations } from "@/modules/story/shared/model";
 import { absoluteFill } from "@/shared/config";
 import { useAppSelector } from "@/shared/lib";
-import { getSarnetskyStoryColor } from "../../../lib";
+import {
+	getSarnetskyDefaultOverlayColor as getDefaultOverlayColor,
+	getSarnetskyStoryColor as getStoryColor,
+} from "../../../lib";
 import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
 
 type SarnetskyDividerScenarioBackgroundProps = BoxProps & {
@@ -39,9 +42,13 @@ export function SarnetskyDividerScenarioBackground({
 	}
 
 	const { orientation } = layout;
+	const { icon, params } = divider;
 
-	const defaultColor = getSarnetskyStoryColor(story);
-	const color = divider.params?.frameColor ?? defaultColor;
+	const defaultOverlayColor = getDefaultOverlayColor(icon);
+	const overlayColor = params?.overlayColor ?? defaultOverlayColor;
+
+	const defaultFrameColor = getStoryColor(story);
+	const frameColor = params?.frameColor ?? defaultFrameColor;
 
 	const prefix = `/images/divider/background/sarnetsky/${orientation}/${id}`;
 
@@ -66,15 +73,29 @@ export function SarnetskyDividerScenarioBackground({
 			/>
 
 			<Color
-				fill={color}
+				fill={frameColor}
 				style={{
 					...absoluteFill,
 					zIndex: 2,
 					mixBlendMode: "multiply",
 					transform: "translate3d(0, 0, 0)",
+					transition: "fill 0.3s ease-in-out",
 				}}
 			/>
 			<Box component="img" src={frameSrc} sx={{ ...absoluteFill, zIndex: 3 }} />
+
+			{overlayColor && (
+				<Box
+					bgcolor={overlayColor}
+					sx={{
+						...absoluteFill,
+						zIndex: 4,
+						mixBlendMode: "color",
+						opacity: 0.4,
+						transition: "opacity 0.3s ease-in-out",
+					}}
+				/>
+			)}
 		</Box>
 	);
 }

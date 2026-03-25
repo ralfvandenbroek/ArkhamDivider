@@ -1,9 +1,9 @@
-import { getLocaleConfig } from "@/modules/core/i18n/shared/lib";
 import { getDividerIcon } from "@/modules/divider/features/lib";
 import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import {
 	getDividerFaction,
 	getDividerSubtype,
+	getDividerXPCost,
 } from "@/modules/divider/shared/lib/logic/params";
 import {
 	cmyk,
@@ -17,6 +17,7 @@ import {
 	getSarnetskyDefaultScenarioSubtitle as getDefaultScenarioSubtitle,
 	getIsSarnetskyLightTitleColor as getIsLightTitleColor,
 	getSarnetskyLayoutObjects as getLayoutObjects,
+	getSarnetskyTitleObject,
 } from "../../lib";
 import type { SarnetskyDividerParams } from "../../model";
 
@@ -32,16 +33,22 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 
 	const params = props.params as SarnetskyDividerParams | undefined;
 
+	const xpCost = getDividerXPCost(props);
+
 	const O = getLayoutObjects(layout);
+	const T = getSarnetskyTitleObject({
+		objects: O,
+		type,
+		xpCost,
+	});
 	const t = withStoryTranslation(story);
 
-	const textConfig = getLocaleConfig(language, O.title);
 	const translatedTitle = t(props.title);
 	const title = params?.customTitle ?? translatedTitle;
 
 	const { mm } = unit;
 
-	const fontSize = mm((fontSizeScale / 100) * textConfig.fontSize);
+	const fontSize = mm((fontSizeScale / 100) * T.fontSize);
 	const bleed = unit.fromBleed();
 
 	lasercut.drawRect({
@@ -53,8 +60,8 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 
 	const fontFamily = getDefaultDividerFontFamily(language);
 
-	const textHeight = mm(textConfig.height);
-	const textTop = bleed.y(textConfig.top);
+	const textHeight = mm(T.height);
+	const textTop = bleed.y(T.top);
 
 	const subtype = getDividerSubtype(props);
 	const faction = getDividerFaction(props);
@@ -67,9 +74,9 @@ export const SarnetskyDividerPDF: PDFDivider<SarnetskyDividerParams> = async (
 	const color = isLight ? white : black;
 
 	await text.draw(title, {
-		x: bleed.x(textConfig.left),
+		x: bleed.x(T.left),
 		y: textTop + textHeight / 2,
-		width: bleed.width(textConfig.left, textConfig.right),
+		width: bleed.width(T.left, T.right),
 		height: textHeight,
 		fontSize,
 		align: "center",

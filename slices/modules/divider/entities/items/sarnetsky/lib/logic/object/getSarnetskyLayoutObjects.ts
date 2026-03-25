@@ -2,7 +2,7 @@ import type { DividerLayout } from "@/modules/divider/shared/model";
 import {
 	sarnetskyHorizontalDividerObjects,
 	sarnetskyVerticalDividerObjects,
-} from "../../config";
+} from "../../../config";
 
 export const getSarnetskyLayoutObjects = (layout: DividerLayout) => {
 	const { orientation } = layout;
