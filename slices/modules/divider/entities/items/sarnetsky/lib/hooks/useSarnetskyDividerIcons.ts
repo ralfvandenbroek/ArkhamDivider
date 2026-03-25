@@ -15,7 +15,7 @@ export const useSarnetskyDividerIcons = ({ divider, objects: O }: Options) => {
 	const { icon, id, type } = divider;
 	const getDividerIcon = useDividerIcon({
 		dividerId: id,
-		icon: icon,
+		icon,
 	});
 
 	const iconObjects = O.icons[type] ?? [];

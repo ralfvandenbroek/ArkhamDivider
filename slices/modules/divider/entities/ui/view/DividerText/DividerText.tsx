@@ -91,7 +91,7 @@ export function DividerText({
 		<Box position="relative" sx={sx}>
 			{readonly ? (
 				<Box sx={inputSx} {...props} lineHeight={1} hidden={hidden}>
-					{value}
+					{value ?? defaultValue}
 				</Box>
 			) : fitText ? (
 				<FitInput sx={inputSx} fitTextOptions={fitTextOptions} {...baseProps} />

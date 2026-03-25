@@ -6,7 +6,16 @@ export const preventDefault = <T extends { preventDefault: () => void }>(
 	event.preventDefault();
 };
 
-export const getNodeRect = ({
+const rectKeys: (keyof BoxRect)[] = [
+	"top",
+	"right",
+	"bottom",
+	"left",
+	"width",
+	"height",
+];
+
+export const getRelativeWidthRect = ({
 	node,
 	container,
 }: {
@@ -16,29 +25,18 @@ export const getNodeRect = ({
 	const nodeRect = node.getBoundingClientRect();
 	const containerRect = container.getBoundingClientRect();
 
-	const { width, height } = containerRect;
-
-	const rect: BoxRect = {
-		top: nodeRect.top - containerRect.top,
-		right: containerRect.right - nodeRect.right,
-		bottom: containerRect.bottom - nodeRect.bottom,
-		left: nodeRect.left - containerRect.left,
-		width,
-		height,
+	return {
+		top: (nodeRect.top - containerRect.top) / containerRect.width,
+		right: (containerRect.right - nodeRect.right) / containerRect.width,
+		bottom: (containerRect.bottom - nodeRect.bottom) / containerRect.width,
+		left: (nodeRect.left - containerRect.left) / containerRect.width,
+		width: nodeRect.width / containerRect.width,
+		height: nodeRect.height / containerRect.width,
 	};
-	return rect;
 };
 
 export const isBoxRectEquals = (a: BoxRect, b: BoxRect, minDelta = 0.01) => {
-	const keys: (keyof BoxRect)[] = [
-		"top",
-		"right",
-		"bottom",
-		"left",
-		"width",
-		"height",
-	];
-	for (const key of keys) {
+	for (const key of rectKeys) {
 		const diff = a[key] - b[key];
 		if (Math.abs(diff) > minDelta) {
 			return false;

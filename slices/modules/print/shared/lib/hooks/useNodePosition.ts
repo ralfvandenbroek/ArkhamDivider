@@ -1,15 +1,13 @@
 import { useCallback } from "react";
-import { getPrintNodeRect, selectDPI } from "@/modules/print/shared/lib";
-import { useAppSelector } from "@/shared/lib";
+import { getPrintNodeRect } from "@/modules/print/shared/lib";
 import type { BoxRect } from "@/shared/model";
 
 type Options = {
 	ref: React.RefObject<HTMLElement>;
+	containerWidth: number;
 	onRender: (rect: BoxRect) => void;
 };
-export const useNodePosition = ({ ref, onRender }: Options) => {
-	const dpi = useAppSelector(selectDPI);
-
+export const useNodePosition = ({ ref, containerWidth, onRender }: Options) => {
 	const refCallback = useCallback(
 		(node?: HTMLElement) => {
 			if (!node) {
@@ -21,11 +19,11 @@ export const useNodePosition = ({ ref, onRender }: Options) => {
 			const rect = getPrintNodeRect({
 				node,
 				container: ref.current,
-				dpi,
+				containerWidth,
 			});
 			onRender(rect);
 		},
-		[ref.current, dpi, onRender],
+		[ref.current, containerWidth, onRender],
 	);
 
 	return refCallback;

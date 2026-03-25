@@ -26,6 +26,7 @@ export function SarnetskyDividerBackgroundIcon({
 			dividerId={id}
 			icon={backgroundIcon}
 			onClick={selectBackgroundIcon}
+			disableCorrection
 		/>
 	);
 }

@@ -3,7 +3,7 @@ import type { Faction } from "@/modules/faction/shared/model";
 
 type Options = {
 	faction?: Faction | null;
-	subtype?: DividerSubtype;
+	subtype?: DividerSubtype | null;
 };
 
 export const getIsSarnetskyLightTitleColor = ({

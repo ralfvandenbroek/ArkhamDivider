@@ -17,7 +17,7 @@ export function SarnetskyDividerEncounters({
 	scenario,
 	...props
 }: SarnetskyDividerEncountersProps) {
-	const { containerRef, divider } = useContext(SarnetskyDividerContext);
+	const { containerRef, divider, layout } = useContext(SarnetskyDividerContext);
 
 	const groups = useScenarioEncounterSetGroups(scenario);
 	const rows = groups.length;
@@ -40,6 +40,7 @@ export function SarnetskyDividerEncounters({
 		ref: containerRef,
 		total: totalIcons,
 		onRender: onIconsRender,
+		containerWidth: layout.size.width,
 	});
 
 	if (groups.length === 0) {

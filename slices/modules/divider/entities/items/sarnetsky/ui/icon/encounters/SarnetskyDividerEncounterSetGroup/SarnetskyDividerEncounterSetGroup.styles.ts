@@ -1,4 +1,15 @@
-import type { SarnetskyDividerSxCallback } from "../../../../model";
+import type { PrintSxCallback } from "@/modules/print/shared/model";
+import type { RenderType } from "@/modules/render/shared/model";
+import type {
+	SarnetskyDividerCallbackProps,
+	SarnetskyDividerSxCallback,
+} from "../../../../model";
+
+type SxCallback = PrintSxCallback<
+	SarnetskyDividerCallbackProps & {
+		renderType?: RenderType | null;
+	}
+>;
 
 const separatorSize = 0.1;
 const listGap = 4 + separatorSize;
@@ -21,8 +32,9 @@ export const getListSx: SarnetskyDividerSxCallback = ({ mm, orientation }) => ({
 	flexGrow: 1,
 });
 
-export const getIconSx: SarnetskyDividerSxCallback = () => ({
+export const getIconSx: SxCallback = ({ renderType }) => ({
 	textAlign: "center",
+	opacity: renderType === "pdf" ? 0 : 1,
 });
 
 export const getListContainerSx: SarnetskyDividerSxCallback = ({ mm }) => ({

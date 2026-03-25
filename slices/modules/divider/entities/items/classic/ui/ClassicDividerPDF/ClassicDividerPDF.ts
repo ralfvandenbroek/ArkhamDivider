@@ -32,7 +32,7 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 	const translatedTitle = t(props.title);
 	const title = params?.customTitle ?? translatedTitle;
 
-	const fontSize = unit.mm((fontSizeScale / 100) * 4.58);
+	const fontSize = unit.mm((fontSizeScale / 100) * textConfig.fontSize);
 	const bleed = unit.fromBleed();
 	const textHeight = unit.mm(textConfig.height);
 	const textTop = bleed.y(textConfig.top);

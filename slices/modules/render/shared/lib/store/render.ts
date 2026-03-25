@@ -92,6 +92,7 @@ export const {
 	selectRenderProgressTotal,
 	selectRenderStatusMessage,
 	selectRenderStatus,
+	selectRenderType,
 } = render.selectors;
 
 export default render.reducer;

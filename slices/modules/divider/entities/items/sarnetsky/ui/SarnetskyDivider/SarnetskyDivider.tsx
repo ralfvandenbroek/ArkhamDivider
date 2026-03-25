@@ -48,6 +48,7 @@ export function SarnetskyDivider(props: SarnetskyDividerProps) {
 				divider: props,
 				sxOptions,
 				containerRef,
+				layout,
 			}}
 		>
 			<Container>

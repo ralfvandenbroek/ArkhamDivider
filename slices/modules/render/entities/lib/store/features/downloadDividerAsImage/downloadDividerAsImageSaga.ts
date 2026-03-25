@@ -36,7 +36,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividerAsImage>) {
 
 	const dpi: ReturnType<typeof selectDPI> = yield select(selectDPI);
 
-	yield put(startRender({}));
+	yield put(startRender({ renderType: "image" }));
 
 	yield put(setDividerRenderId(dividerId));
 

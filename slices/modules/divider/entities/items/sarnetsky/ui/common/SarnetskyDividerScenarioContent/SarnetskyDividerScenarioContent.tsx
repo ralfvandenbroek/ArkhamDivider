@@ -18,7 +18,7 @@ export function SarnetskyDividerScenarioContent({
 	subtitleSx,
 	...props
 }: SarnetskyDividerScenarioContentProps) {
-	const { sxOptions, containerRef, divider } = useContext(
+	const { sxOptions, containerRef, divider, layout } = useContext(
 		SarnetskyDividerContext,
 	);
 
@@ -26,6 +26,7 @@ export function SarnetskyDividerScenarioContent({
 		dividerId: divider.id,
 		containerRef,
 		param: "backgroundIconRect",
+		containerWidth: layout.size.width,
 	});
 
 	const getPrintSx = usePrintUnit(sxOptions);

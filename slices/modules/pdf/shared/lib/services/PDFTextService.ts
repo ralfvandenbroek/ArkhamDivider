@@ -35,8 +35,10 @@ export class PDFTextService {
 
 		const font = await this.font.load(fontFamily);
 		const { descentRatio = 0 } = font;
+		const hasBaseline = Boolean(textOptions.baseline);
 		const hasCustomBaseline =
-			Boolean(textOptions.baseline) && textOptions.baseline !== "alphabetic";
+			hasBaseline && textOptions.baseline !== "alphabetic";
+
 		const y = hasCustomBaseline ? yBase : yBase - fontSize * descentRatio;
 		const { doc } = this.font;
 

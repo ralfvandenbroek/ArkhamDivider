@@ -1,5 +1,9 @@
 import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
-import type { BaseIconProps, IconRect } from "@/modules/core/icon/shared/model";
+import type {
+	BaseIconProps,
+	Icon,
+	IconRect,
+} from "@/modules/core/icon/shared/model";
 import type {
 	DividerLayout,
 	DividerOrientation,
@@ -13,7 +17,9 @@ import type { BoxRect } from "@/shared/model";
 import type { getSarnetskyLayoutObjects } from "../lib";
 
 export type SarnetskyDividerParams = {
+	customTitle?: string;
 	frameColor?: string;
+	background?: Icon;
 	scenarioEncounters?: IconRect[];
 	backgroundIconRect?: BoxRect;
 };

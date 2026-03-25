@@ -4,8 +4,8 @@ import { last } from "ramda";
 
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import streamSaver from "streamsaver";
-import { dividerPDFComponents } from "@/modules/divider/entities/items";
 import { getDividerPageLayouts } from "@/modules/divider/entities/lib/logic";
+import { loadDividerPDFComponent } from "@/modules/divider/entities/lib/runtime";
 import {
 	destroyPDFDocument,
 	getPDFPageLayouts,
@@ -120,6 +120,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 
 	yield put(
 		startRender({
+			renderType: "pdf",
 			message: "render.status.initializing",
 			total,
 			value: 0,
@@ -172,7 +173,15 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 		(singleItemPerPage && !cropmarksEnabled) || !enablePageCounter;
 
 	const { background = true } = layout;
-	const renderComponent = dividerPDFComponents[layout.categoryId];
+	const renderComponent: ReturnAwaited<typeof loadDividerPDFComponent> =
+		yield call(loadDividerPDFComponent, layout.categoryId);
+
+	if (!renderComponent) {
+		console.error(`No PDF component for category: ${layout.categoryId}`);
+		destroyPDFDocument(doc);
+		yield put(finishRender());
+		return;
+	}
 
 	try {
 		renderLoop: for (const pdfLayout of pdfLayouts) {

@@ -4,6 +4,8 @@ import { Icon } from "@/modules/core/icon/shared/ui";
 import type { DividerIconPositionsCallback } from "@/modules/divider/entities/lib";
 import type { EncounterSetGroup } from "@/modules/encounterSet/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
+import { selectRenderType } from "@/modules/render/shared/lib";
+import { useAppSelector } from "@/shared/lib";
 import { Row, type RowProps } from "@/shared/ui";
 import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerEncounterSetGroup.styles";
@@ -22,6 +24,7 @@ export function SarnetskyDividerEncounterSetGroup({
 	setIconRef,
 	...props
 }: SarnetskyDividerEncounterSetGroupProps) {
+	const renderType = useAppSelector(selectRenderType);
 	const { sxOptions } = useContext(SarnetskyDividerContext);
 
 	const mainSize = group.main.length;
@@ -31,6 +34,7 @@ export function SarnetskyDividerEncounterSetGroup({
 		...sxOptions,
 		mainSize,
 		sideSize,
+		renderType,
 	});
 
 	const sxProp = getPrintSx(S.getContainerSx);

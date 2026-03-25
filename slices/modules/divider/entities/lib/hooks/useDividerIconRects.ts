@@ -1,7 +1,6 @@
 import { useCallback, useRef } from "react";
 import type { IconRect } from "@/modules/core/icon/shared/model";
-import { getPrintNodeRect, selectDPI } from "@/modules/print/shared/lib";
-import { useAppSelector } from "@/shared/lib";
+import { getPrintNodeRect } from "@/modules/print/shared/lib";
 import { isBoxRectEquals } from "@/shared/util";
 
 type IconRecord = Record<string, IconRect>;
@@ -17,13 +16,18 @@ export type DividerIconPositionsCallback = (
 
 type Options = {
 	ref: React.RefObject<HTMLElement | null>;
+	containerWidth: number;
 	total: number;
 	onRender?: (data: IconRect[]) => void;
 };
 
-export function useDividerIconRects({ ref, total, onRender }: Options) {
+export function useDividerIconRects({
+	ref,
+	containerWidth,
+	total,
+	onRender,
+}: Options) {
 	const iconRefs = useRef<IconRecord>({});
-	const dpi = useAppSelector(selectDPI);
 
 	const refCallback = useCallback(
 		({ icon, id }: CallbackOptions) => {
@@ -50,7 +54,7 @@ export function useDividerIconRects({ ref, total, onRender }: Options) {
 				const printRect = getPrintNodeRect({
 					node,
 					container: ref.current,
-					dpi,
+					containerWidth,
 				});
 
 				if (!printRect) {
@@ -73,7 +77,7 @@ export function useDividerIconRects({ ref, total, onRender }: Options) {
 				}
 			};
 		},
-		[ref.current, dpi, total, onRender],
+		[ref.current, containerWidth, total, onRender],
 	);
 
 	return refCallback;

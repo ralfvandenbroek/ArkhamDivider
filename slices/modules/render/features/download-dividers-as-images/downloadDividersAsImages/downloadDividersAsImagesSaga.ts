@@ -68,6 +68,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 
 	yield put(
 		startRender({
+			renderType: "zip",
 			message: "render.status.initializing",
 			total,
 			value: 0,
