@@ -1,4 +1,6 @@
 import type { DividerWithRelations } from "../../shared/model";
+import { arkhamDecoCategoryId } from "./arkham-deco/config";
+import { ArkhamDecoDivider } from "./arkham-deco/ui/ArkhamDecoDivider";
 import { classicCategoryId } from "./classic/config/common";
 import { ClassicDivider } from "./classic/ui";
 import { dividerCategories, dividerLayouts } from "./data";
@@ -17,4 +19,5 @@ export const dividerComponents: Record<
 	[classicCategoryId]: ClassicDivider,
 	[invocation2018CategoryId]: Invocation2018Divider,
 	[sarnetskyCategoryId]: SarnetskyDivider,
+	[arkhamDecoCategoryId]: ArkhamDecoDivider,
 };

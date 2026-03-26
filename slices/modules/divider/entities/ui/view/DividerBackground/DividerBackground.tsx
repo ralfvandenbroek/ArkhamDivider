@@ -1,5 +1,5 @@
 import type { BoxProps } from "@mui/material/Box";
-import Box from "@mui/material/Box";
+import { Image } from "@/shared/ui";
 import { DividerBleedView } from "../DividerBleedView";
 
 type DividerBackgroundProps = Omit<BoxProps<"img">, "component">;
@@ -7,7 +7,7 @@ type DividerBackgroundProps = Omit<BoxProps<"img">, "component">;
 export function DividerBackground({ src, ...props }: DividerBackgroundProps) {
 	return (
 		<DividerBleedView {...props}>
-			<Box
+			<Image
 				component="img"
 				src={src}
 				sx={{

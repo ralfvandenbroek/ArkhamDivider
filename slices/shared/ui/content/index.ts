@@ -1,3 +1,4 @@
+export * from "./Image";
 export * from "./icons";
 export * from "./SectionTitle";
 export * from "./Separator";

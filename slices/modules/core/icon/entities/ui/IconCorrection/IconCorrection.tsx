@@ -26,7 +26,7 @@ export function IconCorrection(props: IconCorrectionProps) {
 		properties: ["fontSize", "left", "right", "top", "bottom"],
 	});
 
-	const { fontSize, left, right, top, bottom } = position;
+	const { fontSize, left = 0, right = 0, top = 0, bottom = 0 } = position;
 
 	const correction =
 		fontSize && isString(icon)
@@ -51,16 +51,16 @@ export function IconCorrection(props: IconCorrectionProps) {
 
 	const correctionSx = disableCorrection
 		? {
-				...(left && { left: `${left}px` }),
-				...(right && { right: `${right}px` }),
-				...(top && { top: `${top}px` }),
-				...(bottom && { bottom: `${bottom}px` }),
+				left: `${left}px`,
+				right: `${right}px`,
+				top: `${top}px`,
+				bottom: `${bottom}px`,
 			}
 		: {
-				...(left && { left: `${left + correction.left}px` }),
-				...(right && { right: `${right - correction.left}px` }),
-				...(top && { top: `${top + correction.top}px` }),
-				...(bottom && { bottom: `${bottom - correction.top}px` }),
+				left: `${left + correction.left}px`,
+				right: `${right - correction.left}px`,
+				top: `${top + correction.top}px`,
+				bottom: `${bottom - correction.top}px`,
 			};
 
 	const sx = {
@@ -69,7 +69,6 @@ export function IconCorrection(props: IconCorrectionProps) {
 		...sxProp,
 		...correctionSx,
 	} as SxProps;
-
 	return (
 		<Box sx={sx}>
 			<Icon icon={icon} {...restProps} />

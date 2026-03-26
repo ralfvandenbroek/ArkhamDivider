@@ -9,7 +9,7 @@ const horizontal: DividerLayout = {
 	id: "sarnetsky-horizontal",
 	categoryId: sarnetskyCategoryId,
 	groupId: "sarnetsky-horizontal",
-	name: "Double Side",
+	name: "divider.sarnetsky.doubleSide",
 	orientation: "horizontal",
 	color: true,
 	size: createSize(89, 75),
@@ -41,7 +41,7 @@ const horizontal: DividerLayout = {
 const horizontalBlank: DividerLayout = {
 	...horizontal,
 	id: "sarnetsky-horizontal-blank",
-	name: "Single Side",
+	name: "divider.sarnetsky.singleSide",
 	params: {
 		blankBackSide: true,
 	},

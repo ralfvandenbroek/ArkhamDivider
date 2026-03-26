@@ -103,5 +103,7 @@
 	"cards.investigator": "Investigator Cards",
 	"divider.sarnetsky.xpCost": "Level {{level}}",
 	"divider.sarnetsky.frameColor.pickerTitle": "Frame color",
-	"divider.sarnetsky.overlayColor.pickerTitle": "Overlay color"
+	"divider.sarnetsky.overlayColor.pickerTitle": "Overlay color",
+	"divider.sarnetsky.doubleSide": "Double Side",
+	"divider.sarnetsky.singleSide": "Single Side"
 }

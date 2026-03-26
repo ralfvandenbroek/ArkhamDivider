@@ -7,13 +7,17 @@ import { selectDPI } from "../store";
 export const usePrintUnit = <Input>(params?: Input) => {
 	const dpi = useAppSelector(selectDPI);
 	return useCallback(
-		<T>(callbackSx: PrintUnitCallback<T, Input>) => {
+		<T, P = void>(
+			callbackSx: PrintUnitCallback<T, Input & P>,
+			customProps?: P,
+		) => {
 			const input = (mm: number) => {
 				const px = getPrintUnit(mm, dpi);
 				return `${px}px`;
 			};
-			const props: PrintUnitProps<Input> = {
+			const props: PrintUnitProps<Input & P> = {
 				...(params ?? ({} as Input)),
+				...(customProps ?? ({} as P)),
 				mm: input,
 				dpi,
 			};
