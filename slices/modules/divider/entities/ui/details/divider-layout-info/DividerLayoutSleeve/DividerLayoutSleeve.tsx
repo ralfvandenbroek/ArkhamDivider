@@ -1,4 +1,5 @@
 import WarningIcon from "@mui/icons-material/Warning";
+import { Box, type BoxProps } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
@@ -6,13 +7,15 @@ import { type MouseEvent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { DividerLayoutSleeve as SleeveType } from "@/modules/divider/shared/model";
 import { getBoxSize } from "@/shared/util";
-import * as C from "./DividerLayoutSleeve.components";
 
-type DividerLayoutSleeveProps = {
+type DividerLayoutSleeveProps = BoxProps & {
 	sleeve: SleeveType;
 };
 
-export function DividerLayoutSleeve({ sleeve }: DividerLayoutSleeveProps) {
+export function DividerLayoutSleeve({
+	sleeve,
+	...props
+}: DividerLayoutSleeveProps) {
 	const id = useId();
 	const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
@@ -34,7 +37,7 @@ export function DividerLayoutSleeve({ sleeve }: DividerLayoutSleeveProps) {
 	const open = Boolean(anchorEl);
 
 	return (
-		<C.Container>
+		<Box {...props}>
 			{description ? (
 				<>
 					<Chip
@@ -61,6 +64,6 @@ export function DividerLayoutSleeve({ sleeve }: DividerLayoutSleeveProps) {
 			) : (
 				<Chip label={name} />
 			)}
-		</C.Container>
+		</Box>
 	);
 }

@@ -55,3 +55,45 @@ export const SarnetskyCredits: Author = {
 		},
 	],
 };
+
+export const VladimirYazykovCredits: Author = {
+	id: "neizerth",
+	name: "Vladimir Yazykov",
+	image: getAssetUrl("/images/authors/neizerth.jpg"),
+	donationUrl: {
+		default: "https://www.patreon.com/arkhamdivider",
+		ru: "https://boosty.to/arkham.divider/donate",
+	},
+	contacts: [
+		{
+			id: "patreon",
+			icon: "patreon",
+			url: "https://www.patreon.com/arkhamdivider",
+		},
+		{
+			id: "boosty",
+			icon: "boosty",
+			url: "https://boosty.to/arkham.divider/donate",
+		},
+		{
+			id: "t-bank",
+			icon: "t_bank",
+			url: "https://www.tinkoff.ru/cf/1fGlAxdTumR",
+		},
+		{
+			id: "github",
+			icon: "github",
+			url: "https://github.com/neizerth",
+		},
+		{
+			id: "email",
+			icon: "mail",
+			url: "mailto:neizerth@gmail.com",
+		},
+		{
+			id: "telegram",
+			icon: "telegram",
+			url: "https://t.me/neizerth",
+		},
+	],
+};

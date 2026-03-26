@@ -7,6 +7,7 @@ type StoryBase = Single<ArkhamDivider.Core["stories"]>;
 export type Story = StoryBase & {
 	id: string;
 	translated: boolean;
+	supported?: boolean;
 	return_code?: string;
 	return_scenarios?: StoryScenario[];
 	return_scenario_encounter_sets?: string[];

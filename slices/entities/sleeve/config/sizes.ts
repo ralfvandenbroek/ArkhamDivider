@@ -21,10 +21,13 @@ export const sleeve94x69 = createSleeveSize(94, 69);
 export const largeCCG = createSleeveSize(89, 130, "Large CCG");
 export const smallCCG = createSleeveSize(62, 96, "Small CCG");
 
+export const outerSleeve = createSleeveSize(69, 94);
+
 export const sleeveSizes: SleeveSize[] = [
 	sleeve65x100,
 	sleeve76x88,
 	sleeve94x69,
 	largeCCG,
 	smallCCG,
+	outerSleeve,
 ];

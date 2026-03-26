@@ -19,22 +19,26 @@ export function DividerLayoutGroupPreview({
 	const [firstLayout] = group.layouts;
 	const layoutId = firstLayout.id;
 	const name = getBoxSize(group.size);
+
+	const { hasGrayscale, canBeSleeved } = group;
 	return (
 		<C.Container to={layoutRoute({ layoutId })}>
 			<C.Chip gap={0.5} alignItems="center">
 				<Typography variant="body2">{name}</Typography>
-				<Row alignItems="center">
-					{group.hasGrayscale && (
-						<C.Icon title={t`divider.hasGrayscale`}>
-							<ContrastOutlinedIcon />
-						</C.Icon>
-					)}
-					{group.canBeSleeved && (
-						<C.Icon title={t`divider.canBeSleeved`}>
-							<ShieldOutlinedIcon />
-						</C.Icon>
-					)}
-				</Row>
+				{(canBeSleeved || hasGrayscale) && (
+					<Row alignItems="center">
+						{group.hasGrayscale && (
+							<C.Icon title={t`divider.hasGrayscale`}>
+								<ContrastOutlinedIcon />
+							</C.Icon>
+						)}
+						{group.canBeSleeved && (
+							<C.Icon title={t`divider.canBeSleeved`}>
+								<ShieldOutlinedIcon />
+							</C.Icon>
+						)}
+					</Row>
+				)}
 			</C.Chip>
 		</C.Container>
 	);
