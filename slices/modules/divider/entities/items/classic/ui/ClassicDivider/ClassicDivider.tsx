@@ -26,6 +26,7 @@ import {
 import { classicDividerTextColor } from "../../config/common";
 import {
 	getClassicLayoutObjects,
+	getDefaultBackgroundIcon,
 	getDefaultSmallIcon,
 	getIconObject,
 } from "../../lib";
@@ -92,8 +93,11 @@ export function ClassicDivider(props: DividerWithRelations) {
 		icon,
 	});
 
+	const defaultBackgroundIcon = getDefaultBackgroundIcon(props);
+
 	const [backgroundIcon, selectBackgroundIcon] = getDividerIcon({
 		param: "background",
+		defaultIcon: defaultBackgroundIcon,
 	});
 
 	const defaultSmallIcon = getDefaultSmallIcon(props);

@@ -7,7 +7,7 @@ import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { getArkhamDecoIcons, showArkhamDecoRightIcon } from "../../lib";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
+import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import { ArkhamDecoDividerSideXP as XP } from "../ArkhamDecoDividerSideXP";
 import * as C from "./ArkhamDecoDividerHeader.components";
 import * as S from "./ArkhamDecoDividerHeader.styles";

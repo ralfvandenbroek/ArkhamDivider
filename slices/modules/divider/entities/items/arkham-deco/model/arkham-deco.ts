@@ -15,6 +15,7 @@ export type ArkhamDecoDividerParams = {
 	campaignIcon?: Icon | null;
 	backgroundIcon?: Icon | null;
 	secondaryIcon?: Icon | null;
+	overlayColor?: string | null;
 };
 
 export type ArkhamDecoDividerSxOptions = {

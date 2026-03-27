@@ -6,7 +6,7 @@ import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { arkhamDecoAssetUrl } from "../../config";
 import { getArkhamDecoDefaultBackgroundIcon as getDefaultBackgroundIcon } from "../../lib";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
+import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerBackgroundIcon.styles";
 
 type ArkhamDecoDividerBackgroundIconProps = BoxProps;

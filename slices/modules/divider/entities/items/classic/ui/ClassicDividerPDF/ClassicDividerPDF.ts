@@ -6,6 +6,7 @@ import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
 import {
 	getClassicLayoutObjects,
+	getDefaultBackgroundIcon,
 	getDefaultSmallIcon,
 	getIconObject,
 } from "../../lib";
@@ -79,10 +80,12 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 		});
 	}
 
+	const defaultBackgroundIcon = getDefaultBackgroundIcon(props);
+
 	const backgroundIcon = getDividerIcon({
 		divider: props,
 		param: "background",
-		defaultIcon: props.icon,
+		defaultIcon: defaultBackgroundIcon,
 	});
 
 	const defaultSmallIcon = getDefaultSmallIcon(props);

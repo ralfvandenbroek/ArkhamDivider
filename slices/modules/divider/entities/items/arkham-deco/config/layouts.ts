@@ -109,10 +109,21 @@ export const ucf50Layout: ArkhamDecoDividerLayout = {
 	},
 };
 
-export const arkhamDecoLayouts: DividerLayout[] = [
+const coloredLayouts: DividerLayout[] = [
 	chapter1Layout,
 	chapter2Layout,
 	deckBoxLayout,
 	ucfStandardLayout,
 	ucf50Layout,
+];
+
+const grayscaleLayouts: DividerLayout[] = coloredLayouts.map((layout) => ({
+	...layout,
+	id: `${layout.id}-bw`,
+	color: false,
+}));
+
+export const arkhamDecoLayouts: DividerLayout[] = [
+	...coloredLayouts,
+	...grayscaleLayouts,
 ];

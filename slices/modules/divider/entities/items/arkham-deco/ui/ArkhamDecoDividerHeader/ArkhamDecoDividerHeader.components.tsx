@@ -7,7 +7,7 @@ import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
 import { arkhamDecoAssetUrl } from "../../config";
 import type { ArkhamDecoPosition } from "../../model";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
+import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerHeader.styles";
 
 const asset = prefix(arkhamDecoAssetUrl);
