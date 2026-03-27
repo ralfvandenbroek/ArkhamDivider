@@ -34,9 +34,9 @@ export const Scratches = ({
 			},
 			{
 				top: "49%",
-				left: "-4%",
-				width: "38%",
-				height: "108%",
+				left: "-7%",
+				width: "44%",
+				height: "114%",
 				opacity: 0.9,
 				transform: "translate(-50%, -50%)",
 			},

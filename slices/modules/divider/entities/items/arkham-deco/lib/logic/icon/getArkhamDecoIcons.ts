@@ -70,7 +70,14 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 	});
 };
 
-const getTabIcons = ({ campaign, small }: Input) => {
+const getTabIcons = ({ campaign, small, secondary, type }: Input) => {
+	if (type === "player") {
+		return {
+			left: secondary,
+			right: null,
+			center: campaign,
+		};
+	}
 	return {
 		left: small,
 		right: null,

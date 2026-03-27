@@ -23,6 +23,7 @@ export type ArkhamDecoDividerSxOptions = {
 	xpCost?: XPCost | null;
 	sideXP?: boolean;
 	tab?: boolean;
+	withCentralIcon?: boolean;
 };
 
 export type ArkhamDecoLayoutParams = {

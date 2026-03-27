@@ -28,7 +28,7 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	const centerIconSx = getPrintSx(S.getCenterIconSx);
 
 	const xpCostSx = getPrintSx(S.getXpCostSx);
-	const sideXPSx = getPrintSx(S.getSideXPSx);
+	const sideXPSx = getPrintSx(S.getSideXPSx, { numericXP });
 	const tabLineSx = getPrintSx(S.getTabLineSx);
 
 	const showRightIcon = showArkhamDecoRightIcon({ divider, numericXP, layout });
@@ -73,7 +73,9 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 				)}
 			</Box>
 
-			{!showRightIcon && xpCost && <Box sx={xpCostSx}>{xpCost.name}</Box>}
+			{numericXP && !showRightIcon && xpCost && (
+				<Box sx={xpCostSx}>{xpCost.name}</Box>
+			)}
 			{sideXP && xpCost && <XP xpCost={xpCost} sx={sideXPSx} />}
 
 			<DividerIcon

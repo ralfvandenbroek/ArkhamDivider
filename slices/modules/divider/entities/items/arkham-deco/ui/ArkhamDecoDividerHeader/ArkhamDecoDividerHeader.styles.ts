@@ -1,5 +1,6 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { percent } from "@/shared/util";
+import { getSideXPObject } from "../../lib";
 import type {
 	ArkhamDecoDividerSxCallback,
 	ArkhamDecoPosition,
@@ -83,10 +84,10 @@ export const getNoIconLineSx: ArkhamDecoDividerSxCallback = ({
 	objects: O,
 }) => ({
 	position: "absolute",
-	left: mm(-1),
+	left: mm(O.line.noIcon.offsetLeft - 1),
 	top: mm(O.header.height - O.line.noIcon.offsetTop),
 	width: mm(94.4),
-	clipPath: `inset(0 ${mm(noIconLineCropMm.right)} 0 ${mm(noIconLineCropMm.left)})`,
+	clipPath: `inset(0 ${mm(noIconLineCropMm.right - O.line.noIcon.offsetLeft)} 0 ${mm(noIconLineCropMm.left - O.line.noIcon.offsetLeft)})`,
 	zIndex: 3,
 });
 
@@ -201,20 +202,25 @@ export const getXpCostSx: ArkhamDecoDividerSxCallback = ({
 	fontFamily: "Arkhamic, Teutonic, serif",
 	textAlign: "center",
 	top: 0,
-	right: 0,
-	fontSize: mm(4),
+	right: mm(O.header.right),
+	fontSize: mm(O.xpCost.fontSize),
 	width: mm(8),
 	height: mm(O.header.height),
 	zIndex: 3,
 });
 
-export const getSideXPSx: PrintSxCallback = ({ mm }) => ({
-	position: "absolute",
-	top: mm(1.7),
-	right: mm(10),
-	fontSize: mm(4),
-	zIndex: 3,
-});
+export const getSideXPSx: ArkhamDecoDividerSxCallback<{
+	numericXP?: boolean;
+}> = ({ mm, objects: O, numericXP }) => {
+	const X = getSideXPObject({ objects: O, numericXP });
+	return {
+		position: "absolute",
+		top: mm(X.top),
+		right: mm(X.right),
+		fontSize: mm(X.fontSize),
+		zIndex: 3,
+	};
+};
 
 const tabLineBorderWidth = 0.25;
 

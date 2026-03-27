@@ -30,6 +30,7 @@ export const arkhamDecoHorizontalObjects = {
 			offsetTop: 1.8,
 		},
 		noIcon: {
+			offsetLeft: 0,
 			offsetTop: 1.1,
 		},
 		tentacles: {
@@ -55,6 +56,10 @@ export const arkhamDecoHorizontalObjects = {
 		xp: {
 			right: 25,
 		},
+		withCentralIcon: {
+			height: 6,
+			fontSize: 4,
+		},
 	},
 
 	scenarioCorner: {
@@ -65,9 +70,31 @@ export const arkhamDecoHorizontalObjects = {
 		fontSize: 4,
 		height: 6,
 	},
+	xpCost: {
+		fontSize: 4,
+	},
+	sideXp: {
+		top: 1.7,
+		right: 10,
+		fontSize: 4,
+		withoutNumericXP: {
+			right: 10,
+		},
+	},
 };
 
-export const arkhamDecoUcfStandardObjects = mergeDeepRight(
+export const arkhamDecoChapter2Objects = mergeDeepRight(
+	arkhamDecoHorizontalObjects,
+	{
+		line: {
+			noIcon: {
+				offsetLeft: -3.3,
+			},
+		},
+	},
+);
+
+export const arkhamDecoUCFStandardObjects = mergeDeepRight(
 	arkhamDecoHorizontalObjects,
 	{
 		header: {
@@ -77,10 +104,23 @@ export const arkhamDecoUcfStandardObjects = mergeDeepRight(
 		},
 		title: {
 			default: {
-				top: -0.2,
-				height: 3.8,
+				height: 4.4,
 				left: 23,
 				right: 23,
+				fontSize: 4.4,
+				top: 0.3,
+			},
+			campaign: {
+				right: 23,
+			},
+			scenario: {
+				right: 24,
+			},
+			xp: {
+				right: 23,
+			},
+			withCentralIcon: {
+				height: 3.8,
 			},
 		},
 		leftIcon: {
@@ -100,15 +140,41 @@ export const arkhamDecoUcfStandardObjects = mergeDeepRight(
 			fontSize: 3.5,
 			height: 4.3,
 		},
+		xpCost: {
+			fontSize: 3.5,
+		},
+		sideXp: {
+			top: 0.7,
+			right: 23,
+			withoutNumericXP: {
+				right: 17,
+			},
+		},
 	},
 );
 
-export const arkhamDecoUCF50bjects = mergeDeepRight(
-	arkhamDecoUcfStandardObjects,
+export const arkhamDecoUCF50Objects = mergeDeepRight(
+	arkhamDecoUCFStandardObjects,
 	{
 		header: {
 			left: 21,
 			right: 21,
+		},
+		title: {
+			default: {
+				left: 27,
+				right: 27,
+			},
+			withCentralIcon: {},
+		},
+		scenarioCorner: {
+			right: 21,
+		},
+		sideXp: {
+			right: 27,
+			withoutNumericXP: {
+				right: 20.5,
+			},
 		},
 	},
 );

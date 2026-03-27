@@ -8,7 +8,7 @@ import type {
 	ArkhamDecoDividerProps,
 	ArkhamDecoDividerSxOptions,
 } from "../../model";
-import { getArkhamDecoLayoutObjects } from "../logic";
+import { getArkhamDecoIcons, getArkhamDecoLayoutObjects } from "../logic";
 
 export function useArkhamDecoSxOptions(divider: ArkhamDecoDividerProps) {
 	const layout = useAppSelector(selectLayout) as ArkhamDecoDividerLayout;
@@ -18,6 +18,9 @@ export function useArkhamDecoSxOptions(divider: ArkhamDecoDividerProps) {
 	const xpCost = getDividerXPCost(divider);
 	const layoutId = layout.id;
 	const tab = layout.params?.tab ?? false;
+	const icons = getArkhamDecoIcons({ divider, layout });
+
+	const withCentralIcon = Boolean(icons.center?.icon);
 
 	return useMemo((): ArkhamDecoDividerSxOptions => {
 		const objects = getArkhamDecoLayoutObjects(layoutId);
@@ -27,6 +30,7 @@ export function useArkhamDecoSxOptions(divider: ArkhamDecoDividerProps) {
 			xpCost,
 			sideXP,
 			tab,
+			withCentralIcon,
 		};
-	}, [type, layoutId, xpCost, sideXP, tab]);
+	}, [type, layoutId, xpCost, sideXP, tab, withCentralIcon]);
 }
