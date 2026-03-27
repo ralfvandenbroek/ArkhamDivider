@@ -224,6 +224,8 @@ export const getSideXPSx: ArkhamDecoDividerSxCallback<{
 
 const tabLineBorderWidth = 0.25;
 
+const tabLineBorderColor = "rgba(0, 0, 0, 0.5)";
+
 export const getTabLineSx: ArkhamDecoDividerSxCallback = ({
 	mm,
 	objects: O,
@@ -233,7 +235,7 @@ export const getTabLineSx: ArkhamDecoDividerSxCallback = ({
 	left: mm(O.header.left),
 	right: mm(O.header.right),
 	height: mm(4 + tabLineBorderWidth),
-	border: `${mm(tabLineBorderWidth)} solid #000`,
+	border: `${mm(tabLineBorderWidth)} solid ${tabLineBorderColor}`,
 	borderBottom: "none",
 	"&::before": {
 		content: '""',
@@ -241,8 +243,7 @@ export const getTabLineSx: ArkhamDecoDividerSxCallback = ({
 		bottom: 0,
 		left: mm(-O.header.left),
 		width: mm(O.header.left),
-		borderBottom: `${mm(tabLineBorderWidth)} solid #000`,
-		backgroundColor: "#000",
+		borderBottom: `${mm(tabLineBorderWidth)} solid ${tabLineBorderColor}`,
 	},
 	"&::after": {
 		content: '""',
@@ -250,7 +251,6 @@ export const getTabLineSx: ArkhamDecoDividerSxCallback = ({
 		bottom: 0,
 		right: mm(-O.header.right),
 		width: mm(O.header.right),
-		borderBottom: `${mm(tabLineBorderWidth)} solid #000`,
-		backgroundColor: "#000",
+		borderBottom: `${mm(tabLineBorderWidth)} solid ${tabLineBorderColor}`,
 	},
 });
