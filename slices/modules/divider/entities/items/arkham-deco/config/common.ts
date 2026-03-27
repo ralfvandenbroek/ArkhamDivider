@@ -5,7 +5,7 @@ export const arkhamDecoAssetUrl = "/images/divider/background/arkham-deco";
 export const arkhamDecoHorizontalObjects = {
 	leftIcon: {
 		fontSize: 4.2,
-		width: 12,
+		width: 10.5,
 		height: 6,
 	},
 	centralIcon: {},
@@ -19,15 +19,18 @@ export const arkhamDecoHorizontalObjects = {
 			height: 6,
 			fontSize: 4,
 			top: 0,
-			left: 14,
-			right: 14,
+			left: 15,
+			right: 15,
 			textAlign: "left",
 		},
 		campaign: {
 			textAlign: "center",
 		},
 		scenario: {
-			right: 22,
+			right: 25,
 		},
+	},
+	scenarioNumber: {
+		fontSize: 4,
 	},
 };

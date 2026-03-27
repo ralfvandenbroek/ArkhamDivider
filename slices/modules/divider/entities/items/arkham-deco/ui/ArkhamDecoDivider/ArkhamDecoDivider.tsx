@@ -5,6 +5,7 @@ import {
 	DividerContent as Content,
 	DividerBackground,
 } from "@/modules/divider/entities/ui";
+import { selectScenarioParams } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { arkhamDecoAssetUrl } from "../../config";
@@ -29,6 +30,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const layout = useAppSelector(selectLayout) as ArkhamDecoDividerLayout;
+	const { singleSide = false } = useAppSelector(selectScenarioParams);
 	const contentSx = getPrintSx(S.getContentSx);
 
 	const bodySx = getPrintSx(S.getBodySx);
@@ -36,25 +38,34 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const titleSx = getPrintSx(S.getTitleSx);
 
+	const showContent = !singleSide || props.side === "front";
+
 	return (
 		<ArkhamDecoDividerContext.Provider
-			value={{ divider: props, layout, sxOptions, objects }}
+			value={{
+				divider: props,
+				layout,
+				sxOptions,
+				objects,
+				singleSide,
+			}}
 		>
 			<Container>
 				<DividerBackground src={backgroundUrl} />
-				<Content sx={{ mixBlendMode: "multiply" }}>
-					<Box sx={contentSx}>
-						<Header sx={headerSx} />
-						<ArkhamDecoDividerTitle sx={titleSx} />
-						<Box sx={bodySx}>
-							<C.SideBorder position="left" />
-							<C.SideBorder position="right" />
-							<BackgroundIcon sx={backgroundIconSx} />
+				{showContent && (
+					<Content sx={{ mixBlendMode: "multiply" }}>
+						<Box sx={contentSx}>
+							<Header sx={headerSx} />
+							<ArkhamDecoDividerTitle sx={titleSx} />
+							<Box sx={bodySx}>
+								<C.SideBorder position="left" />
+								<C.SideBorder position="right" />
+								<BackgroundIcon sx={backgroundIconSx} />
+							</Box>
+							<Footer />
 						</Box>
-
-						<Footer />
-					</Box>
-				</Content>
+					</Content>
+				)}
 			</Container>
 		</ArkhamDecoDividerContext.Provider>
 	);

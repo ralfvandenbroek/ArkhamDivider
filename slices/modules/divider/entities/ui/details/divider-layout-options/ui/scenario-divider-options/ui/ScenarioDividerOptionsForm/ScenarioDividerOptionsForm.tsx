@@ -1,3 +1,4 @@
+import type { SxProps } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid, { type GridProps } from "@mui/material/Grid";
@@ -41,20 +42,25 @@ export function ScenarioDividerOptionsForm({
 	);
 	const scenarioDividerCount = useAppSelector(selectScenarioDividersCount);
 
-	const { scenarioParams } = layout;
+	const { scenarioParams, additionalParams } = layout;
 
 	const hasExtraEncounterSets = story.extra_encounter_sets.length > 0;
 	const showAdditionalOptions =
-		hasExtraEncounterSets || scenarioParams?.cardCount;
+		hasExtraEncounterSets ||
+		scenarioParams?.cardCount ||
+		Boolean(additionalParams);
 
 	const columnSize = 12 / (showAdditionalOptions ? 3 : 2);
 	const size = { xs: 12, sm: 6, md: columnSize } as const;
 
 	const { returnStory } = story;
+	const columnSx: SxProps = {
+		paddingInline: 1,
+	};
 
 	return (
 		<Grid container {...props}>
-			<Grid size={size}>
+			<Grid size={size} sx={columnSx}>
 				<C.Header>{t("Campaign")}</C.Header>
 				<Controller
 					name="campaignDivider"
@@ -89,7 +95,7 @@ export function ScenarioDividerOptionsForm({
 					/>
 				)}
 			</Grid>
-			<Grid size={size}>
+			<Grid size={size} sx={columnSx}>
 				<C.Header>{t("Scenario")}</C.Header>
 				<Controller
 					name="scenarioDividers"
@@ -113,7 +119,7 @@ export function ScenarioDividerOptionsForm({
 				/>
 			</Grid>
 			{showAdditionalOptions && (
-				<Grid size={size}>
+				<Grid size={size} sx={columnSx}>
 					<C.Header>{t("Additional")}</C.Header>
 
 					<Stack gap={1}>
@@ -159,10 +165,24 @@ export function ScenarioDividerOptionsForm({
 								)}
 							/>
 						)}
+						{layout.additionalParams?.singleSide && (
+							<Controller
+								name="singleSide"
+								control={control}
+								render={({ field }) => (
+									<FormControlLabel
+										control={
+											<Checkbox {...field} checked={field.value ?? false} />
+										}
+										label={t("layout.singleSideLayout")}
+									/>
+								)}
+							/>
+						)}
 					</Stack>
 				</Grid>
 			)}
-			<Grid size={12}>
+			<Grid size={12} sx={columnSx}>
 				{returnStory && (
 					<Controller
 						name="returnSet"

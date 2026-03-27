@@ -18,6 +18,7 @@ export type ScenarioDividerParams = {
 	scenarioSize: boolean;
 	extraEncounterSets: boolean;
 	returnSet: boolean;
+	singleSide: boolean;
 };
 
 export type PlayerDividerParams = {

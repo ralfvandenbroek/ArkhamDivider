@@ -10,6 +10,7 @@ type SarnetskyDividerContextValue = {
 	sxOptions: SarnetskyDividerCallbackProps;
 	containerRef: React.RefObject<HTMLElement | null>;
 	layout: SarnetskyLayout;
+	singleSide: boolean;
 };
 
 export const SarnetskyDividerContext =
@@ -18,4 +19,5 @@ export const SarnetskyDividerContext =
 		sxOptions: {} as SarnetskyDividerCallbackProps,
 		containerRef: { current: null },
 		layout: {} as SarnetskyLayout,
+		singleSide: false,
 	});

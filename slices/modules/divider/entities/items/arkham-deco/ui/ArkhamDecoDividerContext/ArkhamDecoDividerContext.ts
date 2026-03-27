@@ -11,6 +11,7 @@ type ArkhamDecoDividerContextProps = {
 	layout: ArkhamDecoDividerLayout;
 	objects: ArkhamDecoLayoutObjects;
 	sxOptions: ArkhamDecoDividerSxOptions;
+	singleSide: boolean;
 };
 export const ArkhamDecoDividerContext =
 	createContext<ArkhamDecoDividerContextProps>({
@@ -18,4 +19,5 @@ export const ArkhamDecoDividerContext =
 		layout: {} as ArkhamDecoDividerLayout,
 		objects: {} as ArkhamDecoLayoutObjects,
 		sxOptions: {} as ArkhamDecoDividerSxOptions,
+		singleSide: false,
 	});

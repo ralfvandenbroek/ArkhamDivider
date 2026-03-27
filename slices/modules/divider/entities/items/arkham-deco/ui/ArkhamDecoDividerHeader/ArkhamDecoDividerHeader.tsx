@@ -10,8 +10,8 @@ import * as S from "./ArkhamDecoDividerHeader.styles";
 type ArkhamDecoDividerHeaderProps = BoxProps;
 
 export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
-	const { layout, divider } = useContext(ArkhamDecoDividerContext);
-	const getPrintSx = usePrintUnit();
+	const { layout, divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const getPrintSx = usePrintUnit(sxOptions);
 	const { orientation } = layout;
 
 	const icon = getArkhamDecoIcons({ divider, layout });
@@ -26,7 +26,9 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 			{!icon.center && <C.NoIconLine />}
 			<DividerIcon dividerId={divider.id} icon={icon.left} sx={leftIconSx} />
 			<DividerIcon dividerId={divider.id} icon={icon.right} sx={rightIconSx} />
-			{divider.type === "scenario" && <C.ScenarioCorner />}
+			{divider.type === "scenario" && (
+				<C.ScenarioCorner scenario={divider.scenario} />
+			)}
 		</Box>
 	);
 }

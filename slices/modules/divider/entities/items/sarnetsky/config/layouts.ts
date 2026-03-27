@@ -9,7 +9,7 @@ const horizontal: DividerLayout = {
 	id: "sarnetsky-horizontal",
 	categoryId: sarnetskyCategoryId,
 	groupId: "sarnetsky-horizontal",
-	name: "divider.sarnetsky.doubleSide",
+	name: "divider.sarnetsky.horizontal",
 	orientation: "horizontal",
 	color: true,
 	size: createSize(89, 75),
@@ -36,14 +36,8 @@ const horizontal: DividerLayout = {
 		numericXP: true,
 	},
 	iconParams,
-};
-
-const horizontalBlank: DividerLayout = {
-	...horizontal,
-	id: "sarnetsky-horizontal-blank",
-	name: "divider.sarnetsky.singleSide",
-	params: {
-		blankBackSide: true,
+	additionalParams: {
+		singleSide: true,
 	},
 };
 
@@ -51,7 +45,7 @@ const vertical: DividerLayout = {
 	id: "sarnetsky-vertical",
 	categoryId: sarnetskyCategoryId,
 	groupId: "sarnetsky-vertical",
-	name: "Double Side",
+	name: "divider.sarnetsky.vertical",
 	image: "/images/divider/render/sarnetsky.avif",
 	orientation: "vertical",
 	color: true,
@@ -69,20 +63,9 @@ const vertical: DividerLayout = {
 		cardCount: false,
 	},
 	iconParams,
-};
-
-const verticalBlank: DividerLayout = {
-	...vertical,
-	id: "sarnetsky-vertical-blank",
-	name: "Single Side",
-	params: {
-		blankBackSide: true,
+	additionalParams: {
+		singleSide: true,
 	},
 };
 
-export const sarnetskyLayouts: DividerLayout[] = [
-	horizontal,
-	horizontalBlank,
-	vertical,
-	verticalBlank,
-];
+export const sarnetskyLayouts: DividerLayout[] = [horizontal, vertical];

@@ -38,6 +38,7 @@ export const getOutlineSx: ArkhamDecoDividerSxCallback = ({ mm }) => ({
 	borderRadius: mm(1),
 	top: mm(0.2),
 	bottom: mm(0.1),
+	left: mm(-1),
 });
 
 const titleColor = "#2e2622";

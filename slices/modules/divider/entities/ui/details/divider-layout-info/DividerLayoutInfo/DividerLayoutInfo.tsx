@@ -3,7 +3,10 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
-import { getLayoutAuthors } from "@/modules/divider/entities/lib";
+import {
+	getLayoutAuthors,
+	getLayoutDescription,
+} from "@/modules/divider/entities/lib";
 import type {
 	DividerCategory,
 	DividerLayout,
@@ -50,6 +53,8 @@ export function DividerLayoutInfo({
 	const authors = getLayoutAuthors(layout);
 	const size = getBoxSize(layout.size);
 	const image = layout.image ?? category.image;
+
+	const description = getLayoutDescription(layout);
 
 	return (
 		<Stack gap={2}>
@@ -122,7 +127,7 @@ export function DividerLayoutInfo({
 						</Row>
 
 						<Typography variant="body2" textAlign="center">
-							{t(`category.${category.id}.description`)}
+							{t(description)}
 						</Typography>
 					</Stack>
 				)}

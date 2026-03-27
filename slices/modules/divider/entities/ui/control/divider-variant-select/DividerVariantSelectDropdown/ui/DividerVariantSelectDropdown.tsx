@@ -7,6 +7,8 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import { type JSX, useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { changeLayoutColor } from "@/modules/divider/entities/lib/store/features/changeLayoutColor";
+import { changeLayoutOrientation } from "@/modules/divider/entities/lib/store/features/changeLayoutOrientation";
 import { changeLayoutId } from "@/modules/divider/shared/lib";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { useBoolean } from "@/shared/lib/hooks/common";
@@ -17,14 +19,14 @@ import {
 	useDividerColorData,
 	useDividerOrientationData,
 	useRouterLayout,
-} from "../../../../lib";
-import { changeLayoutColor } from "../../../../lib/store/features/changeLayoutColor/changeLayoutColor";
-import { changeLayoutOrientation } from "../../../../lib/store/features/changeLayoutOrientation/changeLayoutOrientation";
+} from "../../../../../lib";
 import { useDividerVariants } from "../lib";
-import * as C from "./DividerVariantSelect.components";
+import * as C from "./DividerVariantSelectDropdown.components";
 
-type DividerVariantSelectProps = JSX.IntrinsicElements["div"];
-export function DividerVariantSelect(props: DividerVariantSelectProps) {
+type DividerVariantSelectDropdownProps = JSX.IntrinsicElements["div"];
+export function DividerVariantSelectDropdown(
+	props: DividerVariantSelectDropdownProps,
+) {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const data = useRouterLayout();

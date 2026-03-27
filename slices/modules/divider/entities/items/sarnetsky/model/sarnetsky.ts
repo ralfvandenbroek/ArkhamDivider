@@ -26,11 +26,7 @@ export type SarnetskyDividerParams = {
 	backgroundIconRect?: BoxRect;
 };
 
-export type SarnetskyLayoutParams = {
-	blankBackSide?: boolean;
-};
-
-export type SarnetskyLayout = DividerLayout<SarnetskyLayoutParams>;
+export type SarnetskyLayout = DividerLayout;
 
 export type SarnetskyDividerProps =
 	DividerWithRelations<SarnetskyDividerParams>;

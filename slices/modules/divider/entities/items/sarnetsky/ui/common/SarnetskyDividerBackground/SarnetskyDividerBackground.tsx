@@ -21,10 +21,9 @@ export function SarnetskyDividerBackground(
 
 function Content(props: SarnetskyDividerBackgroundProps) {
 	const { side } = props;
-	const { layout } = useContext(SarnetskyDividerContext);
-	const { params } = layout;
+	const { singleSide } = useContext(SarnetskyDividerContext);
 
-	const showBlankImage = params?.blankBackSide && side === "back";
+	const showBlankImage = singleSide && side === "back";
 
 	if (showBlankImage) {
 		return <BlankImage {...props} />;

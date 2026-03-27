@@ -9,6 +9,7 @@ const horizontalLayout: ArkhamDecoDividerLayout = {
 	name: "divider.arkhamDeco.chapter1",
 	image: "/images/divider/render/arkham-deco.avif",
 	orientation: "horizontal",
+	description: "divider.layout.arkham-deco.chapter1.description",
 	color: true,
 	size: createSize(94, 68.5),
 	printSize: {
@@ -28,6 +29,9 @@ const horizontalLayout: ArkhamDecoDividerLayout = {
 	types: ["scenario", "player", "investigator"],
 	categoryId: arkhamDecoCategoryId,
 	groupId: "chapter1",
+	additionalParams: {
+		singleSide: true,
+	},
 };
 
 export const arkhamDecoLayouts: DividerLayout[] = [horizontalLayout];

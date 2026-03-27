@@ -25,12 +25,10 @@ export type ArkhamDecoLayoutParams = {
 	tabInlineMargin?: number;
 };
 
-export type ArkhamDecoLayout = DividerLayout<ArkhamDecoLayoutParams>;
-
 export type ArkhamDecoDividerProps =
 	DividerWithRelations<ArkhamDecoDividerParams>;
 
-export type ArkhamDecoDividerLayout = DividerLayout;
+export type ArkhamDecoDividerLayout = DividerLayout<ArkhamDecoLayoutParams>;
 
 export type ArkhamDecoLayoutObjects = ReturnType<
 	typeof getArkhamDecoLayoutObjects

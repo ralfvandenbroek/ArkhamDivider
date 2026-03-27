@@ -12,6 +12,7 @@ export type DividerCategory = {
 	id: string;
 	type: DividerCategoryType;
 	name: string;
+	description?: string;
 	image: string;
 	authors: Author[];
 	layouts: DividerLayout[];

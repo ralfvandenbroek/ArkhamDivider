@@ -1,1 +1,1 @@
-export * from "./DiviederLayoutAuthorInfo";
+export * from "./DividerLayoutAuthorInfo";

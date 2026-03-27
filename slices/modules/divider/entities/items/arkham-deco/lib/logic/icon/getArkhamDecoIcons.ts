@@ -1,11 +1,14 @@
 import { getDividerIcon } from "@/modules/divider/features/lib";
-import type { ArkhamDecoDividerProps, ArkhamDecoLayout } from "../../../model";
+import type {
+	ArkhamDecoDividerLayout,
+	ArkhamDecoDividerProps,
+} from "../../../model";
 import { getArkhamDecoDefaultCampaignIcon } from "./getArkhamDecoDefaultCampaignIcon";
 import { getArkhamDecoDefaultSecondaryIcon } from "./getArkhamDecoDefaultSecondaryIcon";
 
 type Options = {
 	divider: ArkhamDecoDividerProps;
-	layout: ArkhamDecoLayout;
+	layout: ArkhamDecoDividerLayout;
 };
 
 export const getArkhamDecoIcons = ({ divider, layout }: Options) => {

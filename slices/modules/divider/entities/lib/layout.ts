@@ -30,3 +30,13 @@ export const getLayoutGroup = (layout: DividerLayout) => {
 	const category = getCategoryById(categoryId);
 	return category?.groups.find(whereId(groupId));
 };
+
+export const getLayoutDescription = (layout: DividerLayout) => {
+	const { categoryId } = layout;
+	if (layout.description) {
+		return layout.description;
+	}
+	const category = getCategoryById(categoryId);
+
+	return category?.description ?? `category.${categoryId}.description`;
+};

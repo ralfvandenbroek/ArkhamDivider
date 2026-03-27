@@ -28,6 +28,7 @@ export type DividerOrientation = "horizontal" | "vertical";
 export type DividerLayout<Params = Record<string, unknown>> = {
 	id: string;
 	types: DividerLayoutType[];
+	description?: string;
 	categoryId: string;
 	groupId: string;
 	name: string;
@@ -52,6 +53,9 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	};
 	investigatorParams?: {
 		duplicateCodes?: Record<string, number>;
+	};
+	additionalParams?: {
+		singleSide?: boolean;
 	};
 	renderOptions?: DividerLayoutRenderOptions;
 };
