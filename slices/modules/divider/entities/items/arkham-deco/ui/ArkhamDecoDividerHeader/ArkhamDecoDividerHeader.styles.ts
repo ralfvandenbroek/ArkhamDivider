@@ -1,4 +1,5 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import { percent } from "@/shared/util";
 import type {
 	ArkhamDecoDividerSxCallback,
 	ArkhamDecoPosition,
@@ -93,6 +94,12 @@ export const getLeftIconSx: ArkhamDecoDividerSxCallback = ({
 	width: mm(O.leftIcon.width),
 	height: mm(O.leftIcon.height),
 	zIndex: 5,
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
 });
 
 export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
@@ -103,6 +110,12 @@ export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
 	width: mm(8),
 	height: mm(6),
 	zIndex: 5,
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
 });
 
 export const getCenterIconSx: PrintSxCallback = ({ mm }) => ({
@@ -112,6 +125,12 @@ export const getCenterIconSx: PrintSxCallback = ({ mm }) => ({
 	transform: "translateX(-50%)",
 	fontSize: mm(2.5),
 	zIndex: 5,
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
 });
 
 export const getScenarioCornerSx: PrintSxCallback = ({ mm }) => ({

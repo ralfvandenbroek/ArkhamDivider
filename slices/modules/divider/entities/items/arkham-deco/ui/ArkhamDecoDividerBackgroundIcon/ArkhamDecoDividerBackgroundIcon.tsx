@@ -1,6 +1,6 @@
 import { Box, type BoxProps } from "@mui/material";
 import { useContext } from "react";
-import { getDividerIcon } from "@/modules/divider/features/lib";
+import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
@@ -18,16 +18,17 @@ export const ArkhamDecoDividerBackgroundIcon = ({
 
 	const defaultIcon = getDefaultBackgroundIcon(divider);
 
-	const icon = getDividerIcon({
-		divider,
+	const getDividerIcon = useDividerIcon({ dividerId: divider.id, defaultIcon });
+
+	const [icon, selectIcon] = getDividerIcon({
 		param: "backgroundIcon",
-		defaultIcon,
 	});
 
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
 	const sxProp = getPrintSx(S.getSx);
 	const iconSx = getPrintSx(S.getIconSx);
 	const iconContainerSx = getPrintSx(S.getIconContainerSx);
+	const iconSelectionSx = getPrintSx(S.getIconSelectionSx);
 
 	const sx = {
 		...props.sx,
@@ -35,11 +36,14 @@ export const ArkhamDecoDividerBackgroundIcon = ({
 	};
 
 	return (
-		<Box {...props} sx={sx}>
-			<Image src={`${arkhamDecoAssetUrl}/pattern.svg`} sx={backgroundSx} />
-			<Box sx={iconContainerSx}>
-				<DividerIcon dividerId={divider.id} icon={icon} sx={iconSx} visible />
+		<>
+			<Box {...props} sx={sx}>
+				<Image src={`${arkhamDecoAssetUrl}/pattern.svg`} sx={backgroundSx} />
+				<Box sx={iconContainerSx}>
+					<DividerIcon dividerId={divider.id} icon={icon} sx={iconSx} visible />
+				</Box>
 			</Box>
-		</Box>
+			<Box sx={iconSelectionSx} onClick={selectIcon} />
+		</>
 	);
 };

@@ -37,7 +37,7 @@ export const getBottomWaveSx: PrintSxCallback<BottomCornerProps> = ({
 	position: "absolute",
 	width: mm(30),
 	bottom: mm(-15),
-	[position]: mm(14),
+	[position]: mm(12),
 	opacity: 0.3,
 	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
 	zIndex: 2,

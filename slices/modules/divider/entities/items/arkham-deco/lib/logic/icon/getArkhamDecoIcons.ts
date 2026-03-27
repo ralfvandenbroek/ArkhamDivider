@@ -36,14 +36,19 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 	const small = {
 		icon: smallIcon,
 		param: "smallIcon",
+		defaultIcon: divider.icon,
 	};
+
 	const secondary = {
 		icon: secondaryIcon,
 		param: "secondaryIcon",
+		defaultIcon: defaultSecondaryIcon,
 	};
+
 	const campaign = {
 		icon: campaignIcon,
 		param: "campaignIcon",
+		defaultIcon: defaultCampaignIcon,
 	};
 
 	if (layout.params?.tabInlineMargin) {
