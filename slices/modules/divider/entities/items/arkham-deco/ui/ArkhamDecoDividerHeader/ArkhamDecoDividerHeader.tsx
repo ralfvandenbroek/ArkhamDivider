@@ -20,7 +20,7 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	const getPrintSx = usePrintUnit(sxOptions);
 	const { orientation } = layout;
 
-	const icon = getArkhamDecoIcons({ divider, layout });
+	const I = getArkhamDecoIcons({ divider, layout });
 
 	const leftIconSx = getPrintSx(S.getLeftIconSx);
 	const rightIconSx = getPrintSx(S.getRightIconSx);
@@ -37,7 +37,7 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 			<Box {...props}>
 				<C.LeftScenarioCorner orientation={orientation} />
 				<C.RightScenarioCorner orientation={orientation} />
-				{!icon.center ? (
+				{!I.center ? (
 					<C.NoIconLine />
 				) : (
 					<>
@@ -52,21 +52,21 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 				)}
 			</Box>
 
-			<DividerIcon dividerId={divider.id} icon={icon.left} sx={leftIconSx} />
+			<DividerIcon dividerId={divider.id} icon={I.left?.icon} sx={leftIconSx} />
 			{showRightIcon && (
 				<DividerIcon
 					dividerId={divider.id}
-					icon={icon.right}
+					icon={I.right?.icon}
 					sx={rightIconSx}
 				/>
 			)}
 			{!showRightIcon && xpCost && <Box sx={xpCostSx}>{xpCost.name}</Box>}
 			{sideXP && xpCost && <XP xpCost={xpCost} sx={sideXPSx} />}
 
-			{icon.center && (
+			{I.center?.icon && (
 				<DividerIcon
 					dividerId={divider.id}
-					icon={icon.center}
+					icon={I.center?.icon}
 					sx={centerIconSx}
 				/>
 			)}

@@ -33,41 +33,54 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		defaultIcon: defaultSecondaryIcon,
 	});
 
+	const small = {
+		icon: smallIcon,
+		param: "smallIcon",
+	};
+	const secondary = {
+		icon: secondaryIcon,
+		param: "secondaryIcon",
+	};
+	const campaign = {
+		icon: campaignIcon,
+		param: "campaignIcon",
+	};
+
 	if (layout.params?.tabInlineMargin) {
 		return {
-			left: smallIcon,
-			right: secondaryIcon,
-			center: campaignIcon,
+			left: small,
+			right: secondary,
+			center: campaign,
 		};
 	}
 
 	if (divider.type === "campaign") {
 		return {
 			left: null,
-			right: campaignIcon,
-			center: secondaryIcon,
+			right: campaign,
+			center: null,
 		};
 	}
 
 	if (divider.type === "player") {
 		return {
-			left: secondaryIcon,
-			right: smallIcon,
-			center: campaignIcon,
+			left: secondary,
+			right: small,
+			center: campaign,
 		};
 	}
 
 	if (divider.type === "investigator") {
 		return {
-			left: smallIcon,
-			right: secondaryIcon,
-			center: campaignIcon,
+			left: small,
+			right: secondary,
+			center: campaign,
 		};
 	}
 
 	return {
-		left: smallIcon,
-		right: campaignIcon,
-		center: secondaryIcon,
+		left: small,
+		right: campaign,
+		center: null,
 	};
 };
