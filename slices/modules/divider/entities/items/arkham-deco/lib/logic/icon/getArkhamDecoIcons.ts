@@ -49,6 +49,14 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		};
 	}
 
+	if (divider.type === "player") {
+		return {
+			left: secondaryIcon,
+			right: smallIcon,
+			center: campaignIcon,
+		};
+	}
+
 	return {
 		left: smallIcon,
 		right: campaignIcon,

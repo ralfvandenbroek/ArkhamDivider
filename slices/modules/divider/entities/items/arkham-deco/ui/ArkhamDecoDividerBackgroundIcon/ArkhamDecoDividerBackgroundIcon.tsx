@@ -5,6 +5,7 @@ import { DividerIcon } from "@/modules/divider/features/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { arkhamDecoAssetUrl } from "../../config";
+import { getArkhamDecoDefaultBackgroundIcon as getDefaultBackgroundIcon } from "../../lib";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerBackgroundIcon.styles";
 
@@ -15,10 +16,12 @@ export const ArkhamDecoDividerBackgroundIcon = ({
 	const { divider } = useContext(ArkhamDecoDividerContext);
 	const getPrintSx = usePrintUnit();
 
+	const defaultIcon = getDefaultBackgroundIcon(divider);
+
 	const icon = getDividerIcon({
 		divider,
 		param: "backgroundIcon",
-		defaultIcon: divider.icon,
+		defaultIcon,
 	});
 
 	const backgroundSx = getPrintSx(S.getBackgroundSx);

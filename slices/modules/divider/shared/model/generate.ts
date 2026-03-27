@@ -27,6 +27,7 @@ export type PlayerDividerParams = {
 	cardSlots: CardSlot[];
 	subtypes: DividerSubtype[];
 	numericXP: boolean;
+	sideXP: boolean;
 	xpCosts: XPCost[];
 };
 

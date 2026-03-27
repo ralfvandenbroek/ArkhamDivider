@@ -103,7 +103,7 @@ export const getScenarioNumberSx: ArkhamDecoDividerSxCallback = ({
 	mm,
 	objects: O,
 }) => ({
-	fontFamily: "Arkhamic",
+	fontFamily: "Arkhamic, Teutonic, serif",
 	lineHeight: 1,
 	position: "relative",
 	zIndex: 2,
@@ -123,4 +123,24 @@ export const getScenarioNumberIconSx: PrintSxCallback = ({ mm }) => ({
 	width: mm(8),
 	height: mm(6),
 	zIndex: 2,
+});
+
+export const getXpCostSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	fontFamily: "Arkhamic, Teutonic, serif",
+	textAlign: "center",
+	top: 0,
+	right: 0,
+	fontSize: mm(4),
+	width: mm(8),
+	height: mm(6),
+	zIndex: 3,
+});
+
+export const getSideXPSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(1.7),
+	right: mm(10),
+	fontSize: mm(4),
+	zIndex: 3,
 });

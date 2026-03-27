@@ -29,6 +29,10 @@ const horizontalLayout: ArkhamDecoDividerLayout = {
 	types: ["scenario", "player", "investigator"],
 	categoryId: arkhamDecoCategoryId,
 	groupId: "chapter1",
+	playerParams: {
+		numericXP: true,
+		sideXP: true,
+	},
 	additionalParams: {
 		singleSide: true,
 	},

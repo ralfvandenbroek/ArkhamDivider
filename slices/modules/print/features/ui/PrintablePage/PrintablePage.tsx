@@ -46,10 +46,14 @@ export function PrintablePage<T extends WithId>({
 	const cols = range(0, grid.cols);
 
 	const containerSize = getRelativeBoxSize(pageSize, grid.size);
+	const usedAreaSize = {
+		width: grid.size.width,
+		height: grid.unitSize.height * pageLayout.itemsCount,
+	};
 
 	const showCredits = canShowPageCredits({
 		pageSize,
-		areaSize: grid.unitSize,
+		areaSize: usedAreaSize,
 		isLast: pageLayout.isLast,
 	});
 

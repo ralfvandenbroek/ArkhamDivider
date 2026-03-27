@@ -52,20 +52,18 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 		>
 			<Container>
 				<DividerBackground src={backgroundUrl} />
-				{showContent && (
-					<Content sx={{ mixBlendMode: "multiply" }}>
-						<Box sx={contentSx}>
-							<Header sx={headerSx} />
-							<ArkhamDecoDividerTitle sx={titleSx} />
-							<Box sx={bodySx}>
-								<C.SideBorder position="left" />
-								<C.SideBorder position="right" />
-								<BackgroundIcon sx={backgroundIconSx} />
-							</Box>
-							<Footer />
+				<Content sx={{ mixBlendMode: "multiply" }} hidden={!showContent}>
+					<Box sx={contentSx}>
+						<Header sx={headerSx} />
+						<ArkhamDecoDividerTitle sx={titleSx} />
+						<Box sx={bodySx}>
+							<C.SideBorder position="left" />
+							<C.SideBorder position="right" />
+							<BackgroundIcon sx={backgroundIconSx} />
 						</Box>
-					</Content>
-				)}
+						<Footer />
+					</Box>
+				</Content>
 			</Container>
 		</ArkhamDecoDividerContext.Provider>
 	);

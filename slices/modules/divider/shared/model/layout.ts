@@ -50,6 +50,7 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	playerParams?: {
 		story?: boolean;
 		numericXP?: boolean;
+		sideXP?: boolean;
 	};
 	investigatorParams?: {
 		duplicateCodes?: Record<string, number>;

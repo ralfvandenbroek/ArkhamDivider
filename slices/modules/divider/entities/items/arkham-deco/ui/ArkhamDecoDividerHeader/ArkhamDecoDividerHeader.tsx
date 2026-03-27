@@ -1,9 +1,13 @@
 import { Box, type BoxProps } from "@mui/material";
 import { useContext } from "react";
 import { DividerIcon } from "@/modules/divider/features/ui";
+import { selectPlayerParams } from "@/modules/divider/shared/lib";
+import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { getArkhamDecoIcons } from "../../lib";
+import { useAppSelector } from "@/shared/lib";
+import { getArkhamDecoIcons, showArkhamDecoRightIcon } from "../../lib";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
+import { ArkhamDecoDividerSideXP as XP } from "../ArkhamDecoDividerSideXP";
 import * as C from "./ArkhamDecoDividerHeader.components";
 import * as S from "./ArkhamDecoDividerHeader.styles";
 
@@ -11,6 +15,8 @@ type ArkhamDecoDividerHeaderProps = BoxProps;
 
 export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	const { layout, divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { numericXP = false, sideXP = false } =
+		useAppSelector(selectPlayerParams);
 	const getPrintSx = usePrintUnit(sxOptions);
 	const { orientation } = layout;
 
@@ -18,17 +24,33 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 
 	const leftIconSx = getPrintSx(S.getLeftIconSx);
 	const rightIconSx = getPrintSx(S.getRightIconSx);
+	const xpCostSx = getPrintSx(S.getXpCostSx);
+	const sideXPSx = getPrintSx(S.getSideXPSx);
+
+	const showRightIcon = showArkhamDecoRightIcon({ divider, numericXP });
+	const xpCost = getDividerXPCost(divider);
 
 	return (
-		<Box {...props}>
-			<C.LeftScenarioCorner orientation={orientation} />
-			<C.RightScenarioCorner orientation={orientation} />
-			{!icon.center && <C.NoIconLine />}
+		<>
+			<Box {...props}>
+				<C.LeftScenarioCorner orientation={orientation} />
+				<C.RightScenarioCorner orientation={orientation} />
+				{!icon.center && <C.NoIconLine />}
+				{divider.type === "scenario" && (
+					<C.ScenarioCorner scenario={divider.scenario} />
+				)}
+			</Box>
+
 			<DividerIcon dividerId={divider.id} icon={icon.left} sx={leftIconSx} />
-			<DividerIcon dividerId={divider.id} icon={icon.right} sx={rightIconSx} />
-			{divider.type === "scenario" && (
-				<C.ScenarioCorner scenario={divider.scenario} />
+			{showRightIcon && (
+				<DividerIcon
+					dividerId={divider.id}
+					icon={icon.right}
+					sx={rightIconSx}
+				/>
 			)}
-		</Box>
+			{!showRightIcon && xpCost && <Box sx={xpCostSx}>{xpCost.name}</Box>}
+			{sideXP && xpCost && <XP xpCost={xpCost} sx={sideXPSx} />}
+		</>
 	);
 }

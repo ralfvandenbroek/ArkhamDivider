@@ -253,22 +253,42 @@ export function PlayerDividerOptions(props: BoxProps) {
 							)}
 						/>
 					</C.Row>
-					{layout?.playerParams?.numericXP && (
-						<Stack alignItems="center" justifyContent="center" gap={1}>
+
+					<C.Row>
+						{layout?.playerParams?.numericXP && (
+							<Stack alignItems="center" justifyContent="center" gap={1}>
+								<Controller
+									control={control}
+									name="numericXP"
+									render={({ field }) => (
+										<FormControlLabel
+											control={
+												<Switch
+													checked={field.value}
+													onChange={field.onChange}
+												/>
+											}
+											label={t("Numeric XP")}
+										/>
+									)}
+								/>
+							</Stack>
+						)}
+						{layout?.playerParams?.sideXP && (
 							<Controller
 								control={control}
-								name="numericXP"
+								name="sideXP"
 								render={({ field }) => (
 									<FormControlLabel
 										control={
 											<Switch checked={field.value} onChange={field.onChange} />
 										}
-										label={t("Numeric XP")}
+										label={t("Side XP")}
 									/>
 								)}
 							/>
-						</Stack>
-					)}
+						)}
+					</C.Row>
 					<C.Row marginTop={4}>
 						<Row flex={{ xs: 1, sm: 0 }} gap={2}>
 							<Button
