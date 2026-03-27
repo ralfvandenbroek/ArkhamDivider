@@ -1,10 +1,11 @@
-import type { DividerOrientation } from "@/modules/divider/shared/model";
-import { arkhamDecoHorizontalObjects } from "../../config";
+import {
+	arkhamDecoHorizontalObjects,
+	arkhamDecoUcfStandardObjects,
+} from "../../config";
 
-type Options = {
-	layoutId: string;
-	orientation: DividerOrientation;
-};
-export const getArkhamDecoLayoutObjects = (_: Options) => {
+export const getArkhamDecoLayoutObjects = (layoutId: string) => {
+	if (layoutId === "ucf-standard") {
+		return arkhamDecoUcfStandardObjects;
+	}
 	return arkhamDecoHorizontalObjects;
 };

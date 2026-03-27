@@ -85,6 +85,10 @@
 	"category.sarnetsky.description": "Custom made dividers",
 	"cateegory.arkham-deco.description": "Compact dividers for storage systems",
 	"divider.layout.arkham-deco.chapter1.description": "Compact dividers for the first chapter campaign box",
+	"divider.layout.arkham-deco.deckBox.description": "Dividers for Game Genic, Ultimate Guard, Aegis deck boxes",
+	"divider.layout.arkham-deco.chapter2.description": "Compact dividers for the second chapter box",
+	"divider.layout.arkham-deco.ucfStandard.description": "Dividers for UCF Standard deck boxes from Meeple House",
+	"divider.layout.arkham-deco.ucf50.description": "Dividers for UCF 50 deck boxes from Meeple House",
 	"story.type.all": "All content",
 	"story.type.translated": "Translated",
 	"story.type.official": "Official",
@@ -110,5 +114,9 @@
 	"divider.sarnetsky.horizontal": "Horizontal",
 	"divider.sarnetsky.vertical": "Vertical",
 	"divider.sarnetsky.singleSide": "Single Side",
-	"divider.arkhamDeco.chapter1": "Chapter 1 Box"
+	"divider.arkhamDeco.chapter1": "Chapter 1 Box",
+	"divider.arkhamDeco.deckBox": "Deck Box",
+	"divider.arkhamDeco.chapter2": "Chapter 2 Box",
+	"divider.arkhamDeco.ucfStandard": "UCF Standard",
+	"divider.arkhamDeco.ucf50": "UCF 50"
 }

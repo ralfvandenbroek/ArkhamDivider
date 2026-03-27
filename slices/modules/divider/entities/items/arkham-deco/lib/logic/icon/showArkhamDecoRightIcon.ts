@@ -1,10 +1,21 @@
-import type { ArkhamDecoDividerProps } from "../../../model";
+import type {
+	ArkhamDecoDividerLayout,
+	ArkhamDecoDividerProps,
+} from "../../../model";
 
 type Options = {
 	divider: ArkhamDecoDividerProps;
+	layout: ArkhamDecoDividerLayout;
 	numericXP: boolean;
 };
-export const showArkhamDecoRightIcon = ({ divider, numericXP }: Options) => {
+export const showArkhamDecoRightIcon = ({
+	divider,
+	layout,
+	numericXP,
+}: Options) => {
+	if (layout.params?.tab) {
+		return false;
+	}
 	if (divider.type !== "player") {
 		return true;
 	}

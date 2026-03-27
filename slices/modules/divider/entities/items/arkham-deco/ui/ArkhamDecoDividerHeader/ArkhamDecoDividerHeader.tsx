@@ -16,10 +16,10 @@ type ArkhamDecoDividerHeaderProps = BoxProps;
 
 export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	const { layout, divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { tab } = layout.params ?? {};
 	const { numericXP = false, sideXP = false } =
 		useAppSelector(selectPlayerParams);
 	const getPrintSx = usePrintUnit(sxOptions);
-	const { orientation } = layout;
 
 	const I = getArkhamDecoIcons({ divider, layout });
 
@@ -29,8 +29,9 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 
 	const xpCostSx = getPrintSx(S.getXpCostSx);
 	const sideXPSx = getPrintSx(S.getSideXPSx);
+	const tabLineSx = getPrintSx(S.getTabLineSx);
 
-	const showRightIcon = showArkhamDecoRightIcon({ divider, numericXP });
+	const showRightIcon = showArkhamDecoRightIcon({ divider, numericXP, layout });
 	const xpCost = getDividerXPCost(divider);
 
 	const getDividerIcon = useDividerIcon({
@@ -54,8 +55,8 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	return (
 		<>
 			<Box {...props}>
-				<C.LeftScenarioCorner orientation={orientation} />
-				<C.RightScenarioCorner orientation={orientation} />
+				<C.LeftScenarioCorner />
+				<C.RightScenarioCorner />
 				{!I.center?.icon ? (
 					<C.NoIconLine />
 				) : (
@@ -66,10 +67,14 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 						<C.StoryLineTentacle position="right" />
 					</>
 				)}
+				{tab && <Box sx={tabLineSx} />}
 				{divider.type === "scenario" && (
 					<C.ScenarioCorner scenario={divider.scenario} />
 				)}
 			</Box>
+
+			{!showRightIcon && xpCost && <Box sx={xpCostSx}>{xpCost.name}</Box>}
+			{sideXP && xpCost && <XP xpCost={xpCost} sx={sideXPSx} />}
 
 			<DividerIcon
 				dividerId={divider.id}
@@ -85,8 +90,6 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 					onClick={startRightIcon}
 				/>
 			)}
-			{!showRightIcon && xpCost && <Box sx={xpCostSx}>{xpCost.name}</Box>}
-			{sideXP && xpCost && <XP xpCost={xpCost} sx={sideXPSx} />}
 
 			{I.center?.icon && (
 				<DividerIcon

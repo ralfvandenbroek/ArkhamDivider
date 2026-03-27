@@ -21,9 +21,3 @@ export const Corner = ({ position }: { position: ArkhamDecoPosition }) => {
 		</Box>
 	);
 };
-
-export const Wave = ({ position }: { position: ArkhamDecoPosition }) => {
-	const getPrintSx = usePrintUnit();
-	const sx = getPrintSx(S.getBottomWaveSx, { position });
-	return <Image src={asset("/wave.svg")} sx={sx} />;
-};

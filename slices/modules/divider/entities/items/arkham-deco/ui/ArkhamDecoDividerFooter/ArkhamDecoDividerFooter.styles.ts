@@ -30,19 +30,6 @@ export const getBottomTentacleSx: PrintSxCallback = ({ mm }) => ({
 	zIndex: 2,
 });
 
-export const getBottomWaveSx: PrintSxCallback<BottomCornerProps> = ({
-	mm,
-	position,
-}) => ({
-	position: "absolute",
-	width: mm(30),
-	bottom: mm(-15),
-	[position]: mm(12),
-	opacity: 0.3,
-	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
-	zIndex: 2,
-});
-
 export const getBottomLineSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
 	bottom: mm(0.8),

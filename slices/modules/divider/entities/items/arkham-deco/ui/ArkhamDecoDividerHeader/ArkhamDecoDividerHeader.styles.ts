@@ -13,12 +13,14 @@ export const getLeftHorizontalCornerSx: PrintSxCallback = ({ mm }) => ({
 	mixBlendMode: "multiply",
 });
 
-export const getLeftVerticalCornerSx: PrintSxCallback = ({ mm }) => ({
+export const getLeftTabCornerSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	top: 0,
+	top: mm(O.header.height),
 	left: 0,
-	// left: mm(-1.1),
-	width: mm(12.9),
+	width: mm(12.3),
 	mixBlendMode: "multiply",
 });
 
@@ -32,11 +34,15 @@ export const getRightHorizontalScenarioCornerSx: PrintSxCallback = ({
 	zIndex: 2,
 });
 
-export const getVerticalScenarioCornerSx: PrintSxCallback = ({ mm }) => ({
+export const getRightTabCornerSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	top: 0,
-	left: 0,
-	width: mm(11),
+	top: mm(O.header.height),
+	right: 0,
+	transform: "scaleX(-1)",
+	width: mm(12.3),
 });
 
 const topLineCropMm = {
@@ -44,13 +50,11 @@ const topLineCropMm = {
 	right: 20.8,
 };
 
-const headerHeight = 6;
-
-export const getStoryLineSx: PrintSxCallback<{
+export const getStoryLineSx: ArkhamDecoDividerSxCallback<{
 	position: ArkhamDecoPosition;
-}> = ({ mm, position }) => ({
+}> = ({ mm, position, objects: O }) => ({
 	position: "absolute",
-	top: mm(headerHeight - 1.8),
+	top: mm(O.header.height - O.line.default.offsetTop),
 	[position]: 0,
 	height: mm(2.6),
 	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
@@ -58,11 +62,11 @@ export const getStoryLineSx: PrintSxCallback<{
 	zIndex: 3,
 });
 
-export const getStoryLineTentacleSx: PrintSxCallback<{
+export const getStoryLineTentacleSx: ArkhamDecoDividerSxCallback<{
 	position: ArkhamDecoPosition;
-}> = ({ mm, position }) => ({
+}> = ({ mm, position, objects: O }) => ({
 	position: "absolute",
-	top: mm(headerHeight - 1),
+	top: mm(O.header.height - O.line.tentacles.offsetTop),
 	[position]: `calc(50% - ${mm(8.5)})`,
 	width: mm(6),
 	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
@@ -74,10 +78,13 @@ const noIconLineCropMm = {
 	right: 10.3,
 };
 
-export const getNoIconLineSx: PrintSxCallback = ({ mm }) => ({
+export const getNoIconLineSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
 	left: mm(-1),
-	top: mm(headerHeight - 1.1),
+	top: mm(O.header.height - O.line.noIcon.offsetTop),
 	width: mm(94.4),
 	clipPath: `inset(0 ${mm(noIconLineCropMm.right)} 0 ${mm(noIconLineCropMm.left)})`,
 	zIndex: 3,
@@ -88,8 +95,8 @@ export const getLeftIconSx: ArkhamDecoDividerSxCallback = ({
 	objects: O,
 }) => ({
 	position: "absolute",
-	top: 0,
-	left: 0,
+	top: mm(O.leftIcon.offsetTop),
+	left: mm(O.header.left),
 	fontSize: mm(O.leftIcon.fontSize),
 	width: mm(O.leftIcon.width),
 	height: mm(O.leftIcon.height),
@@ -102,13 +109,16 @@ export const getLeftIconSx: ArkhamDecoDividerSxCallback = ({
 	},
 });
 
-export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
+export const getRightIconSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
 	top: 0,
 	right: 0,
 	fontSize: mm(2.9),
 	width: mm(8),
-	height: mm(6),
+	height: mm(O.header.height),
 	zIndex: 5,
 	cursor: "pointer",
 	"@media screen": {
@@ -118,12 +128,15 @@ export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
 	},
 });
 
-export const getCenterIconSx: PrintSxCallback = ({ mm }) => ({
+export const getCenterIconSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	top: mm(4.7),
+	top: mm(O.header.height - O.centralIcon.offsetTop),
 	left: "50%",
 	transform: "translateX(-50%)",
-	fontSize: mm(2.5),
+	fontSize: mm(O.centralIcon.fontSize),
 	zIndex: 5,
 	cursor: "pointer",
 	"@media screen": {
@@ -133,9 +146,13 @@ export const getCenterIconSx: PrintSxCallback = ({ mm }) => ({
 	},
 });
 
-export const getScenarioCornerSx: PrintSxCallback = ({ mm }) => ({
+export const getScenarioCornerSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
-	right: mm(10.7),
+	right: mm(O.scenarioCorner.right),
+	top: mm(O.scenarioCorner.top),
 	zIndex: 1,
 });
 
@@ -155,7 +172,7 @@ export const getScenarioNumberSx: ArkhamDecoDividerSxCallback = ({
 	lineHeight: 1,
 	position: "relative",
 	zIndex: 5,
-	height: mm(headerHeight),
+	height: mm(O.scenarioNumber.height),
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
@@ -164,16 +181,22 @@ export const getScenarioNumberSx: ArkhamDecoDividerSxCallback = ({
 	fontSize: mm(O.scenarioNumber.fontSize),
 });
 
-export const getScenarioNumberIconSx: PrintSxCallback = ({ mm }) => ({
+export const getScenarioNumberIconSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
 	top: 0,
 	left: 0,
 	width: mm(8),
-	height: mm(6),
+	height: mm(O.header.height),
 	zIndex: 2,
 });
 
-export const getXpCostSx: PrintSxCallback = ({ mm }) => ({
+export const getXpCostSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
 	position: "absolute",
 	fontFamily: "Arkhamic, Teutonic, serif",
 	textAlign: "center",
@@ -181,7 +204,7 @@ export const getXpCostSx: PrintSxCallback = ({ mm }) => ({
 	right: 0,
 	fontSize: mm(4),
 	width: mm(8),
-	height: mm(6),
+	height: mm(O.header.height),
 	zIndex: 3,
 });
 
@@ -191,4 +214,37 @@ export const getSideXPSx: PrintSxCallback = ({ mm }) => ({
 	right: mm(10),
 	fontSize: mm(4),
 	zIndex: 3,
+});
+
+const tabLineBorderWidth = 0.25;
+
+export const getTabLineSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
+	position: "absolute",
+	top: mm(-tabLineBorderWidth),
+	left: mm(O.header.left),
+	right: mm(O.header.right),
+	height: mm(4 + tabLineBorderWidth),
+	border: `${mm(tabLineBorderWidth)} solid #000`,
+	borderBottom: "none",
+	"&::before": {
+		content: '""',
+		position: "absolute",
+		bottom: 0,
+		left: mm(-O.header.left),
+		width: mm(O.header.left),
+		borderBottom: `${mm(tabLineBorderWidth)} solid #000`,
+		backgroundColor: "#000",
+	},
+	"&::after": {
+		content: '""',
+		position: "absolute",
+		bottom: 0,
+		right: mm(-O.header.right),
+		width: mm(O.header.right),
+		borderBottom: `${mm(tabLineBorderWidth)} solid #000`,
+		backgroundColor: "#000",
+	},
 });

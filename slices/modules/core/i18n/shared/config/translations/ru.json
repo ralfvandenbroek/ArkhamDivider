@@ -125,6 +125,10 @@
 	"category.sarnetsky.description": "Разделители Евгения Сарнецкого",
 	"category.arkham-deco.description": "Компактные разделители для систем хранения",
 	"divider.layout.arkham-deco.chapter1.description": "Компактные разделители для коробки кампании 1 главы",
+	"divider.layout.arkham-deco.chapter2.description": "Компактные разделители для коробки 2 главы",
+	"divider.layout.arkham-deco.deckBox.description": "Разделители для коробок от Game Genic, Ultimate Guard, Card Pro, Aegis и других",
+	"divider.layout.arkham-deco.ucfStandard.description": "Разделители для картотек UCF Standard от Meeple House",
+	"divider.layout.arkham-deco.ucf50.description": "Разделители для картотек UCF 50 от Meeple House",
 	"footer.disclaimer": "<AHLCG>Ужас Аркхэма: Карточная игра™</AHLCG> и все связанные материалы © <FFG>Fantasy Flight Games (FFG)</FFG>. Этот сайт не является продуктом, одобренным или связанным с FFG.",
 	"Upgrade": "Улучшения",
 	"About": "О проекте",
@@ -143,5 +147,9 @@
 	"customStory.translationHelp": "Этот сценарий ищет своего переводчика. Пожалуйста, свяжитесь со мной по контактам внизу страницы.",
 	"customStory.download": "Скачать карты для печати",
 	"customStory.translatedBy": "Перевод",
-	"divider.arkhamDeco.chapter1": "Коробка 1-ой Главы"
+	"divider.arkhamDeco.chapter1": "Коробка 1-ой Главы",
+	"divider.arkhamDeco.deckBox": "Дек бокс",
+	"divider.arkhamDeco.chapter2": "Коробка 2-ой Главы",
+	"divider.arkhamDeco.ucfStandard": "UCF Standard",
+	"divider.arkhamDeco.ucf50": "UCF 50"
 }

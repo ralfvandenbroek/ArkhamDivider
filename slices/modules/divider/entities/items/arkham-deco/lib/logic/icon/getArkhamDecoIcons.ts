@@ -1,7 +1,9 @@
 import { getDividerIcon } from "@/modules/divider/features/lib";
+import type { DividerType } from "@/modules/divider/shared/model";
 import type {
 	ArkhamDecoDividerLayout,
 	ArkhamDecoDividerProps,
+	ArkhamDecoIcon,
 } from "../../../model";
 import { getArkhamDecoDefaultCampaignIcon } from "./getArkhamDecoDefaultCampaignIcon";
 import { getArkhamDecoDefaultSecondaryIcon } from "./getArkhamDecoDefaultSecondaryIcon";
@@ -9,6 +11,13 @@ import { getArkhamDecoDefaultSecondaryIcon } from "./getArkhamDecoDefaultSeconda
 type Options = {
 	divider: ArkhamDecoDividerProps;
 	layout: ArkhamDecoDividerLayout;
+};
+
+type Input = {
+	type: DividerType;
+	campaign: ArkhamDecoIcon;
+	small: ArkhamDecoIcon;
+	secondary: ArkhamDecoIcon;
 };
 
 export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
@@ -51,15 +60,26 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		defaultIcon: defaultCampaignIcon,
 	};
 
-	if (layout.params?.tabInlineMargin) {
-		return {
-			left: small,
-			right: secondary,
-			center: campaign,
-		};
-	}
+	const getIcons = layout.params?.tab ? getTabIcons : getHorizontalIcons;
 
-	if (divider.type === "campaign") {
+	return getIcons({
+		type: divider.type,
+		campaign,
+		small,
+		secondary,
+	});
+};
+
+const getTabIcons = ({ campaign, small }: Input) => {
+	return {
+		left: small,
+		right: null,
+		center: campaign,
+	};
+};
+
+const getHorizontalIcons = ({ type, campaign, small, secondary }: Input) => {
+	if (type === "campaign") {
 		return {
 			left: null,
 			right: campaign,
@@ -67,7 +87,7 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		};
 	}
 
-	if (divider.type === "player") {
+	if (type === "player") {
 		return {
 			left: secondary,
 			right: small,
@@ -75,7 +95,7 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		};
 	}
 
-	if (divider.type === "investigator") {
+	if (type === "investigator") {
 		return {
 			left: small,
 			right: secondary,

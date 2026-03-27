@@ -30,7 +30,7 @@ export const layoutRoute = ({
 	if (storyCode) {
 		const storyCodePart = createRoutePart(storyCode);
 		const dividerTypePart = createRoutePart(getDividerType(dividerType));
-		return `${prefix}/layout/${layoutId}${storyCodePart}${dividerTypePart}`;
+		return `${prefix}/layout/${layoutId}${dividerTypePart}${storyCodePart}`;
 	}
 
 	if (dividerType) {

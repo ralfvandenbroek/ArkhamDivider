@@ -39,7 +39,7 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	size: BoxSize;
 	printSize: DividerPrintSize;
 	bleed: number;
-	sleeves?: DividerLayoutSleeve[];
+	sleeves?: DividerLayoutSleeve[] | null;
 	params?: Params;
 	background?: boolean;
 	iconParams?: string[];

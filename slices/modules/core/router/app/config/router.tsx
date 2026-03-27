@@ -37,10 +37,10 @@ export const router =
 									element: <LayoutPage />,
 								},
 								{
-									path: ":storyCode",
+									path: ":dividerType",
 									children: [
 										{
-											path: ":dividerType",
+											path: ":storyCode",
 											element: <LayoutPage />,
 										},
 									],

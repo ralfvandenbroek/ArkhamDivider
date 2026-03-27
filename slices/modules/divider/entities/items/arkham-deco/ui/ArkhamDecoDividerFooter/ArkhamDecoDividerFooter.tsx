@@ -15,8 +15,6 @@ export function ArkhamDecoDividerFooter() {
 		<>
 			<C.Corner position="left" />
 			<C.Corner position="right" />
-			<C.Wave position="left" />
-			<C.Wave position="right" />
 			<Image src={asset("/bottom-line.svg")} sx={lineSx} />
 		</>
 	);

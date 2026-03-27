@@ -22,10 +22,11 @@ export type ArkhamDecoDividerSxOptions = {
 	type?: DividerType;
 	xpCost?: XPCost | null;
 	sideXP?: boolean;
+	tab?: boolean;
 };
 
 export type ArkhamDecoLayoutParams = {
-	tabInlineMargin?: number;
+	tab?: boolean;
 };
 
 export type ArkhamDecoPosition = "left" | "right";
@@ -39,8 +40,15 @@ export type ArkhamDecoLayoutObjects = ReturnType<
 	typeof getArkhamDecoLayoutObjects
 >;
 
-export type ArkhamDecoDividerSxCallback =
-	PrintSxCallback<ArkhamDecoDividerSxOptions>;
+export type ArkhamDecoDividerSxCallback<T = object> = PrintSxCallback<
+	ArkhamDecoDividerSxOptions & T
+>;
 
 export type ArkhamDecoDividerLocaleSxCallback =
 	LocaleSxCallback<ArkhamDecoDividerSxOptions>;
+
+export type ArkhamDecoIcon = {
+	icon?: Icon | null;
+	param: string;
+	defaultIcon?: Icon | null;
+};

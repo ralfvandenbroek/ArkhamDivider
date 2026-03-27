@@ -4,7 +4,7 @@ import { createSize } from "@/shared/util";
 import type { ArkhamDecoDividerLayout } from "../model";
 import { arkhamDecoCategoryId } from "./common";
 
-const horizontalLayout: ArkhamDecoDividerLayout = {
+const chapter1Layout: ArkhamDecoDividerLayout = {
 	id: "arkham-deco",
 	name: "divider.arkhamDeco.chapter1",
 	image: "/images/divider/render/arkham-deco.avif",
@@ -39,4 +39,80 @@ const horizontalLayout: ArkhamDecoDividerLayout = {
 	},
 };
 
-export const arkhamDecoLayouts: DividerLayout[] = [horizontalLayout];
+const chapter2Layout: ArkhamDecoDividerLayout = {
+	...chapter1Layout,
+	id: "chapter2",
+	groupId: "chapter2",
+	name: "divider.arkhamDeco.chapter2",
+	description: "divider.layout.arkham-deco.chapter2.description",
+	size: createSize(87, 70),
+	printSize: {
+		300: {
+			size: createSize(1028, 827),
+			bleedSize: createSize(1098, 898),
+		},
+	},
+	sleeves: null,
+};
+
+const deckBoxLayout: ArkhamDecoDividerLayout = {
+	...chapter1Layout,
+	id: "deck-box",
+	groupId: "deck-box",
+	name: "divider.arkhamDeco.deckBox",
+	description: "divider.layout.arkham-deco.deckBox.description",
+	size: createSize(94, 70),
+	printSize: {
+		300: {
+			size: createSize(1110, 827),
+			bleedSize: createSize(1181, 898),
+		},
+	},
+	sleeves: null,
+};
+
+const ucfStandardLayout: ArkhamDecoDividerLayout = {
+	...chapter1Layout,
+	id: "ucf-standard",
+	groupId: "ucf-standard",
+	name: "divider.arkhamDeco.ucfStandard",
+	description: "divider.layout.arkham-deco.ucfStandard.description",
+	size: createSize(94, 67),
+	printSize: {
+		300: {
+			size: createSize(1110, 791),
+			bleedSize: createSize(1181, 862),
+		},
+	},
+	sleeves: null,
+	params: {
+		tab: true,
+	},
+};
+
+export const ucf50Layout: ArkhamDecoDividerLayout = {
+	...chapter1Layout,
+	id: "ucf-50",
+	groupId: "ucf-50",
+	name: "divider.arkhamDeco.ucf50",
+	description: "divider.layout.arkham-deco.ucf50.description",
+	size: createSize(93.5, 68.5),
+	printSize: {
+		300: {
+			size: createSize(1104, 809),
+			bleedSize: createSize(1175, 880),
+		},
+	},
+	sleeves: null,
+	params: {
+		tab: true,
+	},
+};
+
+export const arkhamDecoLayouts: DividerLayout[] = [
+	chapter1Layout,
+	chapter2Layout,
+	deckBoxLayout,
+	ucfStandardLayout,
+	ucf50Layout,
+];
