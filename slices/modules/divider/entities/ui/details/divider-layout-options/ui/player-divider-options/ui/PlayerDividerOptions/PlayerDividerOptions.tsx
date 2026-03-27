@@ -28,7 +28,10 @@ import { factions } from "@/modules/faction/shared/config";
 import { getFactionIcon } from "@/modules/faction/shared/lib";
 import type { Faction } from "@/modules/faction/shared/model";
 import { selectStoryWithRelations } from "@/modules/story/entities/lib";
-import { selectStories, setStoryCode } from "@/modules/story/shared/lib";
+import {
+	selectScenarioStories,
+	setStoryCode,
+} from "@/modules/story/shared/lib";
 import { StorySelect } from "@/modules/story/shared/ui";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { CheckboxButton, IconButtonCheckbox, Row } from "@/shared/ui";
@@ -43,7 +46,7 @@ export function PlayerDividerOptions(props: BoxProps) {
 	const layout = useAppSelector(selectLayout);
 
 	const story = useAppSelector(selectStoryWithRelations);
-	const stories = useAppSelector(selectStories);
+	const stories = useAppSelector(selectScenarioStories);
 
 	const { control, getValues, setValue, watch } = useForm<PlayerDividerParams>({
 		defaultValues,

@@ -7,6 +7,7 @@ import type { StoryScenario } from "@/modules/story/shared/model";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
 import { arkhamDecoAssetUrl } from "../../config";
+import type { ArkhamDecoPosition } from "../../model";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext/ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerHeader.styles";
 
@@ -44,10 +45,21 @@ export const RightScenarioCorner = ({
 	return <Image src={asset("/top-right-corner.png")} sx={sx} />;
 };
 
-export const TopLine = () => {
-	const getPrintSx = usePrintUnit();
-	const sx = getPrintSx(S.getTopLineSx);
-	return <Image src={asset("/top-line.svg")} sx={sx} />;
+export const StoryLine = ({ position }: { position: ArkhamDecoPosition }) => {
+	const getPrintSx = usePrintUnit({ position });
+	const sx = getPrintSx(S.getStoryLineSx);
+
+	return <Image src={asset("/tab-top-line.png")} sx={sx} />;
+};
+
+export const StoryLineTentacle = ({
+	position,
+}: {
+	position: ArkhamDecoPosition;
+}) => {
+	const getPrintSx = usePrintUnit({ position });
+	const sx = getPrintSx(S.getStoryLineTentacleSx);
+	return <Image src={asset("/tab-tentacles.png")} sx={sx} />;
 };
 
 export const NoIconLine = () => {

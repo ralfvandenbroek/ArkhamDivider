@@ -1,8 +1,8 @@
-import { Box } from "@mui/material";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
 import { arkhamDecoAssetUrl } from "../../config";
+import * as C from "./ArkhamDecoDividerFooter.components";
 import * as S from "./ArkhamDecoDividerFooter.styles";
 
 const asset = prefix(arkhamDecoAssetUrl);
@@ -13,23 +13,11 @@ export function ArkhamDecoDividerFooter() {
 
 	return (
 		<>
-			<BottomCorner position="left" />
-			<BottomCorner position="right" />
+			<C.Corner position="left" />
+			<C.Corner position="right" />
+			<C.Wave position="left" />
+			<C.Wave position="right" />
 			<Image src={asset("/bottom-line.svg")} sx={lineSx} />
 		</>
 	);
 }
-
-const BottomCorner = ({ position }: { position: "left" | "right" }) => {
-	const getPrintSx = usePrintUnit();
-	const sx = getPrintSx(S.getBottomCornerSx, { position });
-	const imageSx = getPrintSx(S.getBottomCornerImageSx);
-	const tentacleSx = getPrintSx(S.getBottomTentacleSx);
-
-	return (
-		<Box sx={sx}>
-			<Image src={asset("/bottom-tentacle.svg")} sx={tentacleSx} />
-			<Image src={asset("/bottom-corner.svg")} sx={imageSx} />
-		</Box>
-	);
-};

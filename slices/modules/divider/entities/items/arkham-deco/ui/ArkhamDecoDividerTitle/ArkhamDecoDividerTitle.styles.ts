@@ -39,14 +39,19 @@ export const getOutlineSx: ArkhamDecoDividerSxCallback = ({ mm }) => ({
 
 const titleColor = "#2e2622";
 
-export const getTitleClearSx: ArkhamDecoDividerSxCallback = ({ mm }) => ({
-	position: "absolute",
-	top: `calc(100% + ${mm(1.5)})`,
-	background: titleColor,
-	color: "#fdf8e3",
-	"@media screen": {
-		"&:hover": {
-			background: alpha(titleColor, 0.5),
+export const getTitleClearSx: ArkhamDecoDividerSxCallback = (options) => {
+	const { mm } = options;
+	const T = getArkhamDecoTitleObject(options);
+	return {
+		position: "absolute",
+		top: `calc(100% + ${mm(1.5)})`,
+		left: `calc(50% + ${mm((T.right - T.left) / 2)})`,
+		background: titleColor,
+		color: "#fdf8e3",
+		"@media screen": {
+			"&:hover": {
+				background: alpha(titleColor, 0.5),
+			},
 		},
-	},
-});
+	};
+};

@@ -30,6 +30,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const layout = useAppSelector(selectLayout) as ArkhamDecoDividerLayout;
+	const { orientation } = layout;
 	const { singleSide = false } = useAppSelector(selectScenarioParams);
 	const contentSx = getPrintSx(S.getContentSx);
 
@@ -59,6 +60,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 						<Box sx={bodySx}>
 							<C.SideBorder position="left" />
 							<C.SideBorder position="right" />
+							<C.Scratches orientation={orientation} />
 							<BackgroundIcon sx={backgroundIconSx} />
 						</Box>
 						<Footer />

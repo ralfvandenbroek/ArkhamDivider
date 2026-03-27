@@ -114,7 +114,7 @@
 	"divider.subtype.bonded": "Зависимые",
 	"divider.subtype.customizations": "Адаптации",
 	"divider.subtype.ally": "Союзники",
-	"layout.singleSideLayout": "Пустая задняя сторона (при двусторонней печати)",
+	"layout.singleSideLayout": "Односторонний макет (при двусторонней печати)",
 	"Eugene Sarnetsky": "Евгений Сарнецкий",
 	"divider.sarnetsky.horizontal": "Горизонтальный",
 	"divider.sarnetsky.vertical": "Вертикальный",

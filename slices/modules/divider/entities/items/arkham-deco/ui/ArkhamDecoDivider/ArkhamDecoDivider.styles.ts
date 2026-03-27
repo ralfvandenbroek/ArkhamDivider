@@ -30,7 +30,6 @@ export const getSideBorderSx: PrintSxCallback<{
 	transform:
 		position === "left" ? "translateY(-50%) scaleX(-1)" : "translateY(-50%)",
 });
-
 export const getBackgroundIconSx: PrintSxCallback = () => ({
 	position: "absolute",
 	top: 0,

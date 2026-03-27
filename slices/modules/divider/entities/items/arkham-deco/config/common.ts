@@ -25,6 +25,7 @@ export const arkhamDecoHorizontalObjects = {
 		},
 		campaign: {
 			textAlign: "center",
+			right: 15,
 		},
 		scenario: {
 			right: 25,

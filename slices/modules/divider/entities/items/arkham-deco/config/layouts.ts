@@ -32,6 +32,7 @@ const horizontalLayout: ArkhamDecoDividerLayout = {
 	playerParams: {
 		numericXP: true,
 		sideXP: true,
+		story: true,
 	},
 	additionalParams: {
 		singleSide: true,

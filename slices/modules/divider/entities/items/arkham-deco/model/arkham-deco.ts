@@ -28,6 +28,8 @@ export type ArkhamDecoLayoutParams = {
 	tabInlineMargin?: number;
 };
 
+export type ArkhamDecoPosition = "left" | "right";
+
 export type ArkhamDecoDividerProps =
 	DividerWithRelations<ArkhamDecoDividerParams>;
 

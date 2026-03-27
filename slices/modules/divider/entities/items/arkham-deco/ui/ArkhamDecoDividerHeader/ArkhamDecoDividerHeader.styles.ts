@@ -1,5 +1,8 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
-import type { ArkhamDecoDividerSxCallback } from "../../model";
+import type {
+	ArkhamDecoDividerSxCallback,
+	ArkhamDecoPosition,
+} from "../../model";
 
 export const getLeftHorizontalCornerSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
@@ -36,16 +39,32 @@ export const getVerticalScenarioCornerSx: PrintSxCallback = ({ mm }) => ({
 });
 
 const topLineCropMm = {
-	left: 10.1,
-	right: 26.8,
+	left: 10,
+	right: 20.8,
 };
 
-export const getTopLineSx: PrintSxCallback = ({ mm }) => ({
+const headerHeight = 6;
+
+export const getStoryLineSx: PrintSxCallback<{
+	position: ArkhamDecoPosition;
+}> = ({ mm, position }) => ({
 	position: "absolute",
-	top: mm(6 - 0.15),
-	left: 0,
-	width: mm(110),
+	top: mm(headerHeight - 1.8),
+	[position]: 0,
+	height: mm(2.6),
+	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
 	clipPath: `inset(0 ${mm(topLineCropMm.right)} 0 ${mm(topLineCropMm.left)})`,
+	zIndex: 3,
+});
+
+export const getStoryLineTentacleSx: PrintSxCallback<{
+	position: ArkhamDecoPosition;
+}> = ({ mm, position }) => ({
+	position: "absolute",
+	top: mm(headerHeight - 1),
+	[position]: `calc(50% - ${mm(8.5)})`,
+	width: mm(6),
+	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
 	zIndex: 3,
 });
 
@@ -57,7 +76,7 @@ const noIconLineCropMm = {
 export const getNoIconLineSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
 	left: mm(-1),
-	top: mm(6 - 1.1),
+	top: mm(headerHeight - 1.1),
 	width: mm(94.4),
 	clipPath: `inset(0 ${mm(noIconLineCropMm.right)} 0 ${mm(noIconLineCropMm.left)})`,
 	zIndex: 3,
@@ -73,6 +92,7 @@ export const getLeftIconSx: ArkhamDecoDividerSxCallback = ({
 	fontSize: mm(O.leftIcon.fontSize),
 	width: mm(O.leftIcon.width),
 	height: mm(O.leftIcon.height),
+	zIndex: 5,
 });
 
 export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
@@ -82,7 +102,16 @@ export const getRightIconSx: PrintSxCallback = ({ mm }) => ({
 	fontSize: mm(2.9),
 	width: mm(8),
 	height: mm(6),
-	zIndex: 3,
+	zIndex: 5,
+});
+
+export const getCenterIconSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(4.7),
+	left: "50%",
+	transform: "translateX(-50%)",
+	fontSize: mm(2.5),
+	zIndex: 5,
 });
 
 export const getScenarioCornerSx: PrintSxCallback = ({ mm }) => ({
@@ -106,8 +135,8 @@ export const getScenarioNumberSx: ArkhamDecoDividerSxCallback = ({
 	fontFamily: "Arkhamic, Teutonic, serif",
 	lineHeight: 1,
 	position: "relative",
-	zIndex: 2,
-	height: mm(6),
+	zIndex: 5,
+	height: mm(headerHeight),
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",

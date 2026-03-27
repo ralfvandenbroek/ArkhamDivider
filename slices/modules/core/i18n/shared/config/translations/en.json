@@ -77,7 +77,7 @@
 	"divider.subtype.bonded": "Bonded Cards",
 	"divider.subtype.customizations": "Customizations",
 	"divider.subtype.ally": "Allies",
-	"layout.singleSideLayout": "Empty back side (when double-sided printing)",
+	"layout.singleSideLayout": "Single-sided layout (when double-sided printing)",
 	"info.bleed": "Bleed is needed to remove white borders from the divider edges due to the inevitable error of the knife in 1–2 mm and deviations when printing on both sides",
 	"info.sleeves": "You can use sleeves instead of laminating a divider. This increases the density of a divider and its lifespan.",
 	"category.classic.description": "Return To Set Dividers",

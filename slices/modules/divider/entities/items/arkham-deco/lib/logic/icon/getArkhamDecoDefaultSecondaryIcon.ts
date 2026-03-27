@@ -6,5 +6,8 @@ export const getArkhamDecoDefaultSecondaryIcon = (
 	if (props.layoutType === "scenario") {
 		return;
 	}
+	if (props.type === "investigator") {
+		return "investigator";
+	}
 	return props.faction;
 };

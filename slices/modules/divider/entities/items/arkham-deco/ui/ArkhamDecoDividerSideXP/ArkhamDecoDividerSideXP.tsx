@@ -13,11 +13,11 @@ const MAX_XP = 5;
 // - filled/range level slot is 2.4mm wide
 // - full bar is 4mm, shifted left by 1.3mm and down by 0.8mm
 // - small bar is 2mm, bottom-aligned inside the slot
-const SLOT_WIDTH = 2.4;
+const SLOT_WIDTH = 2;
 const SLOT_WIDTH_FULL = 2.4;
 const FULL_WIDTH = 4;
-const SMALL_WIDTH = 3;
-const SMALL_OFFSET_X = 1;
+const SMALL_WIDTH = 2.4;
+const SMALL_OFFSET_X = 1.2;
 const FULL_OFFSET_X = -1.3;
 const FULL_OFFSET_Y = -0.8;
 const SLOT_HEIGHT = 2;
