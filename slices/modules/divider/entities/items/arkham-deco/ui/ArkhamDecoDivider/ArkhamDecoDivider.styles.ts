@@ -48,15 +48,10 @@ export const getHeaderSx: PrintSxCallback = () => ({
 	zIndex: 3,
 });
 
-export const getTitleSx: ArkhamDecoDividerSxCallback = ({
-	mm,
-	objects: O,
-	type,
-}) => {
-	const T = getArkhamDecoTitleObject({
-		objects: O,
-		type,
-	});
+export const getTitleSx: ArkhamDecoDividerSxCallback = (options) => {
+	const { mm } = options;
+
+	const T = getArkhamDecoTitleObject(options);
 	return {
 		position: "absolute",
 		zIndex: 5,

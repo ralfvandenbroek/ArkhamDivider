@@ -20,13 +20,16 @@ export const arkhamDecoHorizontalObjects = {
 			fontSize: 4,
 			top: 0,
 			left: 15,
-			right: 15,
+			right: 9.5,
 			textAlign: "left",
 		},
 		campaign: {
 			textAlign: "center",
 		},
 		scenario: {
+			right: 25,
+		},
+		xp: {
 			right: 25,
 		},
 	},

@@ -4,6 +4,7 @@ import type {
 	DividerLayout,
 	DividerType,
 	DividerWithRelations,
+	XPCost,
 } from "@/modules/divider/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { getArkhamDecoLayoutObjects } from "../lib";
@@ -19,6 +20,8 @@ export type ArkhamDecoDividerParams = {
 export type ArkhamDecoDividerSxOptions = {
 	objects: ArkhamDecoLayoutObjects;
 	type?: DividerType;
+	xpCost?: XPCost | null;
+	sideXP?: boolean;
 };
 
 export type ArkhamDecoLayoutParams = {

@@ -5,15 +5,10 @@ import type {
 	ArkhamDecoDividerSxCallback,
 } from "../../model";
 
-export const getTitleSx: ArkhamDecoDividerLocaleSxCallback = ({
-	mm,
-	objects: O,
-	type,
-}) => {
-	const T = getArkhamDecoTitleObject({
-		objects: O,
-		type,
-	});
+export const getTitleSx: ArkhamDecoDividerLocaleSxCallback = (options) => {
+	const { mm } = options;
+	const T = getArkhamDecoTitleObject(options);
+
 	return {
 		default: {
 			fontSize: mm(T.fontSize),
@@ -39,6 +34,7 @@ export const getOutlineSx: ArkhamDecoDividerSxCallback = ({ mm }) => ({
 	top: mm(0.2),
 	bottom: mm(0.1),
 	left: mm(-1),
+	right: mm(-1),
 });
 
 const titleColor = "#2e2622";
