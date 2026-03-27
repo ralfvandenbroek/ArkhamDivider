@@ -2,7 +2,7 @@ import { Box, type BoxProps, type SxProps } from "@mui/material";
 import { useContext } from "react";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { absoluteFill } from "@/shared/config";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import { ArkhamDecoDividerContext } from "../../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerOverlay.styles";
 
 type ArkhamDecoDividerOverlayProps = BoxProps;

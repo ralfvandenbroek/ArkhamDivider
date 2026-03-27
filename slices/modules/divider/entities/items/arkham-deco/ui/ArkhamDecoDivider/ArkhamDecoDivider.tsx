@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	DividerBackground as Background,
 	DividerContainer as Container,
 	DividerContent as Content,
-	DividerColorPicker,
 } from "@/modules/divider/entities/ui";
 import { selectScenarioParams } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
@@ -20,8 +18,11 @@ import { ArkhamDecoDividerBackgroundIcon as BackgroundIcon } from "../ArkhamDeco
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import { ArkhamDecoDividerFooter as Footer } from "../ArkhamDecoDividerFooter";
 import { ArkhamDecoDividerHeader as Header } from "../ArkhamDecoDividerHeader";
-import { ArkhamDecoDividerOverlay as Overlay } from "../ArkhamDecoDividerOverlay";
 import { ArkhamDecoDividerTitle as Title } from "../ArkhamDecoDividerTitle";
+import {
+	ArkhamDecoDividerOverlay as Overlay,
+	ArkhamDecoDividerOverlayPicker as OverlayPicker,
+} from "../overlay";
 import * as C from "./ArkhamDecoDivider.components";
 import * as S from "./ArkhamDecoDivider.styles";
 
@@ -31,7 +32,6 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const sxOptions = useArkhamDecoSxOptions(props);
 	const { objects } = sxOptions;
 	const getPrintSx = usePrintUnit(sxOptions);
-	const { t } = useTranslation();
 	const layout = useAppSelector(selectLayout) as ArkhamDecoDividerLayout;
 	const { orientation } = layout;
 	const { singleSide = false } = useAppSelector(selectScenarioParams);
@@ -41,7 +41,6 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const titleSx = getPrintSx(S.getTitleSx);
-	const overlayPickerSx = getPrintSx(S.getOverlayPickerSx);
 
 	const showContent = !singleSide || props.side === "front";
 
@@ -59,12 +58,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 				{layout.color && <Background src={backgroundUrl} />}
 				<Overlay />
 				<Content sx={{ mixBlendMode: "multiply" }} hidden={!showContent}>
-					<DividerColorPicker
-						dividerId={props.id}
-						param="overlayColor"
-						title={t("Background Color")}
-						sx={overlayPickerSx}
-					/>
+					<OverlayPicker />
 					<Box sx={contentSx}>
 						<Header sx={headerSx} />
 						<Title sx={titleSx} />
