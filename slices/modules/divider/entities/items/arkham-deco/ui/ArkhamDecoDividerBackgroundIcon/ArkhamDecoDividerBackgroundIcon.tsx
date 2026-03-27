@@ -17,7 +17,7 @@ export const ArkhamDecoDividerBackgroundIcon = ({
 
 	const icon = getDividerIcon({
 		divider,
-		param: "background",
+		param: "backgroundIcon",
 		defaultIcon: divider.icon,
 	});
 
@@ -35,7 +35,7 @@ export const ArkhamDecoDividerBackgroundIcon = ({
 		<Box {...props} sx={sx}>
 			<Image src={`${arkhamDecoAssetUrl}/pattern.svg`} sx={backgroundSx} />
 			<Box sx={iconContainerSx}>
-				<DividerIcon dividerId={divider.id} icon={icon} sx={iconSx} />
+				<DividerIcon dividerId={divider.id} icon={icon} sx={iconSx} visible />
 			</Box>
 		</Box>
 	);

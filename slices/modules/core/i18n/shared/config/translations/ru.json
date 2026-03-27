@@ -139,5 +139,6 @@
 	"customStory.fanMadeBy": "Фанатский сценарий от {{creator}}",
 	"customStory.translationHelp": "Этот сценарий ищет своего переводчика. Пожалуйста, свяжитесь со мной по контактам внизу страницы.",
 	"customStory.download": "Скачать карты для печати",
-	"customStory.translatedBy": "Перевод"
+	"customStory.translatedBy": "Перевод",
+	"divider.arkhamDeco.chapter1": "Коробка 1-ой Главы"
 }

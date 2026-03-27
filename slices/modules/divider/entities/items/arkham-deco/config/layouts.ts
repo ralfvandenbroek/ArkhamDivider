@@ -1,11 +1,12 @@
 import { outerSleeve } from "@/entities/sleeve/config";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { createSize } from "@/shared/util";
+import type { ArkhamDecoDividerLayout } from "../model";
 import { arkhamDecoCategoryId } from "./common";
 
-const horizontalLayout: DividerLayout = {
+const horizontalLayout: ArkhamDecoDividerLayout = {
 	id: "arkham-deco",
-	name: "divider.arkhamDeco.campaign",
+	name: "divider.arkhamDeco.chapter1",
 	image: "/images/divider/render/arkham-deco.avif",
 	orientation: "horizontal",
 	color: true,
@@ -26,7 +27,7 @@ const horizontalLayout: DividerLayout = {
 	],
 	types: ["scenario", "player", "investigator"],
 	categoryId: arkhamDecoCategoryId,
-	groupId: "campaign",
+	groupId: "chapter1",
 };
 
 export const arkhamDecoLayouts: DividerLayout[] = [horizontalLayout];

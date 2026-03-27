@@ -1,4 +1,6 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import { getArkhamDecoTitleObject } from "../../lib";
+import type { ArkhamDecoDividerSxCallback } from "../../model";
 
 const headerHeight = 6;
 
@@ -37,3 +39,30 @@ export const getBackgroundIconSx: PrintSxCallback = () => ({
 	bottom: 0,
 	zIndex: 3,
 });
+
+export const getHeaderSx: PrintSxCallback = () => ({
+	position: "absolute",
+	top: 0,
+	left: 0,
+	right: 0,
+	zIndex: 3,
+});
+
+export const getTitleSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+	type,
+}) => {
+	const T = getArkhamDecoTitleObject({
+		objects: O,
+		type,
+	});
+	return {
+		position: "absolute",
+		zIndex: 5,
+		top: mm(T.top),
+		height: mm(T.height),
+		left: mm(T.left),
+		right: mm(T.right),
+	};
+};

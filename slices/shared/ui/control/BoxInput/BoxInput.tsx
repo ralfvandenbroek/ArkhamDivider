@@ -117,12 +117,11 @@ export function BoxInput({
 		display: "grid",
 		gridTemplateColumns: "100%",
 		alignItems: "center",
-		justifyItems: "center",
 	};
 
 	const sx = {
-		...props.sx,
 		...positionProps,
+		...props.sx,
 		outline: "none",
 		opacity: props.hidden ? 0 : 1,
 		visibility: props.hidden ? "hidden" : "visible",

@@ -63,8 +63,8 @@ export default {
 		left: percent(5),
 	},
 	cult_of_umordoth: {
-		top: percent(-2),
-		left: percent(1),
+		top: percent(-3),
+		left: percent(3),
 		scale: percent(95),
 	},
 	ghouls_of_umrdhoth: {
