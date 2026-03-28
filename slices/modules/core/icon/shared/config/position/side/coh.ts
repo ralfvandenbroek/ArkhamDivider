@@ -3,12 +3,11 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	"standalone-venice": {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 		scale: percent(90),
 	},
 	carnevale: {
-		top: percent(-4),
-		left: percent(4),
+		top: percent(-2),
 	},
 } as IconPositionManifest;

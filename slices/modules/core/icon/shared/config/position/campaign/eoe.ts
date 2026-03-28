@@ -3,96 +3,68 @@ import type { IconPositionManifest } from "../../../model";
 import { returnPosition } from "../util";
 
 export default {
-	elder_things: {
-		left: percent(4),
-	},
-	miasma: {
-		left: percent(4),
-	},
+	elder_things: {},
+	miasma: {},
 	nameless_horrors: {
-		top: percent(-2),
-		left: percent(3),
+		left: percent(-1),
 		scale: percent(90),
 	},
 	penguins: {
-		top: percent(-2),
-		left: percent(2),
+		left: percent(-2),
 	},
 	shoggoths: {
-		top: percent(-2),
-		left: percent(2),
+		left: percent(-2),
 	},
 	tekeli_li: returnPosition,
 	silence_and_mystery: {
-		top: percent(-4),
-		left: percent(2),
+		top: percent(-2),
+		left: percent(-2),
 		scale: percent(110),
 	},
 	expedition_team: {
-		top: percent(-2),
-		left: percent(4),
 		scale: percent(95),
 	},
-	agents_of_the_unknown: {
-		left: percent(4),
-	},
+	agents_of_the_unknown: {},
 	left_behind: {
-		top: percent(-6),
-		left: percent(4),
+		top: percent(-4),
 	},
 	ice_and_death: {
-		top: percent(-2),
-		left: percent(4),
 		scale: percent(110),
 	},
-	deadly_weather: {
-		top: percent(-2),
-		left: percent(4),
-	},
+	deadly_weather: {},
 	hazards_of_antarctica: {
-		top: percent(-2),
+		left: percent(-4),
 	},
-	lost_in_the_night: {
-		left: percent(3),
-	},
+	lost_in_the_night: {},
 	sleeping_nightmares: {
-		left: percent(4),
+		top: percent(2),
 		scale: percent(115),
 	},
 	the_heart_of_madness: returnPosition,
-	stirring_in_the_deep: {
-		left: percent(4),
-	},
-	memorials_of_the_lost: {
-		top: percent(-2),
-		left: percent(4),
-	},
+	stirring_in_the_deep: {},
+	memorials_of_the_lost: {},
 	the_crash: {
-		left: percent(5),
+		top: percent(2),
+		left: percent(1),
 	},
-	to_the_forbidden_peaks: {
-		left: percent(4),
-	},
+	to_the_forbidden_peaks: {},
 	city_of_the_elder_things: {
-		top: percent(4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(6),
 		scale: percent(105),
 	},
 	the_great_seal: {
-		top: percent(2),
-		left: percent(6),
+		top: percent(4),
+		left: percent(2),
 		scale: percent(110),
 	},
-	fatal_mirage: {
-		left: percent(3),
-	},
+	fatal_mirage: {},
 	eoe_campaign: {
-		left: percent(4),
+		top: percent(2),
 		scale: percent(110),
 	},
 	eoe: {
-		top: percent(-3),
-		left: percent(4),
+		top: percent(-1),
 		scale: percent(110),
 	},
 } as IconPositionManifest;

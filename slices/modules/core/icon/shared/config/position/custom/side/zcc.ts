@@ -3,15 +3,14 @@ import type { IconPositionManifest } from "../../../../model";
 
 export default {
 	consternation_on_the_constellation: {
-		top: percent(-2),
-		left: percent(3),
+		left: percent(-1),
 	},
 	"standalone-deep_ones": {
-		top: percent(-4),
-		left: percent(1),
+		top: percent(-2),
+		left: percent(-3),
 	},
 	sinking_ship: {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 	},
 } as IconPositionManifest;

@@ -3,12 +3,11 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	lol: {
-		top: percent(-5),
-		left: percent(1),
+		top: percent(-3),
+		left: percent(-3),
 	},
 	in_the_labyrinths_of_lunacy: {
-		top: percent(-3),
-		left: percent(4),
+		top: percent(-1),
 		scale: percent(95),
 	},
 } as IconPositionManifest;

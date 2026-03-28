@@ -3,7 +3,6 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	gala: {
-		top: percent(-4),
-		left: percent(4),
+		top: percent(-2),
 	},
 } as IconPositionManifest;

@@ -3,95 +3,97 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	tdcc: {
-		top: percent(-2),
-		left: percent(2),
+		left: percent(-2),
 	},
-	dreams: {
-		left: percent(4),
-	},
+	dreams: {},
 	tdc_expedition: {
-		top: percent(-2),
-		left: percent(2),
+		left: percent(-2),
 	},
 	cosmic_legacy: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	deep_ones: {
+		top: percent(2),
+		left: percent(-4),
 		scale: percent(90),
 	},
 	tdc_flood: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	rlyeh: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 		scale: percent(85),
 	},
 	star_spawn: {
-		left: percent(4),
+		top: percent(2),
 		scale: percent(90),
 	},
 	the_inescapable: {
-		top: percent(-6),
-		left: percent(2),
+		top: percent(-4),
+		left: percent(-2),
 		scale: percent(95),
 	},
 	undersea_creatures: {
-		top: percent(3),
-		left: percent(2),
+		top: percent(5),
+		left: percent(-2),
 		scale: percent(95),
 	},
 	alien_machinery: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	elder_mist: {
-		top: percent(-3),
-		left: percent(2),
+		top: percent(-1),
+		left: percent(-2),
 	},
 	pilgrims: {
-		top: percent(-2),
-		left: percent(3),
-	},
-	stowaways: {
-		top: percent(-4),
 		left: percent(-1),
 	},
-	domination: {
-		left: percent(4),
+	stowaways: {
+		top: percent(-2),
+		left: percent(-5),
 	},
+	domination: {},
 	tasks: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	one_last_job: {
+		top: percent(2),
+		left: percent(-4),
 		scale: percent(90),
 	},
 	the_western_wall: {
-		top: percent(-2),
-		left: percent(2),
+		left: percent(-2),
 		scale: percent(105),
 	},
 	the_drowned_quarter: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
-	the_apiary: {
-		top: percent(-2),
-		left: percent(4),
-	},
-	the_grand_vault: {
-		left: percent(4),
-	},
+	the_apiary: {},
+	the_grand_vault: {},
 	court_of_the_ancients: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	obsidian_canyons: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	sepulchre_of_the_sleeper: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 	the_doom_of_arkham_part_1: {
-		top: percent(-6),
+		left: percent(-4),
+		top: percent(-4),
 	},
 	the_doom_of_arkham_part_2: {
-		left: percent(2),
+		top: percent(2),
+		left: percent(-2),
 	},
 } as IconPositionManifest;

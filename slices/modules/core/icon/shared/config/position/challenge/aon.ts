@@ -3,8 +3,8 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	all_or_nothing: {
-		top: percent(-10),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-8),
 		scale: percent(90),
 	},
 } as IconPositionManifest;

@@ -18,8 +18,8 @@ const iconObject = {
 	...classicDividerHorizontalObjects.icon,
 	size: 7.9,
 	fontSize: 7.5,
-	top: 2.5,
-	right: 1.3,
+	top: 2.2,
+	right: 1,
 };
 
 const xpObject = {
@@ -37,34 +37,32 @@ const xpObject = {
 	},
 };
 
-export const invocation2018DividerHorizontalObjects = {
-	...mergeDeepRight(classicDividerHorizontalObjects, {
+export const invocation2018DividerHorizontalObjects = mergeDeepRight(
+	classicDividerHorizontalObjects,
+	{
 		text: {
 			default: defaultTextObject,
 		},
 		icon: iconObject,
 		xp: xpObject,
-	}),
-};
+	},
+);
 
-const verticalXPObject = {
-	...xpObject,
+const verticalXPObject = mergeDeepRight(xpObject, {
 	container: {
-		...xpObject.container,
 		right: 2.2,
 	},
 	side: {
-		...xpObject.side,
 		top: 3.6,
 	},
-};
+});
 
 export const invocation2018DividerVertical63Objects = {
 	...mergeDeepRight(classicDividerVertical63Objects, {
 		text: {
 			default: defaultTextObject,
 		},
-		icon: { ...iconObject, right: 2 },
+		icon: { ...iconObject, right: 1.4 },
 		xp: verticalXPObject,
 	}),
 };
@@ -74,9 +72,9 @@ export const invocation2018DividerVertical65Objects = {
 		text: {
 			default: defaultTextObject,
 		},
-		icon: { ...iconObject, right: 2.9 },
+		icon: { ...iconObject, right: 2.2 },
 		xp: mergeDeepRight(verticalXPObject, {
-			container: { right: 3.3 },
+			container: { right: 3.2 },
 			side: { right: 12 },
 		}),
 	}),

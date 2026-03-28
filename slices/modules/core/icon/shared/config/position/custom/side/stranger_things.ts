@@ -3,16 +3,16 @@ import type { IconPositionManifest } from "../../../../model";
 
 export default {
 	stranger_things: {
-		top: percent(-3),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-1),
 		scale: percent(90),
 	},
 	"stranger_things-upside_down": {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 	},
 	"stranger_things-stranger_things_set": {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 	},
 } as IconPositionManifest;

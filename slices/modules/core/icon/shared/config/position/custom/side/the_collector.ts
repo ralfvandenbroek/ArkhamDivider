@@ -3,8 +3,7 @@ import type { IconPositionManifest } from "../../../../model";
 
 export default {
 	the_collector: {
-		top: percent(-2),
-		left: percent(3),
+		left: percent(-1),
 		scale: percent(90),
 	},
 } as IconPositionManifest;

@@ -26,8 +26,8 @@ export const classicDividerHorizontalObjects = {
 	icon: {
 		size: 8.33,
 		fontSize: 8,
-		top: 2.2,
-		right: 0.85,
+		top: 2,
+		right: 0.6,
 		params: {
 			scaleType: "circle",
 			scaleFactor: {
@@ -82,8 +82,8 @@ export const classicDividerHorizontalHQObjects = mergeDeepRight(
 			},
 		},
 		icon: {
-			top: 1.5,
-			right: 1,
+			top: 1.3,
+			right: 0.8,
 			fontSize: 7.9,
 			withXP: {
 				top: 0.9,
@@ -121,6 +121,7 @@ export const classicDividerVertical65Objects = mergeDeepRight(
 			left: 7.5,
 		},
 		icon: {
+			right: 1.6,
 			withXP: {
 				right: 2,
 			},

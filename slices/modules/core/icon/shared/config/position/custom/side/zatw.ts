@@ -3,16 +3,16 @@ import type { IconPositionManifest } from "../../../../model";
 
 export default {
 	wendigo: {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 		scale: percent(95),
 	},
 	hannihah_valley: {
-		top: percent(-4),
-		left: percent(5),
+		top: percent(-2),
+		left: percent(1),
 	},
 	wendigos_myth: {
-		top: percent(-1),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(1),
 	},
 } as IconPositionManifest;

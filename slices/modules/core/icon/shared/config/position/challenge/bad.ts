@@ -3,8 +3,8 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	bad_blood: {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 		scale: percent(85),
 	},
 } as IconPositionManifest;

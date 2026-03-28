@@ -3,8 +3,7 @@ import type { IconPositionManifest } from "../../../../model";
 
 export default {
 	the_limens_of_belief: {
-		top: percent(-5),
-		left: percent(4),
+		top: percent(-3),
 		scale: percent(95),
 	},
 } as IconPositionManifest;

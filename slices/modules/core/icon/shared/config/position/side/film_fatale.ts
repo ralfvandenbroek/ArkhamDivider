@@ -3,21 +3,19 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	film_fatale: {
-		top: percent(-1),
-		left: percent(4),
+		top: percent(1),
 	},
 	cosmic_journey: {
-		top: percent(-2),
-		left: percent(3),
+		left: percent(-1),
 		scale: percent(90),
 	},
 	forgotten_island: {
-		top: percent(-6),
-		left: percent(6),
+		top: percent(-4),
+		left: percent(2),
 	},
 	abominable_contessa: {
-		top: percent(-8),
-		left: percent(2),
+		top: percent(-6),
+		left: percent(-2),
 		scale: percent(90),
 	},
 } as IconPositionManifest;

@@ -20,8 +20,8 @@ const leftHorizontalIcon: SarnetskyIcon = {
 	fontSize: 6.4,
 	width: 7.1,
 	height: 7.1,
-	right: 76.5,
-	top: 5.7,
+	right: 76.4,
+	top: 5.4,
 	params: {
 		scaleType: "circle",
 		scaleFactor: {

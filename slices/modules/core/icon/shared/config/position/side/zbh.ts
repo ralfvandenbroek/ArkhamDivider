@@ -3,10 +3,11 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	barkham_horror: {
-		top: percent(-4),
-		left: percent(3),
+		left: percent(-1),
+		top: percent(-2),
 	},
 	meddling: {
-		top: percent(-4),
+		left: percent(-4),
+		top: percent(-2),
 	},
 } as IconPositionManifest;

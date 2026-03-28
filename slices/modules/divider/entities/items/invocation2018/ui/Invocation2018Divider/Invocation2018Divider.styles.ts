@@ -96,7 +96,7 @@ export const getIconBackgroundSx: Invocation2018DividerSxCallback = ({
 	width: mm(O.icon.size + 0.1),
 	height: mm(O.icon.size + 0.1),
 	top: orientation === "vertical" ? mm(2) : mm(1.9),
-	right: mm(O.icon.right - 0.2),
+	right: mm(O.icon.right + 0.3),
 });
 
 const strokeClipSize = 11.3;
