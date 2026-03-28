@@ -5,6 +5,7 @@ import type {
 	ArkhamDecoDividerProps,
 	ArkhamDecoIcon,
 } from "../../../model";
+import { isArkhamDecoCompactLayout } from "../isArkhamDecoCompactLayout";
 import { getArkhamDecoDefaultCampaignIcon } from "./getArkhamDecoDefaultCampaignIcon";
 import { getArkhamDecoDefaultSecondaryIcon } from "./getArkhamDecoDefaultSecondaryIcon";
 
@@ -60,7 +61,9 @@ export const getArkhamDecoIcons = ({ divider, layout }: Options) => {
 		defaultIcon: defaultCampaignIcon,
 	};
 
-	const getIcons = layout.params?.tab ? getTabIcons : getHorizontalIcons;
+	const isCompact = isArkhamDecoCompactLayout(layout);
+
+	const getIcons = isCompact ? getTabIcons : getHorizontalIcons;
 
 	return getIcons({
 		type: divider.type,

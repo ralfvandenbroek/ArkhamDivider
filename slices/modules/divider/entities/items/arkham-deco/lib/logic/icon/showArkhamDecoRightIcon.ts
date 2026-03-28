@@ -2,6 +2,7 @@ import type {
 	ArkhamDecoDividerLayout,
 	ArkhamDecoDividerProps,
 } from "../../../model";
+import { isArkhamDecoCompactLayout } from "../isArkhamDecoCompactLayout";
 
 type Options = {
 	divider: ArkhamDecoDividerProps;
@@ -13,7 +14,8 @@ export const showArkhamDecoRightIcon = ({
 	layout,
 	numericXP,
 }: Options) => {
-	if (layout.params?.tab) {
+	const isCompact = isArkhamDecoCompactLayout(layout);
+	if (isCompact) {
 		return false;
 	}
 	if (divider.type !== "player") {

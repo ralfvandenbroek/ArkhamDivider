@@ -129,9 +129,6 @@ const verticalLayout: ArkhamDecoDividerLayout = {
 			size: smallCCG,
 		},
 	],
-	params: {
-		tab: true,
-	},
 };
 
 const coloredLayouts: DividerLayout[] = [

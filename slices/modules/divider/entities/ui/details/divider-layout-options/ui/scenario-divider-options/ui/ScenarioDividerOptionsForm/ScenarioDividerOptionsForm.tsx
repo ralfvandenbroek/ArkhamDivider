@@ -16,6 +16,7 @@ import type {
 	DividerLayout,
 	ScenarioDividerParams,
 } from "@/modules/divider/shared/model";
+import { selectDoubleSidePrintEnabled } from "@/modules/print/shared/lib";
 import type { StoryWithRelations } from "@/modules/story/shared/model";
 import { useAppSelector } from "@/shared/lib";
 import * as C from "./ScenarioDividerOptionsForm.components";
@@ -36,6 +37,7 @@ export function ScenarioDividerOptionsForm({
 }: ScenarioDividerOptionsFormProps) {
 	const { t } = useTranslation();
 
+	const doubleSidePrintEnabled = useAppSelector(selectDoubleSidePrintEnabled);
 	const campaignDividerCount = useAppSelector(selectCampaignDividersCount);
 	const encounterSetDividerCount = useAppSelector(
 		selectEncounterSetDividersCount,
@@ -172,7 +174,11 @@ export function ScenarioDividerOptionsForm({
 								render={({ field }) => (
 									<FormControlLabel
 										control={
-											<Checkbox {...field} checked={field.value ?? false} />
+											<Checkbox
+												{...field}
+												checked={field.value ?? false}
+												disabled={!doubleSidePrintEnabled}
+											/>
 										}
 										label={t("layout.singleSideLayout")}
 									/>

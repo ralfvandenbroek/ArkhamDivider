@@ -6,6 +6,7 @@ import type { StoryScenario } from "@/modules/story/shared/model";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
 import { arkhamDecoAssetUrl } from "../../config";
+import { isArkhamDecoCompactLayout } from "../../lib";
 import type { ArkhamDecoPosition } from "../../model";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerHeader.styles";
@@ -16,7 +17,9 @@ export const LeftScenarioCorner = () => {
 	const { layout, sxOptions } = useContext(ArkhamDecoDividerContext);
 	const getPrintSx = usePrintUnit(sxOptions);
 
-	if (layout.params?.tab) {
+	const isCompact = isArkhamDecoCompactLayout(layout);
+
+	if (isCompact) {
 		const sx = getPrintSx(S.getLeftTabCornerSx);
 		return <Image src={asset("/top-corner.png")} sx={sx} />;
 	}
@@ -29,7 +32,9 @@ export const RightScenarioCorner = () => {
 	const { layout, sxOptions } = useContext(ArkhamDecoDividerContext);
 	const getPrintSx = usePrintUnit(sxOptions);
 
-	if (layout.params?.tab) {
+	const isCompact = isArkhamDecoCompactLayout(layout);
+
+	if (isCompact) {
 		const sx = getPrintSx(S.getRightTabCornerSx);
 		return <Image src={asset("/top-corner.png")} sx={sx} />;
 	}
@@ -67,7 +72,7 @@ export const NoIconLine = () => {
 export const ScenarioCorner = ({ scenario }: { scenario: StoryScenario }) => {
 	const { sxOptions, layout } = useContext(ArkhamDecoDividerContext);
 
-	const isTab = layout.params?.tab;
+	const isCompact = isArkhamDecoCompactLayout(layout);
 
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getScenarioCornerSx);
@@ -80,7 +85,7 @@ export const ScenarioCorner = ({ scenario }: { scenario: StoryScenario }) => {
 		<Box sx={sx}>
 			<Box sx={numberSx}>{scenarioNumber || <Icon icon="typejournal" />}</Box>
 
-			{!isTab && (
+			{!isCompact && (
 				<Image src={asset("/scenario-tentacles.png")} sx={backgroundSx} />
 			)}
 		</Box>
