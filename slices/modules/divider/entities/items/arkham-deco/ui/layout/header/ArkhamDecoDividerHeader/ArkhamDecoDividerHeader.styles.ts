@@ -1,11 +1,11 @@
 import { compact } from "ramda-adjunct";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { percent } from "@/shared/util";
-import { getSideXPObject } from "../../lib";
+import { getSideXPObject } from "../../../../lib";
 import type {
 	ArkhamDecoDividerSxCallback,
 	ArkhamDecoPosition,
-} from "../../model";
+} from "../../../../model";
 
 export const getLeftHorizontalCornerSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",

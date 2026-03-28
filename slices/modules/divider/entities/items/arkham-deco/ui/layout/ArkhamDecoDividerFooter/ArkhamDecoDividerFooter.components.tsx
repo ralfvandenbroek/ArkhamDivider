@@ -2,8 +2,8 @@ import { Box } from "@mui/material";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
-import { arkhamDecoAssetUrl } from "../../config";
-import type { ArkhamDecoPosition } from "../../model";
+import { arkhamDecoAssetUrl } from "../../../config";
+import type { ArkhamDecoPosition } from "../../../model";
 import * as S from "./ArkhamDecoDividerFooter.styles";
 
 const asset = prefix(arkhamDecoAssetUrl);

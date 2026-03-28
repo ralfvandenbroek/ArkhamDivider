@@ -1,9 +1,9 @@
 import { alpha } from "@mui/material/styles";
-import { getArkhamDecoTitleObject } from "../../lib";
+import { getArkhamDecoTitleObject } from "../../../../lib";
 import type {
 	ArkhamDecoDividerLocaleSxCallback,
 	ArkhamDecoDividerSxCallback,
-} from "../../model";
+} from "../../../../model";
 
 export const getTitleSx: ArkhamDecoDividerLocaleSxCallback = (options) => {
 	const { mm } = options;

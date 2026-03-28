@@ -5,10 +5,10 @@ import { usePrintUnit } from "@/modules/print/shared/lib";
 import type { StoryScenario } from "@/modules/story/shared/model";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
-import { arkhamDecoAssetUrl } from "../../config";
-import { isArkhamDecoCompactLayout } from "../../lib";
-import type { ArkhamDecoPosition } from "../../model";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import { arkhamDecoAssetUrl } from "../../../../config";
+import { isArkhamDecoCompactLayout } from "../../../../lib";
+import type { ArkhamDecoPosition } from "../../../../model";
+import { ArkhamDecoDividerContext } from "../../../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerHeader.styles";
 
 const asset = prefix(arkhamDecoAssetUrl);

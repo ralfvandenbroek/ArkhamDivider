@@ -16,9 +16,11 @@ import type {
 } from "../../model";
 import { ArkhamDecoDividerBackgroundIcon as BackgroundIcon } from "../ArkhamDecoDividerBackgroundIcon";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
-import { ArkhamDecoDividerFooter as Footer } from "../ArkhamDecoDividerFooter";
-import { ArkhamDecoDividerHeader as Header } from "../ArkhamDecoDividerHeader";
-import { ArkhamDecoDividerTitle as Title } from "../ArkhamDecoDividerTitle";
+import {
+	ArkhamDecoDividerFooter as Footer,
+	ArkhamDecoDividerHeader as Header,
+	ArkhamDecoDividerTitle as Title,
+} from "../layout";
 import {
 	ArkhamDecoDividerOverlay as Overlay,
 	ArkhamDecoDividerOverlayPicker as OverlayPicker,
