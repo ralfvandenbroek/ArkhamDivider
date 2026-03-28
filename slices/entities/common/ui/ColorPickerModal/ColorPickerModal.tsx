@@ -41,7 +41,13 @@ export function ColorPickerModal({
 	return (
 		<Dialog {...props}>
 			<Stack p={2} justifyContent="center" alignItems="center">
-				<Chrome color={color} onChange={onColorChange} />
+				<Chrome
+					color={color}
+					onChange={onColorChange}
+					style={{
+						zoom: 1.5,
+					}}
+				/>
 			</Stack>
 			<DialogActions
 				sx={{
