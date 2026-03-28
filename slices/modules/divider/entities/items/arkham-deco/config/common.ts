@@ -10,6 +10,10 @@ export const arkhamDecoHorizontalObjects = {
 		left: 0,
 		right: 0,
 	},
+	background: {
+		rotated: false,
+		fontSize: 22,
+	},
 	leftIcon: {
 		offsetTop: 0,
 		fontSize: 4.2,
@@ -28,6 +32,11 @@ export const arkhamDecoHorizontalObjects = {
 	line: {
 		default: {
 			offsetTop: 1.8,
+			crop: {
+				left: 10,
+				right: 20.8,
+			},
+			sidePosition: 0,
 		},
 		noIcon: {
 			offsetLeft: 0,
@@ -82,6 +91,63 @@ export const arkhamDecoHorizontalObjects = {
 		},
 	},
 };
+
+export const arkhamDecoVerticalObjects = mergeDeepRight(
+	arkhamDecoHorizontalObjects,
+	{
+		title: {
+			default: {
+				left: 9,
+				right: 7.4,
+				fontSize: 4.4,
+			},
+			xp: {
+				right: 7.4,
+			},
+			campaign: {
+				right: 7.4,
+			},
+			scenario: {
+				right: 8,
+			},
+			withCentralIcon: {
+				height: 6,
+				fontSize: 4,
+			},
+		},
+		background: {
+			rotated: true,
+			fontSize: 25,
+		},
+		line: {
+			default: {
+				offsetTop: 1.7,
+				sidePosition: -18,
+				crop: {
+					left: 25,
+					right: 18.3,
+				},
+			},
+			noIcon: {
+				offsetLeft: -15.8,
+			},
+		},
+		sideXp: {
+			right: 7.5,
+			withoutNumericXP: {
+				right: -0.5,
+			},
+		},
+		scenarioCorner: {
+			top: 0.2,
+			right: 0,
+		},
+		scenarioNumber: {
+			fontSize: 4.4,
+			height: 6,
+		},
+	},
+);
 
 export const arkhamDecoChapter2Objects = mergeDeepRight(
 	arkhamDecoHorizontalObjects,

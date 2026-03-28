@@ -35,7 +35,7 @@ export function ColorPickerModal({
 	}, [defaultValue, props.onColorSelect]);
 
 	const onColorChange = useCallback((color: ColorResult) => {
-		setColor(color.hex);
+		setColor(color.hexa);
 	}, []);
 
 	return (

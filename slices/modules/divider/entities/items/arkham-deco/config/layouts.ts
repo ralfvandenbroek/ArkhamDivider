@@ -1,4 +1,4 @@
-import { outerSleeve } from "@/entities/sleeve/config";
+import { outerSleeve, smallCCG } from "@/entities/sleeve/config";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { createSize } from "@/shared/util";
 import type { ArkhamDecoDividerLayout } from "../model";
@@ -109,12 +109,38 @@ export const ucf50Layout: ArkhamDecoDividerLayout = {
 	},
 };
 
+const verticalLayout: ArkhamDecoDividerLayout = {
+	...chapter1Layout,
+	id: "vertical",
+	groupId: "vertical",
+	name: "Vertical",
+	description: "divider.layout.arkham-deco.vertical.description",
+	size: createSize(62, 96),
+	orientation: "vertical",
+	printSize: {
+		300: {
+			size: createSize(732, 1134),
+			bleedSize: createSize(803, 1205),
+		},
+	},
+	sleeves: [
+		{
+			id: smallCCG.id,
+			size: smallCCG,
+		},
+	],
+	params: {
+		tab: true,
+	},
+};
+
 const coloredLayouts: DividerLayout[] = [
 	chapter1Layout,
 	chapter2Layout,
 	deckBoxLayout,
 	ucfStandardLayout,
 	ucf50Layout,
+	verticalLayout,
 ];
 
 const grayscaleLayouts: DividerLayout[] = coloredLayouts.map((layout) => ({

@@ -31,6 +31,8 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 	const sideXPSx = getPrintSx(S.getSideXPSx, { numericXP });
 	const tabLineSx = getPrintSx(S.getTabLineSx);
 
+	const showTabLine = tab && layout.orientation !== "vertical";
+
 	const showRightIcon = showArkhamDecoRightIcon({ divider, numericXP, layout });
 	const xpCost = getDividerXPCost(divider);
 
@@ -67,7 +69,7 @@ export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
 						<C.StoryLineTentacle position="right" />
 					</>
 				)}
-				{tab && <Box sx={tabLineSx} />}
+				{showTabLine && <Box sx={tabLineSx} />}
 				{divider.type === "scenario" && (
 					<C.ScenarioCorner scenario={divider.scenario} />
 				)}

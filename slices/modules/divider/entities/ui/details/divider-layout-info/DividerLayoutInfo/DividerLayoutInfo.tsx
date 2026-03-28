@@ -126,7 +126,7 @@ export function DividerLayoutInfo({
 							/>
 						</Row>
 
-						<Typography variant="body2" textAlign="center">
+						<Typography variant="body2" textAlign="center" maxWidth={300}>
 							{t(description)}
 						</Typography>
 					</Stack>

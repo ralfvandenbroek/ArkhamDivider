@@ -13,8 +13,8 @@ type ArkhamDecoDividerBackgroundIconProps = BoxProps;
 export const ArkhamDecoDividerBackgroundIcon = ({
 	...props
 }: ArkhamDecoDividerBackgroundIconProps) => {
-	const { divider } = useContext(ArkhamDecoDividerContext);
-	const getPrintSx = usePrintUnit();
+	const { divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const getPrintSx = usePrintUnit(sxOptions);
 
 	const defaultIcon = getDefaultBackgroundIcon(divider);
 

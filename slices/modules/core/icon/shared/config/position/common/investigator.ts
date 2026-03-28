@@ -36,10 +36,12 @@ export default {
 	},
 	mystic: {
 		top: percent(-12),
+		left: percent(3),
 		scale: percent(90),
 	},
 	mystic_alt: {
 		top: percent(-2),
+		left: percent(4),
 	},
 	class_mystic: {
 		top: percent(-12),

@@ -1,3 +1,4 @@
+import { compact } from "ramda-adjunct";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { percent } from "@/shared/util";
 import { getSideXPObject } from "../../lib";
@@ -46,22 +47,22 @@ export const getRightTabCornerSx: ArkhamDecoDividerSxCallback = ({
 	width: mm(12.3),
 });
 
-const topLineCropMm = {
-	left: 10,
-	right: 20.8,
-};
-
 export const getStoryLineSx: ArkhamDecoDividerSxCallback<{
 	position: ArkhamDecoPosition;
-}> = ({ mm, position, objects: O }) => ({
-	position: "absolute",
-	top: mm(O.header.height - O.line.default.offsetTop),
-	[position]: 0,
-	height: mm(2.6),
-	...(position === "right" ? { transform: "scaleX(-1)" } : {}),
-	clipPath: `inset(0 ${mm(topLineCropMm.right)} 0 ${mm(topLineCropMm.left)})`,
-	zIndex: 3,
-});
+}> = ({ mm, position, objects: O }) => {
+	const transforms = compact([position === "right" && "scaleX(-1)"]);
+	const L = O.line.default;
+
+	return {
+		position: "absolute",
+		top: mm(O.header.height - L.offsetTop),
+		[position]: mm(L.sidePosition),
+		height: mm(2.6),
+		transform: transforms.join(" "),
+		clipPath: `inset(0 ${mm(L.crop.right)} 0 ${mm(L.crop.left)})`,
+		zIndex: 3,
+	};
+};
 
 export const getStoryLineTentacleSx: ArkhamDecoDividerSxCallback<{
 	position: ArkhamDecoPosition;

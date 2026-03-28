@@ -46,9 +46,9 @@ export function DividerText({
 	const [isFocused, setIsFocused] = useState(false);
 	const outlineSx = {
 		position: "absolute",
-		width: "100%",
 		top: 0,
 		left: 0,
+		right: 0,
 		zIndex: -1,
 		border: "1px solid black",
 		...outlineSxProp,
