@@ -1,34 +1,38 @@
 import Box from "@mui/material/Box";
 import type { SxProps } from "@mui/material/styles";
+import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { getDividerCardsCount } from "@/modules/divider/entities/lib/logic";
 import { selectShowCampaignIcon } from "@/modules/divider/shared/lib";
 import { selectShowCardsCount } from "@/modules/divider/shared/lib/store/selectors/selectShowCardsCount";
-import type { DividerWithRelations } from "@/modules/divider/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { Row, type RowProps } from "@/shared/ui";
-import * as S from "./ClassicDividerStats.styles";
+import type { ArkhamDecoDividerProps } from "../../model";
+import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import * as S from "./ArkhamDecoDividerCardsCount.styles";
 
-type ClassicDividerStatsProps = Omit<RowProps, "divider"> & {
-	divider: DividerWithRelations;
+type ArkhamDecoDividerCardsCountProps = Omit<RowProps, "divider"> & {
+	divider: ArkhamDecoDividerProps;
 };
 
-export function ClassicDividerStats({
+export function ArkhamDecoDividerCardsCount({
 	divider,
 	...props
-}: ClassicDividerStatsProps) {
+}: ArkhamDecoDividerCardsCountProps) {
+	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+
 	const showCampaignIcon = useAppSelector(selectShowCampaignIcon);
 	const showCardsCount = useAppSelector((state) =>
 		selectShowCardsCount(state, divider.id),
 	);
 
-	const getPrintSx = usePrintUnit();
+	const getPrintSx = usePrintUnit(sxOptions);
 
 	const textSx = getPrintSx(S.getTextSx);
-	const totalIconSx = getPrintSx(S.getTotalIconSx);
-	const sx = getPrintSx(S.getSx);
 	const iconSx = getPrintSx(S.getIconSx);
+	const totalIconSx = getPrintSx(S.getTotalIconSx);
+	const rowSx = getPrintSx(S.getRowSx);
 
 	if (!divider.story?.icon) {
 		return null;
@@ -40,7 +44,7 @@ export function ClassicDividerStats({
 	}
 
 	const sxProp = {
-		...sx,
+		...rowSx,
 		...props.sx,
 	} as SxProps;
 

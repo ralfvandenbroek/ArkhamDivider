@@ -60,3 +60,22 @@ export const getTitleSx: ArkhamDecoDividerSxCallback = (options) => {
 		right: mm(T.right),
 	};
 };
+
+export const getCardsCountSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	bottom: mm(4),
+	right: mm(4.8),
+	zIndex: 6,
+});
+
+export const getDividerCardsSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	backgroundColor: "#fff",
+	boxShadow: `0 0 ${mm(3)} rgba(255, 255, 255, 1)`,
+	borderRadius: mm(1),
+	zIndex: 6,
+	left: mm(2),
+	right: mm(2),
+	top: mm(8),
+	bottom: mm(10),
+});

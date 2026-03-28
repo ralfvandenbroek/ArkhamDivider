@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
+import { useCallback, useState } from "react";
 import { selectLayout } from "@/modules/divider/entities/lib";
 import {
 	DividerBackground as Background,
+	DividerCardsInfo as CardsInfo,
 	DividerContainer as Container,
 	DividerContent as Content,
 } from "@/modules/divider/entities/ui";
@@ -15,6 +17,7 @@ import type {
 	ArkhamDecoDividerProps,
 } from "../../model";
 import { ArkhamDecoDividerBackgroundIcon as BackgroundIcon } from "../ArkhamDecoDividerBackgroundIcon";
+import { ArkhamDecoDividerCardsCount as CardsCount } from "../ArkhamDecoDividerCardsCount";
 import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import {
 	ArkhamDecoDividerFooter as Footer,
@@ -43,6 +46,13 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const titleSx = getPrintSx(S.getTitleSx);
+	const cardsCountSx = getPrintSx(S.getCardsCountSx);
+	const dividerCardsSx = getPrintSx(S.getDividerCardsSx);
+
+	const [showCardsInfo, setShowCardsInfo] = useState(false);
+	const toggleCardsInfo = useCallback(() => {
+		setShowCardsInfo((open) => !open);
+	}, []);
 
 	const showContent = !singleSide || props.side === "front";
 
@@ -70,6 +80,13 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 							<C.Scratches orientation={orientation} />
 							<BackgroundIcon sx={backgroundIconSx} />
 						</Box>
+
+						<CardsCount
+							divider={props}
+							sx={cardsCountSx}
+							onClick={toggleCardsInfo}
+						/>
+						{showCardsInfo && <CardsInfo sx={dividerCardsSx} divider={props} />}
 
 						<Footer />
 					</Box>

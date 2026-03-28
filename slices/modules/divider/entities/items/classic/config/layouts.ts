@@ -37,6 +37,7 @@ const horizontalLayout: DividerLayout = {
 	],
 	scenarioParams: {
 		cardCount: true,
+		campaignIcon: true,
 	},
 	playerParams: {
 		numericXP: true,

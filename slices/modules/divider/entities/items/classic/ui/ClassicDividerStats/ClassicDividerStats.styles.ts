@@ -5,6 +5,7 @@ export const getSx: PrintSxCallback = ({ mm }) => ({
 	padding: mm(0.7),
 	fontFamily: "ArnoPro, serif",
 	fontSize: mm(3),
+	gap: mm(0.8),
 	alignItems: "center",
 	justifyContent: "center",
 	lineHeight: 1,
@@ -20,4 +21,8 @@ export const getTextSx: PrintSxCallback = () => ({
 export const getTotalIconSx: PrintSxCallback = ({ mm }) => ({
 	position: "relative",
 	top: mm(-0.1),
+});
+
+export const getIconSx: PrintSxCallback = ({ mm }) => ({
+	fontSize: mm(3),
 });

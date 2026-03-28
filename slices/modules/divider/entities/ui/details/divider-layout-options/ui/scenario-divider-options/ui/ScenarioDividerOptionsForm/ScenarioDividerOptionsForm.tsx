@@ -84,7 +84,7 @@ export function ScenarioDividerOptionsForm({
 						/>
 					)}
 				/>
-				{isUndefined(scenarioParams?.campaignIcon) && (
+				{!isUndefined(scenarioParams?.campaignIcon) && (
 					<Controller
 						name="campaignIcon"
 						control={control}

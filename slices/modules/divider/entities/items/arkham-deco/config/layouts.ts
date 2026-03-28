@@ -29,6 +29,10 @@ const chapter1Layout: ArkhamDecoDividerLayout = {
 	types: ["scenario", "player", "investigator"],
 	categoryId: arkhamDecoCategoryId,
 	groupId: "chapter1",
+	scenarioParams: {
+		campaignIcon: true,
+		cardCount: true,
+	},
 	playerParams: {
 		numericXP: true,
 		sideXP: true,

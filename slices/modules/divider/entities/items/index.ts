@@ -1,6 +1,6 @@
 import type { DividerWithRelations } from "../../shared/model";
 import { arkhamDecoCategoryId } from "./arkham-deco/config";
-import { ArkhamDecoDivider } from "./arkham-deco/ui/ArkhamDecoDivider";
+import { ArkhamDecoDivider } from "./arkham-deco/ui";
 import { classicCategoryId } from "./classic/config/common";
 import { ClassicDivider } from "./classic/ui";
 import { dividerCategories, dividerLayouts } from "./data";
