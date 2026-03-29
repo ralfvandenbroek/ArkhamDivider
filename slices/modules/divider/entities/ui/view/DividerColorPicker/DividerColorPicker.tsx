@@ -5,6 +5,7 @@ import {
 	selectDividerById,
 	setDividerParam,
 } from "@/modules/divider/shared/lib";
+import { NotExportable } from "@/modules/render/shared/ui";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 
 type DividerColorPickerProps = BoxProps & {
@@ -38,13 +39,15 @@ export function DividerColorPicker({
 	);
 
 	return (
-		<Box {...props} displayPrint="none">
-			<ColorPicker
-				value={value}
-				defaultValue={defaultColor}
-				onColorSelect={onColorSelect}
-				title={title}
-			/>
-		</Box>
+		<NotExportable>
+			<Box {...props} displayPrint="none">
+				<ColorPicker
+					value={value}
+					defaultValue={defaultColor}
+					onColorSelect={onColorSelect}
+					title={title}
+				/>
+			</Box>
+		</NotExportable>
 	);
 }
