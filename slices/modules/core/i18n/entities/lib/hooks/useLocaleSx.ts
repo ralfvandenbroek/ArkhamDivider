@@ -10,8 +10,11 @@ export const useLocaleSx = <T = object>(params?: T) => {
 	const getLocaleSx = usePrintUnit(params);
 
 	return useCallback(
-		(callbackSx: LocaleSxCallback<T>) => {
-			const localeSx = getLocaleSx(callbackSx);
+		<P = void>(
+			callbackSx: LocaleSxCallback<T & NoInfer<P>>,
+			customProps?: P,
+		) => {
+			const localeSx = getLocaleSx(callbackSx, customProps);
 			return getLocaleConfig(locale, localeSx) as SxProps;
 		},
 		[locale, getLocaleSx],

@@ -1,10 +1,10 @@
+import { cmyk } from "@/modules/core/color/shared/lib";
 import { fromMm2Pt } from "@/modules/print/shared/lib";
 import {
 	type GetPageCounterTextOptions,
 	getPageCounterText,
 } from "@/modules/print/shared/lib/logic/getPageCounterText";
 import type { BoxSize } from "@/shared/model";
-import { cmyk } from "../color";
 import type { PDFTextService } from "./PDFTextService";
 
 type DrawCounterOptions = GetPageCounterTextOptions;

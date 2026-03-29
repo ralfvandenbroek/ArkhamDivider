@@ -1,4 +1,4 @@
-import { rgb } from "../lib";
+import { rgb } from "@/modules/core/color/shared/lib";
 
 /**
  * The gap is the amount of space that is left on the edge of the divider

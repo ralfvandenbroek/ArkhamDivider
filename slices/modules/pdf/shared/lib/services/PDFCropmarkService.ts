@@ -1,8 +1,8 @@
+import { cmyk } from "@/modules/core/color/shared/lib";
 import { MM_TO_PT } from "@/modules/print/shared/config";
 import { getGridCropmarks } from "@/modules/print/shared/lib";
 import { getCropmarkPosition } from "@/modules/print/shared/lib/logic/cropmark/getCropmarkPosition";
 import type { PageLayoutGrid } from "@/modules/print/shared/model";
-import { cmyk } from "../color";
 import { PDFOverprintService } from "./PDFOverprintService";
 
 const cropmarkColor = cmyk(0, 0, 0, 100);

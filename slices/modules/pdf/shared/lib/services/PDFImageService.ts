@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
 import SVGtoPDF from "svg-to-pdfkit";
-import { cmyk } from "../color";
+import { cmyk } from "@/modules/core/color/shared/lib";
 import { PDFOverprintService } from "./PDFOverprintService";
 
 export type DrawImageOptions = {

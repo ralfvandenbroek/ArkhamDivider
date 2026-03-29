@@ -8,10 +8,14 @@ export const prefix =
 	(prefix: string) =>
 	(
 		templateStrings: TemplateStringsArray | string,
-		..._substitutions: unknown[]
+		...substitutions: unknown[]
 	) => {
 		if (typeof templateStrings === "string") {
 			return `${prefix}${templateStrings}`;
 		}
-		return `${prefix}${templateStrings[0]}`;
+		const right = templateStrings.reduce(
+			(acc, curr, index) => acc + curr + (substitutions[index] ?? ""),
+			"",
+		);
+		return `${prefix}${right}`;
 	};

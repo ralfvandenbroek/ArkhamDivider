@@ -1,3 +1,4 @@
+import { cmyk } from "@/modules/core/color/shared/lib";
 import { getDividerIcon } from "@/modules/divider/features/lib";
 import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import {
@@ -5,10 +6,9 @@ import {
 	getDividerSubtype,
 	getDividerXPCost,
 } from "@/modules/divider/shared/lib/logic/params";
-import {
-	cmyk,
-	type DrawIconOptions,
-	type DrawTextOptions,
+import type {
+	DrawIconOptions,
+	DrawTextOptions,
 } from "@/modules/pdf/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";

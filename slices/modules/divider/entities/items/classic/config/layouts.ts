@@ -61,6 +61,7 @@ const horizontalHQ: DividerLayout = {
 	...horizontalLayout,
 	id: "classic-horizontal-hq",
 	name: "HD",
+	groupId: "hq",
 	size: createSize(88, 76),
 	printSize: {
 		300: {

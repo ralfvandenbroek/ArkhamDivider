@@ -6,6 +6,7 @@ import {
 	DividerCardsInfo as CardsInfo,
 	DividerContainer as Container,
 	DividerContent as Content,
+	DividerMenu as Menu,
 } from "@/modules/divider/entities/ui";
 import { selectScenarioParams } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
@@ -49,6 +50,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const titleSx = getPrintSx(S.getTitleSx);
 	const cardsCountSx = getPrintSx(S.getCardsCountSx);
 	const dividerCardsSx = getPrintSx(S.getDividerCardsSx);
+	const menuSx = getPrintSx(S.getMenuSx);
 
 	const [showCardsInfo, setShowCardsInfo] = useState(false);
 	const toggleCardsInfo = useCallback(() => {
@@ -85,6 +87,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 							<C.SideBorder position="right" />
 							<C.Scratches orientation={orientation} />
 							<BackgroundIcon sx={backgroundIconSx} />
+							<Menu dividerId={props.id} sx={menuSx} />
 						</Box>
 
 						<CardsCount

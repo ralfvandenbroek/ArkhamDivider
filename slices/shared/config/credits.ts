@@ -97,3 +97,33 @@ export const VladimirYazykovCredits: Author = {
 		},
 	],
 };
+
+export const RynoCredits: Author = {
+	id: "ryno",
+	name: "Ryno",
+	role: "Ryno Style Dividers",
+	image: getAssetUrl("/images/authors/ryno.png"),
+	contactUrl: "https://boardgamegeek.com/profile/ryno80",
+	contacts: [
+		{
+			id: "bgg",
+			icon: "bgg",
+			url: "https://boardgamegeek.com/profile/ryno80",
+		},
+		{
+			id: "etsy",
+			icon: "link",
+			url: "https://boardGameGoodies.shop",
+		},
+		{
+			id: "facebook",
+			icon: "facebook",
+			url: "https://www.facebook.com/ryansmessick",
+		},
+		{
+			id: "email",
+			icon: "mail",
+			url: "mailto:Rmessick@gmail.com",
+		},
+	],
+};

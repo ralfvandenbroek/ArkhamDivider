@@ -1,10 +1,17 @@
+import type { SxProps } from "@mui/material";
 import type { BoxProps } from "@mui/material/Box";
 import { Image } from "@/shared/ui";
 import { DividerBleedView } from "../DividerBleedView";
 
-type DividerBackgroundProps = Omit<BoxProps<"img">, "component">;
+type DividerBackgroundProps = Omit<BoxProps<"img">, "component"> & {
+	imageSx?: SxProps;
+};
 
-export function DividerBackground({ src, ...props }: DividerBackgroundProps) {
+export function DividerBackground({
+	src,
+	imageSx,
+	...props
+}: DividerBackgroundProps) {
 	return (
 		<DividerBleedView {...props}>
 			<Image
@@ -18,6 +25,7 @@ export function DividerBackground({ src, ...props }: DividerBackgroundProps) {
 					bottom: 0,
 					width: "100%",
 					height: "100%",
+					...imageSx,
 				}}
 			/>
 		</DividerBleedView>

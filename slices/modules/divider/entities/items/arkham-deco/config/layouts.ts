@@ -41,6 +41,7 @@ const chapter1Layout: ArkhamDecoDividerLayout = {
 	additionalParams: {
 		singleSide: true,
 	},
+	iconParams: ["smallIcon", "backgroundIcon", "secondaryIcon"],
 };
 
 const chapter2Layout: ArkhamDecoDividerLayout = {

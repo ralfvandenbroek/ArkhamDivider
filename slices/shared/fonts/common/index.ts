@@ -1,3 +1,4 @@
+export * from "./AGaramondPro";
 export * from "./Alegreya";
 export * from "./ArkhamIcons";
 export * from "./Arkhamic";

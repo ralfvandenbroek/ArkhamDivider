@@ -1,6 +1,6 @@
+import { cmyk } from "@/modules/core/color/shared/lib";
 import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
-import { cmyk } from "@/modules/pdf/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
 import {

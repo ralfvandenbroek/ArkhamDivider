@@ -37,10 +37,10 @@ export function DividerSelect(props: DividerSelectProps) {
 				<MenuItem value="classic">Classic</MenuItem>
 				<MenuItem value="invocation-2018">Invocation 2018</MenuItem>
 				{/* <MenuItem value="arkhamesque">Arkhamesque Classic</MenuItem> */}
+				<MenuItem value="ryno">Ryno</MenuItem>
 				<MenuItem value="sarnetsky">@sarnetsky</MenuItem>
 				<MenuItem value="arkham-deco">Arkham Deco</MenuItem>
-				{/* <MenuItem value="arkham-deco">Arkham Deco</MenuItem>
-				<MenuItem value="ryno">Ryno style</MenuItem>
+				{/*
 				<MenuItem value="3mm">3mm</MenuItem>
 				<MenuItem value="vintage-tabbed">Vintage</MenuItem>
 				<ListSubheader>{t(`Bands`)}</ListSubheader>

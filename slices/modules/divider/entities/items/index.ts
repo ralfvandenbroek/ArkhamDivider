@@ -6,6 +6,8 @@ import { ClassicDivider } from "./classic/ui";
 import { dividerCategories, dividerLayouts } from "./data";
 import { invocation2018CategoryId } from "./invocation2018/config";
 import { Invocation2018Divider } from "./invocation2018/ui";
+import { rynoCategoryId } from "./ryno/config";
+import { RynoDivider } from "./ryno/ui/RynoDivider";
 import { sarnetskyCategoryId } from "./sarnetsky/config";
 import { SarnetskyDivider } from "./sarnetsky/ui";
 
@@ -20,4 +22,6 @@ export const dividerComponents: Record<
 	[invocation2018CategoryId]: Invocation2018Divider,
 	[sarnetskyCategoryId]: SarnetskyDivider,
 	[arkhamDecoCategoryId]: ArkhamDecoDivider,
+	[rynoCategoryId]: RynoDivider,
+	// [rynoCategoryId]: RynoDivider,
 };

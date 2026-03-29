@@ -92,3 +92,12 @@ export const getTabCornerRadiusSx: ArkhamDecoDividerSxCallback = ({
 	bottom: 0,
 	zIndex: 2,
 });
+
+export const getMenuSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: "50%",
+	transform: "translateY(-50%)",
+	left: mm(3.5),
+	zIndex: 6,
+	color: "#b3b3b3",
+});

@@ -8,7 +8,7 @@ export const usePrintUnit = <Input>(params?: Input) => {
 	const dpi = useAppSelector(selectDPI);
 	return useCallback(
 		<T, P = void>(
-			callbackSx: PrintUnitCallback<T, Input & P>,
+			callbackSx: PrintUnitCallback<T, Input & NoInfer<P>>,
 			customProps?: P,
 		) => {
 			const input = (mm: number) => {
