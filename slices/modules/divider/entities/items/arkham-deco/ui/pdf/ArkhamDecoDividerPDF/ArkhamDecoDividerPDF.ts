@@ -13,6 +13,7 @@ import type {
 	ArkhamDecoDividerLayout,
 	ArkhamDecoDividerParams,
 } from "../../../model";
+import { ArkhamDecoDividerLasercut } from "./ArkhamDecoDividerLasercut";
 
 const color = cmyk(0, 0, 0, 100);
 
@@ -24,8 +25,10 @@ export const ArkhamDecoDividerPDF: PDFDivider<ArkhamDecoDividerParams> = async (
 	ctx,
 ) => {
 	const { story, fontSizeScale = 100 } = props;
-	const { text, lasercut, unit, language, playerParams, layout } = ctx;
+	const { text, unit, language, playerParams, layout } = ctx;
+	const lasercut = ctx.lasercut.from(ArkhamDecoDividerLasercut);
 	const decoLayout = layout as ArkhamDecoDividerLayout;
+	const isTab = decoLayout.params?.tab ?? false;
 
 	const O = getArkhamDecoLayoutObjects(layout.id);
 	const xpCost = getDividerXPCost(props);
@@ -53,12 +56,25 @@ export const ArkhamDecoDividerPDF: PDFDivider<ArkhamDecoDividerParams> = async (
 	const textHeight = mm(T.height);
 	const textTopY = bleed.y(T.top) + textHeight / 2;
 
-	lasercut.drawRect({
+	const lasercutBox = {
 		x: bleed.x(),
 		y: bleed.y(),
 		width: bleed.width(),
 		height: bleed.height(),
-	});
+	};
+
+	if (isTab) {
+		lasercut.drawTab({
+			...lasercutBox,
+			tab: {
+				offsetInline: mm(O.header.left),
+				width: bleed.width(O.header.left, O.header.right),
+				height: mm(O.header.height),
+			},
+		});
+	} else {
+		lasercut.drawRect(lasercutBox);
+	}
 
 	const fontFamily = getDefaultDividerFontFamily(language);
 

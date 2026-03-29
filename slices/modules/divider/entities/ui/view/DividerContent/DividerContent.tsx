@@ -8,9 +8,14 @@ import {
 } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 
-type DividerContentProps = BoxProps;
+type DividerContentProps = BoxProps & {
+	hideBorderRadius?: boolean;
+};
 
-export function DividerContent(props: DividerContentProps) {
+export function DividerContent({
+	hideBorderRadius = false,
+	...props
+}: DividerContentProps) {
 	const layoutSize = useAppSelector(selectPrintableLayoutSize);
 	const borderRadius = useCornerRadius();
 	const mm = usePrintPxCallback();
@@ -22,7 +27,7 @@ export function DividerContent(props: DividerContentProps) {
 	const outlineWidth = mm(0.25);
 	const sxProps = {
 		...props.sx,
-		...(borderRadius
+		...(borderRadius && !hideBorderRadius
 			? {
 					outline: `${outlineWidth} dashed red`,
 					outlineOffset: -outlineWidth,

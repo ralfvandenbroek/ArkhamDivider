@@ -79,3 +79,16 @@ export const getDividerCardsSx: PrintSxCallback = ({ mm }) => ({
 	top: mm(8),
 	bottom: mm(10),
 });
+
+export const getTabCornerRadiusSx: ArkhamDecoDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
+	overflow: "hidden",
+	position: "absolute",
+	top: mm(O.header.height),
+	left: 0,
+	right: 0,
+	bottom: 0,
+	zIndex: 2,
+});

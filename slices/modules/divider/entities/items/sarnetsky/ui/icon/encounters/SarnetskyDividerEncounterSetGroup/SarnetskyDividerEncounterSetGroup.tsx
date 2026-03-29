@@ -1,14 +1,13 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
-import type { DividerIconPositionsCallback } from "@/modules/divider/entities/lib";
+import {
+	type DividerIconPositionsCallback,
+	useDividerRender,
+} from "@/modules/divider/entities/lib";
 import type { EncounterSetGroup } from "@/modules/encounterSet/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import {
-	selectDividerRenderId,
-	selectRenderType,
-} from "@/modules/render/shared/lib";
-import { useAppSelector } from "@/shared/lib";
+
 import { Row, type RowProps } from "@/shared/ui";
 import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerEncounterSetGroup.styles";
@@ -27,11 +26,12 @@ export function SarnetskyDividerEncounterSetGroup({
 	setIconRef,
 	...props
 }: SarnetskyDividerEncounterSetGroupProps) {
-	const renderType = useAppSelector(selectRenderType);
-	const renderId = useAppSelector(selectDividerRenderId);
 	const { sxOptions, divider } = useContext(SarnetskyDividerContext);
 
-	const hideIcons = renderId === divider.id && renderType === "pdf";
+	const hideIcons = useDividerRender({
+		dividerId: divider.id,
+		renderType: "pdf",
+	});
 
 	const mainSize = group.main.length;
 	const sideSize = group.side.length;

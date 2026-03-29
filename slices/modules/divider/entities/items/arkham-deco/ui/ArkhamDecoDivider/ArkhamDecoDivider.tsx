@@ -41,6 +41,7 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 	const { orientation } = layout;
 	const { singleSide = false } = useAppSelector(selectScenarioParams);
 	const contentSx = getPrintSx(S.getContentSx);
+	const isTab = layout.params?.tab ?? false;
 
 	const bodySx = getPrintSx(S.getBodySx);
 	const headerSx = getPrintSx(S.getHeaderSx);
@@ -69,7 +70,12 @@ export function ArkhamDecoDivider(props: ArkhamDecoDividerProps) {
 			<Container>
 				{layout.color && <Background src={backgroundUrl} />}
 				<Overlay />
-				<Content sx={{ mixBlendMode: "multiply" }} hidden={!showContent}>
+				{isTab && <C.TabCornerRadius />}
+				<Content
+					sx={{ mixBlendMode: "multiply" }}
+					hidden={!showContent}
+					hideBorderRadius={isTab}
+				>
 					<OverlayPicker />
 					<Box sx={contentSx}>
 						<Header sx={headerSx} />
