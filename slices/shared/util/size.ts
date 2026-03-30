@@ -28,8 +28,9 @@ export const getStaticBoxGrid = (containerSize: BoxSize, unitSize: BoxSize) => {
 	const units = rows * cols;
 
 	const size = {
-		width: Math.round(width * cols),
-		height: Math.round(height * rows),
+		// Keep sub-mm precision; rounding causes aspect-ratio drift in print.
+		width: width * cols,
+		height: height * rows,
 	};
 
 	return { rows, cols, units, size };
@@ -93,8 +94,9 @@ export const getRelativeBoxSize = (size: BoxSize, unitSize: BoxSize) => {
 	const { width, height } = unitSize;
 
 	return {
-		width: Math.round((width * 100) / size.width),
-		height: Math.round((height * 100) / size.height),
+		// Avoid integer rounding so preview sizing matches print proportions.
+		width: (width * 100) / size.width,
+		height: (height * 100) / size.height,
 	};
 };
 

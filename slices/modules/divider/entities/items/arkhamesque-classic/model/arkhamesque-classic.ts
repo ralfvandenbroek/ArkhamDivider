@@ -4,7 +4,7 @@ import type { DividerWithRelations } from "@/modules/divider/shared/model";
 export type ArkhamesqueClassicDividerParams = {
 	icon?: Icon | null;
 	customTitle?: string;
-	campaignIcon?: Icon | null;
+	bottomIcon?: Icon | null;
 };
 
 export type ArkhamesqueClassicDividerProps =

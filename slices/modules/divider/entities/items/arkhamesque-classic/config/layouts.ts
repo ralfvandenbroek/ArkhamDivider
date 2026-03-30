@@ -10,15 +10,15 @@ const large: DividerLayout = {
 	name: "divider.arkhamesque-classic.large",
 	orientation: "horizontal",
 	color: true,
-	size: createSize(89, 80),
+	size: createSize(89.25, 79.77),
 	printSize: {
 		300: {
-			size: createSize(1051, 960),
-			bleedSize: createSize(1122, 1032),
+			size: createSize(1054, 942),
+			bleedSize: createSize(1125, 1013),
 		},
 	},
 	bleed: 3,
-	iconParams: ["icon", "campaignIcon"],
+	iconParams: ["icon", "bottomIcon"],
 };
 
 const medium: DividerLayout = {

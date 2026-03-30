@@ -24,13 +24,13 @@ export function DividerContent({
 	}
 	const { originalBleed, bleedEnabled } = layoutSize;
 	const offset = bleedEnabled ? originalBleed : 0;
-	const outlineWidth = mm(0.25);
+	const outlineWidth = 0.25;
 	const sxProps = {
 		...props.sx,
 		...(borderRadius && !hideBorderRadius
 			? {
-					outline: `${outlineWidth} dashed red`,
-					outlineOffset: -outlineWidth,
+					outline: `${mm(outlineWidth)} dashed red`,
+					// outlineOffset: mm(-outlineWidth),
 					borderRadius: mm(borderRadius),
 				}
 			: {}),

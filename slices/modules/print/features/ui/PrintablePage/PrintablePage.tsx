@@ -60,7 +60,6 @@ export function PrintablePage<T extends WithId>({
 	const unitAspectRatio = grid.unitSize.width / grid.unitSize.height;
 
 	const aspectRatio = grid.size.width / grid.size.height;
-
 	const pageOptions = pick(["side", "number", "total"], pageLayout);
 
 	const contentSx = {

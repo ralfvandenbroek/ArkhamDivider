@@ -14,7 +14,6 @@ export default {
 		left: percent(1),
 	},
 	nightgaunts: {
-		top: percent(-2),
 		left: percent(1),
 	},
 	striking_fear: {
@@ -49,7 +48,10 @@ export default {
 		left: percent(1),
 		top: percent(1),
 	},
-	dark_cult: {},
+	dark_cult: {
+		top: percent(2),
+		scale: percent(110),
+	},
 	locked_doors: {
 		top: percent(2),
 		left: percent(1),
