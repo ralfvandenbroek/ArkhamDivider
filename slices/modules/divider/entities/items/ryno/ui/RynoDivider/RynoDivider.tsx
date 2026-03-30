@@ -20,6 +20,7 @@ import {
 } from "../../lib";
 import { useRynoDividerImages, useRynoDividerSxOptions } from "../../lib/hooks";
 import type { RynoDividerProps } from "../../model";
+import { RynoDividerContext } from "../RynoDividerContext";
 import { RynoDividerHeader as Header } from "../RynoDividerHeader";
 import * as C from "./RynoDivider.components";
 import * as S from "./RynoDivider.styles";
@@ -66,46 +67,48 @@ export function RynoDivider(props: RynoDividerProps) {
 	const showLeftIcon = showRynoDividerLeftIcon(props);
 
 	return (
-		<Container>
-			<BleedView>
-				<Image src={images.body} sx={bodySx} />
-				<C.Header src={images.header} divider={props} />
-				{showCornerImage && <Image src={images.corner} sx={cornerSx} />}
-			</BleedView>
-			<DividerContent>
-				{props.layoutType !== "scenario" && !showCornerImage && (
-					<Image
-						src={getRynoDividerFactionImage(props)}
-						sx={factionImageSx}
-						onClick={selectLeftIcon}
-					/>
-				)}
-				{showLeftIcon && (
+		<RynoDividerContext.Provider value={{ divider: props }}>
+			<Container>
+				<BleedView>
+					<Image src={images.body} sx={bodySx} />
+					<C.Header src={images.header} />
+					{showCornerImage && <Image src={images.corner} sx={cornerSx} />}
+				</BleedView>
+				<DividerContent>
+					{props.layoutType !== "scenario" && !showCornerImage && (
+						<Image
+							src={getRynoDividerFactionImage(props)}
+							sx={factionImageSx}
+							onClick={selectLeftIcon}
+						/>
+					)}
+					{showLeftIcon && (
+						<Icon
+							icon={leftIcon}
+							sx={leftIconSx}
+							scaleType="circle"
+							onClick={selectLeftIcon}
+						/>
+					)}
+					{rightIcon && (
+						<Icon icon={rightIcon} sx={rightIconSx} onClick={selectRightIcon} />
+					)}
 					<Icon
-						icon={leftIcon}
-						sx={leftIconSx}
-						scaleType="circle"
-						onClick={selectLeftIcon}
+						icon={backgroundIcon}
+						sx={backgroundIconSx}
+						onClick={selectBackgroundIcon}
 					/>
-				)}
-				{rightIcon && (
-					<Icon icon={rightIcon} sx={rightIconSx} onClick={selectRightIcon} />
-				)}
-				<Icon
-					icon={backgroundIcon}
-					sx={backgroundIconSx}
-					onClick={selectBackgroundIcon}
-				/>
 
-				<Header divider={props} />
-				<DividerColorPicker
-					dividerId={props.id}
-					param="headerColor"
-					defaultColor={defaultHeaderColor}
-					sx={headerColorSx}
-				/>
-				<DividerMenu dividerId={props.id} sx={menuSx} />
-			</DividerContent>
-		</Container>
+					<Header />
+					<DividerColorPicker
+						dividerId={props.id}
+						param="headerColor"
+						defaultColor={defaultHeaderColor}
+						sx={headerColorSx}
+					/>
+					<DividerMenu dividerId={props.id} sx={menuSx} />
+				</DividerContent>
+			</Container>
+		</RynoDividerContext.Provider>
 	);
 }

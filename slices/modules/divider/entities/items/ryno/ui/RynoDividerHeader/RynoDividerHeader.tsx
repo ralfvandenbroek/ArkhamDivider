@@ -11,14 +11,11 @@ import {
 	showRynoDividerSubtitle,
 	useRynoDividerSxOptions,
 } from "../../lib";
-import type { RynoDividerProps } from "../../model";
+import { useRynoDividerContext } from "../RynoDividerContext";
 import * as S from "./RynoDividerHeader.styles";
 
-type RynoDividerHeaderProps = {
-	divider: RynoDividerProps;
-};
-
-export function RynoDividerHeader({ divider }: RynoDividerHeaderProps) {
+export function RynoDividerHeader() {
+	const { divider } = useRynoDividerContext();
 	const sxOptions = useRynoDividerSxOptions();
 	const { t } = useTranslation();
 	const getLocaleSx = useLocaleSx(sxOptions);

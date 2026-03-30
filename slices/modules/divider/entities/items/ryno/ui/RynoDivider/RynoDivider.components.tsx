@@ -3,16 +3,11 @@ import { isUndefined } from "ramda-adjunct";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { getRynoDividerHueRotation } from "../../lib";
-import type { RynoDividerProps } from "../../model";
+import { useRynoDividerContext } from "../RynoDividerContext";
 import * as S from "./RynoDivider.styles";
 
-export const Header = ({
-	src,
-	divider,
-	...props
-}: BoxProps<"img"> & {
-	divider: RynoDividerProps;
-}) => {
+export const Header = ({ src, ...props }: BoxProps<"img">) => {
+	const { divider } = useRynoDividerContext();
 	const getPrintSx = usePrintUnit();
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const hue = getRynoDividerHueRotation(divider);
