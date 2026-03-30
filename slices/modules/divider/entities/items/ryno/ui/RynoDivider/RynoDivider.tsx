@@ -22,6 +22,7 @@ import { useRynoDividerImages, useRynoDividerSxOptions } from "../../lib/hooks";
 import type { RynoDividerProps } from "../../model";
 import { RynoDividerContext } from "../RynoDividerContext";
 import { RynoDividerHeader as Header } from "../RynoDividerHeader";
+import { RynoDividerXP } from "../RynoDividerXP";
 import * as C from "./RynoDivider.components";
 import * as S from "./RynoDivider.styles";
 
@@ -39,7 +40,7 @@ export function RynoDivider(props: RynoDividerProps) {
 	const menuSx = getPrintSx(S.getMenuSx);
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
 	const factionImageSx = getPrintSx(S.getFactionImageSx);
-	const _xpImageSx = getPrintSx(S.getXPImageSx);
+	const xpSx = getPrintSx(S.getXPSx);
 
 	const getDividerIcon = useDividerIcon({ dividerId: props.id });
 	const defaultLeftIcon = getRynoDividerDefaultLeftIcon(props);
@@ -99,6 +100,7 @@ export function RynoDivider(props: RynoDividerProps) {
 						onClick={selectBackgroundIcon}
 					/>
 
+					<RynoDividerXP sx={xpSx} />
 					<Header />
 					<DividerColorPicker
 						dividerId={props.id}

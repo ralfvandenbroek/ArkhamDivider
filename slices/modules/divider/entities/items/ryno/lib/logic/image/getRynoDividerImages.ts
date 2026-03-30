@@ -26,6 +26,5 @@ export const getRynoDividerImages = (options: Options) => {
 		body: asset`/body_${id}.avif`,
 		header: asset`/header_${typePrefix}${id}.avif`,
 		corner: asset`/corner_${typePrefix}${id}.avif`,
-		xp: asset`/xp.avif`,
 	};
 };

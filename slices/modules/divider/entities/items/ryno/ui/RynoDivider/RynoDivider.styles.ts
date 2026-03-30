@@ -122,11 +122,10 @@ export const getFactionImageSx: PrintSxCallback = ({ mm }) => ({
 	},
 });
 
-export const getXPImageSx: PrintSxCallback = ({ mm }) => ({
+export const getXPSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
 	top: mm(1.7),
-	left: mm(2.7),
-	height: mm(8),
-	width: mm(8),
+	right: mm(2.7),
+	fontSize: mm(8),
 	zIndex: 3,
 });
