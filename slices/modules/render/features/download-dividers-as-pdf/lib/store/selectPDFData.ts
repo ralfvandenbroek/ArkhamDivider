@@ -9,6 +9,7 @@ import {
 } from "@/modules/divider/shared/lib";
 import {
 	selectBleedEnabled,
+	selectCreaseEnabled,
 	selectCropMarksEnabled,
 	selectDoubleSidePrintEnabled,
 	selectEnablePageCounter,
@@ -37,6 +38,7 @@ function selectPDFDataImpl(state: RootState) {
 	const enablePageCounter = selectEnablePageCounter(state);
 	const cornerRadiusEnabled = selectShowCornerRadius(state);
 	const lasercutEnabled = selectLasercutEnabled(state);
+	const creaseEnabled = selectCreaseEnabled(state);
 	return {
 		icons,
 		language,
@@ -54,6 +56,7 @@ function selectPDFDataImpl(state: RootState) {
 		enablePageCounter,
 		cornerRadiusEnabled,
 		lasercutEnabled,
+		creaseEnabled,
 	};
 }
 

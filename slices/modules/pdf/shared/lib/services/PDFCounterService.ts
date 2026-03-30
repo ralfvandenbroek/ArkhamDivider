@@ -29,7 +29,7 @@ export class PDFCounterService {
 		const width = pageSize.width - 2 * x;
 
 		return this.text.draw(label, {
-			fontFamily: "Helvetica",
+			fontFamily: "AlegreyaRegular",
 			y,
 			x,
 			width,

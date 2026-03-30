@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import ImportContactsIcon from "@mui/icons-material/ImportContactsOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
+import LinearScaleOutlinedIcon from "@mui/icons-material/LinearScaleOutlined";
 import LooksOneIcon from "@mui/icons-material/LooksOneOutlined";
 import PinOutlinedIcon from "@mui/icons-material/PinOutlined";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
@@ -24,6 +25,7 @@ import { useBoolean } from "@/shared/lib/hooks/common";
 import { StoreSwitch } from "@/shared/ui";
 import {
 	selectBleedEnabled,
+	selectCreaseEnabled,
 	selectCropMarksEnabled,
 	selectDoubleSidePrintEnabled,
 	selectEnablePageCounter,
@@ -31,6 +33,7 @@ import {
 	selectShowCornerRadius,
 	selectSingleItemPerPage,
 	setBleedEnabled,
+	setCreaseEnabled,
 	setCropMarksEnabled,
 	setDoubleSidePrintEnabled,
 	setEnablePageCounter,
@@ -82,6 +85,11 @@ export function PrintSettings(props: PrintSettingsProps) {
 	const { toggle: toggleLasercutEnabled } = useBooleanAction({
 		actionCreator: setLasercutEnabled,
 		selector: selectLasercutEnabled,
+	});
+
+	const { toggle: toggleCreaseEnabled } = useBooleanAction({
+		actionCreator: setCreaseEnabled,
+		selector: selectCreaseEnabled,
 	});
 
 	const { toggle: toggleEnablePageCounter } = useBooleanAction({
@@ -196,6 +204,16 @@ export function PrintSettings(props: PrintSettingsProps) {
 										<StoreSwitch
 											actionCreator={setLasercutEnabled}
 											selector={selectLasercutEnabled}
+										/>
+									</ListItemButton>
+									<ListItemButton onClick={toggleCreaseEnabled}>
+										<ListItemIcon>
+											<LinearScaleOutlinedIcon />
+										</ListItemIcon>
+										<ListItemText primary={t(`print.crease`)} />
+										<StoreSwitch
+											actionCreator={setCreaseEnabled}
+											selector={selectCreaseEnabled}
 										/>
 									</ListItemButton>
 									<ListItemButton onClick={toggleEnablePageCounter}>

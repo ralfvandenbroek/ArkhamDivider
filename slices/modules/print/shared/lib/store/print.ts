@@ -13,6 +13,7 @@ export type PrintState = {
 	doubleSidePrintEnabled: boolean;
 	enablePageCounter: boolean;
 	lasercutEnabled: boolean;
+	creaseEnabled: boolean;
 	pageSize: PageFormatType;
 	singleItemPerPage: boolean;
 	orientation: Orientation;
@@ -28,6 +29,7 @@ const initialState: PrintState = {
 	doubleSidePrintEnabled: false,
 	enablePageCounter: true,
 	lasercutEnabled: false,
+	creaseEnabled: false,
 	pageSize: "A4",
 	singleItemPerPage: false,
 	orientation: "portrait",
@@ -55,6 +57,7 @@ export const {
 	setShowCornerRadius,
 	setDoubleSidePrintEnabled,
 	setLasercutEnabled,
+	setCreaseEnabled,
 	setPageSize,
 	setSingleItemPerPage,
 	setPageLayoutGrid,
@@ -70,6 +73,7 @@ export const {
 	selectShowCornerRadius,
 	selectDoubleSidePrintEnabled,
 	selectLasercutEnabled,
+	selectCreaseEnabled,
 	selectPageSize,
 	selectSingleItemPerPage,
 	selectPageLayoutGrid,

@@ -8,6 +8,7 @@ import type {
 import type { DPI } from "@/modules/print/shared/model";
 import type { BoxSize } from "@/shared/model";
 import type {
+	PDFCreaseService,
 	PDFIconService,
 	PDFImageService,
 	PDFLasercutService,
@@ -23,9 +24,11 @@ export type PDFDividerContext = {
 	icon: PDFIconService;
 	unit: PDFUnitService;
 	lasercut: PDFLasercutService;
+	crease: PDFCreaseService;
 	image: PDFImageService;
 	layout: DividerLayout;
 	bleedEnabled: boolean;
+	creaseEnabled: boolean;
 	language: string;
 	scenarioParams: Partial<ScenarioDividerParams>;
 	playerParams: Partial<PlayerDividerParams>;

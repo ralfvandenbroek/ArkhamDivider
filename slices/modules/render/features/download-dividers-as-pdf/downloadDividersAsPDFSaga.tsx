@@ -10,6 +10,7 @@ import {
 	destroyPDFDocument,
 	getPDFPageLayouts,
 	PDFCounterService,
+	PDFCreaseService,
 	PDFCropmarkService,
 	PDFFontService,
 	PDFIconService,
@@ -58,6 +59,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 		enablePageCounter,
 		cornerRadiusEnabled,
 		lasercutEnabled,
+		creaseEnabled,
 	}: ReturnType<typeof selectPDFData> = yield select(selectPDFData);
 
 	const total = dividers.length;
@@ -168,6 +170,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 	const cropmarks = new PDFCropmarkService(doc);
 	const image = new PDFImageService(doc);
 	const counter = new PDFCounterService(text, pageSizePt);
+	const crease = new PDFCreaseService(doc, { enabled: creaseEnabled });
 
 	const hideCounter =
 		(singleItemPerPage && !cropmarksEnabled) || !enablePageCounter;
@@ -246,10 +249,12 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						dpi,
 						layout,
 						bleedEnabled,
+						creaseEnabled,
 						icon,
 						text,
 						unit,
 						lasercut,
+						crease,
 						doc,
 						image,
 						language,

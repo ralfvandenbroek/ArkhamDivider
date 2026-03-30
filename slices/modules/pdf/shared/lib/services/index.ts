@@ -1,4 +1,5 @@
 export * from "./PDFCounterService";
+export * from "./PDFCreaseService";
 export * from "./PDFCropmarkService";
 export * from "./PDFFontService";
 export * from "./PDFIconService";
