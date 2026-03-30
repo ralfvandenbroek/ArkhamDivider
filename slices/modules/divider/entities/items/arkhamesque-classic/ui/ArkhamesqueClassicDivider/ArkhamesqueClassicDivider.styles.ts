@@ -34,6 +34,7 @@ export const getBottomIconSx: PrintSxCallback = ({ mm }) => ({
 	height: mm(O.bottomIcon.height),
 	left: mm(O.bottomIcon.left),
 	right: mm(O.bottomIcon.right),
+	transform: "translateX(-50%)",
 	fontSize: mm(O.bottomIcon.fontSize),
 	cursor: "pointer",
 	"@media screen": {
@@ -41,6 +42,12 @@ export const getBottomIconSx: PrintSxCallback = ({ mm }) => ({
 			opacity: percent(70),
 		},
 	},
+});
+
+export const getBottomIconContainerSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	left: "50%",
+	transform: "translateX(-50%)",
 });
 
 export const getTitleSx: PrintSxCallback = ({ mm }) => ({
@@ -57,6 +64,16 @@ export const getXPSx: PrintSxCallback = ({ mm }) => ({
 	right: mm(O.xp.right),
 	width: mm(O.xp.width),
 	height: mm(O.xp.height),
+	whiteSpace: "nowrap",
+	textAlign: "center",
+});
+
+export const getScenarioNumberSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(O.scenarioNumber.top),
+	right: mm(O.scenarioNumber.right),
+	width: mm(O.scenarioNumber.width),
+	height: mm(O.scenarioNumber.height),
 	whiteSpace: "nowrap",
 	textAlign: "center",
 });

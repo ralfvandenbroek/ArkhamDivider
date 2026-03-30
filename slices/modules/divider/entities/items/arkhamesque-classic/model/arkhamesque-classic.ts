@@ -5,6 +5,8 @@ export type ArkhamesqueClassicDividerParams = {
 	icon?: Icon | null;
 	customTitle?: string;
 	bottomIcon?: Icon | null;
+	/** FitText font size scale (%) for scenario number badge. */
+	scenarioNumberScale?: number;
 };
 
 export type ArkhamesqueClassicDividerProps =

@@ -27,6 +27,21 @@ export const findScenario = (
 	return story.scenarios.find((s) => getScenarioCodes(s).includes(code));
 };
 
+export const findStory = (
+	data: IArkhamesqueBuild,
+	code: string | undefined,
+) => {
+	if (!code) {
+		return;
+	}
+	for (const category of data.stories) {
+		const match = category.data.find((s) => s.code === code);
+		if (match) {
+			return match;
+		}
+	}
+};
+
 export const findInvestigator = (
 	data: IArkhamesqueBuild,
 	code: string | undefined,

@@ -48,17 +48,20 @@ export function IconCorrection(props: IconCorrectionProps) {
 		lineHeight: 1,
 	};
 
+	const isLeft = !right;
+	const isTop = !bottom;
+
 	const correctionSx = disableCorrection
 		? {
-				...(left && { left: `${left}px` }),
+				...(isLeft && { left: `${left}px` }),
 				...(right && { right: `${right}px` }),
-				...(top && { top: `${top}px` }),
+				...(isTop && { top: `${top}px` }),
 				...(bottom && { bottom: `${bottom}px` }),
 			}
 		: {
-				...(left && { left: `${left + correction.left}px` }),
+				...(isLeft && { left: `${left + correction.left}px` }),
 				...(right && { right: `${right - correction.left}px` }),
-				...(top && { top: `${top + correction.top}px` }),
+				...(isTop && { top: `${top + correction.top}px` }),
 				...(bottom && { bottom: `${bottom - correction.top}px` }),
 			};
 

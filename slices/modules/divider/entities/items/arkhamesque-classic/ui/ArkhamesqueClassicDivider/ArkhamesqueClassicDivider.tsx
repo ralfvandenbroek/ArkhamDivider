@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import {
 	DividerBleedView as BleedView,
 	DividerContainer as Container,
@@ -8,7 +9,10 @@ import { DividerIcon } from "@/modules/divider/features/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { Image } from "@/shared/ui";
-import { arkhamesqueClassicManifest as positionManifest } from "../../config";
+import {
+	arkhamesqueClassicBottomManifest as bottomManifest,
+	arkhamesqueClassicManifest as positionManifest,
+} from "../../config";
 import {
 	getDefaultArkhamesqueClassicBottomIcon as getDefaultBottomIcon,
 	getArkhamesqueClassicImage as getImage,
@@ -19,6 +23,7 @@ import {
 import type { ArkhamesqueClassicDividerProps } from "../../model";
 import { ArkhamesqueClassicContext as Context } from "../ArkhamesqueClassicContext";
 import { ArkhamesqueClassicDividerXP as XP } from "../ArkhamesqueClassicDividerXP/ArkhamesqueClassicDividerXP";
+import { ArkhamesqueClassicScenarioNumber as ScenarioNumber } from "../ArkhamesqueClassicScenarioNumber/ArkhamesqueClassicScenarioNumber";
 import { ArkhamesqueClassicTitle as Title } from "../ArkhamesqueClassicTitle/ArkhamesqueClassicTitle";
 import * as S from "./ArkhamesqueClassicDivider.styles";
 
@@ -31,6 +36,8 @@ export function ArkhamesqueClassicDivider(
 	const bottomIconSx = getPrintSx(S.getBottomIconSx);
 	const titleSx = getPrintSx(S.getTitleSx);
 	const xpSx = getPrintSx(S.getXPSx);
+	const scenarioNumberSx = getPrintSx(S.getScenarioNumberSx);
+	const bottomIconContainerSx = getPrintSx(S.getBottomIconContainerSx);
 
 	const data = useAppSelector(selectArkhamesqueClassicData);
 	const background = getImage({
@@ -73,6 +80,9 @@ export function ArkhamesqueClassicDivider(
 				)}
 				<Content>
 					<Title sx={titleSx} />
+					{props.layoutType === "scenario" && (
+						<ScenarioNumber sx={scenarioNumberSx} />
+					)}
 					{props.layoutType === "player" && props.xpCost && (
 						<XP sx={xpSx} xpCost={props.xpCost} />
 					)}
@@ -86,13 +96,15 @@ export function ArkhamesqueClassicDivider(
 						/>
 					)}
 					{showSecondaryIcon && (
-						<DividerIcon
-							icon={bottomIcon}
-							sx={bottomIconSx}
-							scaleType="circle"
-							onClick={selectBottomIcon}
-							manifest={positionManifest}
-						/>
+						<Box sx={bottomIconContainerSx}>
+							<DividerIcon
+								icon={bottomIcon}
+								sx={bottomIconSx}
+								scaleType="circle"
+								onClick={selectBottomIcon}
+								manifest={bottomManifest}
+							/>
+						</Box>
 					)}
 				</Content>
 			</Container>

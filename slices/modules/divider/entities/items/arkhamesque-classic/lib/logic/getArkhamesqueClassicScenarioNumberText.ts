@@ -1,16 +1,16 @@
 import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
-import type { ArkhamesqueClassicDividerProps } from "../../../model";
-import { findScenario, findStory, withBuildPrefix } from "./helpers";
+import type { ArkhamesqueClassicDividerProps } from "../../model";
+import { findScenario, findStory } from "./images/helpers";
 
 type Options = {
 	data: IArkhamesqueBuild;
 	divider: ArkhamesqueClassicDividerProps;
 };
 
-export const getArkhamesqueClassicScenarioImage = ({
+export const getArkhamesqueClassicScenarioNumberText = ({
 	data,
 	divider,
-}: Options): string[] | undefined => {
+}: Options) => {
 	if (divider.layoutType !== "scenario") {
 		return;
 	}
@@ -21,15 +21,17 @@ export const getArkhamesqueClassicScenarioImage = ({
 		return;
 	}
 
-	// For scenario dividers, try to match by scenario code; otherwise fall back to the story image.
-	// Legacy logic matches build scenario code(s) against `scenario.id`.
+	// Mirrors scenario image matching: map scenario to its build code.
 	const scenarioCode =
 		divider.type === "scenario" && "scenario" in divider
 			? divider.scenario?.id
 			: undefined;
 	const scenario = findScenario(story, scenarioCode);
 
-	const filename = scenario ? `${story.name}${scenario.name}` : story.name;
-
-	return [withBuildPrefix(data, filename)];
+	return (
+		scenario?.number_text ??
+		(divider.type === "scenario" && "scenario" in divider
+			? divider.scenario?.number_text
+			: undefined)
+	);
 };
