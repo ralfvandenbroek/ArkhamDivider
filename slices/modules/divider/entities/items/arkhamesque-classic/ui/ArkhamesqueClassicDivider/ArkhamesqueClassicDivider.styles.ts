@@ -50,3 +50,13 @@ export const getTitleSx: PrintSxCallback = ({ mm }) => ({
 	right: mm(O.title.right),
 	height: mm(O.title.height),
 });
+
+export const getXPSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(O.xp.top),
+	right: mm(O.xp.right),
+	width: mm(O.xp.width),
+	height: mm(O.xp.height),
+	whiteSpace: "nowrap",
+	textAlign: "center",
+});

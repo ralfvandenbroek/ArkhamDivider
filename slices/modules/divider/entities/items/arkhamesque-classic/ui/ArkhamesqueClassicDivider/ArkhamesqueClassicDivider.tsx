@@ -18,6 +18,7 @@ import {
 } from "../../lib";
 import type { ArkhamesqueClassicDividerProps } from "../../model";
 import { ArkhamesqueClassicContext as Context } from "../ArkhamesqueClassicContext";
+import { ArkhamesqueClassicDividerXP as XP } from "../ArkhamesqueClassicDividerXP/ArkhamesqueClassicDividerXP";
 import { ArkhamesqueClassicTitle as Title } from "../ArkhamesqueClassicTitle/ArkhamesqueClassicTitle";
 import * as S from "./ArkhamesqueClassicDivider.styles";
 
@@ -29,6 +30,7 @@ export function ArkhamesqueClassicDivider(
 	const leftIconSx = getPrintSx(S.getLeftIconSx);
 	const bottomIconSx = getPrintSx(S.getBottomIconSx);
 	const titleSx = getPrintSx(S.getTitleSx);
+	const xpSx = getPrintSx(S.getXPSx);
 
 	const data = useAppSelector(selectArkhamesqueClassicData);
 	const background = getImage({
@@ -71,6 +73,9 @@ export function ArkhamesqueClassicDivider(
 				)}
 				<Content>
 					<Title sx={titleSx} />
+					{props.layoutType === "player" && props.xpCost && (
+						<XP sx={xpSx} xpCost={props.xpCost} />
+					)}
 					{showLeftIcon && (
 						<DividerIcon
 							icon={leftIcon}
