@@ -1,7 +1,7 @@
 import { Box, type BoxProps } from "@mui/material";
 import type { SxProps } from "@mui/material/styles";
-import { DividerIcon as Icon } from "@/modules/divider/features/ui";
-import { getXPLevel, getXPMax } from "@/modules/divider/shared/lib";
+import { Icon } from "@/modules/core/icon/shared/ui";
+import { getXPLevel } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { rynoDividerAssetsBaseUrl } from "../../config";
 import { useRynoDividerContext } from "../RynoDividerContext";
@@ -21,14 +21,15 @@ export function RynoDividerXP(props: RynoDividerXPProps) {
 
 	const { xpCost } = divider;
 	const level = getXPLevel(xpCost) ?? 0;
-	const max = getXPMax(xpCost);
-	const _maxIconLevel = max ?? level ?? 5;
+
+	const label = xpCost.name;
 
 	const containerSx = getPrintSx(S.getContainerSx);
 	const imageSx = getPrintSx(S.getImageSx);
-	const valueSx = getPrintSx(S.getValueSx);
+	const labelSx = getPrintSx(S.getLabelSx, {
+		small: label.length > 2,
+	});
 	const levelsSx = getPrintSx(S.getLevelsSx);
-	// const levelIconSx = getPrintSx(S.getLevelIconSx);
 	const maxLevelIconSx = getPrintSx(S.getLevelIconSx);
 
 	const sx = {
@@ -40,7 +41,7 @@ export function RynoDividerXP(props: RynoDividerXPProps) {
 		<Box {...props} sx={sx}>
 			<Box component="img" src={xpSrc} alt="" sx={imageSx} />
 
-			<Box sx={valueSx}>{xpCost.name}</Box>
+			<Box sx={labelSx}>{label}</Box>
 
 			<Box sx={levelsSx}>
 				{level > 0 && (

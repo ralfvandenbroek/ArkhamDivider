@@ -15,7 +15,9 @@ export const getImageSx: PrintSxCallback = () => ({
 	objectFit: "contain",
 });
 
-export const getValueSx: PrintSxCallback = () => ({
+export const getLabelSx: PrintSxCallback<{ small?: boolean }> = ({
+	small,
+}) => ({
 	position: "absolute",
 	display: "flex",
 	width: "100%",
@@ -23,9 +25,9 @@ export const getValueSx: PrintSxCallback = () => ({
 	justifyContent: "center",
 	fontFamily: "Arkhamic, Teutonic, serif",
 	fontWeight: 700,
-	fontSize: "0.42em",
+	fontSize: small ? "0.3em" : "0.42em",
 	top: "7%",
-	height: "60%",
+	height: "65%",
 	lineHeight: 1,
 	color: "#fff",
 	textShadow: "0 0 0.15em rgba(0,0,0,0.9)",
