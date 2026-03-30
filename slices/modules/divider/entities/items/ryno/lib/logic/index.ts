@@ -1,5 +1,5 @@
 export * from "./color";
-export * from "./getRynoDividerDefaultRightIcon";
-export * from "./getRynoDividerImages";
+export * from "./icon";
+export * from "./image";
 export * from "./objects";
 export * from "./text";

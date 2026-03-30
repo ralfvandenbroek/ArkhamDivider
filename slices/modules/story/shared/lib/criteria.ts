@@ -39,6 +39,13 @@ export const isSideContent = anyPass([isSideStory, isStandaloneStory]);
 
 export const isReturnPack = (story: Story) => Boolean(story.return_to_code);
 
+/**
+ * Code of the linked campaign/return-pack in `stories` (see `initStoriesSaga`):
+ * campaigns get `return_code`; return packs keep `return_to_code` from data.
+ */
+export const getLinkedReturnStoryCode = (story: Story | undefined) =>
+	story?.return_code ?? story?.return_to_code;
+
 export const withReturnTo = (code: string) => (story: Story) =>
 	story.return_to_code === code;
 

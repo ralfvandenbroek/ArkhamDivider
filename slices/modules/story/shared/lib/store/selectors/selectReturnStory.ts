@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { propEq } from "ramda";
 import { selectStories } from "../stories";
 import { selectStory } from "./selectStory";
 
@@ -9,6 +8,6 @@ export const selectReturnStory = createSelector(
 		if (!story) {
 			return;
 		}
-		return stories.find(propEq(story.return_to_code, "code"));
+		return stories.find(({ return_to_code }) => return_to_code === story.code);
 	},
 );

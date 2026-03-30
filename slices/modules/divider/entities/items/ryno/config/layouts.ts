@@ -25,6 +25,9 @@ const horizontalLayout: DividerLayout = {
 			size: sleeve76x88,
 		},
 	],
+	playerParams: {
+		story: true,
+	},
 	iconParams: ["leftIcon", "rightIcon", "backgroundIcon"],
 };
 

@@ -43,7 +43,6 @@ export default {
 	},
 	neutral: {
 		left: percent(-1),
-		top: percent(-4),
 		scale: percent(85),
 	},
 	class_neutral: {
@@ -51,7 +50,6 @@ export default {
 		top: percent(-3),
 	},
 	multiclass: {
-		left: percent(-1),
-		top: percent(-4),
+		top: percent(-1),
 	},
 } as IconPositionManifest;

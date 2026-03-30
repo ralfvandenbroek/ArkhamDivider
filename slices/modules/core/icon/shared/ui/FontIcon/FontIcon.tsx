@@ -17,7 +17,6 @@ export function FontIcon(props: FontIconProps) {
 	if (!icon) {
 		return null;
 	}
-
 	const size = resizeDisabled
 		? 100
 		: getIconScale({

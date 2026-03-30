@@ -10,9 +10,9 @@ import type { RynoDividerProps } from "../../../model";
 export const getRynoDividerDefaultHeaderColor = (
 	props: RynoDividerProps,
 ): RGBColor | undefined => {
-	const { story } = props;
+	if (props.layoutType === "scenario") {
+		const { story } = props;
 
-	if (story) {
 		const code = story.return_to_code || story.code;
 		const campaignColor = rynoCampaignColors[code];
 

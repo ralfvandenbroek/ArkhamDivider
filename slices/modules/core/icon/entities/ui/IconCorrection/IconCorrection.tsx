@@ -40,7 +40,6 @@ export function IconCorrection(props: IconCorrectionProps) {
 					top: 0,
 					left: 0,
 				};
-
 	const baseSx: SxProps = {
 		position: "relative",
 		display: "flex",
@@ -65,8 +64,8 @@ export function IconCorrection(props: IconCorrectionProps) {
 
 	const sx = {
 		...baseSx,
-		...(correction.fontSize && { fontSize: `${correction.fontSize}px` }),
 		...sxProp,
+		...(correction.fontSize && { fontSize: `${correction.fontSize}px` }),
 		...correctionSx,
 	} as SxProps;
 	return (

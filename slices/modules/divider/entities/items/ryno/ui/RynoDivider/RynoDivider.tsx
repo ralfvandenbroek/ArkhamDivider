@@ -8,12 +8,15 @@ import {
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
-// import * as C from "./RynoDivider.components";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import {
 	getRynoDividerDefaultHeaderColor,
+	getRynoDividerDefaultLeftIcon,
 	getRynoDividerDefaultRightIcon,
+	getRynoDividerFactionImage,
+	showRynoDividerCornerImage,
+	showRynoDividerLeftIcon,
 } from "../../lib";
 import { useRynoDividerImages, useRynoDividerSxOptions } from "../../lib/hooks";
 import type { RynoDividerProps } from "../../model";
@@ -22,7 +25,7 @@ import * as C from "./RynoDivider.components";
 import * as S from "./RynoDivider.styles";
 
 export function RynoDivider(props: RynoDividerProps) {
-	const { layoutType, type } = props;
+	const { type } = props;
 	const sxOptions = useRynoDividerSxOptions();
 
 	const images = useRynoDividerImages(type);
@@ -34,11 +37,13 @@ export function RynoDivider(props: RynoDividerProps) {
 	const headerColorSx = getPrintSx(S.getHeaderColorSx);
 	const menuSx = getPrintSx(S.getMenuSx);
 	const backgroundIconSx = getPrintSx(S.getBackgroundIconSx);
+	const factionImageSx = getPrintSx(S.getFactionImageSx);
 
 	const getDividerIcon = useDividerIcon({ dividerId: props.id });
+	const defaultLeftIcon = getRynoDividerDefaultLeftIcon(props);
 	const [leftIcon, selectLeftIcon] = getDividerIcon({
 		param: "leftIcon",
-		defaultIcon: props.icon,
+		defaultIcon: defaultLeftIcon,
 	});
 
 	const defaultRightIcon = getRynoDividerDefaultRightIcon(props);
@@ -56,30 +61,34 @@ export function RynoDivider(props: RynoDividerProps) {
 	const defaultHeaderColor =
 		defaultHeaderRGBColor && rgbTuple2Hex(defaultHeaderRGBColor);
 
+	const showCornerImage = showRynoDividerCornerImage(props);
+	const showLeftIcon = showRynoDividerLeftIcon(props);
+
 	return (
 		<Container>
 			<BleedView>
 				<Image src={images.body} sx={bodySx} />
 				<C.Header src={images.header} divider={props} />
-				<Image src={images.corner} sx={cornerSx} />
+				{showCornerImage && <Image src={images.corner} sx={cornerSx} />}
 			</BleedView>
 			<DividerContent>
-				{layoutType === "scenario" && (
-					<>
-						<Icon
-							icon={leftIcon}
-							sx={leftIconSx}
-							scaleType="circle"
-							onClick={selectLeftIcon}
-						/>
-						{type !== "campaign" && (
-							<Icon
-								icon={rightIcon}
-								sx={rightIconSx}
-								onClick={selectRightIcon}
-							/>
-						)}
-					</>
+				{props.layoutType !== "scenario" && !showCornerImage && (
+					<Image
+						src={getRynoDividerFactionImage(props)}
+						sx={factionImageSx}
+						onClick={selectLeftIcon}
+					/>
+				)}
+				{showLeftIcon && (
+					<Icon
+						icon={leftIcon}
+						sx={leftIconSx}
+						scaleType="circle"
+						onClick={selectLeftIcon}
+					/>
+				)}
+				{rightIcon && (
+					<Icon icon={rightIcon} sx={rightIconSx} onClick={selectRightIcon} />
 				)}
 				<Icon
 					icon={backgroundIcon}

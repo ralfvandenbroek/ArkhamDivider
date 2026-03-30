@@ -163,6 +163,8 @@ export function PlayerDividerOptions(props: BoxProps) {
 		[dispatch, getValues],
 	);
 
+	const showStorySelect = Boolean(layout?.playerParams?.story);
+
 	return (
 		<Box {...props}>
 			<form onSubmit={preventDefault}>
@@ -233,7 +235,7 @@ export function PlayerDividerOptions(props: BoxProps) {
 						{renderSubtype("weakness")}
 						{renderSubtype("basic_weakness")}
 					</C.Row>
-					{layout?.playerParams?.story && (
+					{showStorySelect && (
 						<C.Row alignItems="stretch">
 							<StorySelect
 								stories={stories}

@@ -105,3 +105,19 @@ export const getMenuSx: PrintSxCallback = ({ mm }) => ({
 	left: mm(2.5),
 	zIndex: 4,
 });
+
+export const getFactionImageSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	objectFit: "contain",
+	top: mm(1.7),
+	left: mm(2.7),
+	height: mm(8),
+	width: mm(8),
+	zIndex: 3,
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(30),
+		},
+	},
+});

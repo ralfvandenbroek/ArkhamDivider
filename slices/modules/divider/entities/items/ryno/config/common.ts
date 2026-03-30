@@ -4,25 +4,11 @@ export const rynoCategoryId = "ryno";
 
 export const rynoDividerAssetsBaseUrl = "/images/divider/background/ryno";
 
-/*
-    font-family: AGaramondPro, Arno Pro, serif;
-    font-weight: 700;
-    font-size: 3mm;
-    line-height: 1;
-    position: absolute;
-    z-index: 3;
-    left: 15.3mm;
-    right: 14mm;
-    top: 4.5mm;
-    height: 1em;
-    color: #fff;
-*/
-
 export const horizontalRynoLayoutObjects = {
 	icons: {
 		left: {
 			top: 0.8,
-			left: 1.2,
+			left: 1.3,
 			fontSize: 7.8,
 			width: 8.9,
 			height: 8.9,

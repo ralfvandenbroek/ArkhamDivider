@@ -1,6 +1,6 @@
 import type { DividerType } from "@/modules/divider/shared/model";
 import { prefix } from "@/shared/util";
-import { rynoDividerAssetsBaseUrl } from "../../config";
+import { rynoDividerAssetsBaseUrl } from "../../../config";
 
 const asset = prefix(rynoDividerAssetsBaseUrl);
 
@@ -25,8 +25,7 @@ export const getRynoDividerImages = (options: Options) => {
 	return {
 		body: asset`/body_${id}.avif`,
 		header: asset`/header_${typePrefix}${id}.avif`,
-		corner: asset`/corner_${id}.avif`,
-		playerIconBackground: asset`/player-icon-background.avif`,
+		corner: asset`/corner_${typePrefix}${id}.avif`,
 		xp: asset`/xp.avif`,
 	};
 };
