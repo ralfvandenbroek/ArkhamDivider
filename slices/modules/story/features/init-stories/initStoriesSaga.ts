@@ -14,6 +14,7 @@ function* worker({ payload }: ReturnType<typeof appDataLoaded>) {
 		return {
 			...story,
 			id: v4(),
+			supported: true,
 			translated: true,
 			return_code: returnStory?.code,
 			return_scenarios: returnScenarios,

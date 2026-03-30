@@ -64,6 +64,11 @@ export const renderStory = (
 					<Icon icon="en" />
 				</Row>
 			)}
+			{!story.supported && (
+				<Row justifyContent="center" alignItems="center">
+					<Icon icon="blocked" />
+				</Row>
+			)}
 		</Row>
 	);
 };

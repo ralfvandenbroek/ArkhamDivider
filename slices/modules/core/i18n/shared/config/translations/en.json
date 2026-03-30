@@ -120,5 +120,8 @@
 	"divider.arkhamDeco.deckBox": "Deck Box",
 	"divider.arkhamDeco.chapter2": "Chapter 2 Box",
 	"divider.arkhamDeco.ucfStandard": "UCF Standard",
-	"divider.arkhamDeco.ucf50": "UCF 50"
+	"divider.arkhamDeco.ucf50": "UCF 50",
+	"divider.arkhamesque-classic.large": "Large 3.25\"",
+	"divider.arkhamesque-classic.medium": "Medium 3\"",
+	"contentNotSupported": "This content is not supported yet. Please contact the design creator."
 }

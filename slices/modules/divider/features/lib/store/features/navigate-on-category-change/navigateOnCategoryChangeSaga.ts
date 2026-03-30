@@ -1,10 +1,11 @@
 import { descend, propEq, sortWith } from "ramda";
-import { getContext, select, takeEvery } from "redux-saga/effects";
+import { getContext, put, select, takeEvery } from "redux-saga/effects";
 import { selectCurrentLanguage } from "@/modules/core/i18n/shared/lib";
 import type { AppRouter } from "@/modules/core/router/app/config";
 import { layoutRoute } from "@/modules/core/router/entities/lib";
 import { getCategoryById, selectLayout } from "@/modules/divider/entities/lib";
 import {
+	categoryIdChanged,
 	changeCategoryId,
 	selectDividerType,
 } from "@/modules/divider/shared/lib";
@@ -54,6 +55,13 @@ function* worker({ payload }: ReturnType<typeof changeCategoryId>) {
 			dividerType: first.types[0],
 			language,
 			storyCode,
+		}),
+	);
+
+	yield put(
+		categoryIdChanged({
+			prevCategoryId: currentLayout.categoryId,
+			newCategoryId: payload,
 		}),
 	);
 }

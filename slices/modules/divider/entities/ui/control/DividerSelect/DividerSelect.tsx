@@ -36,7 +36,7 @@ export function DividerSelect(props: DividerSelectProps) {
 				<ListSubheader>{t`Dividers`}</ListSubheader>
 				<MenuItem value="classic">Classic</MenuItem>
 				<MenuItem value="invocation-2018">Invocation 2018</MenuItem>
-				{/* <MenuItem value="arkhamesque">Arkhamesque Classic</MenuItem> */}
+				<MenuItem value="arkhamesque-classic">Arkhamesque Classic</MenuItem>
 				<MenuItem value="ryno">Ryno</MenuItem>
 				<MenuItem value="sarnetsky">@sarnetsky</MenuItem>
 				<MenuItem value="arkham-deco">Arkham Deco</MenuItem>

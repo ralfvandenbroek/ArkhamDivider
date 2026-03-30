@@ -19,6 +19,8 @@ import {
 	selectPreviewZoom,
 	selectSingleItemPerPage,
 } from "@/modules/print/shared/lib";
+import { selectStory } from "@/modules/story/shared/lib";
+import { StoryNotSupported } from "@/modules/story/shared/ui";
 import { useAppSelector } from "@/shared/lib";
 import { Debounce } from "@/shared/ui";
 
@@ -35,9 +37,14 @@ export function PrintableContent(props: PrintableContentProps) {
 	const bleedEnabled = useAppSelector(selectBleedEnabled);
 	const pageLayoutGrid = useAppSelector(selectPageLayoutGrid);
 	const enablePageCounter = useAppSelector(selectEnablePageCounter);
+	const story = useAppSelector(selectStory);
 
 	if (!pageFormat || !pageLayoutGrid || pageLayouts.length === 0) {
 		return null;
+	}
+
+	if (story?.supported === false) {
+		return <StoryNotSupported />;
 	}
 
 	const sx = props.sx ?? {};

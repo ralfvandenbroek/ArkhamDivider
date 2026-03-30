@@ -153,5 +153,8 @@
 	"divider.arkhamDeco.deckBox": "Дек бокс",
 	"divider.arkhamDeco.chapter2": "Коробка 2-ой Главы",
 	"divider.arkhamDeco.ucfStandard": "UCF Standard",
-	"divider.arkhamDeco.ucf50": "UCF 50"
+	"divider.arkhamDeco.ucf50": "UCF 50",
+	"divider.arkhamesque-classic.large": "89x80",
+	"divider.arkhamesque-classic.medium": "89x77",
+	"contentNotSupported": "Этот контент не поддерживается. Пожалуйста, свяжитесь с автором дизайна."
 }

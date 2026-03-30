@@ -17,11 +17,12 @@ export const stories = createSlice({
 	},
 	selectors: {
 		selectStories: selectors.selectAll,
+		selectStoryById: selectors.selectById,
 	},
 });
 
 export const { setStories } = stories.actions;
 
-export const { selectStories } = stories.selectors;
+export const { selectStories, selectStoryById } = stories.selectors;
 
 export default stories.reducer;

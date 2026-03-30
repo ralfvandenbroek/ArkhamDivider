@@ -127,3 +127,26 @@ export const RynoCredits: Author = {
 		},
 	],
 };
+
+export const ArkhamesqueCredits: Author = {
+	id: "smallville247",
+	name: "smallville247",
+	image: getAssetUrl("/images/authors/troy.png"),
+	donationUrl: {
+		default: "https://www.patreon.com/smallville247",
+	},
+	contactUrl:
+		"https://boardgamegeek.com/filepage/197199/arkhamesque-classic-horizontal-dividers",
+	contacts: [
+		{
+			id: "patreon",
+			icon: "patreon",
+			url: "https://www.patreon.com/smallville247",
+		},
+		{
+			id: "bgg",
+			icon: "bgg",
+			url: "https://boardgamegeek.com/user/smallville247",
+		},
+	],
+};

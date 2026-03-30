@@ -1,7 +1,7 @@
 import { propEq } from "ramda";
 import type { EncounterSet } from "@/modules/encounterSet/shared/model";
 import type { Story } from "@/modules/story/shared/model";
-import { getStoryWithRelations } from "./getStoryWithRelations";
+import { mapStoryWithRelations } from "./mapStoryWithRelations";
 
 type Options = {
 	code?: string | null;
@@ -24,9 +24,9 @@ export const createStoryWithRelations = ({
 	const returnStory = stories.find(propEq(story.return_to_code, "code"));
 
 	const returnStoryWithRelations =
-		returnStory && getStoryWithRelations({ story: returnStory, encounterSets });
+		returnStory && mapStoryWithRelations({ story: returnStory, encounterSets });
 
-	return getStoryWithRelations({
+	return mapStoryWithRelations({
 		story,
 		returnStory: returnStoryWithRelations,
 		encounterSets,

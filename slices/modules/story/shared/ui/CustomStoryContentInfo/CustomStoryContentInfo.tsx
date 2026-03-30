@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import { prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import { selectLanguage } from "@/modules/core/i18n/shared/lib";
-import { selectStory } from "@/modules/story/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { Flag, Row } from "@/shared/ui";
 import type { StoryCustomContent } from "../../model";
@@ -22,7 +21,6 @@ export function CustomStoryContentInfo({
 	...boxProps
 }: CustomStoryContentInfoProps) {
 	const { t } = useTranslation();
-	const _story = useAppSelector(selectStory);
 	const language = useAppSelector(selectLanguage) ?? "en";
 
 	const { creators, download_links } = content;

@@ -1,63 +1,30 @@
-import { isNotNil } from "ramda";
 import type { EncounterSet } from "@/modules/encounterSet/shared/model";
-import { getStoryScenarios } from "@/modules/story/shared/lib";
-import type {
-	Story,
-	StoryScenario,
-	StoryScenarioWithRelations,
-	StoryWithRelations,
-} from "@/modules/story/shared/model";
+import type { Story } from "@/modules/story/shared/model";
+import { mapStoryWithRelations } from "./mapStoryWithRelations";
 
 type Options = {
-	story: Story;
-	returnStory?: StoryWithRelations;
+	story?: Story;
+	returnStory?: Story;
 	encounterSets: EncounterSet[];
 };
 
 export const getStoryWithRelations = ({
 	story,
 	returnStory,
-	encounterSets: allEncounterSets,
-}: Options): StoryWithRelations => {
-	const mapScenario = (
-		scenario: StoryScenario,
-	): StoryScenarioWithRelations | undefined => {
-		if (!scenario) {
-			return;
-		}
-		const encounterSets = allEncounterSets.filter(({ code }) =>
-			scenario.encounter_sets?.includes(code),
-		);
-		const extraEncounterSets = allEncounterSets.filter(({ code }) =>
-			scenario.extra_encounter_sets?.includes(code),
-		);
-		const encounterSet = allEncounterSets.find(
-			({ icon }) => icon === scenario.icon,
-		);
-		return {
-			...scenario,
-			encounterSets,
-			extraEncounterSets,
-			encounterSet,
-		};
-	};
+	encounterSets,
+}: Options) => {
+	if (!story) {
+		return null;
+	}
 
-	const encounterSets = allEncounterSets.filter(({ code }) =>
-		story.encounter_sets.includes(code),
-	);
-	const extraEncounterSets = allEncounterSets.filter(({ code }) =>
-		story.extra_encounter_sets.includes(code),
-	);
+	const storyWithRelations = mapStoryWithRelations({ story, encounterSets });
 
-	const scenarios = getStoryScenarios(story)
-		.map((scenario) => mapScenario(scenario))
-		.filter(isNotNil);
+	const returnStoryWithRelations =
+		returnStory && mapStoryWithRelations({ story: returnStory, encounterSets });
 
-	return {
-		...story,
+	return mapStoryWithRelations({
+		story: storyWithRelations,
+		returnStory: returnStoryWithRelations,
 		encounterSets,
-		extraEncounterSets,
-		scenarios,
-		returnStory,
-	};
+	});
 };

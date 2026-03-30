@@ -7,20 +7,6 @@ import { getStoryWithRelations } from "../../logic";
 export const selectStoryWithRelations = createSelector(
 	[selectStory, selectReturnStory, selectEncounterSets],
 	(story, returnStory, encounterSets): StoryWithRelations | null => {
-		if (!story) {
-			return null;
-		}
-
-		const storyWithRelations = getStoryWithRelations({ story, encounterSets });
-
-		const returnStoryWithRelations =
-			returnStory &&
-			getStoryWithRelations({ story: returnStory, encounterSets });
-
-		return getStoryWithRelations({
-			story: storyWithRelations,
-			returnStory: returnStoryWithRelations,
-			encounterSets,
-		});
+		return getStoryWithRelations({ story, returnStory, encounterSets });
 	},
 );

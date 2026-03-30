@@ -1,10 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import dotenv from "dotenv";
-
-dotenv.config({
-	path: [".env", ".env.local"],
-});
+import "./env";
 
 const baseURL = process.env.DATA_URL;
 

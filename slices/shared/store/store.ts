@@ -1,15 +1,24 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit";
+import type { Action, Reducer, ThunkAction } from "@reduxjs/toolkit";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createMigrate, persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import createSagaMiddleware, { type SagaMiddleware } from "redux-saga";
 import { router } from "@/modules/core/router/app/config";
+import { createInjectReducer, type LazyInjectedState } from "./injectReducer";
+import { createInjectSaga } from "./injectSaga";
 import { currentMigrationVersion, migrationManifest } from "./migrations";
-import reducer from "./reducer";
+import staticReducerMap from "./reducer";
 import { rootSaga } from "./sagas";
 
+const staticRootReducer = combineReducers(staticReducerMap);
+
+/** State from static reducers only (no code-splitting). */
+export type StaticRootState = ReturnType<typeof staticRootReducer>;
+
+/** Full state: static slices plus optionally injected lazy reducers. */
+export type RootState = StaticRootState & Partial<LazyInjectedState>;
+
 export type AppStore = ReturnType<typeof createStore>["store"];
-export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
 
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -28,14 +37,20 @@ const persistConfig = {
 	storage,
 	migrate: createMigrate(migrationManifest, { debug: false }),
 	version: currentMigrationVersion,
-	blacklist: ["story"],
+	blacklist: ["story", "arkhamesqueClassic"],
 };
 
-const rootReducer = combineReducers(reducer);
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const createStore = () => {
+	const asyncReducers: Record<string, Reducer> = {};
+
+	const buildRootReducer = () =>
+		combineReducers({
+			...staticReducerMap,
+			...asyncReducers,
+		});
+
+	const persistedReducer = persistReducer(persistConfig, buildRootReducer());
+
 	const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
 
 	sagaMiddleware.setContext({
@@ -58,5 +73,14 @@ export const createStore = () => {
 
 	sagaMiddleware.run(rootSaga);
 
-	return { store, persistor };
+	const injectReducer = createInjectReducer({
+		store,
+		persistConfig,
+		buildRootReducer,
+		asyncReducers,
+	});
+
+	const injectSaga = createInjectSaga({ sagaMiddleware });
+
+	return { store, persistor, injectReducer, injectSaga };
 };

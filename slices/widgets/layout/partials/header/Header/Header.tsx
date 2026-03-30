@@ -2,6 +2,7 @@ import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import type { JSX } from "react";
+import { useLocation } from "react-router";
 import {
 	DividerSelect,
 	DividerVariantSelect,
@@ -17,6 +18,8 @@ type HeaderProps = JSX.IntrinsicElements["header"] & {
 
 export function Header({ printable, ...props }: HeaderProps) {
 	const theme = useTheme();
+	const location = useLocation();
+	const _isHome = location.pathname === "/";
 	const mobileMedia = theme.breakpoints.down("md");
 	const isXS = useMediaQuery(theme.breakpoints.only("xs"));
 	const headerVisible = useDisplayOnScroll({
@@ -41,7 +44,7 @@ export function Header({ printable, ...props }: HeaderProps) {
 							<C.Logo />
 						</C.LogoLink>
 						<C.Section flex={1} gap={1}>
-							<DividerSelect />
+							{printable && <DividerSelect />}
 							{!isXS && printable && <DividerVariantSelect />}
 						</C.Section>
 					</C.Section>

@@ -2,7 +2,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import FormControl from "@mui/material/FormControl";
 import type { SxProps, Theme } from "@mui/material/styles";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
-import { prop } from "ramda";
+import { prop, propEq } from "ramda";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { Defined } from "@/shared/model";
@@ -102,16 +102,16 @@ export function StorySelect({
 			selectable: true,
 			onSelectAll: (group: string) => {
 				const groupCodes = optionsList
-					.filter((o) => o.group === group)
-					.map((o) => o.code);
+					.filter(propEq(group, "group"))
+					.map(prop("code"));
 				const current = (valueProp ?? []) as string[];
 				const next = [...new Set([...current, ...groupCodes])];
 				props.onChange?.(next);
 			},
 			onSelectNone: (group: string) => {
 				const groupCodes = optionsList
-					.filter((o) => o.group === group)
-					.map((o) => o.code);
+					.filter(propEq(group, "group"))
+					.map(prop("code"));
 				const current = (valueProp ?? []) as string[];
 				const next = current.filter((c) => !groupCodes.includes(c));
 				props.onChange?.(next);
