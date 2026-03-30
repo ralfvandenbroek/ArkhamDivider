@@ -3,7 +3,7 @@ import type { ArkhamesqueClassicDividerProps } from "../../model";
 import { findScenario, findStory } from "./images/helpers";
 
 type Options = {
-	data: IArkhamesqueBuild;
+	data: IArkhamesqueBuild | null;
 	divider: ArkhamesqueClassicDividerProps;
 };
 
@@ -15,10 +15,19 @@ export const getArkhamesqueClassicScenarioNumberText = ({
 		return;
 	}
 
+	const fallback =
+		divider.type === "scenario" && "scenario" in divider
+			? divider.scenario?.number_text
+			: undefined;
+
+	if (!data) {
+		return fallback;
+	}
+
 	const storyCode = divider.story?.return_to_code ?? divider.storyCode;
 	const story = findStory(data, storyCode);
 	if (!story) {
-		return;
+		return fallback;
 	}
 
 	// Mirrors scenario image matching: map scenario to its build code.
@@ -28,10 +37,5 @@ export const getArkhamesqueClassicScenarioNumberText = ({
 			: undefined;
 	const scenario = findScenario(story, scenarioCode);
 
-	return (
-		scenario?.number_text ??
-		(divider.type === "scenario" && "scenario" in divider
-			? divider.scenario?.number_text
-			: undefined)
-	);
+	return scenario?.number_text ?? fallback;
 };

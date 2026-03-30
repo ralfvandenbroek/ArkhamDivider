@@ -1,9 +1,10 @@
+import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import { Buffer } from "buffer";
 import PDFDocument from "pdfkit/js/pdfkit.standalone.js";
 import { last } from "ramda";
-
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import streamSaver from "streamsaver";
+import { selectArkhamesqueClassicData } from "@/modules/divider/entities/items/arkhamesque-classic/lib/store/arkhamesqueClassic";
 import { getDividerPageLayouts } from "@/modules/divider/entities/lib/logic";
 import { loadDividerPDFComponent } from "@/modules/divider/entities/lib/runtime";
 import {
@@ -25,6 +26,7 @@ import {
 	getUnitSizePx,
 } from "@/modules/print/shared/lib";
 import type { ReturnAwaited } from "@/shared/model";
+import type { RootState } from "@/shared/store";
 import {
 	finishRender,
 	getVips,
@@ -179,6 +181,11 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 	const renderComponent: ReturnAwaited<typeof loadDividerPDFComponent> =
 		yield call(loadDividerPDFComponent, layout.categoryId);
 
+	const arkhamesqueClassicData: IArkhamesqueBuild | null = yield select(
+		(state: RootState) =>
+			state.arkhamesqueClassic ? selectArkhamesqueClassicData(state) : null,
+	);
+
 	if (!renderComponent) {
 		console.error(`No PDF component for category: ${layout.categoryId}`);
 		destroyPDFDocument(doc);
@@ -261,6 +268,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						scenarioParams,
 						playerParams,
 						investigatorParams,
+						arkhamesqueClassicData,
 					});
 
 					if (!hideCounter) {

@@ -21,6 +21,15 @@ export class PDFTextService {
 		this.overprintService = new PDFOverprintService(font.doc);
 	}
 
+	async measureTextWidth(
+		value: string,
+		options: Pick<DrawTextOptions, "fontFamily" | "fontSize">,
+	) {
+		await this.font.load(options.fontFamily);
+		this.doc.fontSize(options.fontSize);
+		return this.doc.widthOfString(value);
+	}
+
 	async draw(text: string, options: DrawTextOptions) {
 		const {
 			fontFamily,

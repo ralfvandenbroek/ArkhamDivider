@@ -1,3 +1,4 @@
+import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import type {
 	DividerLayout,
 	DividerWithRelations,
@@ -34,6 +35,8 @@ export type PDFDividerContext = {
 	playerParams: Partial<PlayerDividerParams>;
 	investigatorParams: Partial<InvestigatorDividerParams>;
 	params?: Record<string, unknown>;
+	/** Loaded arkhamesque build data (when slice is injected); used by arkhamesque-classic PDF. */
+	arkhamesqueClassicData: IArkhamesqueBuild | null;
 };
 
 export type PDFDivider<T = void> = (

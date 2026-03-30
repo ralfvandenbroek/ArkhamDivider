@@ -44,7 +44,7 @@ export const getBottomIconSx: PrintSxCallback = ({ mm }) => ({
 	},
 });
 
-export const getBottomIconContainerSx: PrintSxCallback = ({ mm }) => ({
+export const getBottomIconContainerSx: PrintSxCallback = () => ({
 	position: "absolute",
 	left: "50%",
 	transform: "translateX(-50%)",
