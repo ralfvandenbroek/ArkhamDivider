@@ -219,9 +219,6 @@ export const ArkhamStarterDividerPDF: PDFDivider<
 		});
 	};
 
-	const getPlayerIconX = (titleLeftMm: number) =>
-		titleLeftMm - O.storyIcon.width - P.storyIconGapLeft;
-
 	const iconDrawBase = {
 		color: black,
 		overprint: true,
@@ -250,7 +247,7 @@ export const ArkhamStarterDividerPDF: PDFDivider<
 		if (showPlayerIcon && playerIcon) {
 			await ctx.icon.draw(playerIcon, {
 				...iconDrawBase,
-				x: bleed.x(getPlayerIconX(titleObject.left)),
+				x: bleed.x(titleObject.playerIconLeft),
 				y: bleed.y(O.storyIcon.top),
 				width: mm(O.storyIcon.width),
 				height: mm(O.storyIcon.height),
@@ -316,7 +313,7 @@ export const ArkhamStarterDividerPDF: PDFDivider<
 				if (showPlayerIcon && playerIcon) {
 					await ctx.icon.draw(playerIcon, {
 						...iconDrawBase,
-						x: box.x + mm(getPlayerIconX(titleObject.vertical.left)),
+						x: box.x + mm(titleObject.vertical.playerIconLeft),
 						y: box.y + mm(O.storyIcon.top),
 						width: mm(O.storyIcon.width),
 						height: mm(O.storyIcon.height),

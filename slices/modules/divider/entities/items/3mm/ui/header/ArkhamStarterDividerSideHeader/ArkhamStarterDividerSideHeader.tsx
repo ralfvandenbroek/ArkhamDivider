@@ -7,6 +7,7 @@ import {
 	get3mmDividerDefaultIcon,
 	get3mmSideStripPosition,
 	show3mmDividerIconCorner,
+	show3mmDividerPlayerIcon,
 	show3mmDividerStrip,
 } from "../../../lib";
 import { useArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
@@ -57,12 +58,13 @@ export function ArkhamStarterDividerSideHeader(
 	const xpCost = getDividerXPCost(divider);
 
 	const showStrip = show3mmDividerStrip(divider);
+	const showPlayerIcon = show3mmDividerPlayerIcon(divider);
 
 	return (
 		<Box {...props}>
 			{showCornerIcon && <Icon icon={icon} sx={cornerIconSx} />}
 
-			{playerIcon && <Icon icon={playerIcon} sx={playerIconSx} />}
+			{showPlayerIcon && <Icon icon={playerIcon} sx={playerIconSx} />}
 			<Title sx={titleSx} />
 			{showStrip && (
 				<>

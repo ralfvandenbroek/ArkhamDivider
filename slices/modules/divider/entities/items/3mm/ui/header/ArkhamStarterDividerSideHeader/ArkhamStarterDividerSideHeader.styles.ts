@@ -1,9 +1,6 @@
 import { alpha } from "@mui/material";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
-import {
-	arkhamStarterLayoutObjects as O,
-	arkhamStarterSharedPositions as P,
-} from "../../../config";
+import { arkhamStarterLayoutObjects as O } from "../../../config";
 import type { ArkhamStarterDividerTitleObject as TitleObject } from "../../../model";
 
 export const getStripSx: PrintSxCallback<{ side: "left" | "right" }> = ({
@@ -35,6 +32,7 @@ export const getStoryTitleSx: PrintSxCallback<{ side: "left" | "right" }> = ({
 	position: "absolute",
 	top: mm(O.storyTitle.top),
 	[side]: mm(O.storyTitle.right),
+	width: mm(O.storyTitle.width),
 	height: mm(O.storyTitle.height),
 	fontSize: mm(O.storyTitle.fontSize),
 });
@@ -48,14 +46,14 @@ export const getCornerIconSx: PrintSxCallback = ({ mm }) => ({
 	fontSize: mm(O.cornerIcon.fontSize),
 });
 
-export const getPlayerIconSx: PrintSxCallback<{ title: typeof O.title }> = ({
+export const getPlayerIconSx: PrintSxCallback<{ title: TitleObject }> = ({
 	mm,
 	title: T,
 }) => ({
 	position: "absolute",
 	zIndex: 1,
 	top: mm(O.storyIcon.top),
-	left: mm(T.vertical.left - O.storyIcon.width - P.storyIconGapLeft),
+	left: mm(T.vertical.playerIconLeft),
 	fontSize: mm(O.storyIcon.fontSize),
 	width: mm(O.storyIcon.width),
 	height: mm(O.storyIcon.height),

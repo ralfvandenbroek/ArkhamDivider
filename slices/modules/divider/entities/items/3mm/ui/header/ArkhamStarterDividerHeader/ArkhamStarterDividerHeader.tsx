@@ -56,8 +56,9 @@ export function ArkhamStarterDividerHeader({
 	});
 
 	const showCornerIcon = show3mmDividerIconCorner(divider);
-	const showPlayerCorner = show3mmDividerPlayerCorner(divider);
 	const showPlayerIcon = show3mmDividerPlayerIcon(divider);
+
+	const showPlayerCorner = show3mmDividerPlayerCorner(divider);
 
 	return (
 		<Box {...props}>
