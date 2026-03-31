@@ -150,3 +150,47 @@ export const ArkhamesqueCredits: Author = {
 		},
 	],
 };
+
+export const ArkhamStarter3mmCredits: Author = {
+	id: "5argon",
+	name: "5argon",
+	role: "3mm Dividers",
+	image: getAssetUrl("/images/authors/5argon.png"),
+	contactUrl: "https://5argon.info/",
+	contacts: [
+		{
+			id: "www",
+			icon: "link",
+			title: "Personal website",
+			url: "https://www.5argon.info/",
+		},
+		{
+			id: "arkham-starter",
+			icon: "skill_intellect",
+			title: "Arkham Starter project",
+			url: "https://www.arkham-starter.com/",
+		},
+		{
+			id: "facebook",
+			icon: "facebook",
+			url: "http://facebook.com/555argon",
+		},
+		{
+			id: "twitter-en",
+			icon: "twitter",
+			title: "Thai, tweets nonsense",
+			url: "http://twitter.com/5argon",
+		},
+		{
+			id: "twitter-ja",
+			icon: "twitter",
+			title: "日本語, tweets music games",
+			url: "https://twitter.com/5argondesu",
+		},
+		{
+			id: "soundcloud",
+			icon: "soundcloud",
+			url: "https://soundcloud.com/5argon",
+		},
+	],
+};

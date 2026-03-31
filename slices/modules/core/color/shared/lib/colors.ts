@@ -1,5 +1,5 @@
 import Color from "color";
-import type { RGBColor } from "../model";
+import type { RGBAColorObject, RGBColor } from "../model";
 
 /** CMYK components 0–100 (PDFKit divides by 100 for PDF). */
 export const cmyk = (
@@ -40,10 +40,6 @@ export const rgb2AbsoluteHue = ([r, g, b]: RGBColor): number => {
 	return ((h % 360) + 360) % 360;
 };
 
-/**
- * Hue difference in degrees: angle from `baseColor` to `color` (same sense as CSS `hue-rotate` on a base).
- * Default `baseColor` is red rgb(255, 0, 0) → same absolute hue as before.
- */
 export const rgb2Hue = (color: RGBColor, baseColor: RGBColor) => {
 	const hColor = rgb2AbsoluteHue(color);
 	const hBase = rgb2AbsoluteHue(baseColor);
@@ -57,4 +53,15 @@ export const rgbTuple2Hex = (color: RGBColor) => {
 export const rgb2Tuple = (value: string): RGBColor => {
 	const color = Color(value).object();
 	return [color.r, color.g, color.b] as RGBColor;
+};
+
+export const rgba256 = (color: RGBAColorObject) => {
+	const { a = 1 } = color;
+	const to256 = (x: number) => x * 255;
+
+	const r = to256(color.r);
+	const g = to256(color.g);
+	const b = to256(color.b);
+
+	return `rgba(${r}, ${g}, ${b}, ${a})`;
 };

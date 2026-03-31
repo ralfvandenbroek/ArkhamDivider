@@ -40,8 +40,8 @@ export function DividerSelect(props: DividerSelectProps) {
 				<MenuItem value="ryno">Ryno</MenuItem>
 				<MenuItem value="sarnetsky">{t(`Eugene Sarnetsky`)}</MenuItem>
 				<MenuItem value="arkham-deco">Arkham Deco</MenuItem>
-				{/*
 				<MenuItem value="3mm">3mm</MenuItem>
+				{/*
 				<MenuItem value="vintage-tabbed">Vintage</MenuItem>
 				<ListSubheader>{t(`Bands`)}</ListSubheader>
 				<MenuItem value="sarnetsky-bands">@sarnetsky</MenuItem>

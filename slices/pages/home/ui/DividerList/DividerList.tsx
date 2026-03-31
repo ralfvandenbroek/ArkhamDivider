@@ -15,7 +15,7 @@ import * as C from "./DividerList.components";
 
 export function DividerList() {
 	const getSpacing = useResponsiveGap(2);
-	const columns = { xs: 2, sm: 3, md: 4 };
+	const columns = { xs: 1, sm: 2, md: 3, lg: 4 };
 
 	const width = getSpacing(columns);
 	const { t } = useTranslation();

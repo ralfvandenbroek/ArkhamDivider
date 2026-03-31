@@ -8,6 +8,8 @@ type Options<T> = {
 	divider: DividerWithRelations<T>;
 	defaultValue?: string;
 	param: string;
+	fontSizeScaleParam?: string;
+	custom?: boolean;
 };
 
 type Params = Record<string, string>;
@@ -16,13 +18,18 @@ export const useDividerText = <T>({
 	divider,
 	param,
 	defaultValue: defaultValueProp,
+	fontSizeScaleParam,
+	custom = false,
 }: Options<T>) => {
 	const dispatch = useAppDispatch();
 	const { story, id } = divider;
 	const params = divider.params as unknown as Params | undefined;
 	const defaultCustomValue = params?.[param];
-	const defaultValue = defaultCustomValue ?? defaultValueProp;
-	const customValueRef = useRef(defaultValue);
+
+	const defaultFontSizeScale = fontSizeScaleParam
+		? params?.[fontSizeScaleParam]
+		: divider.fontSizeScale;
+
 	const fontSizeScaleRef = useRef<number | null>(divider.fontSizeScale ?? null);
 
 	const onChange = useCallback((value: string) => {
@@ -31,6 +38,10 @@ export const useDividerText = <T>({
 
 	const { translateStory } = useStoryTranslation(story);
 	const translatedValue = defaultValueProp ?? translateStory(divider.title);
+	const translatedCustomValue = translateStory(defaultValueProp);
+
+	const defaultCurrentValue = custom ? translatedCustomValue : translatedValue;
+	const customValueRef = useRef(defaultCustomValue ?? defaultCurrentValue);
 
 	const onBlur = useCallback(() => {
 		dispatch(
@@ -38,25 +49,43 @@ export const useDividerText = <T>({
 		);
 
 		const nextFontSizeScale = fontSizeScaleRef.current;
-		if (
+
+		const shouldUpdateFontSizeScale =
 			typeof nextFontSizeScale === "number" &&
-			nextFontSizeScale !== divider.fontSizeScale
-		) {
+			nextFontSizeScale !== defaultFontSizeScale;
+		if (!shouldUpdateFontSizeScale) {
+			return;
+		}
+
+		if (fontSizeScaleParam) {
 			dispatch(
-				updateDivider({ id, changes: { fontSizeScale: nextFontSizeScale } }),
+				setDividerParam({
+					id,
+					key: fontSizeScaleParam,
+					value: nextFontSizeScale,
+				}),
 			);
 		}
-	}, [id, dispatch, param, divider.fontSizeScale]);
+
+		dispatch(
+			updateDivider({
+				id,
+				changes: {
+					fontSizeScale: nextFontSizeScale,
+				},
+			}),
+		);
+	}, [id, dispatch, param, defaultFontSizeScale, fontSizeScaleParam]);
 
 	const onFontSizeChange = useCallback((fontSizeScale: number) => {
 		fontSizeScaleRef.current = fontSizeScale;
 	}, []);
 
-	const value = customValueRef.current ?? translatedValue;
+	const value = customValueRef.current ?? defaultCurrentValue;
 
 	return {
 		value,
-		translatedValue,
+		translatedValue: defaultCurrentValue,
 		onChange,
 		onBlur,
 		onFontSizeChange,

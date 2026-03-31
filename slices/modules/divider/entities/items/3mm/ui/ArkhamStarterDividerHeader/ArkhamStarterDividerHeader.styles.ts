@@ -1,0 +1,117 @@
+import { alpha } from "@mui/material";
+import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
+import type { PrintSxCallback } from "@/modules/print/shared/model";
+import { percent } from "@/shared/util";
+import { arkhamStarterLayoutObjects as O } from "../../config";
+
+export const getTitleSx: LocaleSxCallback<{ title: typeof O.title }> = ({
+	mm,
+	title: T,
+}) => ({
+	default: {
+		position: "absolute",
+		top: mm(T.top),
+		left: mm(T.left),
+		right: mm(T.right),
+		height: mm(T.height),
+		fontSize: mm(T.fontSize),
+		fontFamily: "Arkhamic, Teutonic, serif",
+		whiteSpace: "nowrap",
+	},
+	ru: {
+		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
+	},
+	cn: {
+		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
+	},
+	ko: {
+		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
+	},
+});
+
+export const getStoryTitleSx: LocaleSxCallback = ({ mm }) => ({
+	default: {
+		position: "absolute",
+		top: mm(O.storyTitle.top),
+		right: mm(O.storyTitle.right),
+		width: mm(O.storyTitle.width),
+		height: mm(O.storyTitle.height),
+		fontSize: mm(O.storyTitle.fontSize),
+		fontFamily: "Arkhamic, Teutonic, serif",
+		whiteSpace: "nowrap",
+		color: "#fff",
+		textAlign: "left",
+		zIndex: 1,
+	},
+	ru: {
+		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
+	},
+	cn: {
+		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
+	},
+	ko: {
+		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
+	},
+});
+
+const storyStrokeColor = "#352e1f";
+
+export const getStoryStrokeSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: 0,
+	left: 0,
+	width: mm(18),
+	height: mm(2.7),
+	WebkitTextStroke: `${mm(0.3)} ${storyStrokeColor}`,
+	paintOrder: "stroke fill",
+	color: storyStrokeColor,
+});
+
+export const getOutlineSx: PrintSxCallback = ({ mm }) => ({
+	borderWidth: mm(0.3),
+	borderRadius: mm(1),
+	top: mm(-0.1),
+	bottom: mm(0.2),
+});
+
+const titleColor = "#2e2622";
+
+export const getTitleClearSx: PrintSxCallback = ({ mm }) => ({
+	top: `calc(100% + ${mm(1)})`,
+	background: titleColor,
+	color: "#fdf8e3",
+	"@media screen": {
+		"&:hover": {
+			background: alpha(titleColor, 0.5),
+		},
+	},
+});
+
+export const getCornerIconSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(O.cornerIcon.top),
+	left: mm(O.cornerIcon.left),
+	fontSize: mm(O.cornerIcon.fontSize),
+	width: mm(O.cornerIcon.width),
+	height: mm(O.cornerIcon.height),
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
+});
+
+export const getStripSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	zIndex: -1,
+	right: mm(-3.5),
+	width: mm(27),
+});
+
+export const getPlayerCornerSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: mm(-3.5),
+	left: mm(-3.5),
+	width: mm(20.5),
+});

@@ -1,9 +1,10 @@
 import { prop } from "ramda";
 import type { DividerCategory } from "../../shared/model";
+import { arkhamStarterDividerCategory } from "./3mm/config";
 import { arkhamDecoCategory } from "./arkham-deco/config";
 import { arkhamesqueClassicCategory } from "./arkhamesque-classic/config";
 import { classicCategory } from "./classic/config";
-import { invocation2018Category } from "./invocation2018/config/category";
+import { invocation2018Category } from "./invocation2018/config";
 import { rynoCategory } from "./ryno/config";
 import { sarnetskyCategory } from "./sarnetsky/config/category";
 
@@ -15,6 +16,7 @@ export const dividerCategories: DividerCategory[] = [
 	rynoCategory,
 	sarnetskyCategory,
 	arkhamDecoCategory,
+	arkhamStarterDividerCategory,
 ];
 
 export const dividerLayouts = dividerCategories.flatMap(prop("layouts"));

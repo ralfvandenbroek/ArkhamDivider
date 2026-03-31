@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import type { SxProps } from "@mui/material/styles";
-import { isString } from "ramda-adjunct";
+import { isNumber, isString } from "ramda-adjunct";
 import { getNumericStyleProps } from "@/shared/lib/ui";
 import { defaultIconPositionManifest } from "../../../shared/config";
 import { getIconCorrection } from "../../../shared/lib";
@@ -26,7 +26,7 @@ export function IconCorrection(props: IconCorrectionProps) {
 		properties: ["fontSize", "left", "right", "top", "bottom"],
 	});
 
-	const { fontSize, left = 0, right = 0, top = 0, bottom = 0 } = position;
+	const { fontSize, left, right, top, bottom } = position;
 
 	const correction =
 		fontSize && isString(icon)
@@ -48,22 +48,21 @@ export function IconCorrection(props: IconCorrectionProps) {
 		lineHeight: 1,
 	};
 
-	const isLeft = !right;
-	const isTop = !bottom;
-
 	const correctionSx = disableCorrection
 		? {
-				...(isLeft && { left: `${left}px` }),
-				...(right && { right: `${right}px` }),
-				...(isTop && { top: `${top}px` }),
-				...(bottom && { bottom: `${bottom}px` }),
+				...(isNumber(left) && { left: `${left}px` }),
+				...(isNumber(right) && { right: `${right}px` }),
+				...(isNumber(top) && { top: `${top}px` }),
+				...(isNumber(bottom) && { bottom: `${bottom}px` }),
 			}
-		: {
-				...(isLeft && { left: `${left + correction.left}px` }),
-				...(right && { right: `${right - correction.left}px` }),
-				...(isTop && { top: `${top + correction.top}px` }),
-				...(bottom && { bottom: `${bottom - correction.top}px` }),
-			};
+		: ({
+				...(isNumber(left) && { left: `${left + correction.left}px` }),
+				...(isNumber(right) && { right: `${right - correction.left}px` }),
+				...(isNumber(top) && { top: `${top + correction.top}px` }),
+				...(isNumber(bottom) && {
+					bottom: `${bottom - correction.top}px`,
+				}),
+			} as SxProps);
 
 	const sx = {
 		...baseSx,

@@ -77,3 +77,9 @@ export const getScenarioNumberSx: PrintSxCallback = ({ mm }) => ({
 	whiteSpace: "nowrap",
 	textAlign: "center",
 });
+
+export const getMenuSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	bottom: mm(3),
+	left: mm(2),
+});

@@ -1,4 +1,6 @@
 import type { DividerWithRelations } from "../../shared/model";
+import { arkhamStarterDividerCategoryId } from "./3mm/config";
+import { ArkhamStarterDivider } from "./3mm/ui";
 import { arkhamDecoCategoryId } from "./arkham-deco/config";
 import { ArkhamDecoDivider } from "./arkham-deco/ui";
 import { arkhamesqueClassicCategoryId } from "./arkhamesque-classic/config";
@@ -26,4 +28,5 @@ export const dividerComponents: Record<
 	[arkhamDecoCategoryId]: ArkhamDecoDivider,
 	[rynoCategoryId]: RynoDivider,
 	[arkhamesqueClassicCategoryId]: ArkhamesqueClassicDivider,
+	[arkhamStarterDividerCategoryId]: ArkhamStarterDivider,
 };

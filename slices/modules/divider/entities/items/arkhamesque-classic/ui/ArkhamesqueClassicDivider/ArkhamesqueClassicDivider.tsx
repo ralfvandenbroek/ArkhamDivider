@@ -3,6 +3,7 @@ import {
 	DividerBleedView as BleedView,
 	DividerContainer as Container,
 	DividerContent as Content,
+	DividerMenu,
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
@@ -38,6 +39,7 @@ export function ArkhamesqueClassicDivider(
 	const xpSx = getPrintSx(S.getXPSx);
 	const scenarioNumberSx = getPrintSx(S.getScenarioNumberSx);
 	const bottomIconContainerSx = getPrintSx(S.getBottomIconContainerSx);
+	const menuSx = getPrintSx(S.getMenuSx);
 
 	const data = useAppSelector(selectArkhamesqueClassicData);
 	const background = getImage({
@@ -106,6 +108,7 @@ export function ArkhamesqueClassicDivider(
 							/>
 						</Box>
 					)}
+					<DividerMenu dividerId={props.id} sx={menuSx} />
 				</Content>
 			</Container>
 		</Context.Provider>
