@@ -22,7 +22,11 @@ export const get3mmDividerTitleObject = (
 		const result = mergeDeepRight(maybeXP, O.title.withPlayerStory);
 
 		const customIcon = divider.params?.icon;
-		const vertical = customIcon ? O.title.default.vertical : {};
+		const vertical = customIcon
+			? {
+					left: O.title.default.vertical.left,
+				}
+			: {};
 
 		return mergeDeepRight(result, {
 			vertical,

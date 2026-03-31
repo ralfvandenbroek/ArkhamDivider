@@ -70,7 +70,14 @@ export const arkhamStarterLayoutObjects = {
 	xp: {
 		top: 0.1,
 		right: 24,
+		width: 10,
 		height: 3,
 		fontSize: 5,
+		vertical: {
+			right: 15,
+			withStory: {
+				right: 25,
+			},
+		},
 	},
 };

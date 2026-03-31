@@ -1,3 +1,4 @@
+import { alpha } from "@mui/material";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { arkhamStarterLayoutObjects as O } from "../../../config";
 import type { ArkhamStarterDividerTitleObject as TitleObject } from "../../../model";
@@ -55,4 +56,38 @@ export const getPlayerIconSx: PrintSxCallback<{ title: typeof O.title }> = ({
 	fontSize: mm(O.storyIcon.fontSize),
 	width: mm(O.storyIcon.width),
 	height: mm(O.storyIcon.height),
+});
+
+export const getXPSx: PrintSxCallback<{ side: "left" | "right" }> = ({
+	mm,
+	side,
+}) => ({
+	position: "absolute",
+	top: mm(O.xp.top),
+	right: mm(
+		side === "left" ? O.xp.vertical.right : O.xp.vertical.withStory.right,
+	),
+	height: mm(O.xp.height),
+	fontSize: mm(O.xp.fontSize),
+	fontFamily: "Arkhamic, Teutonic, serif",
+});
+
+export const getOutlineSx: PrintSxCallback = ({ mm }) => ({
+	borderWidth: mm(0.3),
+	borderRadius: mm(1),
+	top: mm(-0.1),
+	bottom: mm(0.2),
+});
+
+const titleColor = "#2e2622";
+
+export const getTitleClearSx: PrintSxCallback = ({ mm }) => ({
+	top: `calc(100% + ${mm(1)})`,
+	background: titleColor,
+	color: "#fdf8e3",
+	"@media screen": {
+		"&:hover": {
+			background: alpha(titleColor, 0.5),
+		},
+	},
 });

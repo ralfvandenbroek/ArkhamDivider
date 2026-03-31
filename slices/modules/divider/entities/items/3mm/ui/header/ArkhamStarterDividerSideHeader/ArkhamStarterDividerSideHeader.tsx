@@ -1,6 +1,7 @@
 import { Box, type BoxProps } from "@mui/material";
 import { getDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
+import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import {
 	get3mmDividerDefaultIcon,
@@ -9,6 +10,7 @@ import {
 } from "../../../lib";
 import { useArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
 import { ArkhamStarterDividerStrip as Strip } from "../../ArkhamStarterDividerStrip";
+import { ArkhamStarterDividerXP } from "../../ArkhamStarterDividerXP";
 import {
 	ArkhamStarterDividerStoryTitleText,
 	ArkhamStarterDividerTitleText as Title,
@@ -31,6 +33,9 @@ export function ArkhamStarterDividerSideHeader(
 	const titleSx = getPrintSx(S.getTitleSx, { title: titleObject });
 	const storyTitleSx = getPrintSx(S.getStoryTitleSx, { side });
 	const playerIconSx = getPrintSx(S.getPlayerIconSx, { title: titleObject });
+	const xpSx = getPrintSx(S.getXPSx, { side });
+	const titleClearSx = getPrintSx(S.getTitleClearSx);
+	const outlineSx = getPrintSx(S.getOutlineSx);
 
 	const showCornerIcon = show3mmDividerIconCorner(divider);
 
@@ -48,6 +53,8 @@ export function ArkhamStarterDividerSideHeader(
 		defaultIcon: divider.story?.icon,
 	});
 
+	const xpCost = getDividerXPCost(divider);
+
 	return (
 		<Box {...props}>
 			{showCornerIcon && <Icon icon={icon} sx={cornerIconSx} />}
@@ -59,6 +66,14 @@ export function ArkhamStarterDividerSideHeader(
 					<Strip sx={stripSx} />
 					<ArkhamStarterDividerStoryTitleText sx={storyTitleSx} />
 				</>
+			)}
+			{xpCost && (
+				<ArkhamStarterDividerXP
+					xpCost={xpCost}
+					sx={xpSx}
+					titleClearSx={titleClearSx}
+					outlineSx={outlineSx}
+				/>
 			)}
 		</Box>
 	);
