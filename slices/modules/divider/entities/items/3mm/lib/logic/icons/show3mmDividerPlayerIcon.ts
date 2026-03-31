@@ -1,4 +1,4 @@
-import type { ArkhamStarterDividerProps } from "../../model";
+import type { ArkhamStarterDividerProps } from "../../../model";
 
 export function show3mmDividerPlayerIcon(divider: ArkhamStarterDividerProps) {
 	if (divider.layoutType !== "player") {

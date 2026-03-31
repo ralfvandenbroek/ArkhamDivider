@@ -1,3 +1,3 @@
 export * from "./colors";
+export * from "./icons";
 export * from "./objects";
-export * from "./show3mmDividerPlayerIcon";

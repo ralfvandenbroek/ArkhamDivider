@@ -22,6 +22,7 @@ export const standaloneStripColor: Record<string, RGBAColorObject> = {
 
 export const campaignStripColor: Record<string, RGBAColorObject> = {
 	core: { r: 0.36078432, g: 0.4, b: 0.5568628, a: 1 },
+	core_2016: { r: 0.36078432, g: 0.4, b: 0.5568628, a: 1 },
 	eoe: { r: 0.2509804, g: 0.62352943, b: 0.7254902, a: 1 },
 	tcu: { r: 0.32941177, g: 0.25490198, b: 0.36862746, a: 1 },
 	tde: { r: 0.2784314, g: 0.25882354, b: 0.34901962, a: 1 },
@@ -43,47 +44,3 @@ export const storyStripColor: Record<string, RGBAColorObject> = {
 	...standaloneStripColor,
 	...customStripColor,
 };
-
-// export const getStripColor = (divider: IDivider) => {
-//   const color = getChannelStripColor(divider) as IRGBAColor;
-//   return rgba256(color);
-// };
-
-// export const getSecondaryStripColor = (divider: IDivider) => {
-//   const color = getChannelSecondaryStripColor(divider);
-//   return color && rgba256(color);
-// };
-
-// export const getChannelSecondaryStripColor = ({ story }: IDivider) => {
-//   return void story;
-//   // if (!story?.custom_content) {
-//   //   return;
-//   // }
-//   // return stripColor['custom'];
-// };
-
-// export const getChannelStripColor = ({ story }: IDivider) => {
-//   if (!story) {
-//     return stripColor.empty;
-//   }
-
-//   const { code, return_to_code } = story;
-
-//   if (stripColor[code]) {
-//     return stripColor[code];
-//   }
-
-//   if (return_to_code && stripColor[return_to_code]) {
-//     return stripColor[return_to_code];
-//   }
-
-//   if (isChallenge(story)) {
-//     return stripColor.challenge;
-//   }
-
-//   if (isSideContent(story)) {
-//     return stripColor.standalone;
-//   }
-
-//   return stripColor.empty;
-// };

@@ -1,6 +1,3 @@
-// import * as C from "./ArkhamStarterDividerXP.components";
-// import * as S from "./ArkhamStarterDividerXP.styles";
-
 import type { SxProps } from "@mui/material";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
@@ -29,8 +26,6 @@ export function ArkhamStarterDividerXP({
 
 	const xpCostData = getXPCostData(xpCost);
 	const defaultValue = xpCostData && t(xpCostData.key, xpCostData.data);
-
-	console.log("defaultValue", defaultValue);
 
 	const {
 		value: xp,

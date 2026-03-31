@@ -2,6 +2,10 @@ import { isChallengeStory, isSideContent } from "@/modules/story/shared/lib";
 import { storyStripColor as stripColor } from "../../../config";
 import type { ArkhamStarterDividerProps } from "../../../model";
 
+const removeInvestigatorPrefix = (code = "") => {
+	return code.replace("-investigators", "");
+};
+
 export const get3mmDividerDefaultStripColor = (
 	divider: ArkhamStarterDividerProps,
 ) => {
@@ -10,7 +14,8 @@ export const get3mmDividerDefaultStripColor = (
 		return stripColor.empty;
 	}
 
-	const { code, return_to_code } = story;
+	const code = removeInvestigatorPrefix(story.code);
+	const return_to_code = removeInvestigatorPrefix(story.return_to_code);
 
 	if (stripColor[code]) {
 		return stripColor[code] ?? stripColor.empty;

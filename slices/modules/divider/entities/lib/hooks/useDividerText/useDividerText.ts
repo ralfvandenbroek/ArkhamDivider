@@ -33,17 +33,22 @@ export const useDividerText = <T>({
 			]
 		: divider.fontSizeScale;
 
-	const { seedValue, defaultCurrentValue, isControlledByParams } =
-		useDividerTextSeedValue({
-			divider,
-			param,
-			defaultValue: defaultValueProp,
-			custom,
-		});
+	const {
+		seedValue,
+		defaultCurrentValue,
+		isControlledByParams,
+		persistedValue,
+	} = useDividerTextSeedValue({
+		divider,
+		param,
+		defaultValue: defaultValueProp,
+		custom,
+	});
 
 	const { value, onChange } = useDividerTextValue({
 		dividerId: id,
 		seedValue,
+		persistedValue,
 		isControlledByParams,
 	});
 

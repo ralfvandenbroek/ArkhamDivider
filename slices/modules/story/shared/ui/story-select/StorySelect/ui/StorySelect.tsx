@@ -129,6 +129,7 @@ export function StorySelect({
 					}}
 					options={options}
 					value={value}
+					isOptionEqualToValue={(option, value) => option.code === value.code}
 					disableCloseOnSelect={props.multiple}
 					renderInput={renderInput}
 					renderOption={renderOption}

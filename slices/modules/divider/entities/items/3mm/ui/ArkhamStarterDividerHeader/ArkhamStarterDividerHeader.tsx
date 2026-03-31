@@ -8,6 +8,7 @@ import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import {
+	get3mmDividerDefaultIcon,
 	get3mmDividerTitleObject,
 	show3mmDividerIconCorner,
 	show3mmDividerPlayerCorner,
@@ -77,7 +78,7 @@ export function ArkhamStarterDividerHeader({
 
 	const [icon, selectIcon] = getDividerIcon({
 		param: "icon",
-		defaultIcon: divider.icon,
+		defaultIcon: get3mmDividerDefaultIcon(divider),
 	});
 
 	const [playerIcon, selectPlayerIcon] = getDividerIcon({
@@ -98,7 +99,7 @@ export function ArkhamStarterDividerHeader({
 				<Icon icon={playerIcon} sx={playerIconSx} onClick={selectPlayerIcon} />
 			)}
 			{showPlayerCorner && (
-				<PlayerCorner sx={playerCornerSx} onClick={selectPlayerIcon} />
+				<PlayerCorner sx={playerCornerSx} onClick={selectIcon} />
 			)}
 
 			<DividerText

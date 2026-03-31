@@ -5,5 +5,5 @@ export function show3mmDividerIconCorner(props: ArkhamStarterDividerProps) {
 		return true;
 	}
 
-	return Boolean(props.params?.playerIcon);
+	return Boolean(props.params?.icon);
 }

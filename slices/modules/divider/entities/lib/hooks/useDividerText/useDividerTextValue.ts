@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type Options = {
 	dividerId: string;
 	seedValue: string;
+	persistedValue?: string;
 	isControlledByParams: boolean;
 };
 
@@ -22,10 +23,12 @@ type Options = {
 export function useDividerTextValue({
 	dividerId,
 	seedValue,
+	persistedValue,
 	isControlledByParams,
 }: Options) {
 	const isDirtyRef = useRef(false);
 	const prevDividerIdRef = useRef(dividerId);
+	const prevPersistedRef = useRef<string | undefined>(persistedValue);
 
 	const [value, setValue] = useState<string>(seedValue);
 
@@ -38,11 +41,8 @@ export function useDividerTextValue({
 		const dividerChanged = prevDividerIdRef.current !== dividerId;
 		prevDividerIdRef.current = dividerId;
 
-		if (isControlledByParams) {
-			isDirtyRef.current = false;
-			setValue(seedValue);
-			return;
-		}
+		const persistedChanged = prevPersistedRef.current !== persistedValue;
+		prevPersistedRef.current = persistedValue;
 
 		if (dividerChanged) {
 			isDirtyRef.current = false;
@@ -50,12 +50,20 @@ export function useDividerTextValue({
 			return;
 		}
 
-		const shouldFollowDefault = !isDirtyRef.current || value === "";
+		// If store-controlled value changed externally, sync it unless user is editing.
+		if (isControlledByParams && persistedChanged && !isDirtyRef.current) {
+			setValue(seedValue);
+			return;
+		}
+
+		// If the user hasn't typed yet (or the field is empty), follow default changes.
+		const shouldFollowDefault =
+			(!isDirtyRef.current || value === "") && !isControlledByParams;
 		if (shouldFollowDefault) {
 			isDirtyRef.current = false;
 			setValue(seedValue);
 		}
-	}, [dividerId, isControlledByParams, seedValue, value]);
+	}, [dividerId, isControlledByParams, seedValue, value, persistedValue]);
 
 	return { value, onChange };
 }

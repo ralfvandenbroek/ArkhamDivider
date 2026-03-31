@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogActions, Grid, Stack } from "@mui/material";
-import { useCallback, useContext, useMemo, useRef } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { absoluteFill } from "@/shared/config";
 import { useScrollSpy } from "@/shared/lib";
@@ -30,6 +30,12 @@ export function IconSelectionModal() {
 	} = useContext(IconSelectionContext);
 	const open = selectionActive;
 	const isDefaultIcon = defaultIcon === selectedIcon;
+	const prevOpenRef = useRef(open);
+	const openedNow = open && !prevOpenRef.current;
+
+	useEffect(() => {
+		prevOpenRef.current = open;
+	}, [open]);
 
 	const listSectionRef = useRef<HTMLDivElement>(null);
 
@@ -46,8 +52,8 @@ export function IconSelectionModal() {
 	const { virtualizer, scrollToIndex, scrollContainerRef } =
 		useVirtualizedIconGroups({
 			groups: iconGroups,
-			initialScrollIndex: open ? defaultSectionIndex : undefined,
-			initialScrollActive: open,
+			initialScrollIndex: openedNow ? defaultSectionIndex : undefined,
+			initialScrollActive: openedNow,
 		});
 
 	const activeIndex = useScrollSpy({

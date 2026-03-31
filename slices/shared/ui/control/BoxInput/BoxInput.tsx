@@ -52,9 +52,14 @@ export function BoxInput({
 	);
 
 	useEffect(() => {
+		// While focused, the contentEditable DOM is the source of truth.
+		// Re-applying `textContent` on every controlled update would reset caret position.
+		if (isFocused) {
+			return;
+		}
 		setValue(defaultContent);
 		setStrokeValue(defaultContent);
-	}, [defaultContent, setValue]);
+	}, [defaultContent, setValue, isFocused]);
 
 	useEffect(() => {
 		// In controlled mode, value is source of truth.
@@ -65,10 +70,13 @@ export function BoxInput({
 		if (!isString(defaultValue)) {
 			return;
 		}
+		if (isFocused) {
+			return;
+		}
 		setValue(defaultValue);
 		setStrokeValue(defaultValue);
 		internalValueRef.current = defaultValue;
-	}, [defaultValue, value, setValue]);
+	}, [defaultValue, value, setValue, isFocused]);
 
 	const clear = useCallback(() => {
 		const value = internalValueRef.current;
