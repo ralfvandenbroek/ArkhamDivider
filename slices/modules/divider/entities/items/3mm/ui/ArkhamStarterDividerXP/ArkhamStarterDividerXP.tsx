@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import type { XPCost } from "@/modules/divider/shared/model";
+import { get3mmDividerXPCostData } from "../../lib";
 import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
-import { getXPCostData } from "./getXPCostData";
 
 type ArkhamStarterDividerXPProps = {
 	xpCost: XPCost;
@@ -24,7 +24,7 @@ export function ArkhamStarterDividerXP({
 
 	const { t } = useTranslation();
 
-	const xpCostData = getXPCostData(xpCost);
+	const xpCostData = get3mmDividerXPCostData(xpCost);
 	const defaultValue = xpCostData && t(xpCostData.key, xpCostData.data);
 
 	const {

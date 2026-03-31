@@ -1,4 +1,5 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
+import { arkhamStarterSharedPositions as P } from "../../config";
 
 export const getHeaderSx: PrintSxCallback = () => ({
 	position: "absolute",
@@ -26,12 +27,23 @@ export const getVerticalCornerSx: PrintSxCallback = ({ mm }) => ({
 
 export const getSideHeaderSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
-	bottom: mm(0),
-	left: mm(3.1),
-	width: mm(67),
-	height: mm(3.3),
+	bottom: mm(P.sideHeaderBox.bottom),
+	left: mm(P.sideHeaderBox.left),
+	width: mm(P.sideHeaderBox.width),
+	height: mm(P.sideHeaderBox.height),
 	transformOrigin: "bottom left",
 
 	transform: "rotate(-90deg)",
 	zIndex: -1,
+});
+
+export const getMenuSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	top: `calc(50% + ${mm(4)})`,
+	transform: "translateY(-50%)",
+	left: mm(10),
+	width: mm(67),
+	height: mm(3.3),
+	opacity: 0.8,
+	zIndex: 2,
 });

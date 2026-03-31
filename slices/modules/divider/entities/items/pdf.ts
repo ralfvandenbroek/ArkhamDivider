@@ -1,4 +1,6 @@
 import type { PDFDivider } from "@/modules/pdf/shared/model";
+import { arkhamStarterDividerCategoryId } from "./3mm/config";
+import { ArkhamStarterDividerPDF } from "./3mm/ui";
 import { arkhamDecoCategoryId } from "./arkham-deco/config";
 import { ArkhamDecoDividerPDF } from "./arkham-deco/ui";
 import { arkhamesqueClassicCategoryId } from "./arkhamesque-classic/config/common";
@@ -20,4 +22,5 @@ export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
 	[invocation2018CategoryId]: Invocation2018DividerPDF,
 	[rynoCategoryId]: RynoDividerPDF,
 	[sarnetskyCategoryId]: SarnetskyDividerPDF,
+	[arkhamStarterDividerCategoryId]: ArkhamStarterDividerPDF,
 };

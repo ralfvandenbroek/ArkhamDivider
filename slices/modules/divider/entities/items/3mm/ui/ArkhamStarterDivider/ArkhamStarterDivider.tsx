@@ -3,6 +3,7 @@ import {
 	DividerBleedView as BleedView,
 	DividerContainer as Container,
 	DividerContent as Content,
+	DividerMenu,
 } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { arkhamStarterDividerBaseUrl as baseUrl } from "../../config";
@@ -23,8 +24,9 @@ export function ArkhamStarterDivider(props: ArkhamStarterDividerProps) {
 	const getPrintSx = usePrintUnit();
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const sideHeaderSx = getPrintSx(S.getSideHeaderSx);
-	const titleObject = get3mmDividerTitleObject(props);
+	const menuSx = getPrintSx(S.getMenuSx);
 
+	const titleObject = get3mmDividerTitleObject(props);
 	const shwoCorner = showIconCorner(props);
 
 	return (
@@ -38,6 +40,7 @@ export function ArkhamStarterDivider(props: ArkhamStarterDividerProps) {
 					<TopHeader sx={headerSx} />
 					<SideHeader sx={sideHeaderSx} />
 				</Content>
+				<DividerMenu dividerId={props.id} sx={menuSx} />
 			</Container>
 		</ArkhamStarterDividerContext.Provider>
 	);

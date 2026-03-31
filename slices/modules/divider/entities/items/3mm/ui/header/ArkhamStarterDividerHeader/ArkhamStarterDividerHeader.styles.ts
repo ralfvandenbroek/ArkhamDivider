@@ -2,7 +2,10 @@ import { alpha } from "@mui/material";
 import type { LocaleSxCallback } from "@/modules/core/i18n/shared/model";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { percent } from "@/shared/util";
-import { arkhamStarterLayoutObjects as O } from "../../../config";
+import {
+	arkhamStarterLayoutObjects as O,
+	arkhamStarterSharedPositions as P,
+} from "../../../config";
 
 export const getTitleSx: LocaleSxCallback<{ title: typeof O.title }> = ({
 	mm,
@@ -106,7 +109,7 @@ export const getPlayerIconSx: PrintSxCallback<{ title: typeof O.title }> = ({
 	position: "absolute",
 	zIndex: 1,
 	top: mm(O.storyIcon.top),
-	left: mm(T.left - O.storyIcon.width - 1.5),
+	left: mm(T.left - O.storyIcon.width - P.storyIconGapLeft),
 	fontSize: mm(O.storyIcon.fontSize),
 	width: mm(O.storyIcon.width),
 	height: mm(O.storyIcon.height),

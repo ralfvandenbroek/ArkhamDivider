@@ -1,6 +1,6 @@
 import type { XPCost } from "@/modules/divider/shared/model";
 
-export const getXPCostData = (xpCost: XPCost) => {
+export const get3mmDividerXPCostData = (xpCost: XPCost) => {
 	if (xpCost.type === "fixed") {
 		return {
 			key: "divider.3mm.level",

@@ -7,12 +7,13 @@ import {
 	get3mmDividerDefaultIcon,
 	get3mmSideStripPosition,
 	show3mmDividerIconCorner,
+	show3mmDividerStrip,
 } from "../../../lib";
 import { useArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
 import { ArkhamStarterDividerStrip as Strip } from "../../ArkhamStarterDividerStrip";
 import { ArkhamStarterDividerXP } from "../../ArkhamStarterDividerXP";
 import {
-	ArkhamStarterDividerStoryTitleText,
+	ArkhamStarterDividerStoryTitleText as StoryTitle,
 	ArkhamStarterDividerTitleText as Title,
 } from "../../text";
 // import * as C from "./ArkhamStarterDividerSideHeader.components";
@@ -55,16 +56,18 @@ export function ArkhamStarterDividerSideHeader(
 
 	const xpCost = getDividerXPCost(divider);
 
+	const showStrip = show3mmDividerStrip(divider);
+
 	return (
 		<Box {...props}>
 			{showCornerIcon && <Icon icon={icon} sx={cornerIconSx} />}
 
 			{playerIcon && <Icon icon={playerIcon} sx={playerIconSx} />}
 			<Title sx={titleSx} />
-			{divider.story && (
+			{showStrip && (
 				<>
 					<Strip sx={stripSx} />
-					<ArkhamStarterDividerStoryTitleText sx={storyTitleSx} />
+					<StoryTitle sx={storyTitleSx} />
 				</>
 			)}
 			{xpCost && (

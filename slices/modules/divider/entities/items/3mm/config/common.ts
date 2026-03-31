@@ -42,7 +42,7 @@ export const arkhamStarterLayoutObjects = {
 			fontSize: 3.1,
 			height: 3.3,
 			top: 0,
-			left: 15.5,
+			left: 18,
 			right: 24,
 		},
 	},
@@ -81,3 +81,16 @@ export const arkhamStarterLayoutObjects = {
 		},
 	},
 };
+
+/** Shared UI/PDF positions that are not part of the printed background layout objects. */
+export const arkhamStarterSharedPositions = {
+	/** Matches `ArkhamStarterDivider.styles` side header container box. */
+	sideHeaderBox: {
+		bottom: 0,
+		left: 3.1,
+		width: 67,
+		height: 3.3,
+	},
+	/** Horizontal/vertical gap between title left edge and story icon. */
+	storyIconGapLeft: 1.5,
+} as const;

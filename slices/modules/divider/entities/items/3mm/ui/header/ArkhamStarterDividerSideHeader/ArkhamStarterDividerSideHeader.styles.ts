@@ -1,6 +1,9 @@
 import { alpha } from "@mui/material";
 import type { PrintSxCallback } from "@/modules/print/shared/model";
-import { arkhamStarterLayoutObjects as O } from "../../../config";
+import {
+	arkhamStarterLayoutObjects as O,
+	arkhamStarterSharedPositions as P,
+} from "../../../config";
 import type { ArkhamStarterDividerTitleObject as TitleObject } from "../../../model";
 
 export const getStripSx: PrintSxCallback<{ side: "left" | "right" }> = ({
@@ -52,7 +55,7 @@ export const getPlayerIconSx: PrintSxCallback<{ title: typeof O.title }> = ({
 	position: "absolute",
 	zIndex: 1,
 	top: mm(O.storyIcon.top),
-	left: mm(T.vertical.left - O.storyIcon.width - 1.5),
+	left: mm(T.vertical.left - O.storyIcon.width - P.storyIconGapLeft),
 	fontSize: mm(O.storyIcon.fontSize),
 	width: mm(O.storyIcon.width),
 	height: mm(O.storyIcon.height),
