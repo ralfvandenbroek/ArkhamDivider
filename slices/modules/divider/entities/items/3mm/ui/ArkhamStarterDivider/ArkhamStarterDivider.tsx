@@ -7,7 +7,10 @@ import {
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { arkhamStarterDividerBaseUrl as baseUrl } from "../../config";
-import { show3mmDividerIconCorner as showIconCorner } from "../../lib";
+import {
+	get3mmDividerTitleObject,
+	show3mmDividerIconCorner as showIconCorner,
+} from "../../lib";
 import type { ArkhamStarterDividerProps } from "../../model";
 import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
 import { ArkhamStarterDividerHeader as TopHeader } from "../ArkhamStarterDividerHeader";
@@ -17,11 +20,14 @@ export function ArkhamStarterDivider(props: ArkhamStarterDividerProps) {
 	const getPrintSx = usePrintUnit();
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const iconCornerSx = getPrintSx(S.getIconCornerSx);
+	const titleObject = get3mmDividerTitleObject(props);
 
 	const shwoCorner = showIconCorner(props);
 
 	return (
-		<ArkhamStarterDividerContext.Provider value={{ divider: props }}>
+		<ArkhamStarterDividerContext.Provider
+			value={{ divider: props, titleObject }}
+		>
 			<Container>
 				<Background src={`${baseUrl}/background.avif`} />
 				<BleedView>

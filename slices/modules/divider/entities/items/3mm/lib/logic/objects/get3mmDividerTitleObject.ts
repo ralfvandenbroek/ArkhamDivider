@@ -1,10 +1,13 @@
 import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { arkhamStarterLayoutObjects as O } from "../../../config";
-import type { ArkhamStarterDividerProps } from "../../../model";
+import type {
+	ArkhamStarterDividerProps,
+	ArkhamStarterDividerTitleObject,
+} from "../../../model";
 
 export const get3mmDividerTitleObject = (
 	divider: ArkhamStarterDividerProps,
-) => {
+): ArkhamStarterDividerTitleObject => {
 	const base = O.title;
 
 	if (divider.layoutType === "scenario") {

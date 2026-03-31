@@ -14,18 +14,6 @@ export const getTitleSx: LocaleSxCallback<{ title: typeof O.title }> = ({
 		left: mm(T.left),
 		right: mm(T.right),
 		height: mm(T.height),
-		fontSize: mm(T.fontSize),
-		fontFamily: "Arkhamic, Teutonic, serif",
-		whiteSpace: "nowrap",
-	},
-	ru: {
-		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
-	},
-	cn: {
-		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
-	},
-	ko: {
-		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
 	},
 });
 
@@ -36,21 +24,9 @@ export const getStoryTitleSx: LocaleSxCallback = ({ mm }) => ({
 		right: mm(O.storyTitle.right),
 		width: mm(O.storyTitle.width),
 		height: mm(O.storyTitle.height),
-		fontSize: mm(O.storyTitle.fontSize),
-		fontFamily: "Arkhamic, Teutonic, serif",
-		whiteSpace: "nowrap",
 		color: "#fff",
 		textAlign: "left",
 		zIndex: 1,
-	},
-	ru: {
-		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
-	},
-	cn: {
-		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
-	},
-	ko: {
-		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
 	},
 });
 
