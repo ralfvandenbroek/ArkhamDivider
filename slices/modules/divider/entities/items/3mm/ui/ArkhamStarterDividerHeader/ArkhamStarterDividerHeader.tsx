@@ -5,26 +5,26 @@ import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
+import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import {
 	get3mmDividerTitleObject,
 	show3mmDividerIconCorner,
 	show3mmDividerPlayerCorner,
+	show3mmDividerPlayerIcon,
 } from "../../lib";
 // import { Image } from "@/shared/ui";
 // import { arkhamStarterDividerBaseUrl as baseUrl } from "../../../config";
 import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
 import { ArkhamStarterDividerPlayerCorner as PlayerCorner } from "../ArkhamStarterDividerPlayerCorner";
 import { ArkhamStarterDividerStrip } from "../ArkhamStarterDividerStrip";
+import { ArkhamStarterDividerXP } from "../ArkhamStarterDividerXP";
 // import * as C from "./ArkhamStarterDividerTopHeader.components";
 import * as S from "./ArkhamStarterDividerHeader.styles";
 
-type ArkhamStarterDividerTopHeaderProps = BoxProps & {
-	orientation?: "vertical" | "horizontal";
-};
+type ArkhamStarterDividerTopHeaderProps = BoxProps;
 
 export function ArkhamStarterDividerHeader({
-	orientation = "horizontal",
 	...props
 }: ArkhamStarterDividerTopHeaderProps) {
 	const { divider } = useContext(ArkhamStarterDividerContext);
@@ -41,6 +41,8 @@ export function ArkhamStarterDividerHeader({
 	const storyTitleSx = getLocaleSx(S.getStoryTitleSx);
 	const storyStrokeSx = getPrintSx(S.getStoryStrokeSx);
 	const playerCornerSx = getPrintSx(S.getPlayerCornerSx);
+	const playerIconSx = getPrintSx(S.getPlayerIconSx);
+	const xpSx = getPrintSx(S.getXPSx);
 
 	const {
 		value: title,
@@ -67,6 +69,8 @@ export function ArkhamStarterDividerHeader({
 		defaultValue: divider.story?.name,
 	});
 
+	const xpCost = getDividerXPCost(divider);
+
 	const getDividerIcon = useDividerIcon({
 		dividerId: divider.id,
 	});
@@ -76,17 +80,27 @@ export function ArkhamStarterDividerHeader({
 		defaultIcon: divider.icon,
 	});
 
-	const isHorizontal = orientation === "horizontal";
+	const [playerIcon, selectPlayerIcon] = getDividerIcon({
+		param: "playerIcon",
+		defaultIcon: divider.story?.icon,
+	});
 
 	const showCornerIcon = show3mmDividerIconCorner(divider);
-	const showPlayerCorner = show3mmDividerPlayerCorner(divider) && isHorizontal;
+	const showPlayerCorner = show3mmDividerPlayerCorner(divider);
+	const showPlayerIcon = show3mmDividerPlayerIcon(divider);
 
 	return (
 		<Box {...props}>
 			{showCornerIcon && (
 				<Icon icon={icon} sx={cornerIconSx} onClick={selectIcon} />
 			)}
-			{showPlayerCorner && <PlayerCorner sx={playerCornerSx} />}
+			{showPlayerIcon && (
+				<Icon icon={playerIcon} sx={playerIconSx} onClick={selectPlayerIcon} />
+			)}
+			{showPlayerCorner && (
+				<PlayerCorner sx={playerCornerSx} onClick={selectPlayerIcon} />
+			)}
+
 			<DividerText
 				dividerId={divider.id}
 				sx={titleSx}
@@ -100,7 +114,6 @@ export function ArkhamStarterDividerHeader({
 				onBlur={onTitleBlur}
 				clearProps={{ sx: titleClearSx }}
 				outlineSx={outlineSx}
-				contentEditable={isHorizontal}
 			/>
 			{divider.story && (
 				<>
@@ -117,11 +130,18 @@ export function ArkhamStarterDividerHeader({
 						onBlur={onStoryTitleBlur}
 						clearProps={{ sx: titleClearSx }}
 						outlineSx={outlineSx}
-						contentEditable={isHorizontal}
 						strokeSx={storyStrokeSx}
 					/>
 					<ArkhamStarterDividerStrip sx={stripSx} />
 				</>
+			)}
+			{xpCost && (
+				<ArkhamStarterDividerXP
+					xpCost={xpCost}
+					sx={xpSx}
+					titleClearSx={titleClearSx}
+					outlineSx={outlineSx}
+				/>
 			)}
 		</Box>
 	);

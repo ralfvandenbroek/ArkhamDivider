@@ -1,9 +1,9 @@
 import type { ArkhamStarterDividerProps } from "../../../model";
 
 export function show3mmDividerPlayerCorner(divider: ArkhamStarterDividerProps) {
-	if (divider.layoutType === "scenario") {
+	if (divider.layoutType !== "player") {
 		return false;
 	}
 
-	return !divider.params?.icon;
+	return !divider.params?.playerIcon;
 }

@@ -114,4 +114,32 @@ export const getPlayerCornerSx: PrintSxCallback = ({ mm }) => ({
 	top: mm(-3.5),
 	left: mm(-3.5),
 	width: mm(20.5),
+	cursor: "pointer",
+	zIndex: 1,
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
+});
+
+export const getPlayerIconSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	zIndex: 1,
+	top: mm(O.storyIcon.top),
+	left: mm(O.storyIcon.left),
+	fontSize: mm(O.storyIcon.fontSize),
+	width: mm(O.storyIcon.width),
+	height: mm(O.storyIcon.height),
+	cursor: "pointer",
+});
+
+export const getXPSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	zIndex: 1,
+	top: mm(O.xp.top),
+	right: mm(O.xp.right),
+	fontSize: mm(O.xp.fontSize),
+	height: mm(O.xp.height),
+	fontFamily: "Arkhamic, Teutonic, serif",
 });

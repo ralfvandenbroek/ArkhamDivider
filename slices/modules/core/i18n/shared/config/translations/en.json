@@ -127,5 +127,8 @@
 	"divider.arkhamDeco.ucf50": "UCF 50",
 	"divider.arkhamesque-classic.large": "Large 3.25\"",
 	"divider.arkhamesque-classic.medium": "Medium 3\"",
-	"contentNotSupported": "This content is not supported yet. Please contact the design creator."
+	"contentNotSupported": "This content is not supported yet. Please contact the design creator.",
+
+	"divider.3mm.level": "Lv. {{level}}",
+	"divider.3mm.levelRange": "Lv. {{level}} ~ {{max}}"
 }
