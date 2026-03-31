@@ -5,9 +5,11 @@ import "./env";
 const __dirname = import.meta.dirname;
 const outDir = path.join(__dirname, "../public/data");
 
-const baseUrl = process.env.VITE_ARKHAMESQUE_URL;
+const dataUrl = process.env.DATA_URL;
+const baseUrl =
+	process.env.VITE_ARKHAMESQUE_URL ??
+	(dataUrl ? `${dataUrl.replace(/\/$/, "")}/arkhamesque-classic` : undefined);
 
-/** Same path as `ArkhamesqueClassicAPI.getData` (`/data.json`). */
 const sourceUrl = `${baseUrl}/data.json`;
 console.log(`Fetching ${sourceUrl}…`);
 
