@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import { usePrintUnitCallback } from "@/modules/print/shared/lib";
 import { useSarnetskyDividerIcons } from "../../../lib";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../SarnetskyDividerContext";
 
 export function SarnetskyDividerSecondaryIcons() {
-	const { sxOptions, divider } = useContext(SarnetskyDividerContext);
+	const { sxOptions, divider } = useSarnetskyDividerContext();
 	const { objects } = sxOptions;
 
 	const icons = useSarnetskyDividerIcons({ divider, objects });

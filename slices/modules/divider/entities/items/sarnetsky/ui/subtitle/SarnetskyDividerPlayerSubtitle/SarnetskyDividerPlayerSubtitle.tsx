@@ -1,5 +1,4 @@
 import { Box, type BoxProps, Stack, type SxProps } from "@mui/material";
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import {
@@ -9,7 +8,7 @@ import {
 import { getDividerXPCost } from "@/modules/divider/shared/lib/logic/params";
 import { getFactionIcon } from "@/modules/faction/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerPlayerSubtitle.styles";
 
 type SarnetskyDividerPlayerSubtitleProps = BoxProps;
@@ -17,7 +16,7 @@ type SarnetskyDividerPlayerSubtitleProps = BoxProps;
 export function SarnetskyDividerPlayerSubtitle(
 	props: SarnetskyDividerPlayerSubtitleProps,
 ) {
-	const { sxOptions, divider } = useContext(SarnetskyDividerContext);
+	const { sxOptions, divider } = useSarnetskyDividerContext();
 	const { t } = useTranslation();
 	const faction = getDividerFaction(divider);
 	const xpCost = getDividerXPCost(divider);

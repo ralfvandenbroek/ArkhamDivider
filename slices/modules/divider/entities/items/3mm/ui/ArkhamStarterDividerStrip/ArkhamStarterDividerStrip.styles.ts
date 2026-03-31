@@ -1,10 +1,8 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 
-/*
-    border-bottom-right-radius: 100% 10%;
-    mix-blend-mode: multiply;
-    transform: translateZ(0);
-*/
+export const getSx: PrintSxCallback = ({ mm }) => ({
+	width: mm(27),
+});
 
 export const getColorSx: PrintSxCallback = () => ({
 	position: "absolute",

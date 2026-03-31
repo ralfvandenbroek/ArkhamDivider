@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import { useContext } from "react";
 import { DividerContent } from "@/modules/divider/entities/ui";
 import type { DividerOrientation } from "@/modules/divider/shared/model";
 import {
@@ -9,7 +8,7 @@ import {
 import { useAppSelector } from "@/shared/lib";
 import { Image } from "@/shared/ui";
 import { arkhamDecoAssetUrl } from "../../config";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDivider.styles";
 
 export const SideBorder = ({ position }: { position: "left" | "right" }) => {
@@ -89,7 +88,7 @@ export const Scratches = ({
 };
 
 export const TabCornerRadius = () => {
-	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions } = useArkhamDecoDividerContext();
 
 	const getPrintSx = usePrintUnit(sxOptions);
 	const showCornerRadius = useAppSelector(selectShowCornerRadius);

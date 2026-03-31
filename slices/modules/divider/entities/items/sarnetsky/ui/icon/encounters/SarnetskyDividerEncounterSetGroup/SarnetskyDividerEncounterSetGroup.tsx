@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import {
 	type DividerIconPositionsCallback,
@@ -9,7 +8,7 @@ import type { EncounterSetGroup } from "@/modules/encounterSet/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 
 import { Row, type RowProps } from "@/shared/ui";
-import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerEncounterSetGroup.styles";
 
 type SarnetskyDividerEncounterSetGroupProps = RowProps & {
@@ -26,7 +25,7 @@ export function SarnetskyDividerEncounterSetGroup({
 	setIconRef,
 	...props
 }: SarnetskyDividerEncounterSetGroupProps) {
-	const { sxOptions, divider } = useContext(SarnetskyDividerContext);
+	const { sxOptions, divider } = useSarnetskyDividerContext();
 
 	const hideIcons = useDividerRender({
 		dividerId: divider.id,

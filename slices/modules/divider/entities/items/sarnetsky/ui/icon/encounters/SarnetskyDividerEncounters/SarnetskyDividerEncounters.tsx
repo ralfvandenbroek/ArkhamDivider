@@ -1,10 +1,10 @@
 import { Stack, type StackProps } from "@mui/material";
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { useDividerIconRects } from "@/modules/divider/entities/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useScenarioEncounterSetGroups } from "@/modules/story/entities/lib";
 import type { StoryScenario } from "@/modules/story/shared/model";
-import { SarnetskyDividerContext } from "../../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../../SarnetskyDividerContext";
 import { SarnetskyDividerEncounterSetGroup as EncounterSetGroup } from "../SarnetskyDividerEncounterSetGroup";
 import * as S from "./SarnetskyDividerEncounters.styles";
 import { useEncounterIcons } from "./useEncounterIcons";
@@ -17,7 +17,7 @@ export function SarnetskyDividerEncounters({
 	scenario,
 	...props
 }: SarnetskyDividerEncountersProps) {
-	const { containerRef, divider, layout } = useContext(SarnetskyDividerContext);
+	const { containerRef, divider, layout } = useSarnetskyDividerContext();
 
 	const groups = useScenarioEncounterSetGroups(scenario);
 	const rows = groups.length;

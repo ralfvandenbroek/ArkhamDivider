@@ -1,7 +1,7 @@
 import type { Icon } from "@/modules/core/icon/shared/model";
 import type { DividerWithRelations } from "@/modules/divider/shared/model";
 import type { BoxRect } from "@/shared/model";
-import type { arkhamStarterLayoutObjects } from "../config";
+import type { get3mmDividerTitleObject } from "../lib";
 
 export type ArkhamStarterDividerParams = {
 	icon?: Icon;
@@ -19,8 +19,6 @@ export type ArkhamStarterDividerParams = {
 export type ArkhamStarterDividerProps =
 	DividerWithRelations<ArkhamStarterDividerParams>;
 
-export type ArkhamStarterDividerLayoutObjects =
-	typeof arkhamStarterLayoutObjects;
-
-export type ArkhamStarterDividerTitleObject =
-	ArkhamStarterDividerLayoutObjects["title"];
+export type ArkhamStarterDividerTitleObject = ReturnType<
+	typeof get3mmDividerTitleObject
+>;

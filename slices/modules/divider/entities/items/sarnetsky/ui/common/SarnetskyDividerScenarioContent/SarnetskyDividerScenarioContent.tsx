@@ -1,5 +1,4 @@
 import { Box, type BoxProps, Stack, type SxProps } from "@mui/material";
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useDividerObject } from "@/modules/divider/entities/lib";
 import { DividerColorPicker as ColorPicker } from "@/modules/divider/entities/ui";
@@ -11,7 +10,7 @@ import {
 } from "../../../lib";
 import { SarnetskyDividerBackgroundIcon as BackgroundIcon } from "../../icon";
 import { SarnetskyDividerEncounters as Encounters } from "../../icon/encounters";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerScenarioSubtitle as ScenarioSubtitle } from "../../subtitle";
 import * as S from "./SarnetskyDividerScenarioContent.styles";
 
@@ -24,9 +23,8 @@ export function SarnetskyDividerScenarioContent({
 	...props
 }: SarnetskyDividerScenarioContentProps) {
 	const { t } = useTranslation();
-	const { sxOptions, containerRef, divider, layout } = useContext(
-		SarnetskyDividerContext,
-	);
+	const { sxOptions, containerRef, divider, layout } =
+		useSarnetskyDividerContext();
 
 	const ref = useDividerObject({
 		dividerId: divider.id,

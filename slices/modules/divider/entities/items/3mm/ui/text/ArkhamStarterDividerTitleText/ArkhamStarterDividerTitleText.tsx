@@ -1,10 +1,9 @@
 import type { SxProps } from "@mui/material";
-import { useContext } from "react";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
 import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { ArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
+import { useArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
 import * as S from "./ArkhamStarterDividerTitleText.styles";
 
 type ArkhamStarterDividerTitleTextProps = {
@@ -14,7 +13,7 @@ type ArkhamStarterDividerTitleTextProps = {
 export function ArkhamStarterDividerTitleText({
 	sx: sxProp,
 }: ArkhamStarterDividerTitleTextProps) {
-	const { divider, titleObject } = useContext(ArkhamStarterDividerContext);
+	const { divider, titleObject } = useArkhamStarterDividerContext();
 	const getLocaleSx = useLocaleSx();
 	const getPrintSx = usePrintUnit();
 

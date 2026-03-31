@@ -9,8 +9,27 @@ export const arkhamStarterLayoutObjects = {
 		top: 0,
 		left: 19,
 		right: 24,
+		default: {
+			left: 19,
+			right: 24,
+			vertical: {
+				fontSize: 3.1,
+				height: 3.3,
+				top: 0,
+				left: 18.5,
+				right: 24,
+			},
+		},
 		withPlayerStory: {
 			left: 24,
+			vertical: {
+				left: 29.5,
+			},
+		},
+		withoutIcon: {
+			vertical: {
+				left: 0,
+			},
 		},
 		xp: {
 			right: 33,
@@ -20,15 +39,18 @@ export const arkhamStarterLayoutObjects = {
 			right: 0.6,
 		},
 		vertical: {
-			top: 2,
-			left: 0.6,
+			fontSize: 3.1,
+			height: 3.3,
+			top: 0,
+			left: 15.5,
+			right: 24,
 		},
 	},
 	storyTitle: {
 		fontSize: 2,
 		height: 2.7,
 		top: 0.1,
-		right: 0,
+		right: 1.5,
 		width: 18,
 	},
 	cornerIcon: {

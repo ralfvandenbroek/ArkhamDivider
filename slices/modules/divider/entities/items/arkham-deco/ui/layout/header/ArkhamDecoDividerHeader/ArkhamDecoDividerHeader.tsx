@@ -1,5 +1,4 @@
 import { Box, type BoxProps } from "@mui/material";
-import { useContext } from "react";
 import { useDividerRender } from "@/modules/divider/entities/lib";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
@@ -11,7 +10,7 @@ import {
 } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { getArkhamDecoIcons, showArkhamDecoRightIcon } from "../../../../lib";
-import { ArkhamDecoDividerContext } from "../../../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../../../ArkhamDecoDividerContext";
 import { ArkhamDecoDividerSideXP as XP } from "../ArkhamDecoDividerSideXP";
 import * as C from "./ArkhamDecoDividerHeader.components";
 import * as S from "./ArkhamDecoDividerHeader.styles";
@@ -19,7 +18,7 @@ import * as S from "./ArkhamDecoDividerHeader.styles";
 type ArkhamDecoDividerHeaderProps = BoxProps;
 
 export function ArkhamDecoDividerHeader(props: ArkhamDecoDividerHeaderProps) {
-	const { layout, divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { layout, divider, sxOptions } = useArkhamDecoDividerContext();
 	const lasercutEnabled = useAppSelector(selectLasercutEnabled);
 
 	const isPDFRendering = useDividerRender({

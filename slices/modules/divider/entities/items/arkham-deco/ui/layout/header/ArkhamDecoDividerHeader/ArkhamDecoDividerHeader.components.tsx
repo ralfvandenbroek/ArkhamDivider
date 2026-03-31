@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import type { StoryScenario } from "@/modules/story/shared/model";
@@ -8,13 +7,13 @@ import { prefix } from "@/shared/util";
 import { arkhamDecoAssetUrl } from "../../../../config";
 import { isArkhamDecoCompactLayout } from "../../../../lib";
 import type { ArkhamDecoPosition } from "../../../../model";
-import { ArkhamDecoDividerContext } from "../../../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../../../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerHeader.styles";
 
 const asset = prefix(arkhamDecoAssetUrl);
 
 export const LeftScenarioCorner = () => {
-	const { layout, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { layout, sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const isCompact = isArkhamDecoCompactLayout(layout);
@@ -29,7 +28,7 @@ export const LeftScenarioCorner = () => {
 };
 
 export const RightScenarioCorner = () => {
-	const { layout, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { layout, sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const isCompact = isArkhamDecoCompactLayout(layout);
@@ -44,7 +43,7 @@ export const RightScenarioCorner = () => {
 };
 
 export const StoryLine = ({ position }: { position: ArkhamDecoPosition }) => {
-	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getStoryLineSx, { position });
 
@@ -56,21 +55,21 @@ export const StoryLineTentacle = ({
 }: {
 	position: ArkhamDecoPosition;
 }) => {
-	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getStoryLineTentacleSx, { position });
 	return <Image src={asset("/tab-tentacles.png")} sx={sx} />;
 };
 
 export const NoIconLine = () => {
-	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getNoIconLineSx);
 	return <Image src={asset("/top-line.png")} sx={sx} />;
 };
 
 export const ScenarioCorner = ({ scenario }: { scenario: StoryScenario }) => {
-	const { sxOptions, layout } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions, layout } = useArkhamDecoDividerContext();
 
 	const isCompact = isArkhamDecoCompactLayout(layout);
 

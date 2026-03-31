@@ -1,5 +1,4 @@
 import { Box, type BoxProps } from "@mui/material";
-import { useContext } from "react";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
@@ -10,18 +9,15 @@ import {
 	show3mmDividerIconCorner,
 	show3mmDividerPlayerCorner,
 	show3mmDividerPlayerIcon,
-} from "../../lib";
-// import { Image } from "@/shared/ui";
-// import { arkhamStarterDividerBaseUrl as baseUrl } from "../../../config";
-import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
-import { ArkhamStarterDividerPlayerCorner as PlayerCorner } from "../ArkhamStarterDividerPlayerCorner";
-import { ArkhamStarterDividerStrip as Strip } from "../ArkhamStarterDividerStrip";
-import { ArkhamStarterDividerXP } from "../ArkhamStarterDividerXP";
+} from "../../../lib";
+import { useArkhamStarterDividerContext } from "../../ArkhamStarterDividerContext";
+import { ArkhamStarterDividerPlayerCorner as PlayerCorner } from "../../ArkhamStarterDividerPlayerCorner";
+import { ArkhamStarterDividerStrip as Strip } from "../../ArkhamStarterDividerStrip";
+import { ArkhamStarterDividerXP } from "../../ArkhamStarterDividerXP";
 import {
 	ArkhamStarterDividerStoryTitleText as StoryTitle,
 	ArkhamStarterDividerTitleText as Title,
-} from "../text";
-// import * as C from "./ArkhamStarterDividerTopHeader.components";
+} from "../../text";
 import * as S from "./ArkhamStarterDividerHeader.styles";
 
 type ArkhamStarterDividerTopHeaderProps = BoxProps;
@@ -29,7 +25,7 @@ type ArkhamStarterDividerTopHeaderProps = BoxProps;
 export function ArkhamStarterDividerHeader({
 	...props
 }: ArkhamStarterDividerTopHeaderProps) {
-	const { divider, titleObject } = useContext(ArkhamStarterDividerContext);
+	const { divider, titleObject } = useArkhamStarterDividerContext();
 	const getPrintSx = usePrintUnit();
 	const getLocaleSx = useLocaleSx();
 
@@ -38,7 +34,7 @@ export function ArkhamStarterDividerHeader({
 	const cornerIconSx = getPrintSx(S.getCornerIconSx);
 	const stripSx = getPrintSx(S.getStripSx);
 	const playerCornerSx = getPrintSx(S.getPlayerCornerSx);
-	const playerIconSx = getPrintSx(S.getPlayerIconSx);
+	const playerIconSx = getPrintSx(S.getPlayerIconSx, { title: titleObject });
 	const xpSx = getPrintSx(S.getXPSx);
 	const titleSx = getLocaleSx(S.getTitleSx, { title: titleObject });
 	const storyTitleSx = getLocaleSx(S.getStoryTitleSx);

@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import type {
 	ArkhamDecoDividerLayout,
 	ArkhamDecoDividerProps,
@@ -21,3 +21,6 @@ export const ArkhamDecoDividerContext =
 		sxOptions: {} as ArkhamDecoDividerSxOptions,
 		singleSide: false,
 	});
+
+export const useArkhamDecoDividerContext = () =>
+	useContext(ArkhamDecoDividerContext);

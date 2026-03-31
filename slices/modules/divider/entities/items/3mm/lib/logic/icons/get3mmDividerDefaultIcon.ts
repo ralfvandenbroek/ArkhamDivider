@@ -5,5 +5,5 @@ export const get3mmDividerDefaultIcon = (props: ArkhamStarterDividerProps) => {
 		return props.icon;
 	}
 
-	return;
+	return null;
 };

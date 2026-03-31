@@ -1,12 +1,11 @@
 import { Box, type BoxProps } from "@mui/material";
-import { useContext } from "react";
 import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useStoryTranslation } from "@/modules/story/shared/lib";
 import { getSarnetskyDefaultScenarioSubtitle as getDefaultScenarioSubtitle } from "../../../lib";
 import type { SarnetskyDividerProps } from "../../../model";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import * as S from "./SarnetskyDividerScenarioSubtitle.styles";
 
 type SarnetskyDividerScenarioSubtitleProps = BoxProps & {
@@ -18,7 +17,7 @@ export function SarnetskyDividerScenarioSubtitle({
 	...props
 }: SarnetskyDividerScenarioSubtitleProps) {
 	const { t } = useStoryTranslation(divider.story);
-	const { sxOptions } = useContext(SarnetskyDividerContext);
+	const { sxOptions } = useSarnetskyDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 	const sx = getPrintSx(S.getSx);
 	const outlineSx = getPrintSx(S.getOutlineSx);

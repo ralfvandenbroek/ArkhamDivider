@@ -1,19 +1,18 @@
 import { Box, type BoxProps } from "@mui/material";
-import { useContext } from "react";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { arkhamDecoAssetUrl } from "../../config";
 import { getArkhamDecoDefaultBackgroundIcon as getDefaultBackgroundIcon } from "../../lib";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerBackgroundIcon.styles";
 
 type ArkhamDecoDividerBackgroundIconProps = BoxProps;
 export const ArkhamDecoDividerBackgroundIcon = ({
 	...props
 }: ArkhamDecoDividerBackgroundIconProps) => {
-	const { divider, sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { divider, sxOptions } = useArkhamDecoDividerContext();
 	const getPrintSx = usePrintUnit(sxOptions);
 
 	const defaultIcon = getDefaultBackgroundIcon(divider);

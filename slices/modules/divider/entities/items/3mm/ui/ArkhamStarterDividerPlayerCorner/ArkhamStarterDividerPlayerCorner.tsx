@@ -1,12 +1,11 @@
 import { Box, type BoxProps, type SxProps } from "@mui/material";
-import { useContext } from "react";
 import { rgba256 } from "@/modules/core/color/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import { prefix } from "@/shared/util";
 import { arkhamStarterDividerBaseUrl } from "../../config";
 import { get3mmDividerDefaultPlayerCornerColor as getDefaultColor } from "../../lib";
-import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
+import { useArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
 import * as S from "./ArkhamStarterDividerPlayerCorner.styles";
 
 // import { usePrintUnit } from "@/modules/print/shared/lib";
@@ -18,7 +17,7 @@ type ArkhamStarterDividerPlayerCornerProps = BoxProps;
 export function ArkhamStarterDividerPlayerCorner(
 	props: ArkhamStarterDividerPlayerCornerProps,
 ) {
-	const { divider } = useContext(ArkhamStarterDividerContext);
+	const { divider } = useArkhamStarterDividerContext();
 	const getPrintSx = usePrintUnit();
 	const colorSxStyle = getPrintSx(S.getColorSx);
 

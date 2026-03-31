@@ -1,8 +1,7 @@
 import type { BoxProps } from "@mui/material";
-import { useContext } from "react";
 import { DividerBleedView } from "@/modules/divider/entities/ui";
 import type { SarnetskyDividerProps } from "../../../model";
-import { SarnetskyDividerContext } from "../../SarnetskyDividerContext";
+import { useSarnetskyDividerContext } from "../../SarnetskyDividerContext";
 import { SarnetskyDividerBlankImage as BlankImage } from "./SarnetskyDividerBlankImage";
 import { SarnetskyDividerPlayerBackground as PlayerBackground } from "./SarnetskyDividerPlayerBackground";
 import { SarnetskyDividerScenarioBackground as ScenarioBackground } from "./SarnetskyDividerScenarioBackground";
@@ -21,7 +20,7 @@ export function SarnetskyDividerBackground(
 
 function Content(props: SarnetskyDividerBackgroundProps) {
 	const { side } = props;
-	const { singleSide } = useContext(SarnetskyDividerContext);
+	const { singleSide } = useSarnetskyDividerContext();
 
 	const showBlankImage = singleSide && side === "back";
 

@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { DividerColorPicker as ColorPicker } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { ArkhamDecoDividerContext } from "../../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerOverlayPicker.styles";
 
 export const ArkhamDecoDividerOverlayPicker = () => {
-	const { divider } = useContext(ArkhamDecoDividerContext);
+	const { divider } = useArkhamDecoDividerContext();
 	const { t } = useTranslation();
 
 	const getPrintSx = usePrintUnit();

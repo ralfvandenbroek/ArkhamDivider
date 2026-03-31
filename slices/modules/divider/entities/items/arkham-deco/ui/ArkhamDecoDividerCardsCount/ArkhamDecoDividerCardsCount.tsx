@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import type { SxProps } from "@mui/material/styles";
-import { useContext } from "react";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { getDividerCardsCount } from "@/modules/divider/entities/lib/logic";
 import { selectShowCampaignIcon } from "@/modules/divider/shared/lib";
@@ -9,7 +8,7 @@ import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
 import { Row, type RowProps } from "@/shared/ui";
 import type { ArkhamDecoDividerProps } from "../../model";
-import { ArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
+import { useArkhamDecoDividerContext } from "../ArkhamDecoDividerContext";
 import * as S from "./ArkhamDecoDividerCardsCount.styles";
 
 type ArkhamDecoDividerCardsCountProps = Omit<RowProps, "divider"> & {
@@ -20,7 +19,7 @@ export function ArkhamDecoDividerCardsCount({
 	divider,
 	...props
 }: ArkhamDecoDividerCardsCountProps) {
-	const { sxOptions } = useContext(ArkhamDecoDividerContext);
+	const { sxOptions } = useArkhamDecoDividerContext();
 
 	const showCampaignIcon = useAppSelector(selectShowCampaignIcon);
 	const showCardsCount = useAppSelector((state) =>

@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import type {
 	SarnetskyDividerCallbackProps,
 	SarnetskyDividerProps,
@@ -21,3 +21,6 @@ export const SarnetskyDividerContext =
 		layout: {} as SarnetskyLayout,
 		singleSide: false,
 	});
+
+export const useSarnetskyDividerContext = () =>
+	useContext(SarnetskyDividerContext);
