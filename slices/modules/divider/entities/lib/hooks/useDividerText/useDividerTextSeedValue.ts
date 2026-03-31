@@ -27,17 +27,20 @@ export function useDividerTextSeedValue<T>({
 >) {
 	const { story } = divider;
 	const params = divider.params as unknown as Params | undefined;
-	const persisted = params?.[param];
+	const persistedRaw = params?.[param];
+	// Treat empty string as "not set" so the field can fall back to translated defaults.
+	const persisted = persistedRaw === "" ? undefined : persistedRaw;
 	const isControlledByParams = typeof persisted === "string";
 
-	const { translateStory } = useStoryTranslation(story);
+	const { translateStory, i18n } = useStoryTranslation(story);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: language must trigger re-translation
 	const defaultCurrentValue = useMemo(() => {
 		if (custom) {
 			return translateStory(defaultValueProp);
 		}
 		return defaultValueProp ?? translateStory(divider.title);
-	}, [custom, defaultValueProp, divider.title, translateStory]);
+	}, [custom, defaultValueProp, divider.title, translateStory, i18n.language]);
 
 	const seedValue = (persisted ?? defaultCurrentValue ?? "") as string;
 

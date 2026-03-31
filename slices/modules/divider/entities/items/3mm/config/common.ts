@@ -4,8 +4,8 @@ export const arkhamStarterDividerBaseUrl = "/images/divider/background/3mm";
 
 export const arkhamStarterLayoutObjects = {
 	title: {
-		fontSize: 3.1,
-		height: 3.3,
+		fontSize: 3.5,
+		height: 3.4,
 		top: 0,
 		left: 19,
 		right: 24,

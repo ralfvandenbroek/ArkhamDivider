@@ -1,5 +1,5 @@
 import { isNumber } from "ramda-adjunct";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { setDividerParam, updateDivider } from "@/modules/divider/shared/lib";
 import { useAppDispatch } from "@/shared/lib";
 import type { UseDividerTextOptions } from "./useDividerText.types";
@@ -52,12 +52,57 @@ export const useDividerText = <T>({
 		isControlledByParams,
 	});
 
+	const prevDefaultCurrentValueRef = useRef(defaultCurrentValue);
+	useEffect(() => {
+		const prevDefault = prevDefaultCurrentValueRef.current;
+		prevDefaultCurrentValueRef.current = defaultCurrentValue;
+
+		// If params contain a previously translated default, drop it so the field
+		// can follow the newly translated default (e.g. after language switch).
+		const shouldResetToDefault =
+			typeof persistedValue === "string" &&
+			typeof defaultCurrentValue === "string" &&
+			typeof prevDefault === "string" &&
+			persistedValue === prevDefault &&
+			value === persistedValue;
+
+		if (!shouldResetToDefault) {
+			return;
+		}
+
+		dispatch(setDividerParam({ id, key: param, value: undefined }));
+		if (fontSizeScaleParam) {
+			dispatch(
+				setDividerParam({ id, key: fontSizeScaleParam, value: undefined }),
+			);
+		}
+	}, [
+		defaultCurrentValue,
+		persistedValue,
+		value,
+		dispatch,
+		id,
+		param,
+		fontSizeScaleParam,
+	]);
+
 	const { fontSizeScaleRef, onFontSizeChange } = useFontSizeScaleRef(
 		divider.fontSizeScale,
 	);
 
 	const onBlur = useCallback(() => {
-		dispatch(setDividerParam({ id, key: param, value }));
+		const shouldClearParam =
+			value === "" ||
+			(typeof defaultCurrentValue === "string" &&
+				value === defaultCurrentValue);
+
+		dispatch(
+			setDividerParam({
+				id,
+				key: param,
+				value: shouldClearParam ? undefined : value,
+			}),
+		);
 
 		const nextFontSizeScale = fontSizeScaleRef.current;
 
@@ -73,7 +118,7 @@ export const useDividerText = <T>({
 				setDividerParam({
 					id,
 					key: fontSizeScaleParam,
-					value: nextFontSizeScale,
+					value: shouldClearParam ? undefined : nextFontSizeScale,
 				}),
 			);
 		}
@@ -94,6 +139,7 @@ export const useDividerText = <T>({
 		defaultFontSizeScale,
 		fontSizeScaleParam,
 		fontSizeScaleRef,
+		defaultCurrentValue,
 	]);
 
 	return {

@@ -29,6 +29,7 @@ export function useDividerTextValue({
 	const isDirtyRef = useRef(false);
 	const prevDividerIdRef = useRef(dividerId);
 	const prevPersistedRef = useRef<string | undefined>(persistedValue);
+	const prevSeedRef = useRef(seedValue);
 
 	const [value, setValue] = useState<string>(seedValue);
 
@@ -44,7 +45,20 @@ export function useDividerTextValue({
 		const persistedChanged = prevPersistedRef.current !== persistedValue;
 		prevPersistedRef.current = persistedValue;
 
+		const prevSeed = prevSeedRef.current;
+		const seedChanged = prevSeed !== seedValue;
+		prevSeedRef.current = seedValue;
+
 		if (dividerChanged) {
+			isDirtyRef.current = false;
+			setValue(seedValue);
+			return;
+		}
+
+		// Language change typically changes seedValue. If the user ended up keeping the
+		// previous default (value === prevSeed), then we should follow the new default
+		// even if `isDirtyRef` was set earlier.
+		if (seedChanged && value === prevSeed) {
 			isDirtyRef.current = false;
 			setValue(seedValue);
 			return;

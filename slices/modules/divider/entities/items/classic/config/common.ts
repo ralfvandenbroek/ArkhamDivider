@@ -100,6 +100,9 @@ export const classicDividerHorizontalHQObjects = mergeDeepRight(
 				top: 1.7,
 				fontSize: 7.8,
 			},
+			side: {
+				top: 3.2,
+			},
 		},
 	},
 );
