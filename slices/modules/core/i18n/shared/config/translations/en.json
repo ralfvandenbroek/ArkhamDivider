@@ -134,5 +134,8 @@
 	"contentNotSupported": "This content is not supported yet. Please contact the design creator.",
 
 	"divider.3mm.level": "Lv. {{level}}",
-	"divider.3mm.levelRange": "Lv. {{level}} ~ {{max}}"
+	"divider.3mm.levelRange": "Lv. {{level}} ~ {{max}}",
+	"divider.vintage.tabColor": "Tab color",
+	"divider.3mm.stripColor": "Strip color",
+	"divider.3mm.playerCornerColor": "Corner color"
 }

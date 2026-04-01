@@ -61,7 +61,20 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	};
 	renderOptions?: DividerLayoutRenderOptions;
 	compatibility?: Partial<DividerLayoutCompatibility> | null;
+	tabs?: DividerLayoutTabConfig;
 };
+
+export type DividerLayoutTabConfig =
+	| {
+			type: "fixed";
+			value: number;
+	  }
+	| {
+			type: "variable";
+			min: number;
+			max: number;
+			initial: number;
+	  };
 
 export type DividerLayoutCompatibility = {
 	chapter1Box: boolean;

@@ -163,5 +163,8 @@
 	"divider.arkhamDeco.ucf50": "UCF 50",
 	"divider.arkhamesque-classic.large": "89x80",
 	"divider.arkhamesque-classic.medium": "89x77",
-	"contentNotSupported": "Этот контент не поддерживается. Пожалуйста, свяжитесь с автором дизайна."
+	"contentNotSupported": "Этот контент не поддерживается. Пожалуйста, свяжитесь с автором дизайна.",
+	"divider.vintage.tabColor": "Цвет вкладки",
+	"divider.3mm.stripColor": "Цвет ленты",
+	"divider.3mm.playerCornerColor": "Цвет угла"
 }

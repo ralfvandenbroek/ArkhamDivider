@@ -1,7 +1,9 @@
+import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { VintageDividerLocaleSxCallback } from "../../../model";
 
 export const getSx: VintageDividerLocaleSxCallback = ({ mm, objects: O }) => ({
 	default: {
+		color: O.textColor,
 		fontFamily: "Atlantic Cruise Extended, Arkhamic, Teutonic, serif",
 		fontSize: mm(O.title.default.fontSize),
 		textAlign: "center",
@@ -15,4 +17,13 @@ export const getSx: VintageDividerLocaleSxCallback = ({ mm, objects: O }) => ({
 	ko: {
 		fontFamily: "Line Seed, serif",
 	},
+});
+
+export const getOutlineSx: PrintSxCallback = ({ mm }) => ({
+	borderRadius: mm(1),
+	borderWidth: mm(0.3),
+	top: mm(-0.1),
+	bottom: mm(-0.1),
+	left: mm(-0.2),
+	right: mm(-0.2),
 });

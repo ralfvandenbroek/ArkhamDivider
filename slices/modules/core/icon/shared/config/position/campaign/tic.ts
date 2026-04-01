@@ -50,13 +50,15 @@ export default {
 		top: percent(3),
 	},
 	grotto_of_despair: {
-		top: percent(1),
+		top: percent(-1),
+		scale: percent(85),
 	},
 	return_to_the_pit_of_despair: returnPosition,
 	disappearance_of_elina_harper: {},
 	return_to_the_vanishing_of_elina_harper: returnPosition,
 	in_too_deep: {
-		top: percent(-2),
+		top: percent(-3),
+		scale: percent(85),
 	},
 	return_to_in_too_deep: returnPosition,
 	devil_reef: {},

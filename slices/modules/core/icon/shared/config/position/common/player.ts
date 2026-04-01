@@ -3,7 +3,6 @@ import type { IconPositionManifest } from "../../../model";
 
 export default {
 	asset: {
-		left: percent(-1),
 		top: percent(-1),
 		scale: percent(94),
 	},
@@ -14,7 +13,7 @@ export default {
 	},
 	skill: {
 		top: percent(1),
-		left: percent(-2),
+		left: percent(1),
 	},
 	bonded: {
 		top: percent(2),

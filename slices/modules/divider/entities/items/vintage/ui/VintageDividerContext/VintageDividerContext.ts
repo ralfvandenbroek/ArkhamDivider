@@ -9,12 +9,14 @@ export type VintageDividerContextValue = {
 	divider: VintageDividerProps;
 	layout: VintageDividerLayout;
 	sxOptions: VintageDividerSxOptions;
+	tabIndex: number;
 };
 
 export const VintageDividerContext = createContext<VintageDividerContextValue>({
 	divider: {} as VintageDividerProps,
 	layout: {} as VintageDividerLayout,
 	sxOptions: {} as VintageDividerSxOptions,
+	tabIndex: 0,
 });
 
 export const useVintageDividerContext = () => {

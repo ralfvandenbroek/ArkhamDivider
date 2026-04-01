@@ -1,4 +1,4 @@
-import { isNumber } from "ramda-adjunct";
+import { isNumber, isString } from "ramda-adjunct";
 import { useCallback, useEffect, useRef } from "react";
 import { setDividerParam, updateDivider } from "@/modules/divider/shared/lib";
 import { useAppDispatch } from "@/shared/lib";
@@ -91,16 +91,17 @@ export const useDividerText = <T>({
 	);
 
 	const onBlur = useCallback(() => {
-		const shouldClearParam =
-			value === "" ||
-			(typeof defaultCurrentValue === "string" &&
-				value === defaultCurrentValue);
+		const isValueEmpty = value === "";
+		const isDefaultCurrentValueEmpty =
+			isString(defaultCurrentValue) && value === defaultCurrentValue;
+
+		const shouldClearParam = isValueEmpty || isDefaultCurrentValueEmpty;
 
 		dispatch(
 			setDividerParam({
 				id,
 				key: param,
-				value: shouldClearParam ? undefined : value,
+				value: shouldClearParam ? null : value,
 			}),
 		);
 
@@ -118,7 +119,7 @@ export const useDividerText = <T>({
 				setDividerParam({
 					id,
 					key: fontSizeScaleParam,
-					value: shouldClearParam ? undefined : nextFontSizeScale,
+					value: shouldClearParam ? null : nextFontSizeScale,
 				}),
 			);
 		}

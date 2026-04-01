@@ -12,9 +12,11 @@ export type VintageDividerParams = {
 	customTitle?: string;
 	tabColor?: string;
 	tabIndex?: number;
+	topTitleFontSizeScale?: number;
+	fontSizeScale?: number;
 };
 
-export type VintageDividerProps = DividerWithRelations;
+export type VintageDividerProps = DividerWithRelations<VintageDividerParams>;
 
 export type VintageDividerLayoutParams = {
 	tabWidth: number;
@@ -28,7 +30,9 @@ export type VintageDividerSxOptions = {
 	objects: VintageDividerObjects;
 };
 
-export type VintageDividerSxCallback = PrintSxCallback<VintageDividerSxOptions>;
+export type VintageDividerSxCallback<T = void> = PrintSxCallback<
+	VintageDividerSxOptions & T
+>;
 
 export type VintageDividerLocaleSxCallback =
 	LocaleSxCallback<VintageDividerSxOptions>;

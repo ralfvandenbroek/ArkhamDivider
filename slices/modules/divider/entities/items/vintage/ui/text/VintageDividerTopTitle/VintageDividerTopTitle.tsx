@@ -2,6 +2,7 @@ import type { BoxProps, SxProps } from "@mui/material";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
 import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
+import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useVintageDividerContext } from "../../VintageDividerContext/VintageDividerContext";
 import * as S from "./VintageDividerTopTitle.styles";
 
@@ -13,8 +14,10 @@ export function VintageDividerTopTitle({
 }: VintageDividerTopTitleProps) {
 	const { divider, sxOptions } = useVintageDividerContext();
 
+	const getPrintSx = usePrintUnit(sxOptions);
 	const getLocaleSx = useLocaleSx(sxOptions);
 	const sxStyles = getLocaleSx(S.getSx);
+	const outlineSx = getPrintSx(S.getOutlineSx);
 
 	const sx = {
 		...sxStyles,
@@ -31,6 +34,7 @@ export function VintageDividerTopTitle({
 	} = useDividerText({
 		divider,
 		param: "customTopTitle",
+		fontSizeScaleParam: "topTitleFontSizeScale",
 	});
 
 	return (
@@ -40,6 +44,7 @@ export function VintageDividerTopTitle({
 			sx={sx}
 			value={title}
 			defaultValue={translatedTitle}
+			outlineSx={outlineSx}
 			fitTextOptions={{
 				minFontSize: 8,
 				onFontSizeChange,

@@ -74,19 +74,6 @@ const returnPositionEntries = Object.fromEntries(
 
 export const arkhamesqueClassicBottomManifest = {
 	...defaultIconPositionManifest,
-	rogue: {
-		scale: percent(75),
-	},
-	guardian: {
-		top: percent(3),
-	},
-	seeker: {
-		top: percent(2),
-		scale: percent(90),
-	},
-	survivor: {
-		top: percent(6),
-	},
 	...returnPositionEntries,
 	rttic: {
 		top: percent(-1),

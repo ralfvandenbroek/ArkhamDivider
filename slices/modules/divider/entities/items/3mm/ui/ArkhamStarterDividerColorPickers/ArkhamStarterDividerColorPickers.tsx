@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { rgba256 } from "@/modules/core/color/shared/lib";
 import { DividerColorPicker as Picker } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
@@ -15,6 +16,7 @@ type ArkhamStarterDividerColorPickersProps = RowProps;
 export function ArkhamStarterDividerColorPickers(
 	props: ArkhamStarterDividerColorPickersProps,
 ) {
+	const { t } = useTranslation();
 	const { divider } = useArkhamStarterDividerContext();
 	const { id, params } = divider;
 	const getPrintSx = usePrintUnit();
@@ -41,6 +43,7 @@ export function ArkhamStarterDividerColorPickers(
 					param="stripColor"
 					sx={colorPickerSx}
 					defaultColor={stripColor}
+					title={t("divider.3mm.stripColor")}
 				/>
 			)}
 			{showPlayerCorner && (
@@ -49,6 +52,7 @@ export function ArkhamStarterDividerColorPickers(
 					param="playerCornerColor"
 					sx={colorPickerSx}
 					defaultColor={playerCornerColor}
+					title={t("divider.3mm.playerCornerColor")}
 				/>
 			)}
 		</Row>

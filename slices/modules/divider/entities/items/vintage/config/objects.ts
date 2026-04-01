@@ -1,6 +1,7 @@
 import { mergeDeepRight } from "ramda";
 
 export const vintageDividerObjects = {
+	textColor: "#050505",
 	title: {
 		default: {
 			top: 36.7,
@@ -21,11 +22,24 @@ export const vintageDividerObjects = {
 		},
 		ru: {},
 	},
+	tab: {
+		width: 30,
+	},
+	icon: {
+		top: 1.5,
+		left: 11.1,
+		width: 7.8,
+		height: 7.7,
+		fontSize: 7.2,
+	},
 };
 
 export const vintageDividerVerticalObjects = mergeDeepRight(
 	vintageDividerObjects,
 	{
 		title: {},
+		tab: {
+			width: 22,
+		},
 	},
 );
