@@ -1,6 +1,5 @@
 import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import { Buffer } from "buffer";
-import PDFDocument from "pdfkit/js/pdfkit.standalone.js";
 import { last } from "ramda";
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import streamSaver from "streamsaver";
@@ -43,6 +42,10 @@ import {
 import { downloadDividersAsPDF } from "./downloadDividersAsPDF";
 import { selectPDFData } from "./lib";
 
+function loadPDFKit() {
+	return import("pdfkit/js/pdfkit.standalone.js").then((m) => m.default);
+}
+
 function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 	const {
 		dividers,
@@ -72,6 +75,9 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 	}
 
 	const { dpi = 300 } = payload;
+
+	const PDFDocument: Awaited<ReturnType<typeof loadPDFKit>> =
+		yield call(loadPDFKit);
 
 	setStreamMitm();
 

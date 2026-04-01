@@ -1,8 +1,6 @@
 import { css } from "@emotion/css";
 import { styled } from "@mui/material/styles";
 
-import "flag-icons/css/flag-icons.min.css";
-
 export const Container = styled("div")<{ round?: boolean }>`
   position: relative;
   border-radius: 50%;
@@ -15,6 +13,9 @@ export const Container = styled("div")<{ round?: boolean }>`
   `}
 `;
 
-export const Item = styled("span")`
-  display: inline-block;
+export const FlagImg = styled("img")`
+	display: block;
+	width: 24px;
+  aspect-ratio: 1;
+	object-fit: contain;
 `;

@@ -157,7 +157,7 @@ export class PDFIconService {
 			y += (height - iconHeight) / 2;
 		}
 
-		this.image.drawSVG(svgString, {
+		await this.image.drawSVG(svgString, {
 			x,
 			y,
 			width: iconWidth,

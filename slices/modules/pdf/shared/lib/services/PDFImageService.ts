@@ -1,5 +1,4 @@
 import { Buffer } from "buffer";
-import SVGtoPDF from "svg-to-pdfkit";
 import { cmyk } from "@/modules/core/color/shared/lib";
 import { PDFOverprintService } from "./PDFOverprintService";
 
@@ -22,7 +21,8 @@ export class PDFImageService {
 		this.overprint = new PDFOverprintService(doc);
 	}
 
-	drawSVG(svgString: string, options: DrawSVGOptions) {
+	async drawSVG(svgString: string, options: DrawSVGOptions) {
+		const { default: SVGtoPDF } = await import("svg-to-pdfkit");
 		const black = cmyk(0, 0, 0, 100);
 		const {
 			width,

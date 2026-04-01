@@ -1,6 +1,6 @@
-import { cx } from "@emotion/css";
 import type { JSX } from "react";
 import * as C from "./Flag.components";
+import { flagAssetUrlByIso } from "./flagAssetUrls";
 
 type FlagProps = JSX.IntrinsicElements["div"] & {
 	code: string;
@@ -16,12 +16,12 @@ const flagMapping: Record<string, string> = {
 };
 
 export function Flag({ code, ...props }: FlagProps) {
-	const flag = flagMapping[code] || code;
-	const className = cx(props.className, "fi", "fis", `fi-${flag}`);
+	const iso = flagMapping[code] || code;
+	const src = flagAssetUrlByIso[iso] ?? flagAssetUrlByIso.us;
 
 	return (
 		<C.Container {...props}>
-			<C.Item className={className} />
+			<C.FlagImg src={src} alt="" loading="lazy" decoding="async" />
 		</C.Container>
 	);
 }
