@@ -26,7 +26,7 @@ const medium: DividerLayout = {
 	id: "arkhamesque-classic-3",
 	groupId: "medium",
 	name: "divider.arkhamesque-classic.medium",
-	size: createSize(89, 77),
+	size: createSize(89.25, 77),
 	printSize: {
 		300: {
 			size: createSize(1051, 898),

@@ -32,6 +32,7 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	categoryId: string;
 	groupId: string;
 	name: string;
+	previewName?: string;
 	authors?: Author[];
 	image?: string;
 	orientation: DividerOrientation;
@@ -59,6 +60,13 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 		singleSide?: boolean;
 	};
 	renderOptions?: DividerLayoutRenderOptions;
+	compatibility?: Partial<DividerLayoutCompatibility> | null;
+};
+
+export type DividerLayoutCompatibility = {
+	chapter1Box: boolean;
+	chapter2Box: boolean;
+	deckBox: boolean;
 };
 
 export type DividerLayoutRenderOptions = {
@@ -74,4 +82,5 @@ export type DividerLayoutGroup = {
 	hasGrayscale: boolean;
 	hasColor: boolean;
 	canBeSleeved: boolean;
+	compatibility: DividerLayoutCompatibility;
 };

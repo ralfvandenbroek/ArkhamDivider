@@ -1,4 +1,4 @@
-import { outerSleeve, smallCCG } from "@/entities/sleeve/config";
+import { outerSleeve, quadroLarge, smallCCG } from "@/entities/sleeve/config";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { createSize } from "@/shared/util";
 import type { ArkhamDecoDividerLayout } from "../model";
@@ -42,6 +42,9 @@ const chapter1Layout: ArkhamDecoDividerLayout = {
 		singleSide: true,
 	},
 	iconParams: ["smallIcon", "backgroundIcon", "secondaryIcon"],
+	compatibility: {
+		chapter1Box: true,
+	},
 };
 
 const chapter2Layout: ArkhamDecoDividerLayout = {
@@ -57,7 +60,17 @@ const chapter2Layout: ArkhamDecoDividerLayout = {
 			bleedSize: createSize(1098, 898),
 		},
 	},
-	sleeves: null,
+	sleeves: [
+		{
+			id: quadroLarge.id,
+			size: quadroLarge,
+			description: "layout.arkham-deco.sleeve.quadroLarge.description",
+		},
+	],
+	compatibility: {
+		chapter1Box: true,
+		chapter2Box: true,
+	},
 };
 
 const deckBoxLayout: ArkhamDecoDividerLayout = {
@@ -74,6 +87,10 @@ const deckBoxLayout: ArkhamDecoDividerLayout = {
 		},
 	},
 	sleeves: null,
+	compatibility: {
+		chapter1Box: true,
+		deckBox: true,
+	},
 };
 
 const ucfStandardLayout: ArkhamDecoDividerLayout = {
@@ -81,6 +98,7 @@ const ucfStandardLayout: ArkhamDecoDividerLayout = {
 	id: "ucf-standard",
 	groupId: "ucf-standard",
 	name: "divider.arkhamDeco.ucfStandard",
+	previewName: "Meeple House UCF Standard",
 	description: "divider.layout.arkham-deco.ucfStandard.description",
 	size: createSize(94, 67),
 	printSize: {
@@ -100,6 +118,7 @@ export const ucf50Layout: ArkhamDecoDividerLayout = {
 	id: "ucf-50",
 	groupId: "ucf-50",
 	name: "divider.arkhamDeco.ucf50",
+	previewName: "Meeple House UCF 50",
 	description: "divider.layout.arkham-deco.ucf50.description",
 	size: createSize(93.5, 68.5),
 	printSize: {
@@ -134,6 +153,7 @@ const verticalLayout: ArkhamDecoDividerLayout = {
 			size: smallCCG,
 		},
 	],
+	compatibility: null,
 };
 
 const coloredLayouts: DividerLayout[] = [

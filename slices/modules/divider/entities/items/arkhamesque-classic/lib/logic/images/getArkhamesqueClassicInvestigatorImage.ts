@@ -16,16 +16,21 @@ export const getArkhamesqueClassicInvestigatorImage = ({
 		return;
 	}
 
-	const investigatorCode = divider.investigator?.code;
-	const found = findInvestigator(data, investigatorCode);
+	const { investigator: inv } = divider;
+	if (!inv) {
+		return;
+	}
+
+	const found =
+		findInvestigator(data, inv.code) ??
+		findInvestigator(data, inv.alternate_of);
 	if (!found) {
 		return;
 	}
 
 	const { categoryPrefix, investigator } = found;
-	const parts = [categoryPrefix, investigator.prefix, investigator.name].filter(
-		isNotNil,
-	);
+	const linePrefix = investigator.prefix ?? categoryPrefix;
+	const parts = [linePrefix, investigator.name].filter(isNotNil);
 	const filename = parts.join("");
 
 	return [withBuildPrefix(data, filename)];

@@ -40,6 +40,7 @@ const verticalLayout: DividerLayout = {
 			bleedSize: createSize(823, 1273),
 		},
 	},
+	sleeves: null,
 };
 
 const verticalXL: DividerLayout = {

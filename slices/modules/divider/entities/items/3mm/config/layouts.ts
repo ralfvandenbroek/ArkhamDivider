@@ -1,3 +1,4 @@
+import { outerSleeve } from "@/entities/sleeve/config";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { createSize } from "@/shared/util";
 import { arkhamStarterDividerCategoryId } from "./common";
@@ -17,10 +18,20 @@ const layout: DividerLayout = {
 			bleedSize: createSize(1181, 874),
 		},
 	},
+	sleeves: [
+		{
+			id: outerSleeve.id,
+			size: outerSleeve,
+			description: "layout.sleeve.outerSleeve.description",
+		},
+	],
 	bleed: 3.5,
 	iconParams: ["icon"],
 	playerParams: {
 		story: true,
+	},
+	compatibility: {
+		chapter1Box: true,
 	},
 };
 

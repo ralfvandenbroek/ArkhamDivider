@@ -1,5 +1,9 @@
 import { groupBy, prop, propEq } from "ramda";
-import type { DividerLayout, DividerLayoutGroup } from "../../model";
+import type {
+	DividerLayout,
+	DividerLayoutCompatibility,
+	DividerLayoutGroup,
+} from "../../model";
 
 export const createLayoutGroups = (
 	layouts: DividerLayout[],
@@ -20,6 +24,22 @@ export const createLayoutGroups = (
 				({ sleeves }) => sleeves && sleeves.length > 0,
 			);
 
+			const compatibility = layouts.reduce((acc, layout) => {
+				const { compatibility } = layout ?? {};
+				const {
+					chapter1Box = false,
+					chapter2Box = false,
+					deckBox = false,
+				} = compatibility ?? {};
+
+				return {
+					...acc,
+					chapter1Box: chapter1Box || acc.chapter1Box,
+					chapter2Box: chapter2Box || acc.chapter2Box,
+					deckBox: deckBox || acc.deckBox,
+				};
+			}, {} as DividerLayoutCompatibility);
+
 			return {
 				id,
 				name,
@@ -28,6 +48,7 @@ export const createLayoutGroups = (
 				hasGrayscale,
 				hasColor,
 				canBeSleeved,
+				compatibility,
 			};
 		});
 };
