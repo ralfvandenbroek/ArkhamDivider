@@ -47,3 +47,16 @@ export const getMenuSx: PrintSxCallback = ({ mm }) => ({
 	opacity: 0.8,
 	zIndex: 2,
 });
+
+export const getColorPickersSx: PrintSxCallback = ({ mm }) => ({
+	position: "absolute",
+	zIndex: 2,
+	bottom: mm(7),
+	left: mm(10),
+	gap: mm(1),
+});
+
+export const getColorPickerSx: PrintSxCallback = ({ mm }) => ({
+	width: mm(4),
+	height: mm(4),
+});

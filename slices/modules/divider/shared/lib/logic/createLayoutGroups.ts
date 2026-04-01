@@ -32,12 +32,11 @@ export const createLayoutGroups = (
 					deckBox = false,
 				} = compatibility ?? {};
 
-				return {
-					...acc,
-					chapter1Box: chapter1Box || acc.chapter1Box,
-					chapter2Box: chapter2Box || acc.chapter2Box,
-					deckBox: deckBox || acc.deckBox,
-				};
+				acc.chapter1Box = chapter1Box || acc.chapter1Box;
+				acc.chapter2Box = chapter2Box || acc.chapter2Box;
+				acc.deckBox = deckBox || acc.deckBox;
+
+				return acc;
 			}, {} as DividerLayoutCompatibility);
 
 			return {

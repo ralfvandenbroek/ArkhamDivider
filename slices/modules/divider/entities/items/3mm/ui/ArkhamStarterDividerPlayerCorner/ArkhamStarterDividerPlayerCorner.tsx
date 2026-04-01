@@ -24,9 +24,11 @@ export function ArkhamStarterDividerPlayerCorner(
 	const defaultColorObject = getDefaultColor(divider);
 	const defaultColor = rgba256(defaultColorObject);
 
+	const backgroundColor = divider.params?.playerCornerColor ?? defaultColor;
+
 	const colorSx = {
 		...colorSxStyle,
-		backgroundColor: defaultColor,
+		backgroundColor,
 	} as SxProps;
 
 	return (

@@ -1,4 +1,4 @@
-import { Box, type BoxProps, type SxProps } from "@mui/material";
+import { Box, type BoxProps } from "@mui/material";
 import { useCallback } from "react";
 import { ColorPicker } from "@/entities/common/ui";
 import {
@@ -10,14 +10,12 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib";
 
 type DividerColorPickerProps = BoxProps & {
 	dividerId: string;
-	pickerSx?: SxProps;
 	defaultColor?: string;
 	param: string;
 };
 
 export function DividerColorPicker({
 	dividerId,
-	pickerSx,
 	defaultColor,
 	param,
 	title,
@@ -42,6 +40,9 @@ export function DividerColorPicker({
 		<NotExportable>
 			<Box {...props} displayPrint="none">
 				<ColorPicker
+					width="100%"
+					height="100%"
+					position="relative"
 					value={value}
 					defaultValue={defaultColor}
 					onColorSelect={onColorSelect}

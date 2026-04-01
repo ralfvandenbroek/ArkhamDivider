@@ -12,6 +12,7 @@ import {
 	show3mmDividerIconCorner as showIconCorner,
 } from "../../lib";
 import type { ArkhamStarterDividerProps } from "../../model";
+import { ArkhamStarterDividerColorPickers as ColorPickers } from "../ArkhamStarterDividerColorPickers";
 import { ArkhamStarterDividerContext } from "../ArkhamStarterDividerContext";
 import {
 	ArkhamStarterDividerSideHeader as SideHeader,
@@ -25,6 +26,7 @@ export function ArkhamStarterDivider(props: ArkhamStarterDividerProps) {
 	const headerSx = getPrintSx(S.getHeaderSx);
 	const sideHeaderSx = getPrintSx(S.getSideHeaderSx);
 	const menuSx = getPrintSx(S.getMenuSx);
+	const colorPickersSx = getPrintSx(S.getColorPickersSx);
 
 	const titleObject = get3mmDividerTitleObject(props);
 	const shwoCorner = showIconCorner(props);
@@ -41,6 +43,7 @@ export function ArkhamStarterDivider(props: ArkhamStarterDividerProps) {
 					<SideHeader sx={sideHeaderSx} />
 				</Content>
 				<DividerMenu dividerId={props.id} sx={menuSx} />
+				<ColorPickers sx={colorPickersSx} />
 			</Container>
 		</ArkhamStarterDividerContext.Provider>
 	);
