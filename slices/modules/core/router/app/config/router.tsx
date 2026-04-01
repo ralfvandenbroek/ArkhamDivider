@@ -1,4 +1,5 @@
 import { createHashRouter } from "react-router";
+import { AboutPage } from "@/pages/about/ui";
 import { HomePage } from "@/pages/home/ui";
 import { LayoutPage } from "@/pages/layout/ui";
 import { Root } from "../ui/Root";
@@ -22,11 +23,19 @@ export const router =
 					element: <HomePage />,
 				},
 				{
+					path: "about",
+					element: <AboutPage />,
+				},
+				{
 					path: ":language",
 					children: [
 						{
 							index: true,
 							element: <HomePage />,
+						},
+						{
+							path: "about",
+							element: <AboutPage />,
 						},
 						{
 							path: "layout/:layoutId",

@@ -91,6 +91,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 
 			const options: RenderDividerOptions = {
 				dividerId: divider.id,
+				side: divider.side,
 				dpi: effectiveDpi,
 				imageFormat,
 				size,

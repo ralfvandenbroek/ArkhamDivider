@@ -13,6 +13,8 @@ import { rynoCategoryId } from "./ryno/config/common";
 import { RynoDividerPDF } from "./ryno/ui/pdf";
 import { sarnetskyCategoryId } from "./sarnetsky/config";
 import { SarnetskyDividerPDF } from "./sarnetsky/ui";
+import { vintageDividerCategoryId } from "./vintage/config/common";
+import { VintageDividerPDF } from "./vintage/ui/pdf";
 
 // biome-ignore lint/suspicious/noExplicitAny: any is used to allow any type of params
 export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
@@ -23,4 +25,5 @@ export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
 	[rynoCategoryId]: RynoDividerPDF,
 	[sarnetskyCategoryId]: SarnetskyDividerPDF,
 	[arkhamStarterDividerCategoryId]: ArkhamStarterDividerPDF,
+	[vintageDividerCategoryId]: VintageDividerPDF,
 };

@@ -4,7 +4,7 @@ import {
 } from "modern-screenshot";
 import type Vips from "wasm-vips";
 import type { DPI } from "@/modules/print/shared/model";
-import type { BoxSize } from "@/shared/model";
+import type { BoxSize, Side } from "@/shared/model";
 import {
 	defaultVipsTransformRecord,
 	defaultWriteOptionsRecord,
@@ -20,6 +20,7 @@ import { getDividerNodeById } from "./getDividerNodeById";
 
 export type RenderDividerOptions = {
 	dividerId: string;
+	side?: Side;
 	dpi: DPI;
 	imageFormat: ImageFormat;
 	size: BoxSize;
@@ -30,6 +31,7 @@ export type RenderDividerOptions = {
 
 export const renderDivider = async ({
 	dividerId,
+	side,
 	dpi,
 	size,
 	renderOptions,
@@ -39,7 +41,10 @@ export const renderDivider = async ({
 }: RenderDividerOptions) => {
 	const transforms = transformRecord[imageFormat];
 	const writeOptions = writeOptionsRecord[imageFormat];
-	const node = getDividerNodeById(dividerId);
+	const node = getDividerNodeById({
+		id: dividerId,
+		side,
+	});
 	// const scale = dpi / 96;
 	const options = {
 		...renderOptions,

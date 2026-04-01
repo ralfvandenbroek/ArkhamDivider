@@ -233,6 +233,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						let contents: ReturnAwaited<typeof renderDivider> | null =
 							yield call(renderDivider, {
 								dividerId: item.id,
+								side: pdfLayout.side,
 								dpi,
 								size: item.size,
 								imageFormat: "jpeg",

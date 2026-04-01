@@ -1,5 +1,6 @@
 import type { PrintSxCallback } from "@/modules/print/shared/model";
 import type { BoxRect } from "@/shared/model";
+import { percent } from "@/shared/util";
 import type {
 	VintageDividerLocaleSxCallback,
 	VintageDividerSxCallback,
@@ -102,4 +103,10 @@ export const getIconSx: VintageDividerSxCallback<{ tabIndex: number }> = ({
 	width: mm(O.icon.width),
 	height: mm(O.icon.height),
 	fontSize: mm(O.icon.fontSize),
+	cursor: "pointer",
+	"@media screen": {
+		":hover": {
+			opacity: percent(70),
+		},
+	},
 });

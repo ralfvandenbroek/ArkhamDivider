@@ -10,6 +10,7 @@ import type { getVintageDividerObjects } from "../lib";
 export type VintageDividerParams = {
 	icon?: Icon;
 	customTitle?: string;
+	customTopTitle?: string;
 	tabColor?: string;
 	tabIndex?: number;
 	topTitleFontSizeScale?: number;

@@ -62,7 +62,7 @@ export function DividerView(props: DividerViewProps) {
 					}}
 				>
 					<Box
-						data-divider-id={props.id}
+						data-divider-node-id={`${props.id}:${props.side}`}
 						sx={{
 							...size,
 							position: "absolute",
