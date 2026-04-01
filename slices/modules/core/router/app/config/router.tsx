@@ -1,6 +1,7 @@
 import { createHashRouter } from "react-router";
 import { AboutPage } from "@/pages/about/ui";
 import { HomePage } from "@/pages/home/ui";
+import { HowToPrintPage } from "@/pages/how-to-print/ui";
 import { LayoutPage } from "@/pages/layout/ui";
 import { Root } from "../ui/Root";
 
@@ -27,6 +28,10 @@ export const router =
 					element: <AboutPage />,
 				},
 				{
+					path: "how-to-print",
+					element: <HowToPrintPage />,
+				},
+				{
 					path: ":language",
 					children: [
 						{
@@ -36,6 +41,10 @@ export const router =
 						{
 							path: "about",
 							element: <AboutPage />,
+						},
+						{
+							path: "how-to-print",
+							element: <HowToPrintPage />,
 						},
 						{
 							path: "layout/:layoutId",

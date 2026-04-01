@@ -11,13 +11,7 @@ export function FooterMenu(props: FooterMenuProps) {
 		<C.Container {...props}>
 			<C.Item to="/about">{t("About")}</C.Item>
 			<Separator />
-			<C.Link
-				href="https://www.reddit.com/r/arkhamhorrorlcg/comments/1qana39/arkham_divider_printing_101/"
-				target="_blank"
-				rel="noopener"
-			>
-				{t("How to print")}
-			</C.Link>
+			<C.Item to="/how-to-print">{t("How to print")}</C.Item>
 		</C.Container>
 	);
 }
