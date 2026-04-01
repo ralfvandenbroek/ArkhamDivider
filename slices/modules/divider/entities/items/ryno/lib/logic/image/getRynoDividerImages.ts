@@ -21,10 +21,11 @@ export const getRynoDividerImages = (options: Options) => {
 	const id = layoutMap[layoutId] ?? layoutMap.ryno;
 
 	const typePrefix = type === "player" ? "player-" : "";
+	const scenarioPrefix = type === "scenario" ? "" : "player-";
 
 	return {
 		body: asset`/body_${id}.avif`,
-		header: asset`/header_${typePrefix}${id}.avif`,
+		header: asset`/header_${scenarioPrefix}${id}.avif`,
 		corner: asset`/corner_${typePrefix}${id}.avif`,
 	};
 };
