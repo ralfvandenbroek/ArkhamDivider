@@ -1,4 +1,9 @@
-import { outerSleeve, quadroLarge, smallCCG } from "@/entities/sleeve/config";
+import {
+	outerSleeve,
+	quadroLarge,
+	smallCCG,
+	tarot,
+} from "@/entities/sleeve/config";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { createSize } from "@/shared/util";
 import type { ArkhamDecoDividerLayout } from "../model";
@@ -64,7 +69,7 @@ const chapter2Layout: ArkhamDecoDividerLayout = {
 		{
 			id: quadroLarge.id,
 			size: quadroLarge,
-			description: "layout.arkham-deco.sleeve.quadroLarge.description",
+			description: "info.sleeve.customCut.description",
 		},
 	],
 	compatibility: {
@@ -75,7 +80,7 @@ const chapter2Layout: ArkhamDecoDividerLayout = {
 
 const deckBoxLayout: ArkhamDecoDividerLayout = {
 	...chapter1Layout,
-	id: "deck-box",
+	id: "arkham-deco-deck-box",
 	groupId: "deck-box",
 	name: "divider.arkhamDeco.deckBox",
 	description: "divider.layout.arkham-deco.deckBox.description",
@@ -86,7 +91,13 @@ const deckBoxLayout: ArkhamDecoDividerLayout = {
 			bleedSize: createSize(1181, 898),
 		},
 	},
-	sleeves: null,
+	sleeves: [
+		{
+			id: tarot.id,
+			size: tarot,
+			description: "info.sleeve.customCut.description",
+		},
+	],
 	compatibility: {
 		chapter1Box: true,
 		deckBox: true,
@@ -135,7 +146,7 @@ export const ucf50Layout: ArkhamDecoDividerLayout = {
 
 const verticalLayout: ArkhamDecoDividerLayout = {
 	...chapter1Layout,
-	id: "vertical",
+	id: "arkham-deco-vertical",
 	groupId: "vertical",
 	name: "Vertical",
 	description: "divider.layout.arkham-deco.vertical.description",
@@ -151,6 +162,7 @@ const verticalLayout: ArkhamDecoDividerLayout = {
 		{
 			id: smallCCG.id,
 			size: smallCCG,
+			description: "info.sleeve.customCut.description",
 		},
 	],
 	compatibility: null,

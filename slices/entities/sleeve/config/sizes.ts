@@ -21,6 +21,7 @@ export const sleeve94x69 = createSleeveSize(94, 69);
 export const largeCCG = createSleeveSize(89, 130, "Large CCG");
 export const smallCCG = createSleeveSize(62, 96, "Small CCG");
 export const quadroLarge = createSleeveSize(87, 87, "Quadro Large");
+export const tarot = createSleeveSize(70, 120, "Tarot");
 
 export const outerSleeve = createSleeveSize(69, 94);
 

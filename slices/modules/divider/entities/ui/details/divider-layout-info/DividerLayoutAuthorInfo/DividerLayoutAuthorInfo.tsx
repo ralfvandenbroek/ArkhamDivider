@@ -1,11 +1,11 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import { useDonationUrl } from "@/entities/common/lib";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import type { Author } from "@/shared/model";
-import { Row, TextLink } from "@/shared/ui";
+import { Image, Row, TextLink } from "@/shared/ui";
 
 type DividerLayoutAuthorInfoProps = {
 	author: Author;
@@ -27,16 +27,17 @@ export function DividerLayoutAuthorInfo({
 					justifyContent: { xs: "center", sm: "flex-start" },
 				}}
 			>
-				<Box
-					component="img"
-					src={author.image}
-					width={60}
-					height={60}
-					alt={author.name}
-					sx={{
-						objectFit: "contain",
-					}}
-				/>
+				{author.image && (
+					<Image
+						src={author.image}
+						width={60}
+						height={60}
+						alt={author.name}
+						sx={{
+							objectFit: "contain",
+						}}
+					/>
+				)}
 				<Stack gap={1}>
 					<Typography variant="h6">{author.name}</Typography>
 					{contacts && (

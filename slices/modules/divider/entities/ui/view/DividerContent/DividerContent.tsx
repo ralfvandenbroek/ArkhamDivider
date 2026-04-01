@@ -30,7 +30,6 @@ export function DividerContent({
 		...(borderRadius && !hideBorderRadius
 			? {
 					outline: `${mm(outlineWidth)} dashed red`,
-					// outlineOffset: mm(-outlineWidth),
 					borderRadius: mm(borderRadius),
 				}
 			: {}),

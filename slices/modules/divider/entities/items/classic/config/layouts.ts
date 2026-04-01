@@ -32,7 +32,7 @@ const horizontalLayout: DividerLayout = {
 		{
 			id: largeCCG.id,
 			size: largeCCG,
-			description: "layout.classic.sleeve.largeCCG.description",
+			description: "info.sleeve.customCut.description",
 		},
 	],
 	scenarioParams: {

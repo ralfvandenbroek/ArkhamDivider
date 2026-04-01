@@ -194,3 +194,25 @@ export const ArkhamStarter3mmCredits: Author = {
 		},
 	],
 };
+
+export const BobLafouineCredits: Author = {
+	id: "boblafouine",
+	name: "Bob Lafouine",
+	contacts: [
+		{
+			id: "bgg",
+			icon: "bgg",
+			title: "BGG",
+			url: "https://boardgamegeek.com/user/boblafouine",
+		},
+		{
+			id: "email",
+			icon: "mail",
+			title: "E-mail",
+			url: "mailto:29wxcvbn29@gmail.com",
+		},
+	],
+	donationUrl: {
+		default: "https://www.patreon.com/boblafouine",
+	},
+};

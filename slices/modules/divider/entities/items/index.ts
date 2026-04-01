@@ -14,6 +14,8 @@ import { rynoCategoryId } from "./ryno/config";
 import { RynoDivider } from "./ryno/ui/RynoDivider";
 import { sarnetskyCategoryId } from "./sarnetsky/config";
 import { SarnetskyDivider } from "./sarnetsky/ui";
+import { vintageDividerCategoryId } from "./vintage/config/common";
+import { VintageDivider } from "./vintage/ui";
 
 export { dividerCategories, dividerLayouts, invocation2018CategoryId };
 
@@ -29,4 +31,5 @@ export const dividerComponents: Record<
 	[rynoCategoryId]: RynoDivider,
 	[arkhamesqueClassicCategoryId]: ArkhamesqueClassicDivider,
 	[arkhamStarterDividerCategoryId]: ArkhamStarterDivider,
+	[vintageDividerCategoryId]: VintageDivider,
 };
