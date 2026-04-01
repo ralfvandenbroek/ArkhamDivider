@@ -47,18 +47,26 @@ export function DividerLayoutGroupPreview({
 					)}
 
 					{chapter1Box && (
-						<C.Icon title={t`divider.chapter1BoxCompatible`}>
-							<Icon icon="the_first_day" sx={iconSx} />
+						<C.Icon>
+							<Icon
+								title={t`divider.chapter1BoxCompatible`}
+								icon="the_first_day"
+								sx={iconSx}
+							/>
 						</C.Icon>
 					)}
 					{chapter2Box && (
-						<C.Icon title={t`divider.chapter2BoxCompatible`}>
-							<Icon icon="the_second_day" sx={iconSx} />
+						<C.Icon>
+							<Icon
+								title={t`divider.chapter2BoxCompatible`}
+								icon="the_second_day"
+								sx={iconSx}
+							/>
 						</C.Icon>
 					)}
 					{deckBox && (
-						<C.Icon title={t`divider.forDeckBox`}>
-							<Icon icon="drawer2" sx={iconSx} />
+						<C.Icon>
+							<Icon title={t`divider.forDeckBox`} icon="drawer2" sx={iconSx} />
 						</C.Icon>
 					)}
 				</Row>
