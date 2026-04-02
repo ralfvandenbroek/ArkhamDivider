@@ -61,13 +61,15 @@ export function SarnetskyBand(props: SarnetskyBandProps) {
 							onClick={selectIcon}
 						/>
 					)}
-					<DividerColorPicker
-						sx={colorPickerSx}
-						dividerId={props.id}
-						param="color"
-						defaultColor={defaultColor}
-						title={t("divider.sarnetsky.frameColor.pickerTitle")}
-					/>
+					{type !== "concealed" && (
+						<DividerColorPicker
+							sx={colorPickerSx}
+							dividerId={props.id}
+							param="color"
+							defaultColor={defaultColor}
+							title={t("divider.sarnetsky.frameColor.pickerTitle")}
+						/>
+					)}
 					<Title sx={titleSx} />
 					<DividerMenu dividerId={props.id} sx={menuSx} inline />
 				</DividerContent>

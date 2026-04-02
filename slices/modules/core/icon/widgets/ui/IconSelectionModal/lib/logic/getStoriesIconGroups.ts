@@ -1,7 +1,8 @@
-import { propEq } from "ramda";
+import { prop, propEq, uniq } from "ramda";
 import type { ArkhamDividerIcon } from "@/modules/core/icon/shared/model";
 import type { EncounterSet } from "@/modules/encounterSet/shared/model";
 import {
+	isCampaignContent,
 	isChallengeStory,
 	isCoreSet,
 	isInvestigatorStory,
@@ -43,21 +44,49 @@ export const getStoriesIconGroups = ({
 
 	const toIconGroup = getStoryIconSubgroup(toIcon);
 
+	const mapStory = (story: Story) => {
+		const subGroup = toIconGroup(story);
+		if (!isCampaignContent(story)) {
+			return subGroup;
+		}
+		const [id] = subGroup.icons;
+		if (!id) {
+			return subGroup;
+		}
+
+		const iconSet = icons.find(propEq(id, "icon"))?.iconSet;
+
+		if (!iconSet) {
+			return subGroup;
+		}
+
+		const iconSetIcons = icons
+			.filter((i) => i.iconSet === iconSet)
+			.map(prop("icon"));
+
+		const mergedIcons = uniq([...subGroup.icons, ...iconSetIcons]);
+
+		return {
+			...subGroup,
+			icons: mergedIcons,
+		};
+	};
+
 	return [
 		{
 			id: "campaigns",
 			name: "Campaigns",
-			groups: campaignGroups.map(toIconGroup),
+			groups: campaignGroups.map(mapStory),
 		},
 		{
 			id: "side",
 			name: "Side Scenarios",
-			groups: sideGroups.map(toIconGroup),
+			groups: sideGroups.map(mapStory),
 		},
 		{
 			id: "challenges",
 			name: "Challenge Scenarios",
-			groups: challengeGroups.map(toIconGroup),
+			groups: challengeGroups.map(mapStory),
 		},
 	];
 };
