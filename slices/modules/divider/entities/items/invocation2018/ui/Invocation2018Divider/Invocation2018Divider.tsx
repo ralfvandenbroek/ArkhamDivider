@@ -22,6 +22,7 @@ import {
 	useAppSelector,
 	usePreventDefault,
 } from "@/shared/lib";
+import { invocation2018Manifest } from "../../config";
 import { invocation2018DividerTextColor } from "../../config/common";
 import {
 	getInvocation2018Background,
@@ -131,6 +132,7 @@ export function Invocation2018Divider(props: DividerWithRelations) {
 						{...O.icon.params}
 						onClick={selectSmallIcon}
 						onContextMenu={copy(smallIcon)}
+						manifest={invocation2018Manifest}
 					/>
 				)}
 				{showSmallIcon ? (

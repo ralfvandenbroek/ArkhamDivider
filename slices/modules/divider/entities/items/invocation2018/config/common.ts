@@ -17,8 +17,8 @@ const defaultTextObject = {
 const iconObject = {
 	...classicDividerHorizontalObjects.icon,
 	size: 7.9,
-	fontSize: 7.5,
-	top: 2.2,
+	fontSize: 7.2,
+	top: 2.1,
 	right: 1,
 };
 

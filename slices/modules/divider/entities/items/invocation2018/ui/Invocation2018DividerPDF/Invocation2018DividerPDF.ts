@@ -4,6 +4,7 @@ import { getDividerIcon } from "@/modules/divider/features/lib";
 import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import type { PDFDivider } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
+import { invocation2018Manifest } from "../../config";
 import {
 	getInvocation2018DefaultIcon,
 	getInvocation2018LayoutObjects,
@@ -92,6 +93,7 @@ export const Invocation2018DividerPDF: PDFDivider = async (props, ctx) => {
 			height: view.height(),
 			overprint: true,
 			color,
+			manifest: invocation2018Manifest,
 		});
 	}
 };
