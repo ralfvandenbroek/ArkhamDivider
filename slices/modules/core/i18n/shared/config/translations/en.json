@@ -183,5 +183,9 @@
 	"icons.download.description": "Daily updated files",
 	"layout.investigatorTokens.standard": "Color + grayscale",
 	"layout.investigatorTokens.colored": "Only color",
-	"category.investigator-tokens.description": "Investigator tokens for coin capsules. Use a 25mm round hole punch for a smooth circle"
+	"category.investigator-tokens.description": "Investigator tokens for coin capsules. Use a 25mm round hole punch for a smooth circle",
+	"My new project": "My new project",
+	"Digital Investigator Board": "Digital Investigator Board",
+	"iOS Unlock": "iOS Unlock",
+	"home.projectInfo.title": "A few words about this project"
 }

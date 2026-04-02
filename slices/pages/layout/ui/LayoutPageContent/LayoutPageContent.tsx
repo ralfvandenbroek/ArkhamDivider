@@ -15,6 +15,7 @@ import type {
 import { PrintableContent } from "@/modules/print/widgets/ui";
 import { SectionTitle } from "@/shared/ui";
 import { SingleColumnLayout } from "@/widgets/layout/SingleColumnLayout";
+import { Announces } from "../Announces";
 
 type LayoutPageContentProps = {
 	layout: DividerLayout;
@@ -37,6 +38,7 @@ export function LayoutPageContent({
 			>
 				<Container>
 					<Box sx={{ displayPrint: "none" }}>
+						<Announces />
 						<SectionTitle>
 							<Typography color="text.secondary">{t(category.name)}</Typography>
 							{t(layout.name)}

@@ -4,11 +4,13 @@ import { BandsList } from "../BandsList";
 import { DividerList } from "../DividerList";
 import { IconsDownload } from "../IconsDownload";
 import { InvestigatorTokensPreview } from "../InvestigatorTokensPreview";
+import { ProjectInfo } from "../ProjectInfo";
 
 export function HomePage() {
 	return (
 		<SingleColumnLayout>
 			<Stack gap={8} paddingBlock={8}>
+				<ProjectInfo />
 				<DividerList />
 				<BandsList />
 				<InvestigatorTokensPreview />

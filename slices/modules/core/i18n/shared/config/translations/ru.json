@@ -179,5 +179,9 @@
 	"icons.download.description": "Файлы обновляются ежедневно",
 	"layout.investigatorTokens.standard": "Цветные + ч/б",
 	"layout.investigatorTokens.colored": "Только цветные",
-	"category.investigator-tokens.description": "Жетоны сыщиков под капсулы для монет. Используйте фигурный дырокол 25мм для ровного круга"
+	"category.investigator-tokens.description": "Жетоны сыщиков под капсулы для монет. Используйте фигурный дырокол 25мм для ровного круга",
+	"My new project": "Мой новый проект",
+	"Digital Investigator Board": "Цифровой планшет сыщика",
+	"iOS Unlock": "Разблокировка",
+	"home.projectInfo.title": "Несколько слов о проекте"
 }

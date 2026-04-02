@@ -31,11 +31,11 @@ export function InvestigatorToken(props: DividerWithRelations) {
 	return (
 		<Container>
 			<Background src={src} sx={backgroundSx} />
-			<Content sx={{ borderRadius: "50%", outlineStyle }}>
-				<Box sx={containerSx}>
+			<Box sx={containerSx}>
+				<Content sx={{ borderRadius: "50%", outlineStyle }}>
 					<DividerMenu dividerId={props.id} sx={menuSx} />
-				</Box>
-			</Content>
+				</Content>
+			</Box>
 		</Container>
 	);
 }

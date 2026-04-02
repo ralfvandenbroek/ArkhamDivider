@@ -23,6 +23,19 @@ export const theme = createTheme({
 	palette,
 	typography: {},
 	components: {
+		MuiLink: {
+			variants: [
+				{
+					props: { color: "primary" },
+					style: ({ theme }) => ({
+						color: theme.palette.primary.dark,
+						"&:hover": {
+							color: theme.palette.primary.main,
+						},
+					}),
+				},
+			],
+		},
 		MuiTabs: {
 			styleOverrides: {
 				root: {
