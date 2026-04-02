@@ -23,7 +23,6 @@ export const getTextSx: ClassicDividerLocaleCallback = ({
 		color: classicDividerTextColor,
 	},
 	ru: {
-		top: mm(O.text.ru.top),
 		fontSize: mm(O.text.ru.fontSize),
 		height: mm(O.text.ru.height),
 		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
@@ -32,7 +31,6 @@ export const getTextSx: ClassicDividerLocaleCallback = ({
 		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
 	},
 	ko: {
-		top: mm(O.text.ko.top),
 		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
 	},
 });

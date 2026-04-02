@@ -8,19 +8,15 @@ export const classicDividerTextColor = "#2e2622";
 export const classicDividerHorizontalObjects = {
 	text: {
 		default: {
-			top: 3.8,
+			top: 2.6,
 			fontSize: 5,
 			height: 7.5,
 			left: 8.66,
 			right: 10.16,
 		},
 		ru: {
-			top: 2.6,
 			fontSize: 4.58,
 			height: 7,
-		},
-		ko: {
-			top: 2.2,
 		},
 	},
 	icon: {

@@ -23,7 +23,6 @@ export const getTextSx: Invocation2018DividerLocaleCallback = ({
 		color: invocation2018DividerTextColor,
 	},
 	ru: {
-		top: mm(O.text.ru.top),
 		fontSize: mm(O.text.ru.fontSize),
 		height: mm(O.text.ru.height),
 		fontFamily: "Conkordia, Arkhamic, Teutonic, serif",
@@ -32,7 +31,6 @@ export const getTextSx: Invocation2018DividerLocaleCallback = ({
 		fontFamily: "FZLiBian, Arkhamic, Teutonic, serif",
 	},
 	ko: {
-		top: mm(O.text.ko.top),
 		fontFamily: "SanCn, Arkhamic, Teutonic, serif",
 	},
 });
