@@ -17,10 +17,10 @@ export const dividerCategories: DividerCategory[] = [
 	arkhamesqueClassicCategory,
 	rynoCategory,
 	sarnetskyCategory,
-	sarnetskyBandCategory,
 	arkhamDecoCategory,
 	arkhamStarterDividerCategory,
 	vintageCategory,
+	sarnetskyBandCategory,
 ];
 
 export const dividerLayouts = dividerCategories.flatMap(prop("layouts"));

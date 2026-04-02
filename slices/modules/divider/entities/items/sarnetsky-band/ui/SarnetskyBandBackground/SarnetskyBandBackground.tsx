@@ -4,19 +4,22 @@ import Box from "@mui/material/Box";
 import { Fragment } from "react";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
-import { getSarnetskyStoryColor } from "../../../sarnetsky/lib";
 import { sarnetskyBandImages } from "../../config/common";
 import type { SarnetskyBandImage } from "../../model";
 import { useSarnetskyBandContext } from "../SarnetskyBandContext";
 import * as S from "./SarnetskyBandBackground.styles";
 
-type SarnetskyBandBackgroundProps = BoxProps;
+type SarnetskyBandBackgroundProps = BoxProps & {
+	defaultColor?: string;
+};
 
-export function SarnetskyBandBackground(props: SarnetskyBandBackgroundProps) {
+export function SarnetskyBandBackground({
+	defaultColor,
+	...props
+}: SarnetskyBandBackgroundProps) {
 	const { sxOptions, divider } = useSarnetskyBandContext();
 	const { type } = sxOptions;
 	const getPrintSx = usePrintUnit(sxOptions);
-	const backgroundColor = getSarnetskyStoryColor(divider.story);
 
 	const frameSx = getPrintSx(S.getFrameSx);
 	const variableSx = getPrintSx(S.getVariableSx);
@@ -31,6 +34,8 @@ export function SarnetskyBandBackground(props: SarnetskyBandBackgroundProps) {
 		background: backgroundSx,
 		line: lineSx,
 	};
+
+	const backgroundColor = divider.params?.color ?? defaultColor;
 
 	return (
 		<Box {...props} color={backgroundColor}>

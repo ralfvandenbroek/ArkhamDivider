@@ -11,8 +11,9 @@ import { DividerIcon } from "@/modules/divider/features/ui";
 import type { DividerLayout } from "@/modules/divider/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { useAppSelector } from "@/shared/lib";
-import { getSarnetskyStoryColor } from "../../../sarnetsky/lib";
 import {
+	getSarnetskyBandDefaultColor,
+	getSarnetskyBandDefaultIcon,
 	getSarnetskyBandTitleOffset,
 	useSarnetskyBandSxOptions,
 } from "../../lib";
@@ -40,17 +41,17 @@ export function SarnetskyBand(props: SarnetskyBandProps) {
 	const titleSx = getPrintSx(S.getTitleSx, { offset: titleOffset });
 
 	const getDividerIcon = useDividerIcon({ dividerId: props.id });
-	const defaultIcon = props.icon;
+	const defaultIcon = getSarnetskyBandDefaultIcon(props);
 	const [icon, selectIcon] = getDividerIcon({ param: "icon", defaultIcon });
 
-	const defaultColor = getSarnetskyStoryColor(props.story);
+	const defaultColor = getSarnetskyBandDefaultColor(props);
 
 	return (
 		<SarnetskyBandContext.Provider
 			value={{ divider: props, sxOptions, layout }}
 		>
 			<Container>
-				<Background sx={backgroundSx} />
+				<Background sx={backgroundSx} defaultColor={defaultColor} />
 				<DividerContent>
 					{type !== "concealed" && (
 						<DividerIcon
@@ -68,7 +69,7 @@ export function SarnetskyBand(props: SarnetskyBandProps) {
 						title={t("divider.sarnetsky.frameColor.pickerTitle")}
 					/>
 					<Title sx={titleSx} />
-					<DividerMenu dividerId={props.id} sx={menuSx} />
+					<DividerMenu dividerId={props.id} sx={menuSx} inline />
 				</DividerContent>
 			</Container>
 		</SarnetskyBandContext.Provider>

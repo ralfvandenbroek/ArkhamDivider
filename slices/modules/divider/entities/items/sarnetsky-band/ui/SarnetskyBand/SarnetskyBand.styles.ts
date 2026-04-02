@@ -1,4 +1,3 @@
-import type { PrintSxCallback } from "@/modules/print/shared/model";
 import { percent } from "@/shared/util";
 import type { SarnetskyBandSxCallback } from "../../model";
 
@@ -54,12 +53,11 @@ export const getTitleSx: SarnetskyBandSxCallback<{ offset: number }> = ({
 	};
 };
 
-export const getMenuSx: PrintSxCallback = ({ mm }) => ({
+export const getMenuSx: SarnetskyBandSxCallback = ({ mm, type }) => ({
 	position: "absolute",
 	top: "50%",
-	right: mm(15),
+	right: mm(type === "encounter" ? 15 : 125),
 	transform: "translateY(-50%)",
-	flexDirection: "row",
 	zIndex: 6,
 	opacity: 0.4,
 });

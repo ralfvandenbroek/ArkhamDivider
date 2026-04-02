@@ -62,7 +62,12 @@ export function DividerMenu({
 	};
 
 	return (
-		<Stack {...props} sx={sx} displayPrint="none">
+		<Stack
+			{...props}
+			sx={sx}
+			displayPrint="none"
+			flexDirection={inline ? "row" : "column"}
+		>
 			<NotExportable id={dividerId}>
 				<Row position="relative">
 					<IconButton onClick={setShowDownload.toggle} sx={buttonSx}>
@@ -74,7 +79,9 @@ export function DividerMenu({
 							top={0}
 							gap={2}
 							zIndex={2}
-							left="100%"
+							sx={{
+								[inline ? "right" : "left"]: "100%",
+							}}
 							height="100%"
 						>
 							<IconButton onClick={download("tiff")} sx={buttonSx}>
