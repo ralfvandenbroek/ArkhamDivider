@@ -5,10 +5,7 @@ import "./env";
 const __dirname = import.meta.dirname;
 const outDir = path.join(__dirname, "../public/data");
 
-const dataUrl = process.env.DATA_URL;
-const baseUrl =
-	process.env.VITE_ARKHAMESQUE_URL ??
-	(dataUrl ? `${dataUrl.replace(/\/$/, "")}/arkhamesque-classic` : undefined);
+const baseUrl = process.env.VITE_ARKHAMESQUE_URL;
 
 const sourceUrl = `${baseUrl}/data.json`;
 console.log(`Fetching ${sourceUrl}…`);
