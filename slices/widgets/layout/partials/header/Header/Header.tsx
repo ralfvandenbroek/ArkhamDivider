@@ -38,12 +38,12 @@ export function Header({ printable, ...props }: HeaderProps) {
 			<Container sx={{ paddingInline: { xs: 1, sm: 2 } }}>
 				<C.Content>
 					<C.Section flex={1} gap={2}>
-						<Row alignItems="center" gap={1.5}>
-							<C.LogoLink to="/">
+						<C.LogoLink to="/">
+							<Row alignItems="center" gap={1.5}>
 								<C.Logo />
-							</C.LogoLink>
-							{!printable && <C.LogoText>Arkham Divider</C.LogoText>}
-						</Row>
+								{!printable && <C.LogoText>Arkham Divider</C.LogoText>}
+							</Row>
+						</C.LogoLink>
 						<C.Section flex={1} gap={1}>
 							{printable && <DividerSelect />}
 							{!isXS && printable && <DividerVariantSelect />}
