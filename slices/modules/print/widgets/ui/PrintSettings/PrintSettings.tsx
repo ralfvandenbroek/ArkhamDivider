@@ -20,7 +20,8 @@ import SvgIcon from "@mui/material/SvgIcon";
 import { type JSX, useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelect } from "@/modules/core/i18n/entities/ui/LanguageSelect";
-import { useBooleanAction } from "@/shared/lib";
+import { selectLayout } from "@/modules/divider/entities/lib";
+import { useAppSelector, useBooleanAction } from "@/shared/lib";
 import { useBoolean } from "@/shared/lib/hooks/common";
 import { StoreSwitch } from "@/shared/ui";
 import {
@@ -50,6 +51,7 @@ export function PrintSettings(props: PrintSettingsProps) {
 	const { t } = useTranslation();
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef<HTMLButtonElement>(null);
+	const layout = useAppSelector(selectLayout);
 	const [selectOpen, setSelectOpen] = useBoolean(false);
 
 	const onClickAway = useCallback(() => {
@@ -206,16 +208,18 @@ export function PrintSettings(props: PrintSettingsProps) {
 											selector={selectLasercutEnabled}
 										/>
 									</ListItemButton>
-									<ListItemButton onClick={toggleCreaseEnabled}>
-										<ListItemIcon>
-											<LinearScaleOutlinedIcon />
-										</ListItemIcon>
-										<ListItemText primary={t(`print.crease`)} />
-										<StoreSwitch
-											actionCreator={setCreaseEnabled}
-											selector={selectCreaseEnabled}
-										/>
-									</ListItemButton>
+									{layout?.creasingTop && (
+										<ListItemButton onClick={toggleCreaseEnabled}>
+											<ListItemIcon>
+												<LinearScaleOutlinedIcon />
+											</ListItemIcon>
+											<ListItemText primary={t(`print.crease`)} />
+											<StoreSwitch
+												actionCreator={setCreaseEnabled}
+												selector={selectCreaseEnabled}
+											/>
+										</ListItemButton>
+									)}
 									<ListItemButton onClick={toggleEnablePageCounter}>
 										<ListItemIcon>
 											<PinOutlinedIcon />

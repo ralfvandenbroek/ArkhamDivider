@@ -44,6 +44,7 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 	params?: Params;
 	background?: boolean;
 	iconParams?: string[];
+	creasingTop?: number;
 	scenarioParams?: {
 		campaignIcon?: boolean;
 		cardCount?: boolean;

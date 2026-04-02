@@ -12,11 +12,11 @@ export const sarnetskyBandCampaignObjects = {
 		scenario: "right",
 		encounter: "left",
 		standalone: "right",
-		concealed: "right",
+		concealed: "left",
 	},
 	icon: {
 		scenario: {
-			inlineValue: 51.1,
+			inlineValue: 52,
 			top: 8,
 			width: 9.6,
 			height: 9.6,
@@ -40,11 +40,12 @@ export const sarnetskyBandCampaignObjects = {
 	title: {
 		scenario: {
 			top: 8.3,
-			inlineValue: 55.9 + 5,
+			inlineValue: 56.8 + 5,
 			fontSize: 5,
 			height: 9.6,
 			width: 63 - 5,
 			textAlign: "center",
+			color: "black",
 		},
 		encounter: {
 			top: 7,
@@ -53,6 +54,7 @@ export const sarnetskyBandCampaignObjects = {
 			height: 12,
 			width: 40,
 			textAlign: "left",
+			color: "black",
 		},
 		standalone: {
 			top: 8.3,
@@ -61,13 +63,16 @@ export const sarnetskyBandCampaignObjects = {
 			height: 9.6,
 			width: 63 - 5,
 			textAlign: "center",
+			color: "black",
 		},
 		concealed: {
-			top: 7.2,
-			inlineValue: 50,
-			fontSize: 4.25,
+			top: 7.4,
+			inlineValue: 71.6,
+			width: 26.2,
+			fontSize: 4.4,
 			height: 10,
 			textAlign: "center",
+			color: "white",
 		},
 	},
 };

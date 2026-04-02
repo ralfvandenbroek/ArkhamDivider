@@ -1,5 +1,5 @@
 import { percent } from "@/shared/util";
-import type { SarnetskyBandSxCallback } from "../../model";
+import type { SarnetskyBandSxCallback, SarnetskyBandType } from "../../model";
 
 export const getIconSx: SarnetskyBandSxCallback = ({
 	mm,
@@ -50,13 +50,21 @@ export const getTitleSx: SarnetskyBandSxCallback<{ offset: number }> = ({
 		width: "width" in T ? mm(T.width) : "auto",
 		fontSize: mm(T.fontSize),
 		textAlign: T.textAlign,
+		color: T.color,
 	};
+};
+
+const menuPosition: Record<SarnetskyBandType, number> = {
+	scenario: 125,
+	encounter: 15,
+	standalone: 15,
+	concealed: 15,
 };
 
 export const getMenuSx: SarnetskyBandSxCallback = ({ mm, type }) => ({
 	position: "absolute",
 	top: "50%",
-	right: mm(type === "encounter" ? 15 : 125),
+	right: mm(menuPosition[type]),
 	transform: "translateY(-50%)",
 	zIndex: 6,
 	opacity: 0.4,

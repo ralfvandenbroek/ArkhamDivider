@@ -98,6 +98,12 @@
 	"divider.layout.arkham-deco.ucf50.description": "Dividers for UCF 50 deck boxes from Meeple House",
 	"divider.layout.arkham-deco.vertical.description": "Compact vertical dividers",
 	"divider.layout.arkhamesque-classic.description": "Arkhamesque Classic dividers",
+	"divider.layout.sarnetsky-band.campaign": "Standard",
+	"divider.layout.sarnetsky-band.standalone": "Oversize",
+	"divider.layout.sarnetsky-band.campaign.description": "Sarnetsky band divider for encoutner sets and scenarios. For standalone scenarios, use the \"Oversize\" design variant",
+	"divider.layout.sarnetsky-band.standalone.description": "Sarnetsky band divider for standalone scenarios",
+	"divider.layout.sarnetsky-band.campaign.preview": "For encounter sets and scenarios",
+	"divider.layout.sarnetsky-band.standalone.preview": "For standalone scenarios",
 	"story.type.all": "All content",
 	"story.type.translated": "Translated",
 	"story.type.official": "Official",
@@ -168,8 +174,9 @@
 	"Search": "Search",
 	"Translated by": "Translated by",
 	"Upgrade": "Upgrade",
-	"category.invocation2018.description": "Invocation 2018 promo dividers",
 	"category.arkham-deco.description": "Compact dividers for storage systems",
+	"category.sarnetsky-band.description": "Eugene Sarnetsky band dividers",
 	"orientation.vertical_many": "Vertical",
-	"Eugene Sarnetsky": "Eugene Sarnetsky"
+	"Eugene Sarnetsky": "Eugene Sarnetsky",
+	"Concealed Cards": "Concealed Cards"
 }

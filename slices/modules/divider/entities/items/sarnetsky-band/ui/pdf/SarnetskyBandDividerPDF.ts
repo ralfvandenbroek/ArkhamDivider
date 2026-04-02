@@ -11,6 +11,7 @@ import {
 import type { SarnetskyBandParams } from "../../model";
 
 const black = cmyk(0, 0, 0, 100);
+const white = cmyk(0, 0, 0, 0);
 
 export const SarnetskyBandDividerPDF: PDFDivider<SarnetskyBandParams> = async (
 	props,
@@ -60,6 +61,8 @@ export const SarnetskyBandDividerPDF: PDFDivider<SarnetskyBandParams> = async (
 			? bleed.right(titleInlineValue) - titleWidth
 			: bleed.x(titleInlineValue);
 
+	const overprint = titleObject.color !== "white";
+
 	await text.draw(title, {
 		x: titleX,
 		y: bleed.y(titleObject.top) + titleHeight / 2,
@@ -68,9 +71,9 @@ export const SarnetskyBandDividerPDF: PDFDivider<SarnetskyBandParams> = async (
 		fontSize: titleFontSize,
 		align: titleObject.textAlign as "left" | "center" | "right",
 		baseline: "middle",
-		overprint: true,
+		overprint,
 		fontFamily,
-		color: black,
+		color: overprint ? black : white,
 	});
 
 	const iconObject =

@@ -8,7 +8,7 @@ export const sarnetskyBandCategory: DividerCategory = createDividerCategory({
 	id: sarnetskyBandCategoryId,
 	type: "band",
 	authors: [SarnetskyCredits],
-	name: "Bands",
+	name: "Eugene Sarnetsky",
 	image: "/images/divider/render/sarnetsky-band.avif",
 	layouts: sarnetskyBandLayouts,
 });

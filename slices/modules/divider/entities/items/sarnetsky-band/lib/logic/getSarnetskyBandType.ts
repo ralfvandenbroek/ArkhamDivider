@@ -9,6 +9,9 @@ export function getSarnetskyBandType({
 	divider,
 	layoutId,
 }: Options): SarnetskyBandType {
+	if (divider.id === "concealed_cards") {
+		return "concealed";
+	}
 	if (layoutId === "sarnetsky-band_standalone") {
 		return "standalone";
 	}

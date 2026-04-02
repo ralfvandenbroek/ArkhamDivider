@@ -7,7 +7,9 @@ const campaignLayout: DividerLayout = {
 	types: ["scenario", "player", "investigator"],
 	categoryId: sarnetskyBandCategoryId,
 	groupId: "campaign",
-	name: "Campaign",
+	name: "divider.layout.sarnetsky-band.campaign",
+	description: "divider.layout.sarnetsky-band.campaign.description",
+	previewName: "divider.layout.sarnetsky-band.campaign.preview",
 	orientation: "horizontal",
 	color: true,
 	size: createSize(200, 25),
@@ -25,7 +27,9 @@ const standaloneLayout: DividerLayout = {
 	...campaignLayout,
 	id: "sarnetsky-band_standalone",
 	groupId: "standalone",
-	name: "Standalone",
+	name: "divider.layout.sarnetsky-band.standalone",
+	description: "divider.layout.sarnetsky-band.standalone.description",
+	previewName: "divider.layout.sarnetsky-band.standalone.preview",
 	size: createSize(287, 25),
 	printSize: {
 		300: {

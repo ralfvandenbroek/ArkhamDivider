@@ -9,8 +9,9 @@ import type {
 	StoryScenarioWithRelations,
 	StoryWithRelations,
 } from "@/modules/story/shared/model";
+import { getSpecialEncounterSetDividers } from "./getSpecialEncounterSetDividers";
 
-type Options = {
+export type GetEncounterSetDividersOptions = {
 	story: StoryWithRelations;
 	includeReturnStory: boolean;
 	includeExtraEncounterSets: boolean;
@@ -20,13 +21,19 @@ type Options = {
 
 const uniqSets = (sets: EncounterSet[]) => uniqBy(prop("code"), compact(sets));
 
-export const getEncounterSetDividers = ({
-	story,
-	includeEncounterSets = false,
-	includeReturnStory = false,
-	includeScenarioEncounterSets = false,
-	includeExtraEncounterSets = false,
-}: Options) => {
+export const getEncounterSetDividers = (
+	options: GetEncounterSetDividersOptions,
+) => {
+	const {
+		story,
+		includeEncounterSets = false,
+		includeReturnStory = false,
+		includeScenarioEncounterSets = false,
+		includeExtraEncounterSets = false,
+	} = options;
+
+	const specialDividers = getSpecialEncounterSetDividers(options);
+
 	const returnStory = includeReturnStory ? story.returnStory : null;
 
 	const baseEncounters = uniqSets([
@@ -94,8 +101,10 @@ export const getEncounterSetDividers = ({
 		};
 	});
 
+	const baseDividers = [...ecnounterSetDividers, ...specialDividers];
+
 	if (!includeScenarioEncounterSets && includeEncounterSets) {
-		return ecnounterSetDividers;
+		return baseDividers;
 	}
 
 	const returnScenarioCodes = returnStory?.scenarios.map(prop("id")) ?? [];
@@ -138,5 +147,5 @@ export const getEncounterSetDividers = ({
 		return scenarioEncounterSetDividers;
 	}
 
-	return [...ecnounterSetDividers, ...scenarioEncounterSetDividers];
+	return [...baseDividers, ...scenarioEncounterSetDividers];
 };
