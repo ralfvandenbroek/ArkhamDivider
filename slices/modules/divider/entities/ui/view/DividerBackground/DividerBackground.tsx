@@ -27,6 +27,7 @@ export function DividerBackground({
 					height: "100%",
 					...imageSx,
 				}}
+				crossOrigin="anonymous"
 			/>
 		</DividerBleedView>
 	);

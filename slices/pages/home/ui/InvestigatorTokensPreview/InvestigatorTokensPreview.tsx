@@ -8,7 +8,7 @@ import { layoutRoute } from "@/modules/core/router/entities/lib";
 import { Link } from "@/modules/core/router/entities/ui";
 import { Image } from "@/shared/ui";
 
-const JUMBOTRON_MIN_HEIGHT = 300;
+const JUMBOTRON_MIN_HEIGHT = 200;
 
 export function InvestigatorTokensPreview() {
 	const { t } = useTranslation();

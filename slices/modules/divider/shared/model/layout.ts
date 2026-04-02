@@ -55,6 +55,7 @@ export type DividerLayout<Params = Record<string, unknown>> = {
 		sideXP?: boolean;
 	};
 	investigatorParams?: {
+		doubleSided?: boolean;
 		duplicateCodes?: Record<string, number>;
 	};
 	additionalParams?: {

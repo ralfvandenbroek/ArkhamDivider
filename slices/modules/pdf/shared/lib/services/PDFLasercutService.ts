@@ -23,6 +23,11 @@ type DrawRectOptions = {
 	height: number;
 };
 
+type DrawCircleOptions = {
+	x: number;
+	y: number;
+	radius: number;
+};
 type XPosition = "left" | "right";
 type YPosition = "top" | "bottom";
 export type CornerPosition = `${YPosition}-${XPosition}`;
@@ -69,6 +74,16 @@ export class PDFLasercutService {
 			.roundedRect(x, y, width, height, this.cornerRadius)
 			.lineWidth(this.lineWidth)
 			.stroke(this.color);
+	}
+
+	drawCircle(options: DrawCircleOptions) {
+		if (!this.options.enabled) {
+			return;
+		}
+		const { x, y } = options;
+		const radius = options.radius + this.gap;
+
+		this.doc.circle(x, y, radius).lineWidth(this.lineWidth).stroke(this.color);
 	}
 
 	drawCorner(options: DrawCornerOptions) {

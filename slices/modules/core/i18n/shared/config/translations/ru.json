@@ -175,5 +175,9 @@
 	"divider.3mm.stripColor": "Цвет ленты",
 	"divider.3mm.playerCornerColor": "Цвет угла",
 	"Concealed Cards": "Сокрытые карты",
-	"icons.download": "Иконки Ужаса Аркхэма"
+	"icons.download": "Иконки Ужаса Аркхэма",
+	"icons.download.description": "Файлы обновляются ежедневно",
+	"layout.investigatorTokens.standard": "Цветные + ч/б",
+	"layout.investigatorTokens.colored": "Только цветные",
+	"category.investigator-tokens.description": "Жетоны сыщиков под капсулы для монет. Используйте фигурный дырокол 25мм для ровного круга"
 }

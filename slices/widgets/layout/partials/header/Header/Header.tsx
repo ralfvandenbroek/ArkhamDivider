@@ -2,7 +2,6 @@ import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import type { JSX } from "react";
-import { useLocation } from "react-router";
 import {
 	DividerSelect,
 	DividerVariantSelect,
@@ -10,6 +9,7 @@ import {
 import { PrintButton, PrintSettings } from "@/modules/print/widgets/ui";
 import { RenderProgress } from "@/modules/render/entities/ui";
 import { useDisplayOnScroll } from "@/shared/lib/hooks/ui";
+import { Row } from "@/shared/ui";
 import * as C from "./Header.components";
 
 type HeaderProps = JSX.IntrinsicElements["header"] & {
@@ -18,8 +18,6 @@ type HeaderProps = JSX.IntrinsicElements["header"] & {
 
 export function Header({ printable, ...props }: HeaderProps) {
 	const theme = useTheme();
-	const location = useLocation();
-	const _isHome = location.pathname === "/";
 	const mobileMedia = theme.breakpoints.down("md");
 	const isXS = useMediaQuery(theme.breakpoints.only("xs"));
 	const headerVisible = useDisplayOnScroll({
@@ -40,9 +38,12 @@ export function Header({ printable, ...props }: HeaderProps) {
 			<Container sx={{ paddingInline: { xs: 1, sm: 2 } }}>
 				<C.Content>
 					<C.Section flex={1} gap={2}>
-						<C.LogoLink to="/">
-							<C.Logo />
-						</C.LogoLink>
+						<Row alignItems="center" gap={1.5}>
+							<C.LogoLink to="/">
+								<C.Logo />
+							</C.LogoLink>
+							{!printable && <C.LogoText>Arkham Divider</C.LogoText>}
+						</Row>
 						<C.Section flex={1} gap={1}>
 							{printable && <DividerSelect />}
 							{!isXS && printable && <DividerVariantSelect />}

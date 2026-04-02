@@ -26,7 +26,6 @@ export function DividerContent({
 	const offset = bleedEnabled ? originalBleed : 0;
 	const outlineWidth = 0.25;
 	const sxProps = {
-		...props.sx,
 		...(borderRadius && !hideBorderRadius
 			? {
 					outline: `${mm(outlineWidth)} dashed red`,
@@ -39,6 +38,7 @@ export function DividerContent({
 		left: offset,
 		right: offset,
 		bottom: offset,
+		...props.sx,
 	} as SxProps;
 
 	return <Box {...props} sx={sxProps} />;

@@ -10,7 +10,7 @@ import { prefix } from "@/shared/util";
 
 const url = prefix(ArkhamDividerAPI.fontsUrl);
 
-const JUMBOTRON_MIN_HEIGHT = 300;
+const JUMBOTRON_MIN_HEIGHT = 200;
 
 export function IconsDownload() {
 	const { t } = useTranslation();
@@ -58,18 +58,23 @@ export function IconsDownload() {
 						gap: 2.5,
 					}}
 				>
-					<Typography
-						variant="h3"
-						component="h2"
-						color="common.white"
-						fontWeight={600}
-						sx={{
-							fontSize: { xs: "1.75rem", sm: "2.25rem", md: "2.75rem" },
-							textShadow: "0 1px 12px rgba(0,0,0,0.45)",
-						}}
-					>
-						{t("icons.download")}
-					</Typography>
+					<Stack>
+						<Typography
+							variant="h3"
+							component="h2"
+							color="common.white"
+							fontWeight={600}
+							sx={{
+								fontSize: { xs: "1.75rem", sm: "2.25rem", md: "2.75rem" },
+								textShadow: "0 1px 12px rgba(0,0,0,0.45)",
+							}}
+						>
+							{t("icons.download")}
+						</Typography>
+						<Typography variant="h5" color="common.white">
+							{t("icons.download.description")}
+						</Typography>
+					</Stack>
 					<Row gap={2}>
 						<Box component="a" href={svgUrl} style={{ textDecoration: "none" }}>
 							<Button variant="contained" color="primary" size="large">

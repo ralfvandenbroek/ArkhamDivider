@@ -38,3 +38,8 @@ export const LogoLink = styled(Link)`
   align-items: center;
   justify-content: center;
 `;
+
+export const LogoText = styled("div")`
+	font-size: 1.2rem;
+	font-weight: 600;
+`;

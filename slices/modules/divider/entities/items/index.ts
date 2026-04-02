@@ -8,6 +8,8 @@ import { ArkhamesqueClassicDivider } from "./arkhamesque-classic/ui";
 import { classicCategoryId } from "./classic/config/common";
 import { ClassicDivider } from "./classic/ui";
 import { dividerCategories, dividerLayouts } from "./data";
+import { investigatorTokensCategoryId } from "./investigator-tokens/config";
+import { InvestigatorToken } from "./investigator-tokens/ui";
 import { invocation2018CategoryId } from "./invocation2018/config";
 import { Invocation2018Divider } from "./invocation2018/ui";
 import { rynoCategoryId } from "./ryno/config";
@@ -35,4 +37,5 @@ export const dividerComponents: Record<
 	[arkhamesqueClassicCategoryId]: ArkhamesqueClassicDivider,
 	[arkhamStarterDividerCategoryId]: ArkhamStarterDivider,
 	[vintageDividerCategoryId]: VintageDivider,
+	[investigatorTokensCategoryId]: InvestigatorToken,
 };

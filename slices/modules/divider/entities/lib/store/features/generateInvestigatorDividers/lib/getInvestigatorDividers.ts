@@ -8,9 +8,14 @@ type Options = {
 	layout: DividerLayout;
 };
 
-export const getInvestigatorDividers = ({ stories, layout }: Options) => {
-	const { duplicateCodes = {} } = layout.investigatorParams ?? {};
-	return stories.flatMap((story) => {
+export const getInvestigatorDividers = ({
+	stories,
+	layout,
+}: Options): Divider[] => {
+	const { duplicateCodes = {}, doubleSided = false } =
+		layout.investigatorParams ?? {};
+
+	const front = stories.flatMap((story) => {
 		return story.investigators.flatMap((investigator) => {
 			const faction = investigator.faction_code;
 			if (!isFaction(faction)) {
@@ -35,4 +40,18 @@ export const getInvestigatorDividers = ({ stories, layout }: Options) => {
 			);
 		});
 	});
+
+	if (!doubleSided) {
+		return front;
+	}
+
+	const back = front.map(
+		(divider): Divider => ({
+			...divider,
+			id: v4(),
+			side: "back",
+		}),
+	);
+
+	return [...front, ...back];
 };

@@ -1,1 +1,1 @@
-export * from "./sarnetskyBand";
+export * from "./sarnetsky-band";
