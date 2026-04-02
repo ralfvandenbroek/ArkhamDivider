@@ -15,11 +15,13 @@ import { getButtonSx, getSx } from "./DividerMenu.styles";
 
 type DividerMenuProps = StackProps & {
 	dividerId: string;
+	inline?: boolean;
 };
 
 export function DividerMenu({
 	dividerId,
 	sx: sxProp,
+	inline = false,
 	...props
 }: DividerMenuProps) {
 	const [showDownload, setShowDownload] = useBoolean(false);

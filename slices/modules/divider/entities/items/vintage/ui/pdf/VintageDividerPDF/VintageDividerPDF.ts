@@ -17,8 +17,6 @@ import { VintageDividerLasercut } from "./VintageDividerLasercut";
 
 const black = cmyk(0, 0, 0, 100);
 
-const TAB_HEIGHT_MM = 10.5;
-
 export const VintageDividerPDF: PDFDivider<VintageDividerParams> = async (
 	props,
 	ctx,
@@ -54,7 +52,7 @@ export const VintageDividerPDF: PDFDivider<VintageDividerParams> = async (
 		tab: {
 			offsetInline: mm(OO.tab.width * tabIndex),
 			width: mm(OO.tab.width),
-			height: mm(TAB_HEIGHT_MM),
+			height: mm(OO.tab.height),
 		},
 	});
 

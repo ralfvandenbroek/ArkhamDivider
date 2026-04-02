@@ -1,6 +1,5 @@
 import FormControl, { type FormControlProps } from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import ListSubheader from "@mui/material/ListSubheader";
 import MenuItem from "@mui/material/MenuItem";
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,6 +8,7 @@ import {
 	selectCategoryId,
 } from "@/modules/divider/shared/lib";
 import { StoreSelect } from "@/shared/ui";
+import * as C from "./DividerSelect.components";
 
 type DividerSelectProps = FormControlProps;
 
@@ -33,8 +33,8 @@ export function DividerSelect(props: DividerSelectProps) {
 				label={label}
 				fullWidth
 			>
-				<ListSubheader>{t`Dividers`}</ListSubheader>
-				<MenuItem value="classic">Classic</MenuItem>
+				<C.Subheader>{t`Dividers`}</C.Subheader>
+				<MenuItem value="classic">{t(`Return To`)}</MenuItem>
 				<MenuItem value="invocation-2018">Invocation 2018</MenuItem>
 				<MenuItem value="arkhamesque-classic">Arkhamesque Classic</MenuItem>
 				<MenuItem value="ryno">Ryno</MenuItem>
@@ -42,10 +42,12 @@ export function DividerSelect(props: DividerSelectProps) {
 				<MenuItem value="arkham-deco">Arkham Deco</MenuItem>
 				<MenuItem value="3mm">3mm</MenuItem>
 				<MenuItem value="vintage">Vintage</MenuItem>
+				<C.Subheader>{t(`Bands`)}</C.Subheader>
+
+				<MenuItem value="sarnetsky-band">{t(`Eugene Sarnetsky`)}</MenuItem>
 				{/*
 				
-				<ListSubheader>{t(`Bands`)}</ListSubheader>
-				<MenuItem value="sarnetsky-bands">@sarnetsky</MenuItem>
+				
 				<ListSubheader>{t(`Stickers`)}</ListSubheader>
 				<MenuItem value="divider-stickers">Deckbox</MenuItem>
 				<MenuItem value="icon-stickers">{t(`Icon Stickers`)}</MenuItem>

@@ -97,6 +97,10 @@ export const Article = styled((props: ArticleProps) => <Box {...props} />)(
 			background: theme.palette.action.hover,
 			fontWeight: theme.typography.fontWeightMedium,
 		},
+		"& img": {
+			maxWidth: "100%",
+			height: "auto",
+		},
 		a: {
 			color: theme.palette.primary.dark,
 		},

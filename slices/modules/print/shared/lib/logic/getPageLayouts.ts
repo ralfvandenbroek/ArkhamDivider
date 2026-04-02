@@ -50,14 +50,19 @@ const getFrontLayouts = <T>({
 	layoutGrid,
 	singleItemPerPage,
 }: Options<T>) => {
-	const { rows, cols, unitSize } = layoutGrid;
+	const { rows, unitSize } = layoutGrid;
 	const pageLayouts: PageLayout<T>[] = [];
-	const itemsPerPage = singleItemPerPage ? 1 : rows * cols;
+	const itemsPerPage = singleItemPerPage ? 1 : rows * layoutGrid.cols;
 	const totalPages = Math.ceil(data.length / itemsPerPage);
 
 	const grid = singleItemPerPage
 		? { rows: 1, cols: 1, size: unitSize, unitSize }
 		: layoutGrid;
+
+	// Must match `grid.cols`: `PrintablePage` indexes by `grid.rows` × `grid.cols`.
+	// If we pad rows with the original `layoutGrid.cols` while `grid.cols` is 1,
+	// `toReversed()` on the back moves the only item out of column 0 → empty back.
+	const pageCols = grid.cols;
 
 	for (let i = 0; i < data.length; i += itemsPerPage) {
 		const chunk = data.slice(i, i + itemsPerPage);
@@ -65,10 +70,10 @@ const getFrontLayouts = <T>({
 		const isFirst = i === 0;
 
 		const items: PageLayoutRow<T>[] = [];
-		for (let j = 0; j < chunk.length; j += cols) {
-			const row = chunk.slice(j, j + cols);
+		for (let j = 0; j < chunk.length; j += pageCols) {
+			const row = chunk.slice(j, j + pageCols);
 			const paddedRow: Array<T | undefined> = [...row];
-			while (paddedRow.length < cols) {
+			while (paddedRow.length < pageCols) {
 				paddedRow.push(undefined);
 			}
 

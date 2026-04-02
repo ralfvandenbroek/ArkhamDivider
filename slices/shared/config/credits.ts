@@ -212,7 +212,4 @@ export const BobLafouineCredits: Author = {
 			url: "mailto:29wxcvbn29@gmail.com",
 		},
 	],
-	donationUrl: {
-		default: "https://www.patreon.com/boblafouine",
-	},
 };

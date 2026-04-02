@@ -12,6 +12,7 @@ export const getTitleSx: VintageDividerLocaleSxCallback = ({
 }) => ({
 	default: {
 		position: "absolute",
+		zIndex: 3,
 		top: mm(O.title.default.top),
 		left: mm(O.title.default.left),
 		right: mm(O.title.default.right),
@@ -25,6 +26,7 @@ export const getTopTitleSx: VintageDividerLocaleSxCallback = ({
 }) => ({
 	default: {
 		position: "absolute",
+		zIndex: 3,
 		top: mm(O.topTitle.default.top),
 		left: mm(O.topTitle.default.left),
 		right: mm(O.topTitle.default.right),
@@ -34,6 +36,7 @@ export const getTopTitleSx: VintageDividerLocaleSxCallback = ({
 
 export const getMenuSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
+	zIndex: 3,
 	top: mm(20),
 	left: mm(0),
 });
@@ -85,6 +88,7 @@ export const getBleedViewSx: PrintSxCallback<{ bleedEnabled?: boolean }> = ({
 
 export const getColorPickerSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
+	zIndex: 3,
 	top: mm(57),
 	left: mm(3.5),
 	width: mm(4),
@@ -109,4 +113,19 @@ export const getIconSx: VintageDividerSxCallback<{ tabIndex: number }> = ({
 			opacity: percent(70),
 		},
 	},
+});
+
+export const getBodyCornerRadiusSx: VintageDividerSxCallback = ({
+	mm,
+	objects: O,
+}) => ({
+	position: "absolute",
+	zIndex: 2,
+	left: mm(-0.25),
+	right: mm(-0.25),
+	bottom: mm(-0.25),
+	border: `${mm(0.25)} dashed red`,
+	borderTop: "none",
+	top: mm(O.tab.height),
+	borderRadius: `0 0 ${mm(3)} ${mm(3)}`,
 });

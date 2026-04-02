@@ -85,7 +85,7 @@ export function DividerText({
 		...props,
 	};
 
-	const fitText = Boolean(fit || fitTextOptions || inputSx);
+	const fitText = Boolean(fit ?? fitTextOptions ?? inputSx);
 
 	return (
 		<Box position="relative" sx={sx}>

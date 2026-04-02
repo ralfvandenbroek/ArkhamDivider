@@ -17,13 +17,14 @@ export const vintageDividerObjects = {
 			top: 10.2,
 			left: 5.8,
 			right: 5.8,
-			fontSize: 5,
+			fontSize: 4,
 			height: 6.6,
 		},
 		ru: {},
 	},
 	tab: {
 		width: 30,
+		height: 10.5,
 	},
 	icon: {
 		top: 1.5,

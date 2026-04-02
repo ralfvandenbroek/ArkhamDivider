@@ -43,6 +43,7 @@ export default {
 	},
 	midnight_masks: {
 		top: percent(-2),
+		left: percent(1),
 	},
 	the_devourer_below: {
 		left: percent(1),

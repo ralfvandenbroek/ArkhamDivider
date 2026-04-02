@@ -13,6 +13,8 @@ import { rynoCategoryId } from "./ryno/config/common";
 import { RynoDividerPDF } from "./ryno/ui/pdf";
 import { sarnetskyCategoryId } from "./sarnetsky/config";
 import { SarnetskyDividerPDF } from "./sarnetsky/ui";
+import { sarnetskyBandCategoryId } from "./sarnetsky-band/config";
+import { SarnetskyBandDividerPDF } from "./sarnetsky-band/ui";
 import { vintageDividerCategoryId } from "./vintage/config/common";
 import { VintageDividerPDF } from "./vintage/ui/pdf";
 
@@ -24,6 +26,7 @@ export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
 	[invocation2018CategoryId]: Invocation2018DividerPDF,
 	[rynoCategoryId]: RynoDividerPDF,
 	[sarnetskyCategoryId]: SarnetskyDividerPDF,
+	[sarnetskyBandCategoryId]: SarnetskyBandDividerPDF,
 	[arkhamStarterDividerCategoryId]: ArkhamStarterDividerPDF,
 	[vintageDividerCategoryId]: VintageDividerPDF,
 };

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
 import { selectLayout } from "@/modules/divider/entities/lib";
@@ -11,7 +12,12 @@ import {
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import { selectDividerTabIndex } from "@/modules/divider/shared/lib";
-import { selectBleedEnabled, usePrintUnit } from "@/modules/print/shared/lib";
+import {
+	selectBleedEnabled,
+	selectShowCornerRadius,
+	usePrintUnit,
+} from "@/modules/print/shared/lib";
+import { NotExportable } from "@/modules/render/shared/ui";
 import { useAppSelector } from "@/shared/lib";
 import {
 	getVintageDividerDefaultTabColor as getDefaultTabColor,
@@ -32,6 +38,7 @@ export function VintageDivider(props: VintageDividerProps) {
 	const { t } = useTranslation();
 	const layout = useAppSelector(selectLayout) as VintageDividerLayout;
 	const bleedEnabled = useAppSelector(selectBleedEnabled);
+	const cornerRadiusEnabled = useAppSelector(selectShowCornerRadius);
 
 	const tabIndex = useAppSelector(
 		selectDividerTabIndex({ id: props.id, tabsCount: 3, side: props.side }),
@@ -54,6 +61,7 @@ export function VintageDivider(props: VintageDividerProps) {
 	const titleSx = getLocaleSx(S.getTitleSx);
 	const topTitleSx = getLocaleSx(S.getTopTitleSx);
 	const iconSx = getPrintSx(S.getIconSx, { tabIndex });
+	const bodyCornerRadiusSx = getPrintSx(S.getBodyCornerRadiusSx);
 
 	const getDividerIcon = useDividerIcon({
 		dividerId: props.id,
@@ -96,6 +104,9 @@ export function VintageDivider(props: VintageDividerProps) {
 							circled: 1.1,
 						}}
 					/>
+					<NotExportable>
+						{cornerRadiusEnabled && <Box sx={bodyCornerRadiusSx} />}
+					</NotExportable>
 					<Menu dividerId={props.id} sx={menuSx} />
 				</Content>
 			</Container>
