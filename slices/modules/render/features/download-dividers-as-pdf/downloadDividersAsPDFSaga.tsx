@@ -1,9 +1,6 @@
-import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import { Buffer } from "buffer";
-import { last } from "ramda";
+import { identity, last } from "ramda";
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import streamSaver from "streamsaver";
-import { selectArkhamesqueClassicData } from "@/modules/divider/entities/items/arkhamesque-classic/lib/store/arkhamesqueClassic";
 import { getDividerPageLayouts } from "@/modules/divider/entities/lib/logic";
 import { loadDividerPDFComponent } from "@/modules/divider/entities/lib/runtime";
 import {
@@ -36,11 +33,10 @@ import {
 	setRenderProgress,
 	setRenderProgressTotal,
 	setRenderStatusMessage,
-	setStreamMitm,
 	startRender,
 } from "../../shared/lib";
 import { downloadDividersAsPDF } from "./downloadDividersAsPDF";
-import { selectPDFData } from "./lib";
+import { createPdfDownloadSink, selectPDFData } from "./lib";
 
 function loadPDFKit() {
 	return import("pdfkit/js/pdfkit.standalone.js").then((m) => m.default);
@@ -76,13 +72,19 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 
 	const { dpi = 300 } = payload;
 
+	let sink: Awaited<ReturnType<typeof createPdfDownloadSink>>;
+	try {
+		sink = yield call(createPdfDownloadSink);
+	} catch (e) {
+		if (e instanceof DOMException && e.name === "AbortError") {
+			return;
+		}
+		throw e;
+	}
+
 	const PDFDocument: Awaited<ReturnType<typeof loadPDFKit>> =
 		yield call(loadPDFKit);
 
-	setStreamMitm();
-
-	const fileName = `Arkham Divider.pdf`;
-	const fileStream = streamSaver.createWriteStream(fileName);
 	const unitSize = getUnitSizePx({
 		unitSize: layoutGrid.unitSize,
 		dpi,
@@ -109,18 +111,19 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 		autoFirstPage: false,
 		bufferPages: true,
 	});
-	const writer = fileStream.getWriter();
 
 	let cancelled = false;
 
 	doc.on("data", (chunk) => {
-		writer.write(chunk).catch(() => {
+		sink.write(chunk).catch(() => {
 			cancelled = true;
 			destroyPDFDocument(doc);
 		});
 	});
 
-	doc.on("end", () => writer.close());
+	doc.on("end", () => {
+		void sink.close();
+	});
 
 	doc.on("error", (error) => {
 		console.error("error", error);
@@ -187,13 +190,9 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 	const renderComponent: ReturnAwaited<typeof loadDividerPDFComponent> =
 		yield call(loadDividerPDFComponent, layout.categoryId);
 
-	const arkhamesqueClassicData: IArkhamesqueBuild | null = yield select(
-		(state: RootState) =>
-			state.arkhamesqueClassic ? selectArkhamesqueClassicData(state) : null,
-	);
-
 	if (!renderComponent) {
 		console.error(`No PDF component for category: ${layout.categoryId}`);
+		yield call(() => sink.abort());
 		destroyPDFDocument(doc);
 		yield put(finishRender());
 		return;
@@ -259,6 +258,8 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						bleedSize: layout.bleed,
 					});
 
+					const state: RootState = yield select(identity);
+
 					yield call(renderComponent, item, {
 						dpi,
 						layout,
@@ -275,7 +276,7 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 						scenarioParams,
 						playerParams,
 						investigatorParams,
-						arkhamesqueClassicData,
+						state,
 					});
 
 					if (!hideCounter) {
@@ -305,10 +306,13 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsPDF>) {
 		}
 	} catch (error) {
 		console.error("error", error);
+		cancelled = true;
 	}
 
 	if (!cancelled) {
 		doc.end();
+	} else {
+		yield call(() => sink.abort());
 	}
 
 	yield put(finishRender());

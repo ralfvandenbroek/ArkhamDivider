@@ -74,11 +74,12 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 	};
 
 	const Level = isSkill ? C.SkillLevel : C.AssetEventLevel;
+	const Background = isSkill ? C.SkillBackground : C.AssetEventBackground;
 
 	return (
 		<Box sx={sx}>
 			{item.type === "fixed" ? (
-				<Level position="relative" width="100%" height="100%">
+				<Background position="relative" width="100%" height="100%">
 					<Icon
 						sx={{
 							...absoluteFill,
@@ -87,23 +88,23 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 						icon={item.background}
 					/>
 					<Icon icon={item.icon} color={frameColor} />
-				</Level>
+				</Background>
 			) : (
 				<Box position="relative" width="100%" height="1em" sx={containerSx}>
 					{isSkill && xpCost?.type === "fixed" && xpCost.value === 0 ? (
 						<>
-							<Level>
+							<Background>
 								<Icon icon={item.nullBackground} color={frameColor} />
-							</Level>
+							</Background>
 							<Level>
 								<Icon icon={"s_frame_background_null"} color={"#fff"} />
 							</Level>
 						</>
 					) : (
 						<>
-							<Level position="relative" sx={backgroundIconSx}>
+							<Background position="relative" sx={backgroundIconSx}>
 								<Icon icon={item.background} color={"#000"} />
-							</Level>
+							</Background>
 							<Level>
 								<Icon icon={`${item.levelPrefix}5`} color={"#767676"} />
 							</Level>

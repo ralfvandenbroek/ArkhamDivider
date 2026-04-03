@@ -1,4 +1,3 @@
-import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import type {
 	DividerLayout,
 	DividerWithRelations,
@@ -8,6 +7,7 @@ import type {
 } from "@/modules/divider/shared/model";
 import type { DPI } from "@/modules/print/shared/model";
 import type { BoxSize } from "@/shared/model";
+import type { RootState } from "@/shared/store";
 import type {
 	PDFCreaseService,
 	PDFIconService,
@@ -35,8 +35,7 @@ export type PDFDividerContext = {
 	playerParams: Partial<PlayerDividerParams>;
 	investigatorParams: Partial<InvestigatorDividerParams>;
 	params?: Record<string, unknown>;
-	/** Loaded arkhamesque build data (when slice is injected); used by arkhamesque-classic PDF. */
-	arkhamesqueClassicData: IArkhamesqueBuild | null;
+	state: RootState;
 };
 
 export type PDFDivider<T = void> = (

@@ -49,9 +49,9 @@ export const classicDividerHorizontalObjects = {
 	xp: {
 		container: {
 			size: 8.33,
-			fontSize: 8.33,
-			top: 2.1,
-			right: 0.8,
+			fontSize: 8.6,
+			top: 1.1,
+			right: 0.6,
 		},
 		side: {
 			top: 3.8,
@@ -93,6 +93,7 @@ export const classicDividerHorizontalHQObjects = mergeDeepRight(
 				right: 1.4,
 				width: 6.9,
 				height: 6.5,
+				fontSize: 7,
 			},
 			skill: {
 				top: 0.7,
@@ -103,8 +104,8 @@ export const classicDividerHorizontalHQObjects = mergeDeepRight(
 		},
 		xp: {
 			container: {
-				top: 1.7,
-				fontSize: 7.8,
+				top: 0.3,
+				fontSize: 9,
 			},
 			side: {
 				top: 3.2,

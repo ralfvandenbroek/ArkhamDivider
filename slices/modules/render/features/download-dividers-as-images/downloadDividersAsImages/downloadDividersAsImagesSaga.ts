@@ -1,10 +1,10 @@
 import { Zip, ZipPassThrough } from "fflate";
 import { call, delay, put, select, takeLatest } from "redux-saga/effects";
-import streamSaver from "streamsaver";
 import { selectLayout } from "@/modules/divider/entities/lib";
 import { selectDividersWithRelations } from "@/modules/divider/features/lib";
 import { selectPrintableLayoutSize } from "@/modules/divider/shared/lib";
 import { selectDPI } from "@/modules/print/shared/lib";
+import { createStreamingDownloadSink } from "@/modules/render/shared/lib/logic/createStreamingDownloadSink";
 import type { ReturnAwaited } from "@/shared/model";
 import {
 	finishRender,
@@ -14,7 +14,6 @@ import {
 	setRenderProgress,
 	setRenderProgressTotal,
 	setRenderStatusMessage,
-	setStreamMitm,
 	startRender,
 } from "../../../shared/lib";
 import { downloadDividersAsImages } from "./downloadDividersAsImages";
@@ -42,11 +41,26 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 		return;
 	}
 
-	setStreamMitm();
-
 	const fileName = `Arkham Divider - ${imageFormat.toUpperCase()}.zip`;
-	const fileStream = streamSaver.createWriteStream(fileName);
-	const writer = fileStream.getWriter();
+
+	let sink: Awaited<ReturnType<typeof createStreamingDownloadSink>>;
+	try {
+		sink = yield call(createStreamingDownloadSink, {
+			suggestedName: fileName,
+			mimeType: "application/zip",
+			types: [
+				{
+					description: "ZIP",
+					accept: { "application/zip": [".zip"] },
+				},
+			],
+		});
+	} catch (e) {
+		if (e instanceof DOMException && e.name === "AbortError") {
+			return;
+		}
+		throw e;
+	}
 
 	let cancelled = false;
 
@@ -57,12 +71,12 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 			return;
 		}
 		if (chunk) {
-			writer.write(chunk).catch(() => {
+			sink.write(chunk).catch(() => {
 				cancelled = true;
 			});
 		}
 		if (final) {
-			writer.close();
+			void sink.close();
 		}
 	});
 
@@ -118,10 +132,13 @@ function* worker({ payload }: ReturnType<typeof downloadDividersAsImages>) {
 		}
 	} catch (error) {
 		console.error(error);
+		cancelled = true;
 	}
 
 	if (!cancelled) {
 		zip.end();
+	} else {
+		yield call(() => sink.abort());
 	}
 
 	yield put(finishRender());

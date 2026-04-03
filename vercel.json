@@ -1,7 +1,7 @@
 {
 	"rewrites": [
 		{
-			"source": "/((?!assets/|favicon|images/|coi-serviceworker|streamsaver/).*)",
+			"source": "/((?!assets/|favicon|images/|coi-serviceworker).*)",
 			"destination": "/index.html"
 		},
 		{
@@ -32,15 +32,6 @@
 				{
 					"key": "X-XSS-Protection",
 					"value": "1; mode=block"
-				}
-			]
-		},
-		{
-			"source": "/streamsaver/(.*)",
-			"headers": [
-				{
-					"key": "X-Frame-Options",
-					"value": "SAMEORIGIN"
 				}
 			]
 		},

@@ -1,6 +1,7 @@
 import { getDefaultDividerFontFamily } from "@/modules/divider/shared/lib";
 import type { PDFDivider, PDFDividerContext } from "@/modules/pdf/shared/model";
 import { withStoryTranslation } from "@/modules/story/shared/lib";
+import { selectArkhamesqueClassicData } from "../../../../lib";
 import type { ArkhamesqueClassicDividerParams } from "../../../../model";
 import {
 	drawBottomIcon,
@@ -19,8 +20,13 @@ export const ArkhamesqueClassicDividerPDF: PDFDivider<ArkhamesqueClassicDividerP
 		context: PDFDividerContext,
 	) {
 		const { story, fontSizeScale = 100 } = pageItem;
-		const { text, lasercut, unit, language, icon, arkhamesqueClassicData } =
-			context;
+		const { text, lasercut, unit, language, icon, state } = context;
+
+		const arkhamesqueData = selectArkhamesqueClassicData(state);
+
+		if (!arkhamesqueData) {
+			return;
+		}
 
 		const translateStory = withStoryTranslation(story);
 		const params = pageItem.params as
@@ -45,7 +51,7 @@ export const ArkhamesqueClassicDividerPDF: PDFDivider<ArkhamesqueClassicDividerP
 			unit,
 			props: pageItem,
 			params,
-			arkhamesqueData: arkhamesqueClassicData,
+			arkhamesqueData,
 			titleFontFamily,
 			fontSizePercentScale: fontSizeScale,
 		});

@@ -1,3 +1,4 @@
+import type { IArkhamesqueBuild } from "arkhamesque-classic-divider-data";
 import type { PDFTextService } from "@/modules/pdf/shared/lib";
 import type { PDFDividerContext } from "@/modules/pdf/shared/model";
 import type { FontFamily } from "@/shared/model";
@@ -26,7 +27,7 @@ export type DrawTitleOptions = DrawTitleAndScenarioBase & {
 };
 
 export type DrawScenarioNumberOptions = DrawTitleAndScenarioBase & {
-	arkhamesqueData: PDFDividerContext["arkhamesqueClassicData"];
+	arkhamesqueData: IArkhamesqueBuild;
 };
 
 export async function drawTitle(options: DrawTitleOptions) {
