@@ -56,7 +56,7 @@ export function Announces() {
 		<NotExportable>
 			<Stack
 				spacing={2}
-				sx={{ maxWidth: 500, mx: "auto", displayPrint: "none", pb: 3 }}
+				sx={{ maxWidth: "sm", mx: "auto", displayPrint: "none", pb: 3 }}
 			>
 				<Paper variant="outlined" elevation={0} sx={paperSx}>
 					<Stack

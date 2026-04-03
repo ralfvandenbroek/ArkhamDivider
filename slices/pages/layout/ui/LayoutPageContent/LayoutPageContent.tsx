@@ -16,6 +16,7 @@ import { PrintableContent } from "@/modules/print/widgets/ui";
 import { SectionTitle } from "@/shared/ui";
 import { SingleColumnLayout } from "@/widgets/layout/SingleColumnLayout";
 import { Announces } from "../Announces";
+import { PrintInfo } from "../PrintInfo";
 
 type LayoutPageContentProps = {
 	layout: DividerLayout;
@@ -39,7 +40,7 @@ export function LayoutPageContent({
 				<Container>
 					<Box sx={{ displayPrint: "none" }}>
 						<Announces />
-						<SectionTitle>
+						<SectionTitle mt={3}>
 							<Typography color="text.secondary">{t(category.name)}</Typography>
 							{t(layout.name)}
 						</SectionTitle>
@@ -56,6 +57,7 @@ export function LayoutPageContent({
 								<DividerTypeNav />
 							</Stack>
 							<DividerLayoutOptions />
+							<PrintInfo />
 						</Stack>
 					</Box>
 				</Container>

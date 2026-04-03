@@ -55,29 +55,10 @@ export default defineConfig({
 					if (!id.includes("node_modules")) {
 						return;
 					}
-					// @emotion before react: paths like @emotion/react contain "/react/"
-					if (id.includes("@mui") || id.includes("@emotion")) {
-						return "mui-vendor";
-					}
-					if (
-						id.includes("react-dom") ||
-						id.includes("react-router") ||
-						id.includes("react-i18next") ||
-						/[/\\]node_modules[/\\]react[/\\]/.test(id)
-					) {
-						return "react-vendor";
-					}
-					if (
-						id.includes("redux-saga") ||
-						id.includes("@reduxjs") ||
-						id.includes("/redux/")
-					) {
-						return "redux-vendor";
-					}
-					// Only core `i18next` — `id.includes("i18next")` wrongly matched `react-i18next`
-					if (/[/\\]node_modules[/\\]i18next[/\\]/.test(id)) {
-						return "i18n-vendor";
-					}
+					// Keep node_modules in a single vendor chunk to avoid
+					// circular chunk dependencies (e.g. react-vendor <-> mui-vendor)
+					// that can happen with fine-grained manual chunking.
+					return "vendor";
 				},
 			},
 		},
