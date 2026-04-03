@@ -68,6 +68,7 @@ export function PrintButton(props: PrintButtonProps) {
 
 	const download = useCallback(() => {
 		dispatch(downloadDividersAsPDF({ dpi }));
+		setOpen(false);
 	}, [dispatch, dpi]);
 
 	const downloadImages = (imageFormat: ImageFormat) => () => {
