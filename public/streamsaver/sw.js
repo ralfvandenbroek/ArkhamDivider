@@ -104,17 +104,10 @@ self.onfetch = (event) => {
 
   map.delete(url);
 
-  // Not comfortable letting any user control all headers
-  // so we only copy over the length & disposition
+  // Only safe headers (Firefox can throw on new Response(stream) when CSP / XSS
+  // headers sit on a streaming body, and charset on octet-stream is invalid).
   const responseHeaders = new Headers({
-    "Content-Type": "application/octet-stream; charset=utf-8",
-
-    // To be on the safe side, The link can be opened in a iframe.
-    // but octet-stream should stop it.
-    "Content-Security-Policy": "default-src 'none'",
-    "X-Content-Security-Policy": "default-src 'none'",
-    "X-WebKit-CSP": "default-src 'none'",
-    "X-XSS-Protection": "1; mode=block",
+    "Content-Type": "application/octet-stream",
   });
 
   const headers = new Headers(data.headers || {});
@@ -153,7 +146,24 @@ self.onfetch = (event) => {
     );
   }
 
-  event.respondWith(new Response(stream, { headers: responseHeaders }));
+  // Firefox: a ReadableStream transferred from the page often cannot be used
+  // directly as Response body in the SW; pipeThrough roots a worker-owned stream.
+  let body = stream;
+  const ua = self.navigator?.userAgent ?? "";
+  if (/firefox/i.test(ua) && typeof TransformStream !== "undefined") {
+    try {
+      body = stream.pipeThrough(new TransformStream());
+    } catch {
+      body = stream;
+    }
+  }
+
+  try {
+    event.respondWith(new Response(body, { headers: responseHeaders }));
+  } catch (err) {
+    console.error("[StreamSaver] Response failed for", url, err);
+    return;
+  }
 
   port.postMessage({ debug: "Download started" });
 };
