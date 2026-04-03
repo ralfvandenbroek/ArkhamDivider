@@ -9,19 +9,7 @@ import { selectCurrentLanguage } from "@/modules/core/i18n/shared/lib";
 import { LocaleFragment } from "@/modules/core/i18n/shared/ui";
 import { NotExportable } from "@/modules/render/shared/ui";
 import { useAppSelector } from "@/shared/lib";
-
-const patreonUnlockLink =
-	"https://www.patreon.com/posts/how-to-unlock-on-142409401";
-const boostyUnlockLink =
-	"https://boosty.to/arkham.divider/posts/6a50a341-6d31-4acb-bd8d-880a48027197";
-
-const playStoreHref =
-	"https://play.google.com/store/apps/details?id=com.arkhaminvestigator";
-const appStoreHref =
-	"https://apps.apple.com/us/app/ah-investigator/id6753330970";
-
-const boostyVoiceHref =
-	"https://boosty.to/arkhamhorror_thecardgame/single-payment/donation/367040/target?share=target_link";
+import * as L from "./links";
 
 const paperSx = { p: 2, borderRadius: 2 } as const;
 
@@ -60,7 +48,8 @@ function StoreBadge({
 export function Announces() {
 	const { t } = useTranslation();
 	const language = useAppSelector(selectCurrentLanguage);
-	const unlockHref = language === "ru" ? boostyUnlockLink : patreonUnlockLink;
+	const unlockHref =
+		language === "ru" ? L.boostyUnlockLink : L.patreonUnlockLink;
 
 	return (
 		<NotExportable>
@@ -93,7 +82,7 @@ export function Announces() {
 							justifyContent={{ xs: "flex-start", sm: "flex-end" }}
 						>
 							<StoreBadge
-								href={playStoreHref}
+								href={L.playStoreHref}
 								src="/images/assets/google-play.svg"
 								aria-label="Google Play"
 							/>
@@ -103,7 +92,7 @@ export function Announces() {
 								sx={{ position: "relative", pb: 2.5 }}
 							>
 								<StoreBadge
-									href={appStoreHref}
+									href={L.appStoreHref}
 									src="/images/assets/app-store.svg"
 									aria-label="App Store"
 								/>
@@ -146,13 +135,22 @@ export function Announces() {
 								</Typography>
 								<Typography variant="body2">
 									<Link
-										href={boostyVoiceHref}
+										href={L.boostyVoiceHref}
 										underline="hover"
 										{...externalLink}
 									>
 										Бусти
 									</Link>{" "}
 									(комиссия до 12%)
+								</Typography>
+								<Typography variant="body2">
+									<Link
+										href={L.tBankVoiceHref}
+										underline="hover"
+										{...externalLink}
+									>
+										Т-Банк
+									</Link>
 								</Typography>
 							</Box>
 						</Stack>
