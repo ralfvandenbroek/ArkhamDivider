@@ -33,10 +33,16 @@ self.onmessage = event => {
   if (event.data.readableStream) {
     metadata[0] = event.data.readableStream
   } else if (event.data.transferringReadable) {
+    // Firefox: readableStream arrives on the port after this handler runs.
+    // Registering the URL in the map before the stream exists makes
+    // fetch respondWith(new Response(undefined, …)) and breaks other loads.
     port.onmessage = evt => {
       port.onmessage = null
       metadata[0] = evt.data.readableStream
+      map.set(downloadUrl, metadata)
+      port.postMessage({ download: downloadUrl })
     }
+    return
   } else {
     metadata[0] = createStream(port)
   }
@@ -84,6 +90,11 @@ self.onfetch = event => {
 
   const [ stream, data, port ] = hijacke
 
+  if (!stream) {
+    console.error('[StreamSaver] missing readableStream for', url)
+    return null
+  }
+
   map.delete(url)
 
   // Not comfortable letting any user control all headers
@@ -111,15 +122,17 @@ self.onfetch = event => {
 
   // data, data.filename and size should not be used anymore
   if (data.size) {
-    console.warn('Depricated')
+    console.warn('Deprecated')
     responseHeaders.set('Content-Length', data.size)
   }
 
   let fileName = typeof data === 'string' ? data : data.filename
   if (fileName) {
-    console.warn('Depricated')
-    // Make filename RFC5987 compatible
-    fileName = encodeURIComponent(fileName).replace(/['()]/g, escape).replace(/\*/g, '%2A')
+    console.warn('Deprecated')
+    // RFC5987; avoid global `escape` in service worker scope
+    fileName = encodeURIComponent(fileName)
+      .replace(/['()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0'))
+      .replace(/\*/g, '%2A')
     responseHeaders.set('Content-Disposition', "attachment; filename*=UTF-8''" + fileName)
   }
 
