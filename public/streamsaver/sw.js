@@ -146,12 +146,7 @@ self.onfetch = (event) => {
     );
   }
 
-  try {
-    event.respondWith(new Response(body, { headers: responseHeaders }));
-  } catch (err) {
-    console.error("[StreamSaver] Response failed for", url, err);
-    return;
-  }
+  event.respondWith(new Response(stream, { headers: responseHeaders }));
 
   port.postMessage({ debug: "Download started" });
 };
