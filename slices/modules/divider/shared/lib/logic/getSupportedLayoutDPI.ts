@@ -3,7 +3,7 @@ import { browser } from "@/shared/config";
 import type { DividerLayout } from "../../model";
 
 export const getSupportedLayoutDPI = (layout?: DividerLayout | null): DPI[] => {
-	const isMobileSafari = browser?.os === "iOS" && browser.name === "safari";
+	const isMobile = browser?.os === "Android OS" || browser?.os === "iOS";
 
 	if (!layout?.printSize) {
 		return [300];
@@ -11,7 +11,7 @@ export const getSupportedLayoutDPI = (layout?: DividerLayout | null): DPI[] => {
 	return Object.keys(layout.printSize)
 		.filter((value) => {
 			const dpi = Number(value) as DPI;
-			if (isMobileSafari && dpi > 600) {
+			if (isMobile && dpi > 600) {
 				return false;
 			}
 			return true;
