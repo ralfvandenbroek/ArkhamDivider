@@ -7,8 +7,7 @@ export default {
 		scale: percent(95),
 	},
 	migo: {
-		left: percent(-1),
-		scale: percent(85),
+		scale: percent(80),
 	},
 	the_blob_that_ate_everything: {
 		left: percent(-1),
