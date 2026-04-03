@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { useEffect } from "react";
 import {
 	DividerBleedView as BleedView,
 	DividerContainer as Container,
@@ -7,8 +8,9 @@ import {
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
+import { deleteDivider } from "@/modules/divider/shared/lib";
 import { usePrintUnit } from "@/modules/print/shared/lib";
-import { useAppSelector } from "@/shared/lib";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Image } from "@/shared/ui";
 import {
 	arkhamesqueClassicBottomManifest as bottomManifest,
@@ -31,6 +33,7 @@ import * as S from "./ArkhamesqueClassicDivider.styles";
 export function ArkhamesqueClassicDivider(
 	props: ArkhamesqueClassicDividerProps,
 ) {
+	const dispatch = useAppDispatch();
 	const getPrintSx = usePrintUnit();
 	const backgroundSx = getPrintSx(S.getBackgroundSx);
 	const leftIconSx = getPrintSx(S.getLeftIconSx);
@@ -49,8 +52,10 @@ export function ArkhamesqueClassicDivider(
 
 	const showLeftIcon = showIcon(props);
 
+	const dividerId = props.id;
+
 	const getDividerIcon = useDividerIcon({
-		dividerId: props.id,
+		dividerId,
 	});
 
 	const [leftIcon, selectLeftIcon] = getDividerIcon({
@@ -66,6 +71,13 @@ export function ArkhamesqueClassicDivider(
 	});
 
 	const showSecondaryIcon = showBottomIcon(props);
+
+	useEffect(() => {
+		if (background) {
+			return;
+		}
+		dispatch(deleteDivider(dividerId));
+	}, [background, dispatch, dividerId]);
 
 	return (
 		<Context.Provider value={{ divider: props }}>

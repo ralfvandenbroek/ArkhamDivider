@@ -62,6 +62,7 @@ export default defineConfig({
 					if (
 						id.includes("react-dom") ||
 						id.includes("react-router") ||
+						id.includes("react-i18next") ||
 						/[/\\]node_modules[/\\]react[/\\]/.test(id)
 					) {
 						return "react-vendor";
@@ -73,7 +74,8 @@ export default defineConfig({
 					) {
 						return "redux-vendor";
 					}
-					if (id.includes("i18next") || id.includes("react-i18next")) {
+					// Only core `i18next` — `id.includes("i18next")` wrongly matched `react-i18next`
+					if (/[/\\]node_modules[/\\]i18next[/\\]/.test(id)) {
 						return "i18n-vendor";
 					}
 				},
