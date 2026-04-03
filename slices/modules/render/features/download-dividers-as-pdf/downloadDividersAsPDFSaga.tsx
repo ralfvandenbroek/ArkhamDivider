@@ -247,7 +247,7 @@ function* pdfDownloadWorker({
 						}
 
 						yield put(setDividerRenderId(item.id));
-						yield delay(50);
+						yield delay(100);
 
 						const itemSizePt = {
 							width: px(item.size.width),

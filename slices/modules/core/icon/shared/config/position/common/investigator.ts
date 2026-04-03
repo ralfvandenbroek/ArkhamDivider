@@ -45,8 +45,7 @@ export default {
 		top: percent(3),
 	},
 	seeker: {
-		top: percent(2),
-		scale: percent(90),
+		scale: percent(85),
 	},
 	survivor: {
 		top: percent(6),
