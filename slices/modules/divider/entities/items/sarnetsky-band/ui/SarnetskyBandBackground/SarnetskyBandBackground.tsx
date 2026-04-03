@@ -35,15 +35,18 @@ export function SarnetskyBandBackground({
 		line: lineSx,
 	};
 
+	const { side } = divider;
+
 	const backgroundColor = divider.params?.color ?? defaultColor;
 
 	return (
 		<Box {...props} color={backgroundColor}>
 			{images.map((item) => (
 				<Fragment key={item.type}>
-					{item.type === "background" ? (
+					{item.type === "background" && (
 						<Image sx={sxMap[item.type]} src={item.src} />
-					) : (
+					)}
+					{item.type !== "background" && side === "front" && (
 						<Box component={item.Component} sx={sxMap[item.type]} />
 					)}
 				</Fragment>
