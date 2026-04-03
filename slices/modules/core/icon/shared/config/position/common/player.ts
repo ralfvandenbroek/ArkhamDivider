@@ -13,7 +13,6 @@ export default {
 	},
 	skill: {
 		top: percent(1),
-		left: percent(1),
 	},
 	bonded: {
 		top: percent(2),

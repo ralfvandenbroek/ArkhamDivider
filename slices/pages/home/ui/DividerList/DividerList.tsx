@@ -33,7 +33,7 @@ export function DividerList() {
 		<Container>
 			<SectionTitle>{t("Dividers")}</SectionTitle>
 			<Stack gap={2}>
-				<Row gap={2} flexWrap="wrap">
+				<Row gap={2} flexWrap="wrap" justifyContent="center">
 					<Chip
 						label={
 							<Row alignItems="center">

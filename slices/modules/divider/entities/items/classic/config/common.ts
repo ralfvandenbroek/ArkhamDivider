@@ -20,7 +20,8 @@ export const classicDividerHorizontalObjects = {
 		},
 	},
 	icon: {
-		size: 8.33,
+		width: 8.33,
+		height: 8.33,
 		fontSize: 8,
 		top: 2,
 		right: 0.6,
@@ -31,12 +32,18 @@ export const classicDividerHorizontalObjects = {
 			},
 		},
 		withXP: {
-			top: 1.7,
-			right: 0.9,
+			top: 2.3,
+			width: 7.1,
+			height: 6.7,
+			right: 1.3,
 			fontSize: 7,
 		},
 		skill: {
-			top: 1.2,
+			top: 3.1,
+			width: 7.1,
+			height: 4.5,
+			right: 1.2,
+			fontSize: 6,
 		},
 	},
 	xp: {
@@ -82,7 +89,10 @@ export const classicDividerHorizontalHQObjects = mergeDeepRight(
 			right: 0.8,
 			fontSize: 7.9,
 			withXP: {
-				top: 0.9,
+				top: 1.9,
+				right: 1.4,
+				width: 6.9,
+				height: 6.5,
 			},
 			skill: {
 				top: 0.7,
@@ -122,7 +132,10 @@ export const classicDividerVertical65Objects = mergeDeepRight(
 		icon: {
 			right: 1.6,
 			withXP: {
-				right: 2,
+				right: 2.3,
+			},
+			skill: {
+				right: 2.4,
 			},
 		},
 		xp: {

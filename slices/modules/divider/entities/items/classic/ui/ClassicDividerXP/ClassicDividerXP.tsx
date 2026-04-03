@@ -73,10 +73,12 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 			: {}),
 	};
 
+	const Level = isSkill ? C.SkillLevel : C.AssetEventLevel;
+
 	return (
 		<Box sx={sx}>
 			{item.type === "fixed" ? (
-				<Box position="relative" width="100%" height="100%">
+				<Level position="relative" width="100%" height="100%">
 					<Icon
 						sx={{
 							...absoluteFill,
@@ -85,42 +87,42 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 						icon={item.background}
 					/>
 					<Icon icon={item.icon} color={frameColor} />
-				</Box>
+				</Level>
 			) : (
 				<Box position="relative" width="100%" height="1em" sx={containerSx}>
 					{isSkill && xpCost?.type === "fixed" && xpCost.value === 0 ? (
 						<>
-							<C.Level>
+							<Level>
 								<Icon icon={item.nullBackground} color={frameColor} />
-							</C.Level>
-							<C.Level>
+							</Level>
+							<Level>
 								<Icon icon={"s_frame_background_null"} color={"#fff"} />
-							</C.Level>
+							</Level>
 						</>
 					) : (
 						<>
-							<Box position="relative" sx={backgroundIconSx}>
+							<Level position="relative" sx={backgroundIconSx}>
 								<Icon icon={item.background} color={"#000"} />
-							</Box>
-							<C.Level>
+							</Level>
+							<Level>
 								<Icon icon={`${item.levelPrefix}5`} color={"#767676"} />
-							</C.Level>
+							</Level>
 							{xpCost?.type === "range" && (
 								<>
-									<C.Level zIndex={2}>
+									<Level zIndex={2}>
 										<Icon
 											icon={`${item.levelPrefix}${xpCost.max}`}
 											color={"#fff"}
 										/>
-									</C.Level>
-									<C.Level zIndex={2}>
+									</Level>
+									<Level zIndex={2}>
 										<Icon
 											icon={`${item.levelPrefix}${xpCost.min - 1}`}
 											color={"#939393"}
 										/>
-									</C.Level>
+									</Level>
 									{isSkill && (
-										<C.Level
+										<Level
 											zIndex={4}
 											sx={{
 												fontSize: "0.83em",
@@ -128,31 +130,31 @@ export function ClassicDividerXP(props: ClassicDividerXPProps) {
 											}}
 										>
 											<Icon icon={"s_level_0"} color={"#fff"} />
-										</C.Level>
+										</Level>
 									)}
 								</>
 							)}
 							{xpCost?.type === "fixed" && isNumber(level) && (
 								<>
-									<C.Level zIndex={2}>
+									<Level zIndex={2}>
 										<Icon icon={`${item.levelPrefix}${level}`} color={"#fff"} />
-									</C.Level>
+									</Level>
 									{level > 1 && (
-										<C.Level zIndex={3}>
+										<Level zIndex={3}>
 											<Icon
 												icon={`${item.levelPrefix}${level - 1}`}
 												color={"#939393"}
 											/>
-										</C.Level>
+										</Level>
 									)}
 								</>
 							)}
 						</>
 					)}
 					{isSkill && (
-						<C.Level zIndex={4} sx={{ fontSize: "0.81em" }}>
+						<Level zIndex={4} sx={{ fontSize: "0.81em" }}>
 							<Icon icon={"s_level_0"} color={"#fff"} />
-						</C.Level>
+						</Level>
 					)}
 				</Box>
 			)}

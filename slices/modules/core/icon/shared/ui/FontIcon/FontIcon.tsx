@@ -32,11 +32,9 @@ export function FontIcon(props: FontIconProps) {
 	const sx = { fontSize, ...props.sx };
 
 	const iconProps = omit(["icon", "scaleType", "scaleFactor"], props);
-	const title = props.title ?? props.icon;
 
 	return (
 		<C.Container
-			title={title}
 			data-icon={props.icon}
 			className={props.className}
 			sx={sx}

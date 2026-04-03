@@ -101,8 +101,8 @@ export const ClassicDividerPDF: PDFDivider = async (props, ctx) => {
 		const view = bleed.box({
 			top,
 			right: iconObject.right,
-			width: iconObject.size,
-			height: iconObject.size,
+			width: iconObject.width,
+			height: iconObject.height,
 		});
 
 		await ctx.icon.draw(smallIcon, {

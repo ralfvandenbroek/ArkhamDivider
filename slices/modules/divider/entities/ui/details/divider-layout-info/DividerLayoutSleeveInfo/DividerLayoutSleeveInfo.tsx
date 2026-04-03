@@ -28,7 +28,7 @@ export function DividerLayoutSleeveInfo({
 					<ShieldOutlinedIcon />
 				</C.Icon>
 			</Row>
-			<Box sx={{ overflow: "scroll" }}>
+			<Box sx={{ overflow: "auto" }}>
 				<Row gap={1}>
 					<IconPopover
 						ariaLabel={t("info.sleeves")}

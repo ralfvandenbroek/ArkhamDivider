@@ -63,6 +63,7 @@ export function IconPopover({
 				open={Boolean(anchorEl)}
 				anchorEl={anchorEl}
 				onClose={onClose}
+				disableScrollLock
 				anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
 				transformOrigin={{ vertical: "top", horizontal: "center" }}
 			>
