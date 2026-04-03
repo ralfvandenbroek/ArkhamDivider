@@ -98,6 +98,7 @@ export function InvestigatorDividerOptions(
 							}}
 						>
 							<Row
+								flexWrap={{ xs: "wrap", sm: "nowrap" }}
 								sx={{
 									gap: 2,
 									alignItems: "center",
@@ -108,7 +109,12 @@ export function InvestigatorDividerOptions(
 									flex: { xs: 1, sm: 0 },
 								}}
 							>
-								<Button variant="contained" sx={formButtonSx} onClick={clear}>
+								<Button
+									variant="contained"
+									sx={formButtonSx}
+									onClick={clear}
+									color="error"
+								>
 									<Row gap={0.5} alignItems="center">
 										<Icon icon="trash" />
 										<span> {t("Clear")}</span>

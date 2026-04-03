@@ -2,6 +2,7 @@ import type { BoxProps } from "@mui/material/Box";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import type { SxProps } from "@mui/material/styles";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -28,6 +29,11 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Row } from "@/shared/ui";
 import { preventDefault } from "@/shared/util";
 import { ScenarioDividerOptionsForm } from "../ScenarioDividerOptionsForm";
+
+const formButtonSx: SxProps = {
+	flexGrow: { xs: 1, sm: 0 },
+	whiteSpace: "nowrap",
+};
 
 export function ScenarioDividerOptions(props: BoxProps) {
 	const dispatch = useAppDispatch();
@@ -88,20 +94,26 @@ export function ScenarioDividerOptions(props: BoxProps) {
 									flex: { xs: 1, sm: 0 },
 									gap: 2,
 									justifyContent: "center",
+									flexWrap: {
+										xs: "wrap",
+										sm: "nowrap",
+									},
 								}}
 							>
-								<Button variant="contained" onClick={clear}>
+								<Button
+									variant="contained"
+									sx={formButtonSx}
+									onClick={clear}
+									color="error"
+								>
 									<Row gap={0.5} alignItems="center">
 										<Icon icon="trash" />
-										<span> {t("Clear")}</span>
+										<span>{t("Clear")}</span>
 									</Row>
 								</Button>
 								<Button
 									variant="contained"
-									sx={{
-										width: { xs: "100%", sm: "auto" },
-										whiteSpace: "nowrap",
-									}}
+									sx={formButtonSx}
 									name="mode"
 									type="submit"
 									value="create"
@@ -114,10 +126,7 @@ export function ScenarioDividerOptions(props: BoxProps) {
 								</Button>
 								<Button
 									variant="contained"
-									sx={{
-										width: { xs: "100%", sm: "auto" },
-										whiteSpace: "nowrap",
-									}}
+									sx={formButtonSx}
 									name="mode"
 									onClick={generate("add")}
 								>

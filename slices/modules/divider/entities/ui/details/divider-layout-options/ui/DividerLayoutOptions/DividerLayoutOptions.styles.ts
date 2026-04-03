@@ -2,5 +2,5 @@ import type { SxProps, Theme } from "@mui/material";
 
 export const formButtonSx: SxProps<Theme> = {
 	minWidth: 120,
-	width: { xs: "100%", sm: "auto" },
+	flexGrow: { xs: 1, sm: 0 },
 };

@@ -300,8 +300,17 @@ export function PlayerDividerOptions(props: BoxProps) {
 						)}
 					</C.Row>
 					<C.Row marginTop={4}>
-						<Row flex={{ xs: 1, sm: 0 }} gap={2}>
-							<Button variant="contained" sx={formButtonSx} onClick={clear}>
+						<Row
+							flex={{ xs: 1, sm: 0 }}
+							flexWrap={{ xs: "wrap", sm: "nowrap" }}
+							gap={2}
+						>
+							<Button
+								variant="contained"
+								sx={formButtonSx}
+								onClick={clear}
+								color="error"
+							>
 								<Row gap={0.5} alignItems="center">
 									<Icon icon="trash" />
 									<span> {t("Clear")}</span>
