@@ -1,9 +1,21 @@
+import { lazy } from "react";
 import { createHashRouter } from "react-router";
-import { AboutPage } from "@/pages/about/ui";
-import { HomePage } from "@/pages/home/ui";
-import { HowToPrintPage } from "@/pages/how-to-print/ui";
-import { LayoutPage } from "@/pages/layout/ui";
 import { Root } from "../ui/Root";
+
+const HomePage = lazy(() =>
+	import("@/pages/home/ui").then((m) => ({ default: m.HomePage })),
+);
+const AboutPage = lazy(() =>
+	import("@/pages/about/ui").then((m) => ({ default: m.AboutPage })),
+);
+const HowToPrintPage = lazy(() =>
+	import("@/pages/how-to-print/ui").then((m) => ({
+		default: m.HowToPrintPage,
+	})),
+);
+const LayoutPage = lazy(() =>
+	import("@/pages/layout/ui").then((m) => ({ default: m.LayoutPage })),
+);
 
 type HmrData = {
 	router?: ReturnType<typeof createHashRouter>;

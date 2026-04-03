@@ -48,5 +48,37 @@ export default defineConfig({
 		include: ["react", "react-dom", "react-router"],
 		exclude: ["wasm-vips"],
 	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (!id.includes("node_modules")) {
+						return;
+					}
+					// @emotion before react: paths like @emotion/react contain "/react/"
+					if (id.includes("@mui") || id.includes("@emotion")) {
+						return "mui-vendor";
+					}
+					if (
+						id.includes("react-dom") ||
+						id.includes("react-router") ||
+						/[/\\]node_modules[/\\]react[/\\]/.test(id)
+					) {
+						return "react-vendor";
+					}
+					if (
+						id.includes("redux-saga") ||
+						id.includes("@reduxjs") ||
+						id.includes("/redux/")
+					) {
+						return "redux-vendor";
+					}
+					if (id.includes("i18next") || id.includes("react-i18next")) {
+						return "i18n-vendor";
+					}
+				},
+			},
+		},
+	},
 	assetsInclude: ["**/*.ttf"],
 });

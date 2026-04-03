@@ -85,9 +85,11 @@ export function StorySelect({
 	const renderItem = useCallback<SelectRenderValueCallback>(
 		(value, getItemProps) => {
 			if (Array.isArray(value)) {
-				return value.map((item) => renderStory(item, getItemProps));
+				return value.map((item, index) =>
+					renderStory(item, getItemProps, index),
+				);
 			}
-			return renderStory(value, getItemProps);
+			return renderStory(value, getItemProps, 0);
 		},
 		[],
 	);

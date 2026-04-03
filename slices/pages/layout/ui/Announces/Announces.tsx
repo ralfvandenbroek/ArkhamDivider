@@ -9,6 +9,7 @@ import { selectCurrentLanguage } from "@/modules/core/i18n/shared/lib";
 import { LocaleFragment } from "@/modules/core/i18n/shared/ui";
 import { NotExportable } from "@/modules/render/shared/ui";
 import { useAppSelector } from "@/shared/lib";
+import { Row } from "@/shared/ui";
 import * as L from "./links";
 
 const paperSx = { p: 2, borderRadius: 2 } as const;
@@ -74,9 +75,8 @@ export function Announces() {
 							</Typography>
 						</Stack>
 
-						<Stack
-							direction="row"
-							spacing={2}
+						<Row
+							gap={2}
 							flexWrap="wrap"
 							alignItems="flex-start"
 							justifyContent={{ xs: "flex-start", sm: "flex-end" }}
@@ -89,7 +89,7 @@ export function Announces() {
 							<Stack
 								alignItems="center"
 								spacing={0.5}
-								sx={{ position: "relative", pb: 2.5 }}
+								sx={{ position: "relative" }}
 							>
 								<StoreBadge
 									href={L.appStoreHref}
@@ -113,7 +113,7 @@ export function Announces() {
 									{t("iOS Unlock")}
 								</Link>
 							</Stack>
-						</Stack>
+						</Row>
 					</Stack>
 				</Paper>
 

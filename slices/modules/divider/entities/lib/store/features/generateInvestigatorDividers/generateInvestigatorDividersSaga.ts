@@ -16,18 +16,14 @@ function* worker({ payload }: ReturnType<typeof generateInvestigatorDividers>) {
 
 	const stories: ReturnType<typeof selectStories> = yield select(selectStories);
 
-	const selectedStories = stories.filter((story) =>
-		payload.storyCodes.includes(story.code),
+	const selectedStories = stories.filter(
+		(story) =>
+			payload.storyCodes.includes(story.code) && story.supported === true,
 	);
 
 	const dividers = getInvestigatorDividers({
 		stories: selectedStories,
 		layout,
-	});
-
-	console.log({
-		dividers,
-		mode,
 	});
 
 	if (mode === "create") {
