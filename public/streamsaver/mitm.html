@@ -120,13 +120,16 @@ function onMessage (event) {
   // remove all leading slashes
   data.pathname = data.pathname.replace(/^\/+/g, '')
 
-  // remove protocol
-  let org = origin.replace(/(^\w+:|^)\/\//, '')
+  if (data.pathname.indexOf('..') !== -1) {
+    throw new TypeError('[StreamSaver] bad `data.pathname`')
+  }
 
-  // set the absolute pathname to the download url.
-  data.url = new URL(`${scope + org}/${data.pathname}`).toString()
+  // Default StreamSaver builds …/streamsaver/<hostname>/… which looks like a
+  // deceptive URL and is blocked by Firefox enterprise / filtering rules.
+  const scopeBase = new URL(scope.endsWith('/') ? scope : scope + '/')
+  data.url = new URL(data.pathname, scopeBase).href
 
-  if (!data.url.startsWith(`${scope + org}/`)) {
+  if (!data.url.startsWith(scopeBase.href)) {
     throw new TypeError('[StreamSaver] bad `data.pathname`')
   }
 

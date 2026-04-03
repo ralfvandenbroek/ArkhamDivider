@@ -146,18 +146,6 @@ self.onfetch = (event) => {
     );
   }
 
-  // Firefox: a ReadableStream transferred from the page often cannot be used
-  // directly as Response body in the SW; pipeThrough roots a worker-owned stream.
-  let body = stream;
-  const ua = self.navigator?.userAgent ?? "";
-  if (/firefox/i.test(ua) && typeof TransformStream !== "undefined") {
-    try {
-      body = stream.pipeThrough(new TransformStream());
-    } catch {
-      body = stream;
-    }
-  }
-
   try {
     event.respondWith(new Response(body, { headers: responseHeaders }));
   } catch (err) {
