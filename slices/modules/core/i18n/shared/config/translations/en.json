@@ -77,6 +77,8 @@
 	"printInfo.doubleSidedNoBleed.body": "Almost any printer has slight alignment errors, so the image on one side may shift. When cutting a double-sided layout, white stripes can appear or the cut line may go into the divider area.",
 	"printInfo.firefoxLargePaper.title": "Firefox and paper larger than A4",
 	"printInfo.firefoxLargePaper.body": "Printing on paper larger than A4 in Firefox looks blurry. For best quality, generate a PDF (the arrow next to the Print button).",
+	"printInfo.singleItemPerPage.title": "One per page",
+	"printInfo.singleItemPerPage.body": "Printing in \"One per page\" mode is available only when generating a PDF.",
 	"credits.author.description": "<icon/>: You can spend any number<br/>of resources <donationLink>on this address</donationLink><br/><i>Remember, <author>{{name}}</author><br/>is grateful to you</i>",
 	"divider.subtype.faction": "Faction Dividers",
 	"divider.subtype.investigators": "Faction Investigators",

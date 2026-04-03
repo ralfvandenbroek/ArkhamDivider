@@ -64,6 +64,8 @@
 	"printInfo.doubleSidedNoBleed.body": "Почти любой принтер имеет погрешности в печати, из-за чего изображение на одной стороне может сместиться. При резке макета с двух сторон могут образоваться белые полосы, или нож может попасть на область разделителя.",
 	"printInfo.firefoxLargePaper.title": "Firefox и бумага больше A4",
 	"printInfo.firefoxLargePaper.body": "Печать на бумаге больше A4 в Firefox выходит нечеткой. Для качественной печати создавайте PDF (стрелка рядом с кнопкой Печать).",
+	"printInfo.singleItemPerPage.title": "Один на страницу",
+	"printInfo.singleItemPerPage.body": "Печать в режиме \"Один на страницу\" доступна только при генерации PDF.",
 	"Search": "Поиск",
 	"Orientation": "Ориентация",
 	"orientation.horizontal": "Горизонтальная",
