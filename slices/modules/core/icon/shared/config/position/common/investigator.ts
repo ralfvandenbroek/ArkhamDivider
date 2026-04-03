@@ -21,7 +21,10 @@ export default {
 		top: percent(-10),
 		scale: percent(90),
 	},
-	mystic_alt: {},
+	mystic_alt: {
+		top: percent(-2),
+		scale: percent(85),
+	},
 	class_mystic: {
 		left: percent(-1),
 		top: percent(-10),
@@ -45,6 +48,8 @@ export default {
 		top: percent(3),
 	},
 	seeker: {
+		left: percent(3),
+		top: percent(-4),
 		scale: percent(85),
 	},
 	survivor: {
