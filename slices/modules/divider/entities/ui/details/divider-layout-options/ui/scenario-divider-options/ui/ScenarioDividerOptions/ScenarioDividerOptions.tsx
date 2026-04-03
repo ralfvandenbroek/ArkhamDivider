@@ -9,6 +9,7 @@ import { Icon } from "@/modules/core/icon/shared/ui";
 import { selectLayout } from "@/modules/divider/entities/lib";
 import { generateScenarioDividers } from "@/modules/divider/entities/lib/store/features/generateScenarioDividers";
 import {
+	deleteAllDividers,
 	selectScenarioParams,
 	setScenarioParams,
 } from "@/modules/divider/shared/lib";
@@ -57,6 +58,10 @@ export function ScenarioDividerOptions(props: BoxProps) {
 			dispatch(generateScenarioDividers({ ...data, mode }));
 		});
 
+	const clear = useCallback(() => {
+		dispatch(deleteAllDividers());
+	}, [dispatch]);
+
 	return (
 		<Box {...props}>
 			<form onSubmit={preventDefault}>
@@ -85,6 +90,12 @@ export function ScenarioDividerOptions(props: BoxProps) {
 									justifyContent: "center",
 								}}
 							>
+								<Button variant="contained" onClick={clear}>
+									<Row gap={0.5} alignItems="center">
+										<Icon icon="trash" />
+										<span> {t("Clear")}</span>
+									</Row>
+								</Button>
 								<Button
 									variant="contained"
 									sx={{

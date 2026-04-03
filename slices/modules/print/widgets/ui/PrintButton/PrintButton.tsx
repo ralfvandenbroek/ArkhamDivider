@@ -13,7 +13,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { selectLayout } from "@/modules/divider/entities/lib";
-import { getSupportedLayoutDPI } from "@/modules/divider/shared/lib";
+import {
+	getSupportedLayoutDPI,
+	selectDividersTotal,
+} from "@/modules/divider/shared/lib";
 import { selectSingleItemPerPage } from "@/modules/print/shared/lib";
 import type { DPI } from "@/modules/print/shared/model";
 import { downloadDividersAsImages } from "@/modules/render/features/download-dividers-as-images/downloadDividersAsImages";
@@ -40,6 +43,9 @@ export function PrintButton(props: PrintButtonProps) {
 	const layout = useAppSelector(selectLayout);
 	const singleItemPerPage = useAppSelector(selectSingleItemPerPage);
 	const supportedDPI = useMemo(() => getSupportedLayoutDPI(layout), [layout]);
+
+	const dividersCount = useAppSelector(selectDividersTotal);
+	const disabled = dividersCount === 0;
 
 	const defaultDPI = supportedDPI[0] ?? 300;
 
@@ -72,18 +78,18 @@ export function PrintButton(props: PrintButtonProps) {
 		<>
 			{showPrintButton ? (
 				<C.Group {...props} variant="contained" ref={anchorRef}>
-					<Button onClick={print} sx={sx}>
+					<Button onClick={print} sx={sx} disabled={disabled}>
 						<Icon icon="printer" /> &nbsp;
 						<Box sx={{ display: { xs: "none", sm: "inline" } }}>{t`Print`}</Box>
 						&nbsp;/ &nbsp; <Icon icon="file-pdf" /> &nbsp; PDF
 					</Button>
-					<Button size="small" onClick={toggle} sx={sx}>
+					<Button size="small" onClick={toggle} sx={sx} disabled={disabled}>
 						<Icon icon="download" />
 					</Button>
 				</C.Group>
 			) : (
 				<C.Group {...props} variant="contained" ref={anchorRef}>
-					<Button onClick={toggle} sx={sx}>
+					<Button onClick={toggle} sx={sx} disabled={disabled}>
 						<Icon icon="download" /> &nbsp; {t`Download`}
 					</Button>
 				</C.Group>

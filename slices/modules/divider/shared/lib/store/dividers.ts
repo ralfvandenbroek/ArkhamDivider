@@ -81,6 +81,7 @@ export const {
 	selectAll: selectDividers,
 	selectIds: selectDividerIds,
 	selectById: selectDividerById,
+	selectTotal: selectDividersTotal,
 } = dividerSelectors;
 
 export default dividers.reducer;

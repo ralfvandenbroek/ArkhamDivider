@@ -13,6 +13,7 @@ import { selectLayout } from "@/modules/divider/entities/lib";
 import { generatePlayerDividers } from "@/modules/divider/entities/lib/store/features/generatePlayerDividers";
 import { cardSlots, cardTypes } from "@/modules/divider/shared/config";
 import {
+	deleteAllDividers,
 	selectPlayerParams,
 	setPlayerParams,
 } from "@/modules/divider/shared/lib";
@@ -163,6 +164,10 @@ export function PlayerDividerOptions(props: BoxProps) {
 		[dispatch, getValues],
 	);
 
+	const clear = useCallback(() => {
+		dispatch(deleteAllDividers());
+	}, [dispatch]);
+
 	const showStorySelect = Boolean(layout?.playerParams?.story);
 
 	return (
@@ -296,6 +301,12 @@ export function PlayerDividerOptions(props: BoxProps) {
 					</C.Row>
 					<C.Row marginTop={4}>
 						<Row flex={{ xs: 1, sm: 0 }} gap={2}>
+							<Button variant="contained" sx={formButtonSx} onClick={clear}>
+								<Row gap={0.5} alignItems="center">
+									<Icon icon="trash" />
+									<span> {t("Clear")}</span>
+								</Row>
+							</Button>
 							<Button
 								variant="contained"
 								sx={formButtonSx}

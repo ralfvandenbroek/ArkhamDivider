@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Icon } from "@/modules/core/icon/shared/ui";
 import { generateInvestigatorDividers } from "@/modules/divider/entities/lib/store/features/generateInvestigatorDividers";
 import {
+	deleteAllDividers,
 	selectInvestigatorParams,
 	setInvestigatorParams,
 } from "@/modules/divider/shared/lib";
@@ -66,6 +67,10 @@ export function InvestigatorDividerOptions(
 		[dispatch, getValues],
 	);
 
+	const clear = useCallback(() => {
+		dispatch(deleteAllDividers());
+	}, [dispatch]);
+
 	const showGenerateButtons = selectedStoryCodes.length > 0;
 
 	return (
@@ -103,6 +108,12 @@ export function InvestigatorDividerOptions(
 									flex: { xs: 1, sm: 0 },
 								}}
 							>
+								<Button variant="contained" sx={formButtonSx} onClick={clear}>
+									<Row gap={0.5} alignItems="center">
+										<Icon icon="trash" />
+										<span> {t("Clear")}</span>
+									</Row>
+								</Button>
 								<Button
 									variant="contained"
 									sx={formButtonSx}
