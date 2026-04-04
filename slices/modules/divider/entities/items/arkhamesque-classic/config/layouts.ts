@@ -9,6 +9,7 @@ const large: DividerLayout = {
 	groupId: "large",
 	name: "divider.arkhamesque-classic.large",
 	orientation: "horizontal",
+	previewName: '3.25"',
 	color: true,
 	size: createSize(89.25, 79.77),
 	printSize: {
@@ -26,6 +27,7 @@ const medium: DividerLayout = {
 	id: "arkhamesque-classic-3",
 	groupId: "medium",
 	name: "divider.arkhamesque-classic.medium",
+	previewName: '3"',
 	size: createSize(89.25, 77),
 	printSize: {
 		300: {
