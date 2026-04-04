@@ -4,6 +4,32 @@
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
 }
+
+.bleed.horizontal .wrapper {
+  width: 93mm;
+  height: 80mm;
+}
+
+.bleed.vertical .wrapper {
+  width: 67.7mm;
+  height: 105.8mm;
+}
+
+.bleed.verticalXL .wrapper {
+  width: 79.8mm;
+  height: 104.8mm;
+}
+
+
+.bleed div:has(> .assetsContainer) {
+  width: calc(100% + 2mm);
+  height: calc(100% + 2mm);
+  left: -1mm;
+  right: -1mm;
+  top: -1mm;
+  bottom: -1mm;
+}
+
 .horizontal {
   .largeIcon {
     top: 28mm;

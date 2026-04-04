@@ -17,18 +17,18 @@ export const common = {
 };
 
 const bleedSize = {
-  top: 3,
-  left: 3,
-  right: 3,
-  bottom: 3,
+  top: 2,
+  left: 2,
+  right: 2,
+  bottom: 2,
 };
 
 export const horizontal = {
   width: 89,
   height: 76,
   bleed: {
-    width: 95,
-    height: 82,
+    width: 93,
+    height: 80,
     ...bleedSize,
   },
 };
@@ -37,8 +37,8 @@ export const vertical = {
   width: 63.7,
   height: 101.8,
   bleed: {
-    width: 69.7,
-    height: 107.8,
+    width: 67.7,
+    height: 105.8,
     ...bleedSize,
   },
 };
@@ -47,8 +47,8 @@ export const verticalXL = {
   width: 75.8,
   height: 100.8,
   bleed: {
-    width: 81.8,
-    height: 106.8,
+    width: 79.8,
+    height: 104.8,
     ...bleedSize,
   },
 };

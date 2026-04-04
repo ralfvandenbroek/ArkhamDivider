@@ -103,7 +103,7 @@ export const RynoDivider = (props: DividerProps) => {
 
   return (
     <div className={containerClassName}>
-      <DividerContent>
+      <DividerContent className={S.wrapper}>
         <div className={S.assetsContainer}>
           <div className={S.assets}>
             {showCorner && <img className={S.corner} src={assets.corner} alt={title} />}
