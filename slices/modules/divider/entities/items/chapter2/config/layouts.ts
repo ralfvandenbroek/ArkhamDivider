@@ -19,6 +19,10 @@ export const chapter2Layout: DividerLayout = {
 		},
 	},
 	iconParams: ["icon", "backgroundIcon"],
+	compatibility: {
+		chapter1Box: true,
+		chapter2Box: true,
+	},
 };
 
 export const chapter2Layouts = [chapter2Layout];
