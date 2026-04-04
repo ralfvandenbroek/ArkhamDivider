@@ -5,6 +5,8 @@ import { arkhamDecoCategoryId } from "./arkham-deco/config";
 import { ArkhamDecoDividerPDF } from "./arkham-deco/ui";
 import { arkhamesqueClassicCategoryId } from "./arkhamesque-classic/config/common";
 import { ArkhamesqueClassicDividerPDF } from "./arkhamesque-classic/ui/pdf";
+import { chapter2CategoryId } from "./chapter2/config";
+import { Chapter2DividerPDF } from "./chapter2/ui/pdf";
 import { classicCategoryId } from "./classic/config/common";
 import { ClassicDividerPDF } from "./classic/ui";
 import { investigatorTokensCategoryId } from "./investigator-tokens/config";
@@ -32,4 +34,5 @@ export const dividerPDFComponents: Record<string, PDFDivider<any>> = {
 	[sarnetskyBandCategoryId]: SarnetskyBandDividerPDF,
 	[arkhamStarterDividerCategoryId]: ArkhamStarterDividerPDF,
 	[vintageDividerCategoryId]: VintageDividerPDF,
+	[chapter2CategoryId]: Chapter2DividerPDF,
 };

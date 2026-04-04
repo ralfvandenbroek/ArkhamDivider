@@ -34,6 +34,7 @@ export function DividerSelect(props: DividerSelectProps) {
 				fullWidth
 			>
 				<C.Subheader>{t`Dividers`}</C.Subheader>
+				<MenuItem value="chapter2">{t(`divider.chapter2.name`)}</MenuItem>
 				<MenuItem value="classic">{t(`Return To`)}</MenuItem>
 				<MenuItem value="invocation-2018">Invocation 2018</MenuItem>
 				<MenuItem value="arkhamesque-classic">Arkhamesque Classic</MenuItem>

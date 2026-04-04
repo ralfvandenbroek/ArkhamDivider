@@ -180,6 +180,7 @@
 	"divider.vintage.tabColor": "Цвет вкладки",
 	"divider.3mm.stripColor": "Цвет ленты",
 	"divider.3mm.playerCornerColor": "Цвет угла",
+	"divider.chapter2.name": "Глава 2",
 	"Concealed Cards": "Сокрытые карты",
 	"icons.download": "Иконки Ужаса Аркхэма",
 	"icons.download.description": "Файлы обновляются ежедневно",
@@ -189,5 +190,6 @@
 	"My new project": "Мой новый проект",
 	"Digital Investigator Board": "Цифровой планшет сыщика",
 	"iOS Unlock": "Разблокировка",
-	"home.projectInfo.title": "Несколько слов о проекте"
+	"home.projectInfo.title": "Несколько слов о проекте",
+	"category.chapter2.description": "Разделители Главы 2"
 }

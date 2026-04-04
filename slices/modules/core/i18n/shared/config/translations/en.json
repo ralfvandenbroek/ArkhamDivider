@@ -12,6 +12,7 @@
 	"divider.type.scenario": "Campaigns",
 	"divider.type.player": "Player Cards",
 	"divider.type.investigator": "Investigators",
+	"divider.chapter2.name": "Chapter 2",
 	"color.grayscale": "Grayscale",
 	"color.color": "Color",
 	"info.sleeve.customCut.description": "Will need to be cut manually from the top of the sleeve",
@@ -193,5 +194,6 @@
 	"My new project": "My new project",
 	"Digital Investigator Board": "Digital Investigator Board",
 	"iOS Unlock": "iOS Unlock",
-	"home.projectInfo.title": "A few words about this project"
+	"home.projectInfo.title": "A few words about this project",
+	"category.chapter2.description": "Chapter 2 dividers"
 }
