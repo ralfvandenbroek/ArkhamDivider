@@ -12,7 +12,7 @@ export const chapter2Objects = {
 		width: 57,
 		height: 47,
 		top: 18.5,
-		left: 15,
+		left: 14.8,
 		fontSize: 40,
 		opacity: 0.1,
 	},
