@@ -11,6 +11,7 @@ import { DividerIcon as Icon } from "@/modules/divider/features/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import { Image } from "@/shared/ui";
 import {
+	getRynoDividerDefaultBackgroundIcon,
 	getRynoDividerDefaultHeaderColor,
 	getRynoDividerDefaultLeftIcon,
 	getRynoDividerDefaultRightIcon,
@@ -55,9 +56,10 @@ export function RynoDivider(props: RynoDividerProps) {
 		defaultIcon: defaultRightIcon,
 	});
 
+	const defaultBackgroundIcon = getRynoDividerDefaultBackgroundIcon(props);
 	const [backgroundIcon, selectBackgroundIcon] = getDividerIcon({
 		param: "backgroundIcon",
-		defaultIcon: props.icon,
+		defaultIcon: defaultBackgroundIcon,
 	});
 
 	const defaultHeaderRGBColor = getRynoDividerDefaultHeaderColor(props);
