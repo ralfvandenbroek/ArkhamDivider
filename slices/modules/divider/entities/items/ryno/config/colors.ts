@@ -3,6 +3,7 @@ import type { RGBColor } from "@/modules/core/color/shared/model";
 
 export const rynoCampaignColors: Record<string, RGBColor> = {
 	core: rgb(0, 52, 85),
+	core_2026: rgb(0, 52, 85),
 	dwl: rgb(26, 213, 0),
 	ptc: rgb(115, 0, 85),
 	tfa: rgb(255, 0, 0),

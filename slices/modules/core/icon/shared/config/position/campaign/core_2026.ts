@@ -9,7 +9,7 @@ export default {
 	},
 	gangs_of_arkham: {
 		left: percent(-4),
-		top: percent(1),
+		top: percent(2),
 		scale: percent(90),
 	},
 	cultists_ch2: {
@@ -28,6 +28,11 @@ export default {
 	bystanders: {
 		top: percent(1),
 		left: percent(1),
+		scale: percent(90),
+	},
+	arkham_ch2: {
+		top: percent(0),
+		left: percent(-2),
 		scale: percent(90),
 	},
 	hallucinations: {},
