@@ -12,8 +12,17 @@ const iconOverprint = { overprint: true, color: blackInk } as const;
 export const Chapter2DividerPDF: PDFDivider<
 	Chapter2DividerProps["params"]
 > = async (props, ctx) => {
-	const { lasercut, unit, icon } = ctx;
+	const { lasercut, unit, icon, crease, layout } = ctx;
 	const bleed = unit.fromBleed();
+
+	if (layout.creasingTop) {
+		crease.draw({
+			x: bleed.x(),
+			y: bleed.y(),
+			offset: unit.mm(layout.creasingTop),
+			width: bleed.width(),
+		});
+	}
 
 	lasercut.drawRect({
 		x: bleed.x(),

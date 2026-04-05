@@ -12,6 +12,7 @@ export const chapter2Layout: DividerLayout = {
 	color: true,
 	size: createSize(87, 73),
 	bleed: 3,
+	creasingTop: 13.7,
 	printSize: {
 		300: {
 			size: createSize(1028, 862),

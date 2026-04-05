@@ -1,14 +1,18 @@
 import { Box } from "@mui/material";
+import { selectLayout } from "@/modules/divider/entities/lib";
 import {
-	DividerBackground,
-	DividerColorPicker,
-	DividerContainer,
-	DividerContent,
-	DividerMenu,
+	DividerBackground as Background,
+	DividerColorPicker as ColorPicker,
+	DividerContainer as Container,
+	DividerContent as Content,
+	DividerCreaseLine as CreaseLine,
+	DividerMenu as Menu,
 } from "@/modules/divider/entities/ui";
 import { useDividerIcon } from "@/modules/divider/features/lib";
 import { DividerIcon } from "@/modules/divider/features/ui";
+import type { DividerLayout } from "@/modules/divider/shared/model";
 import { usePrintUnit } from "@/modules/print/shared/lib";
+import { useAppSelector } from "@/shared/lib";
 import {
 	getChapter2DividerDefaultColor,
 	getChapter2DividerDefaultIcon,
@@ -19,8 +23,8 @@ import * as S from "./Chapter2Divider.styles";
 const background = "/images/divider/background/chapter2/background.avif";
 
 export function Chapter2Divider(props: Chapter2DividerProps) {
-	// const { id, layoutType, params } = props;
 	const defaultIcon = getChapter2DividerDefaultIcon(props);
+	const layout = useAppSelector(selectLayout) as DividerLayout;
 
 	const getPrintSx = usePrintUnit();
 	const iconSx = getPrintSx(S.getIconSx);
@@ -48,11 +52,11 @@ export function Chapter2Divider(props: Chapter2DividerProps) {
 	const color = props.params?.color ?? defaultColor;
 
 	return (
-		<DividerContainer>
-			<DividerBackground src={background} />
+		<Container>
+			<Background src={background} />
 
 			<Box sx={overlaySx} bgcolor={color} />
-			<DividerContent zIndex={3}>
+			<Content zIndex={3}>
 				<DividerIcon
 					dividerId={props.id}
 					icon={icon}
@@ -66,14 +70,15 @@ export function Chapter2Divider(props: Chapter2DividerProps) {
 					onClick={selectBackgroundIcon}
 					sx={backgroundSx}
 				/>
-				<DividerColorPicker
+				<ColorPicker
 					dividerId={props.id}
 					param="color"
 					defaultColor={defaultColor}
 					sx={colorPickerSx}
 				/>
-				<DividerMenu dividerId={props.id} sx={menuSx} />
-			</DividerContent>
-		</DividerContainer>
+				<CreaseLine offset={layout.creasingTop} />
+				<Menu dividerId={props.id} sx={menuSx} />
+			</Content>
+		</Container>
 	);
 }

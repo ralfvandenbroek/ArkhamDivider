@@ -3,6 +3,7 @@ import { CREASE_COLOR, CREASE_LINE_WIDTH } from "../../config";
 export type DrawCreaseLineOptions = {
 	x: number;
 	y: number;
+	offset?: number;
 	width: number;
 };
 
@@ -22,13 +23,14 @@ export class PDFCreaseService {
 	/**
 	 * Draw a single horizontal crease line starting at (x, y) with `width`.
 	 */
-	lineTo({ x, y, width }: DrawCreaseLineOptions) {
-		if (!this.options.enabled) {
+	draw({ x, y, offset, width }: DrawCreaseLineOptions) {
+		if (!this.options.enabled || !offset) {
 			return;
 		}
+		const lineY = y + offset - this.lineWidth / 2;
 		this.doc
-			.moveTo(x, y)
-			.lineTo(x + width, y)
+			.moveTo(x, lineY)
+			.lineTo(x + width, lineY)
 			.lineWidth(this.lineWidth)
 			.stroke(this.color);
 	}

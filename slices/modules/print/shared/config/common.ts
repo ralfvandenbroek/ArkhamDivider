@@ -21,3 +21,5 @@ export const CROPMARK_WIDTH = 3;
 export const SINGLE_ITEM_CROPMARK_OFFSET = 10;
 
 export const DEFAULT_CORNER_RADIUS = 3;
+
+export const CREASE_LINE_WIDTH = 0.25;
