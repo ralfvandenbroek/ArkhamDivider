@@ -39,9 +39,9 @@ export const getSideHeaderSx: PrintSxCallback = ({ mm }) => ({
 
 export const getMenuSx: PrintSxCallback = ({ mm }) => ({
 	position: "absolute",
-	top: `calc(50% + ${mm(4)})`,
+	top: `calc(50%)`,
 	transform: "translateY(-50%)",
-	left: mm(10),
+	left: mm(6.5),
 	width: mm(67),
 	height: mm(3.3),
 	opacity: 0.8,

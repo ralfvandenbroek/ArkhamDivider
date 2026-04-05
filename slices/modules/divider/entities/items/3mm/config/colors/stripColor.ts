@@ -1,5 +1,7 @@
 import type { RGBAColorObject } from "@/modules/core/color/shared/model";
 
+// search for setStripColor in https://github.com/5argon/AHLCG3mmDivider/blob/main/Unity/AHLCG3mmDivider/Assets/Specs/Set
+
 export const customStripColor: Record<string, RGBAColorObject> = {
 	zaw: { r: 0.6509804, g: 0.48235294, b: 0.39607844, a: 1 },
 	zcf: { r: 0.6509804, g: 0.48235294, b: 0.39607844, a: 1 },
@@ -18,11 +20,12 @@ export const standaloneStripColor: Record<string, RGBAColorObject> = {
 	lol: { r: 0.58348686, g: 0.54369885, b: 0.7735849, a: 1 },
 	the_midwinter_gala: { r: 0.8773585, g: 0.4399776, b: 0.19450872, a: 1 },
 	wog: { r: 0.45412073, g: 0.55796915, b: 0.6132076, a: 1 },
+	film_fatale: { r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1 },
 };
 
 export const campaignStripColor: Record<string, RGBAColorObject> = {
 	core: { r: 0.36078432, g: 0.4, b: 0.5568628, a: 1 },
-	core_2016: { r: 0.36078432, g: 0.4, b: 0.5568628, a: 1 },
+	core_2026: { r: 0.6509804, g: 0.48235294, b: 0.39607844, a: 1 },
 	eoe: { r: 0.2509804, g: 0.62352943, b: 0.7254902, a: 1 },
 	tcu: { r: 0.32941177, g: 0.25490198, b: 0.36862746, a: 1 },
 	tde: { r: 0.2784314, g: 0.25882354, b: 0.34901962, a: 1 },
