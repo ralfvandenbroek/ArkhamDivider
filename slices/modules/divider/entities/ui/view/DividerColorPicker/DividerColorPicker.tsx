@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { ColorPicker } from "@/entities/common/ui";
 import {
 	selectDividerById,
+	setAllDividersParam,
 	setDividerParam,
 } from "@/modules/divider/shared/lib";
 import { NotExportable } from "@/modules/render/shared/ui";
@@ -36,6 +37,13 @@ export function DividerColorPicker({
 		[divider.id, param, dispatch],
 	);
 
+	const onSelectAll = useCallback(
+		(color?: string) => {
+			dispatch(setAllDividersParam({ key: param, value: color }));
+		},
+		[param, dispatch],
+	);
+
 	return (
 		<NotExportable>
 			<Box {...props} displayPrint="none">
@@ -46,6 +54,7 @@ export function DividerColorPicker({
 					value={value}
 					defaultValue={defaultColor}
 					onColorSelect={onColorSelect}
+					onSelectAll={onSelectAll}
 					title={title}
 				/>
 			</Box>

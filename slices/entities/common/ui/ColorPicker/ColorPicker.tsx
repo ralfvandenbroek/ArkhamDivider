@@ -7,6 +7,7 @@ import * as S from "./ColorPicker.styles";
 
 type ColorPickerProps = BoxProps & {
 	onColorSelect: (color?: string) => void;
+	onSelectAll?: (color?: string) => void;
 	value?: string;
 	defaultValue?: string;
 };
@@ -16,6 +17,7 @@ const transparentIcon = "/images/assets/transparent.png";
 export function ColorPicker({
 	title,
 	onColorSelect: onColorSelectProp,
+	onSelectAll: onSelectAllProp,
 	defaultValue,
 	value,
 	...props
@@ -33,6 +35,16 @@ export function ColorPicker({
 		},
 		[onColorSelectProp, setOpen.off],
 	);
+
+	const onSelectAllCallback = useCallback(
+		(color?: string) => {
+			onSelectAllProp?.(color);
+			setOpen.off();
+		},
+		[onSelectAllProp, setOpen.off],
+	);
+
+	const onSelectAll = onSelectAllProp ? onSelectAllCallback : null;
 
 	const isTransparent = !color || color === "transparent";
 	const colorProps: SxProps = isTransparent
@@ -60,6 +72,7 @@ export function ColorPicker({
 				onClose={setOpen.off}
 				onCancel={setOpen.off}
 				onColorSelect={onColorSelect}
+				onSelectAll={onSelectAll}
 			/>
 		</Box>
 	);

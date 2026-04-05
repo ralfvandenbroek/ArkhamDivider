@@ -2,7 +2,9 @@ import {
 	createEntityAdapter,
 	createSlice,
 	type PayloadAction,
+	type Update,
 } from "@reduxjs/toolkit";
+import { isNotNil } from "ramda";
 import { v4 } from "uuid";
 import type { RootState } from "@/shared/store";
 import type { Divider } from "../../model";
@@ -32,6 +34,40 @@ export const dividers = createSlice({
 					[key]: value,
 				},
 			} as unknown as Divider;
+		},
+		setAllDividersParam: (
+			state,
+			action: PayloadAction<{ key: string; value: unknown }>,
+		) => {
+			const { key, value } = action.payload;
+			const update: Update<Divider, string>[] = state.ids
+				.map((id) => {
+					const entity = state.entities[id];
+					if (!entity) {
+						return null;
+					}
+
+					const prevParams = entity.params as
+						| Record<string, unknown>
+						| undefined;
+
+					const params = {
+						...(prevParams ?? {}),
+						[key]: value,
+					};
+
+					const changes = {
+						params,
+					} as never;
+
+					return {
+						id,
+						changes,
+					};
+				})
+				.filter(isNotNil);
+
+			adapter.updateMany(state, update);
 		},
 		setDividers: adapter.setAll,
 		addDivider: adapter.addOne,
@@ -75,6 +111,7 @@ export const {
 	copyDivider,
 	setDividerParam,
 	deleteAllDividers,
+	setAllDividersParam,
 } = dividers.actions;
 
 export const {

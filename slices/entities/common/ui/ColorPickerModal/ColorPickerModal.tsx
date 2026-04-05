@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 type ColorPickerModalProps = Omit<ModalProps, "children"> & {
 	value?: string;
 	defaultValue?: string;
+	onSelectAll?: ((color?: string) => void) | null;
 	onColorSelect?: (color?: string) => void;
 	onCancel?: () => void;
 };
@@ -37,6 +38,10 @@ export function ColorPickerModal({
 	const onColorChange = useCallback((color: ColorResult) => {
 		setColor(color.hexa);
 	}, []);
+
+	const selectToAll = useCallback(() => {
+		props.onSelectAll?.(color);
+	}, [props.onSelectAll, color]);
 
 	return (
 		<Dialog {...props}>
@@ -74,6 +79,11 @@ export function ColorPickerModal({
 				>
 					{t`Default`}
 				</Button>
+				{props.onSelectAll && (
+					<Button variant="contained" color="primary" onClick={selectToAll}>
+						{t`Set to all`}
+					</Button>
+				)}
 				<Button variant="contained" color="primary" onClick={select}>
 					{t`Ok`}
 				</Button>
