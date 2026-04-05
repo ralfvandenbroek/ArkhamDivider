@@ -1,4 +1,4 @@
-import type { DividerType } from "@/modules/divider/shared/model";
+import type { DividerLayoutType } from "@/modules/divider/shared/model";
 import { prefix } from "@/shared/util";
 import { rynoDividerAssetsBaseUrl } from "../../../config";
 
@@ -6,11 +6,11 @@ const asset = prefix(rynoDividerAssetsBaseUrl);
 
 type Options = {
 	layoutId: string;
-	type: DividerType;
+	layoutType: DividerLayoutType;
 };
 
 export const getRynoDividerImages = (options: Options) => {
-	const { layoutId, type } = options;
+	const { layoutId, layoutType } = options;
 
 	const layoutMap: Record<string, string> = {
 		ryno: "horizontal",
@@ -20,8 +20,8 @@ export const getRynoDividerImages = (options: Options) => {
 
 	const id = layoutMap[layoutId] ?? layoutMap.ryno;
 
-	const typePrefix = type === "player" ? "player-" : "";
-	const scenarioPrefix = type === "scenario" ? "" : "player-";
+	const typePrefix = layoutType === "player" ? "player-" : "";
+	const scenarioPrefix = layoutType === "scenario" ? "" : "player-";
 
 	return {
 		body: asset`/body_${id}.avif`,

@@ -27,10 +27,10 @@ import * as C from "./RynoDivider.components";
 import * as S from "./RynoDivider.styles";
 
 export function RynoDivider(props: RynoDividerProps) {
-	const { type } = props;
+	const { layoutType } = props;
 	const sxOptions = useRynoDividerSxOptions();
 
-	const images = useRynoDividerImages(type);
+	const images = useRynoDividerImages(layoutType);
 	const getPrintSx = usePrintUnit(sxOptions);
 	const bodySx = getPrintSx(S.getBodySx);
 	const cornerSx = getPrintSx(S.getCornerSx);
