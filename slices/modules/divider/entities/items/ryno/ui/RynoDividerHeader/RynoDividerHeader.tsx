@@ -1,13 +1,13 @@
 // import type { BoxProps } from "@mui/material";
 // import * as C from "./RynoDividerHeader.components";
 
-import { useTranslation } from "react-i18next";
 import { useLocaleSx } from "@/modules/core/i18n/entities/lib";
 import { useDividerText } from "@/modules/divider/entities/lib";
 import { DividerText } from "@/modules/divider/entities/ui";
 import { usePrintUnit } from "@/modules/print/shared/lib";
 import {
 	getRynoDividerDefaultSubtitle,
+	getRynoDividerDefaultTitle,
 	showRynoDividerSubtitle,
 	useRynoDividerSxOptions,
 } from "../../lib";
@@ -17,7 +17,6 @@ import * as S from "./RynoDividerHeader.styles";
 export function RynoDividerHeader() {
 	const { divider } = useRynoDividerContext();
 	const sxOptions = useRynoDividerSxOptions();
-	const { t } = useTranslation();
 	const getLocaleSx = useLocaleSx(sxOptions);
 	const getPrintSx = usePrintUnit(sxOptions);
 
@@ -32,6 +31,8 @@ export function RynoDividerHeader() {
 
 	const subtitleSx = getLocaleSx(S.getSubtitleSx);
 
+	const translatedDefaultTitle = getRynoDividerDefaultTitle(divider);
+
 	const {
 		value: title,
 		translatedValue: translatedTitle,
@@ -41,10 +42,10 @@ export function RynoDividerHeader() {
 	} = useDividerText({
 		divider,
 		param: "customTitle",
+		defaultValue: translatedDefaultTitle,
 	});
 
-	const defaultSubtitle = getRynoDividerDefaultSubtitle(divider);
-	const translatedDefaultSubtitle = defaultSubtitle && t(defaultSubtitle);
+	const translatedDefaultSubtitle = getRynoDividerDefaultSubtitle(divider);
 
 	const {
 		value: subtitle,
